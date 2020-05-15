@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "project3-frontend"
+    }
+  },
+  "defaultProject": "project3-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
