@@ -1,14 +1,9 @@
-export class Application{
-    id:number
-    title:string
-    gitLink:string
-    // reports : List<BugReport>
+import BugReport from './BugReport'
 
-
-
-    constructor(id:number, title:string, gitLink:string){
-        this.id = id;
-        this.title = title;
-        this.gitLink = gitLink;
-    }
+export class Application {
+    id: number;
+    title: string;
+    gitLink: string;
+    reports: BugReport[];
 }
+export default Application;
