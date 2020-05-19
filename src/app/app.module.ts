@@ -6,19 +6,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { EditorModule} from '@tinymce/tinymce-angular';
 
-import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSliderModule} from '@angular/material/slider';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { TestComponent } from './components/test/test.component';
 import { MatSliderModule} from '@angular/material/slider';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainNavComponent } from './components/main-nav/main-nav.component';
+// import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,9 +25,8 @@ import { MatListModule } from '@angular/material/list';
   declarations: [
     AppComponent,
     NewBugReportComponent,
-    TestComponent
     LoginComponent,
-    MainNavComponent,
+    // MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +39,7 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatSelectModule,
     FormsModule,
-    EditorModule
-    BrowserAnimationsModule,
-    MatSliderModule,
+    EditorModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
