@@ -23,11 +23,12 @@ export class NewBugReportComponent implements OnInit {
   priorityLevel = ["not urgent", "medium", "urgent"];
   severityLevel = ["not severe", "medium", "very severe"];
 
+  
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-  
+
 
 }
