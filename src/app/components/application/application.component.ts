@@ -18,18 +18,17 @@ export class ApplicationComponent implements OnInit {
    this.getApplications()
    
   }
-  apps:Array<Application>
+  apps:Array<any>
 
-  app:Application
-
- 
+  app:any
   appTitle:string
   appLink:string
 
    //method that calls applcations get
   async getApplications(){
     // this.apps = await this.applications.getApps();
-    this.apps = [{"id":1, "title":"Project 1","gitLink":"github.com"},{"id":2, "title":"Project 2","gitLink":"github2.com"}]
+    this.apps = [{"id":1, "title":"Project 1","gitLink":"github.com"},
+                {"id":2, "title":"Project 2","gitLink":"github2.com"}]
    }
    clear(){
      //clears fields

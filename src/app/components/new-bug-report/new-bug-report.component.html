@@ -39,19 +39,27 @@
         
         <div class="form-group">
             <label class="formLabel">Description:</label>
-            <textarea class = "inputType" formControlName="description"></textarea>            
+            <editor formControlName="description" [init]="{
+                base_url: '/tinymce', 
+                suffix: '.min' 
+              }"></editor>          
         </div>
 
         <div class="form-group">
             <label class="formLabel">Reproduce Steps:</label>
-            <textarea class = "inputType" formControlName="reproduceSteps"></textarea> 
+            <editor formControlName="reproduceSteps" [init]="{
+                base_url: '/tinymce', 
+                suffix: '.min' 
+              }"></editor> 
         </div>
 
         <br>
         <div class="buttonGroup">
             <button type="button" class="btn btn-secondary">Cancel</button>
-            <button type="submit" class="btn btn-success">Submit for Review</button>
+            <button type="submit" class="btn btn-success" (click)="submitReport()">Submit for Review</button>
         </div>
         </form> 
+
+        <p>{{bugForm.value | json}}</p>
     </div>
 </div>
