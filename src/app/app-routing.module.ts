@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import{ApplicationComponent} from './components/application/application.component';
 import {NewBugReportComponent} from './components/new-bug-report/new-bug-report.component';
 import {LoginComponent} from './components/login/login.component';
+import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
