@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport = "true"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [ngClass]="{hidden: (isHandset$ | async)!.matches}"
+      [ngClass]="{hidden: (isHandset$ | async) }"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
