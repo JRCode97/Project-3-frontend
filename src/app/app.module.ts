@@ -30,7 +30,11 @@ import { BugReportDetailsComponent } from './components/bug-report-details/bug-r
 import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
-
+import { MainPageBugComponent } from './components/main-page-bug/main-page-bug.component';
+import { MainPageApplicationComponent } from './components/main-page-application/main-page-application.component';
+import { MainPageLeaderboardComponent } from './components/main-page-leaderboard/main-page-leaderboard.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +45,11 @@ import { ApplicationsTableComponent } from './components/application/application
     BugReportDetailsComponent,
     PostedSolutionsTableComponent,
     ApplicationComponent,
-    ApplicationsTableComponent
+    ApplicationsTableComponent,
+    MainPageBugComponent,
+    MainPageApplicationComponent,
+    MainPageLeaderboardComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +72,11 @@ import { ApplicationsTableComponent } from './components/application/application
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatExpansionModule
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
