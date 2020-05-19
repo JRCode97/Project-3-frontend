@@ -39,12 +39,18 @@
         
         <div class="form-group">
             <label class="formLabel">Description:</label>
-            <textarea class = "inputType" rows=6 formControlName="description"></textarea>            
+            <editor formControlName="description" [init]="{
+                base_url: '/tinymce', 
+                suffix: '.min' 
+              }"></editor>          
         </div>
 
         <div class="form-group">
             <label class="formLabel">Reproduce Steps:</label>
-            <textarea class = "inputType" rows=6 formControlName="reproduceSteps"></textarea> 
+            <editor formControlName="reproduceSteps" [init]="{
+                base_url: '/tinymce', 
+                suffix: '.min' 
+              }"></editor> 
         </div>
 
         <br>
