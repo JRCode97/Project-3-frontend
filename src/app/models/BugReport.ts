@@ -2,7 +2,7 @@ import Application from './Application'
 import Solution from './Solution'
 
 export class BugReport {
-    bId: string;
+    bId: number;
     title: string;
     username: string;
 
