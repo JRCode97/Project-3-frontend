@@ -1,0 +1,57 @@
+<div class="container">
+    <h1>Bug Report #</h1>
+    <div class="col">
+        <form method="post" [formGroup]="bugForm">
+        <div class="form-group">
+            <label class="formLabel">Title:</label>
+            <input class = "inputType" type="text" formControlName="title">
+        </div>
+        
+        <div class="form-group">
+            <label class="formLabel">Application:</label>
+            <select class="dropDown" formControlName="application">
+                <option value="" disabled>Choose application</option>
+                <option *ngFor="let application of applications" [ngValue]="application">{{application}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="formLabel">Suspected Location:</label>
+            <input class = "inputType" type="text" formControlName="suspectedLocation">
+        </div>
+        <div class="form-group">
+            <label class="formLabel">Severity:</label>
+            <select class="dropDown" formControlName="severity">
+                <option value="" disabled>Choose severity</option>
+                <option *ngFor="let severity of severityLevel" [ngValue]="severity">{{severity}}</option>
+            </select>
+
+            <label class="formLabel">Priority:</label>
+            <select class="dropDown" formControlName="priority">
+                <option value="" disabled>Choose priority</option>
+                <option *ngFor="let priority of priorityLevel" [ngValue]="priority">{{priority}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="formLabel">Reporter:</label>
+            <input class = "inputType" type="text" formControlName="reporter">
+        </div>
+        
+        <div class="form-group">
+            <label class="formLabel">Description:</label>
+            <textarea class = "inputType" formControlName="description"></textarea>            
+        </div>
+
+        <div class="form-group">
+            <label class="formLabel">Reproduce Steps:</label>
+            <textarea class = "inputType" formControlName="reproduceSteps"></textarea> 
+        </div>
+
+        <br>
+        <div class="buttonGroup">
+            <button type="button" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-success">Submit for Review</button>
+        </div>
+        </form> 
+    </div>
+</div>

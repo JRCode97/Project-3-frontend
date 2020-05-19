@@ -1,5 +1,5 @@
 import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
-import {Application} from 'src/app/models/application';
+// import {Application} from 'src/app/models/application';
 import { Router } from '@angular/router';
 //import {ApplicationsService} from 'src/app/services/applications.service';
 
@@ -18,9 +18,9 @@ export class ApplicationComponent implements OnInit {
    this.getApplications()
    
   }
-  apps:Array<Application>
+  apps:Array<any>
 
-  app:Application
+  app:any
 
  
   appTitle:string
