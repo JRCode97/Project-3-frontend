@@ -1,3 +1,4 @@
+import '@angular/compiler';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -5,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { EditorModule} from '@tinymce/tinymce-angular';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
