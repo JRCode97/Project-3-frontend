@@ -1,0 +1,92 @@
+<div class="container">
+    <h1>Bug Report #</h1>
+    <div class="col">
+    <form method="post" [formGroup]="bugForm">
+
+        <div class="form-group">
+            <label class="formLabel">Title:</label>
+            <input class = "inputType" type="text" formControlName="title">
+        </div>
+        
+        <div class="form-group">
+            <label class="formLabel">Application:</label>
+            <select class="dropDown" formControlName="application">
+                <option value="" disabled>Choose application</option>
+                <option *ngFor="let application of applications" [ngValue]="application">{{application}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="formLabel">Suspected Location:</label>
+            <input class = "inputType" type="text" formControlName="suspectedLocation">
+        </div>
+        <div class="form-group">
+            <label class="formLabel">Severity:</label>
+            <select class="dropDown" formControlName="severity">
+                <option value="" disabled>Choose severity</option>
+                <option *ngFor="let severity of severityLevel" [ngValue]="severity">{{severity}}</option>
+            </select>
+
+            <label class="formLabel">Priority:</label>
+            <select class="dropDown" formControlName="priority">
+                <option value="" disabled>Choose priority</option>
+                <option *ngFor="let priority of priorityLevel" [ngValue]="priority">{{priority}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="formLabel">Reporter:</label>
+            <input class = "inputType" type="text" formControlName="reporter">
+        </div>
+        
+        <div class="form-group">
+            <label class="formLabel">Description:</label>
+            <editor formControlName="description"
+                apiKey=anm7lud1mccnawihr308jqmw2t73vc84qddyamfxgsp49286
+                [init]="{
+                    height: 300,
+                    menubar: false,
+                    plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'
+                }"
+            ></editor>            
+        </div>
+
+        <div class="form-group">
+            <label class="formLabel">Reproduce Steps:</label>
+            <editor formControlName="reproduceSteps"
+                apiKey=anm7lud1mccnawihr308jqmw2t73vc84qddyamfxgsp49286
+                [init]="{
+                height: 300,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'
+                }"
+            ></editor> 
+        </div>
+
+        <br>
+        <div class="buttonGroup">
+            <button type="button" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-success">Submit for Review</button>
+        </div>
+    </form>
+    <p>Form Value: {{ bugForm.value | json }}</p>
+    </div>
+</div>
+
+
+  
