@@ -1,0 +1,133 @@
+<div class="container">
+    <h1>View Bug Report #</h1>
+    <div class="table">
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Title:</label>
+           
+            </div>
+            <div class="col-2">
+           
+                <label> {{title}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Severity: </label>
+
+                
+            </div>
+            <div class="col-2"><label>{{severity}}</label>
+            </div>
+            <div class="col-2">
+                <label class="formLabel">Priority: </label>
+            </div>
+            <div class="col-2"><label>{{priority}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Reporter: </label> </div>
+            <div class="col-2"><label>{{reporter}}</label>   </div>
+         
+            <div class="col-2">
+                <label class="formLabel">Points: </label>          
+            </div>
+            <div class="col-2">        
+                <label>{{points}}</label>       
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-2">
+
+                <label class="formLabel">Description:</label>
+            </div>
+            <div class="col-9">
+                <textarea readonly class="textareaDisabled">{{description}}</textarea>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Reproduce Steps:</label>
+            </div>
+            <div class="col-9">
+                <textarea readonly class="textareaDisabled">{{reproduceSteps}}</textarea>
+            </div>
+        </div>
+
+
+    </div>
+    <hr>
+    <div class="col">
+        <h1>Posted Solution(s)</h1>
+        <app-posted-solutions-table></app-posted-solutions-table>
+    </div>
+    <br>
+    <!-- <div class="row">
+
+        <div class="col-6">
+            <table class="table">
+                <thead>
+                    <th>
+                        <b>Solution Title</b>
+                    </th>
+                    <th>
+                        <b>Solution Describtion</b>
+                    </th>
+                    <th>
+                        <b>Solver </b>
+                    </th>
+
+                </thead>
+                <tr>
+                    <td>
+                        Solution 1 Title
+                    </td>
+                    <td>
+                        Solution 1 Describtion
+                    </td>
+                    <td>
+                        Developer 1
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div> -->
+
+</div>
+<div class="container">
+    <h1>Post new Solution</h1>
+    <div class="table">
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Title: </label>
+
+
+            </div>
+            <div class="col-4">
+                <input type="text" placeholder="Solution title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+
+                <label class="formLabel">Description:</label>
+            </div>
+            <div class="col-9">
+                <textarea class="textarea">{{description}}</textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="buttonGroup">
+        <button type="button" class="btn btn-secondary">Cancel</button> <span> &nbsp;&nbsp; </span>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+    <br>
+</div>

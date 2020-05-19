@@ -20,10 +20,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+
+import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
+import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
+import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+
+
 import { ApplicationComponent } from './components/application/application.component';
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
+
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
@@ -31,8 +39,10 @@ import { MatSortModule } from '@angular/material/sort';
     AppComponent,
     NewBugReportComponent,
     LoginComponent,
-    MainNavComponent
-    LoginComponent,
+    MainNavComponent,
+    BugReportViewComponent,
+    BugReportDetailsComponent,
+    PostedSolutionsTableComponent,
     ApplicationComponent,
     ApplicationsTableComponent
   ],
@@ -53,7 +63,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule

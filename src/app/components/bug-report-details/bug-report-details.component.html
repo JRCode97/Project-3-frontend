@@ -1,0 +1,86 @@
+<div class="container">
+    <h1>View Bug Details #</h1>
+    <div class="table">
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Title:</label>
+
+            </div>
+            <div class="col-2">
+
+                <label> {{title}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Severity: </label>
+            </div>
+            <div class="col-2">
+                <select class="dropDown">
+                    <option value="" disabled>Choose severity</option>                                     
+                    <option *ngFor="let severity of severityLevel" [ngValue]="severity">{{severity}}</option>           
+                </select>
+
+            </div>
+
+        </div>
+        <div class="row ">
+            <div class="col-2  ">
+                <label class="formLabel">Priority: </label>
+            </div>
+            <div class="col-2  ">
+                 <select class="dropDown">
+                     <option value="" disabled>Choose priority</option>                                
+                    <option *ngFor="let priority of priorityLevel" [ngValue]="priority">{{priority}}
+                    </option>
+                     </select> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Reporter: </label> </div>
+            <div class="col-2"><label>{{reporter}}</label> </div>
+
+
+        </div>
+        <div class="row">
+
+            <div class="col-2">
+                <label class="formLabel">Points: </label>
+            </div>
+            <div class="col-2">
+                <input type="number">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-2">
+
+                <label class="formLabel">Description:</label>
+            </div>
+            <div class="col-9">
+                <textarea readonly class="textareaDisabled">{{description}}</textarea>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-2">
+                <label class="formLabel">Reproduce Steps:</label>
+            </div>
+            <div class="col-9">
+                <textarea readonly class="textareaDisabled">{{reproduceSteps}}</textarea>
+            </div>
+        </div>
+
+          <div class="buttonGroup">
+                                        <button type="button" class="btn btn-danger">Reject</button>
+                                        <button type="submit" class="btn btn-success">Approve </button>
+                                    </div>
+                <br>
+    </div>
+
+
+</div>
