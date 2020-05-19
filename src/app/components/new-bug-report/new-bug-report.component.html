@@ -56,8 +56,10 @@
         <br>
         <div class="buttonGroup">
             <button type="button" class="btn btn-secondary">Cancel</button>
-            <button type="submit" class="btn btn-success">Submit for Review</button>
+            <button type="submit" class="btn btn-success" (click)="submitReport()">Submit for Review</button>
         </div>
         </form> 
+
+        <p>{{bugForm.value | json}}</p>
     </div>
 </div>
