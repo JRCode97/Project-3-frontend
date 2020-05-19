@@ -14,3 +14,16 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
+
+import { LoginComponent} from './components/login/login.component';
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes), RouterModule],
+  exports: [RouterModule]
+})
+
+export class AppRoutingModule{}

@@ -1,0 +1,28 @@
+<div class = "container">
+  <div class = "form-box">
+    <div class = "button-box">
+    <div #btn id = "btn"></div>
+    <button type = "button" class="toggle-btn" (click)="switch2()">Login</button>
+    <button type = "button" class="toggle-btn" (click)="switch1()">Register</button>
+  </div>
+
+  <form #login id = "login" class="input-group">
+    <input type = "text" class="input-field" placeholder="Username">
+    <input type = "password" class="input-field" placeholder="Password">
+    <button type="submit" class="submit-btn">Log In</button>
+
+  </form>
+
+    <form #register id = "register" class="input-group">
+      <input type = "text" class="input-field" placeholder="Enter your first name: ">
+      <input type = "text" class="input-field" placeholder="Enter your last name: ">
+      <input type = "text" class="input-field" placeholder="Enter an email address: ">
+      <input type = "text" class="input-field" placeholder="Enter a username: ">
+      <input type = "password" class="input-field" placeholder="Enter a password: ">
+      <input type = "password" class="input-field" placeholder="Confirm password: ">
+      <button type="submit" class="submit-btn">Register</button>
+
+    </form>
+
+  </div>
+</div>
