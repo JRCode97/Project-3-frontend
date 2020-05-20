@@ -1,0 +1,29 @@
+.mainApp{
+    width: 500px;
+    background-color: #F4F4F4;
+    padding: 0px 0px 0px 9px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: dimgray;
+    color: dimgray;
+}
+mat-expansion-panel-header{
+    color: black;
+}
+.mainApp:hover{
+    background-color: #f0f0f0;
+    border-color: rgb(75,75,75);
+}
+.mainAppTitle{
+    font-weight: bold;
+    font-size: large;
+    color: dimgray;
+    margin: 0px;
+}
+.mainBugContainer{
+    padding: 0px 0px 15px 0px;
+}
+.mainBugCount{
+    color: rgb(206, 21, 58);
+    font-size: small;
+}

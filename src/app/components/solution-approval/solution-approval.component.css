@@ -1,0 +1,48 @@
+h3 {
+    margin-right: 10px;
+}
+
+/*TODO: Add keyframes */
+.mat-card {
+    background: whitesmoke;
+    width: 45vw;
+    margin-left: 3vw;
+    margin-top: 3vw;
+}
+
+.mat-card-title {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgb(20,20,20) 0%, rgb(59,59,59) 20%, rgb(179,179,179) 100%);
+    padding: .5rem;
+}
+
+.bug-info {
+    display: flex;
+    align-items: baseline;
+}
+
+.bug-info h3, .mat-header-cell {
+    color: darkslategray;
+    font-weight: bold;
+}
+
+.bug-info p, .mat-cell {
+    color: black;
+}
+
+.bug-description {
+    flex-direction: column;
+}
+
+.bug-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0;
+}
+
+table {
+    background-color: whitesmoke;
+    width: 80vw;
+    margin-top: 1vh;
+    margin-left: 3vw;
+}
