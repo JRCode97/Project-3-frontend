@@ -1,0 +1,20 @@
+<div class="mainBugTop mainBug">
+    <div class="mainBugTopHead">
+        <a class="mainBugTitle" href="_blank">{{title}}</a>
+        <div class="mainBugTopHeadSub">
+            <label class="mainBugTopLabel">Status:&nbsp;</label>{{status}}
+            <label class="mainBugTopLabel">Points:&nbsp;</label>{{pointValue}}
+        </div>
+        <div class="mainBugTopHeadSub">
+                <label class="mainBugTopLabel2">posted by:&nbsp;</label>{{username}}
+                <label class="mainBugTopLabel2">posted on:&nbsp;</label>{{dateApproved.getMonth()+1}}/{{dateApproved.getDate()}}/{{dateApproved.getFullYear()}}
+        </div>
+    </div>
+    <div class="mainBugTopSub">
+        {{description}}
+    </div>
+</div>
+<div class="mainBugBottom mainBug">
+    <div class="mainBugBottomLabel">Sub Description</div>
+    <div class="mainBugBottomDescription">{{repSteps}}</div>
+</div>

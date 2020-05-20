@@ -1,0 +1,32 @@
+
+.mat-elevation-z8{
+  width:50%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  border: solid 1px black;
+  height: auto;
+  box-shadow: none;
+  
+}
+.full-width-table {
+  width: 100%;
+}
+th{
+  /* text-align: center; */
+  font-size: 1.5em;
+  color: whitesmoke;
+  background-color: rgb(51, 48, 48);
+  
+}
+mat-paginator{
+  color: whitesmoke;
+  background-color: rgb(51, 48, 48);
+}
+
+td{
+  background-color: white;
+  color: black;
+  font-size: 1.2em;
+
+}
