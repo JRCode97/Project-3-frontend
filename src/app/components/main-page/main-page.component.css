@@ -1,0 +1,12 @@
+.mainTop{
+    border-style: dashed;
+}
+.mainLeft{
+    border-style: dotted;
+    width: 60%;
+    float: left;
+}
+.mainRight{
+    border-style: ridge;
+    margin-left: 60%;
+}

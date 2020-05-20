@@ -4,6 +4,7 @@ import Solution from 'src/app/models/Solution';
 import Client from 'src/app/models/Client';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { ApiServiceService } from 'src/app/services/api-service.service';
 
 const dummy = new BugReport();
 dummy.bId = 1;
@@ -45,16 +46,27 @@ dummy.solutions = [sol1, sol2, sol3];
 export class SolutionApprovalComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status'];
+  
+  displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status' ];
   dataSource: MatTableDataSource<Solution>;
-  report: BugReport;
+  report: BugReport = dummy;
 
-  constructor() { }
+  constructor(private api: ApiServiceService) { }
 
   ngOnInit(): void {
-    this.report = dummy;
-    this.dataSource = new MatTableDataSource(dummy.solutions);
+    this.dataSource = new MatTableDataSource(this.report.solutions);
     this.dataSource.sort = this.sort;
+    this.addData()
+  }
+
+  async addData() {
+    const bugReport:BugReport = await this.api.getBugReportById(1);
+    //const s1:Solution = await this.api.getSolutionById(1);
+    //const s2:Solution = await this.api.getSolutionById(2);
+    //const s3:Solution = await this.api.getSolutionById(4);
+    //bugReport.solutions = [s1, s2, s3];
+    this.report = bugReport;
+    this.dataSource = new MatTableDataSource(bugReport.solutions);
   }
 
 }
