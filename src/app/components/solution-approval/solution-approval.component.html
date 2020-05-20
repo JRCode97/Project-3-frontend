@@ -1,0 +1,65 @@
+<mat-card>
+    <mat-card-title>
+        {{report.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+        <mat-list>
+            <mat-list-item>
+                <div class="bug-info">
+                    <h3>Severity: </h3>
+                    <p>{{report.severity}}</p>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="bug-info">
+                    <h3>Date: </h3>
+                    <p>{{report.dateCreated | date:'longDate'}}</p>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="bug-info">
+                    <h3>Reporter: </h3>
+                    <p>{{report.username}}</p>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <div class="bug-info bug-description">
+            <h3>Description: </h3>
+            <p>{{report.description}}</p>
+        </div>
+    </mat-card-content>
+    <mat-card-footer class="bug-footer">
+          <button mat-raised-button color="warn">Close Bug</button>
+          <a mat-button [routerLink]="['/bugreport']" color="accent" >Details</a>
+    </mat-card-footer>
+</mat-card>
+<table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let solution">{{solution.title}}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Solution</th>
+        <td mat-cell *matCellDef="let solution">{{solution.description}}</td>
+    </ng-container>
+    <ng-container matColumnDef="timeSubmitted">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let solution">{{solution.timeSubmitted | date:'short'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="solver">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Solver</th>
+        <td mat-cell *matCellDef="let solution">{{solution.client.username}}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let solution">{{solution.status}}</td>
+    </ng-container>
+    <!--
+        <th mat-sort-header="buttons">Set Status</th>
+        <td><button>approve</button><button>reject</button></td>
+    </tr>-->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
