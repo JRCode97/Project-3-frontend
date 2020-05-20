@@ -17,9 +17,9 @@ export class MainNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router:Router) {}
-    
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
+
   navNewBugReport(){
-    this.router.navigate(["/newbugreport"]);
+    this.router.navigate(['/newbugreport']);
   }
 }

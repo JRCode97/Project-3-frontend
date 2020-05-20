@@ -11,9 +11,9 @@ dummy.bId = 1;
 dummy.title = 'The Buginning';
 dummy.severity = 'high';
 dummy.username = 'BugMaker3000';
-dummy.description = "There's a snake in my boot!";
+dummy.description = 'There\'s a snake in my boot!';
 dummy.dateCreated = new Date('2020/5/10/16:20').getTime();
-    
+
 const dumdum = new Client();
 dumdum.username = 'BugWrecker9001';
 
@@ -45,6 +45,7 @@ dummy.solutions = [sol1, sol2, sol3];
 
 export class SolutionApprovalComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   
   displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status' ];
   dataSource: MatTableDataSource<Solution>;
