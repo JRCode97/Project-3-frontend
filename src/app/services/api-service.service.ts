@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BugReport} from 'src/app/models/BugReport'
+import {Application} from 'src/app/models/application'
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class ApiServiceService {
 
   submitNewBugReport(bugReport:BugReport):Promise<BugReport>{
     return this.http.post<BugReport>(this.path+'/BugReport', bugReport).toPromise();
+  }
+
+  getApplications():Promise<Application[]>{
+    return this.http.get<Application[]>(this.path+'/Application').toPromise();
   }
 
 }

@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 
+
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
 import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
