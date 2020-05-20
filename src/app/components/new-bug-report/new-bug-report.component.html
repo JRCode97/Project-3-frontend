@@ -1,17 +1,17 @@
 <div class="container">
     <h1>Bug Report #</h1>
     <div class="col">
-        <form method="post" [formGroup]="bugForm">
+        <form [formGroup]="bugForm">
         <div class="form-group">
             <label class="formLabel">Title:</label>
-            <input class = "inputType" type="text" formControlName="title">
+            <input class = "inputType" type="text" formControlName="title" required> 
         </div>
         
         <div class="form-group">
             <label class="formLabel">Application:</label>
             <select class="dropDown" formControlName="application">
                 <option value="" disabled>Choose application</option>
-                <option *ngFor="let application of applications" [ngValue]="application">{{application}}</option>
+                <option *ngFor="let application of applicationNameList" [ngValue]="application">{{application}}</option>
             </select>
         </div>
         
@@ -34,12 +34,12 @@
         </div>
         <div class="form-group">
             <label class="formLabel">Reporter:</label>
-            <input class = "inputType" type="text" formControlName="reporter">
+            <input class = "inputType" type="text" formControlName="reporter" disabled>
         </div>
         
         <div class="form-group">
             <label class="formLabel">Description:</label>
-            <editor formControlName="description" [init]="{
+            <editor formControlName="description" required [init]="{
                 base_url: '/tinymce', 
                 suffix: '.min' 
               }"></editor>          
@@ -56,10 +56,9 @@
         <br>
         <div class="buttonGroup">
             <button type="button" class="btn btn-secondary">Cancel</button>
-            <button type="submit" class="btn btn-success" (click)="submitReport()">Submit for Review</button>
+            <button type="submit" class="btn btn-success" (click)="submitReport()" [disabled]="bugForm.invalid">Submit for Review</button>
         </div>
         </form> 
-
-        <p>{{bugForm.value | json}}</p>
+        <!-- <p>{{bugForm.value | json}}</p> -->
     </div>
 </div>
