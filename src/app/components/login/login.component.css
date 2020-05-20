@@ -1,9 +1,14 @@
 *{
   background-color: wheat;
+  margin: 0;
+
 }
 .container{
   height: 100%;
   width: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 0;
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -55,10 +60,27 @@
   top: 100px;
   position: absolute;
   width: 200px;
-  height: 100%;
+  /*height: 100%;*/
   background: #fff;
   transition: .5s;
 }
+
+
+/* temporary fixes */
+
+.login-input input{
+  height: 50%;
+
+}
+
+.register-input input{
+  height: 75%;
+
+}
+
+/* end temporary fixes */
+
+
 
 .input-field{
   top: 100%;
@@ -69,10 +91,12 @@
   border-bottom: 1px solid #999;
   border-right: 0;
   background: #fff;
+  height: 20px;
 }
 
 .submit-btn{
   width: 85%;
+  height: 10%;
   padding: 10px 30px;
   cursor: pointer;
   display: block;

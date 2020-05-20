@@ -12,6 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { AdminBugsTableComponent } from './components/admin-bugs-table/admin-bugs-table.component';
+import { MatCardModule} from '@angular/material/card';
+import { AdminBugsCardsComponent } from './components/admin-bugs-cards/admin-bugs-cards.component';
+import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -47,6 +51,9 @@ import { SolutionApprovalComponent } from './components/solution-approval/soluti
     BugReportDetailsComponent,
     LoginComponent,
     MainNavComponent,
+    AdminBugsTableComponent,
+    AdminBugsCardsComponent,
+    AdminBugsComponent,
     MainPageApplicationComponent,
     MainPageComponent,
     MainPageBugComponent,
