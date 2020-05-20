@@ -13,6 +13,7 @@ export class BugReportViewComponent implements OnInit {
   severity = "Bug severity";
   priority = "Bug priority";
   reporter = "User name";
+   date =    new Date().toLocaleString() ;
   description = `<!-- <div class="row">
 
   <div class="col-6">
