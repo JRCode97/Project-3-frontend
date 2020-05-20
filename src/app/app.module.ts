@@ -21,6 +21,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { AdminBugsTableComponent } from './components/admin-bugs-table/admin-bugs-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatCardModule} from '@angular/material/card';
+import { AdminBugsCardsComponent } from './components/admin-bugs-cards/admin-bugs-cards.component';
+import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +36,9 @@ import { MatListModule } from '@angular/material/list';
     TestComponent,
     LoginComponent,
     MainNavComponent,
+    AdminBugsTableComponent,
+    AdminBugsCardsComponent,
+    AdminBugsComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +59,11 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
