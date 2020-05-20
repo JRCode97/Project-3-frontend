@@ -1,7 +1,7 @@
-import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
-import {Application} from 'src/app/models/application';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {Application} from 'src/app/models/Application';
 import { Router } from '@angular/router';
-//import {ApplicationsService} from 'src/app/services/applications.service';
+// import {ApplicationsService} from 'src/app/services/applications.service';
 
 @Component({
   selector: 'app-application',
@@ -9,33 +9,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
-  @ViewChild('titlErr') x: ElementRef;
-  @ViewChild('linkErr') y: ElementRef;
 
   constructor(private router: Router) { }
-//private applications:ApplicationsService
+  @ViewChild('titlErr') x: ElementRef;
+  @ViewChild('linkErr') y: ElementRef;
+  apps: Array<any>;
+
+  app: any;
+  appTitle: string;
+  appLink: string;
+// private applications:ApplicationsService
   ngOnInit(): void {
-   this.getApplications()
-   
+   this.getApplications();
+
   }
-  apps:Array<any>
 
-  app:any
-  appTitle:string
-  appLink:string
-
-   //method that calls applcations get
+   // method that calls applcations get
   async getApplications(){
     // this.apps = await this.applications.getApps();
-    this.apps = [{"id":1, "title":"Project 1","gitLink":"github.com"},
-                {"id":2, "title":"Project 2","gitLink":"github2.com"}]
+    this.apps = [{id: 1, title: 'Project 1', gitLink: 'github.com'},
+                {id: 2, title: 'Project 2', gitLink: 'github2.com'}];
    }
    clear(){
-     //clears fields
-     this.appTitle = undefined
-     this.appLink = undefined
+     // clears fields
+     this.appTitle = undefined;
+     this.appLink = undefined;
    }
-  
+
 
   // method that calls applications post
     // async addApplication(){
@@ -46,7 +46,7 @@ export class ApplicationComponent implements OnInit {
     //   if(this.title != undefined && this.link != undefined){
     //     this.app = await this.applications.addApp(this.appTitle,this.appLink)
     //     this.clear()
-    //     if(this.app)this.router.navigate(['/application']); 
+    //     if(this.app)this.router.navigate(['/application']);
     //   }
     // }
 

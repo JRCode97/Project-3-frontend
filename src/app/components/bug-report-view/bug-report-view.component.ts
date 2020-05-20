@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BugReportViewComponent implements OnInit {
 
-  title = "Bug Subject";
-  application = "Application Name";
-  suspectedLocation = "bug suspected Location";
-  severity = "Bug severity";
-  priority = "Bug priority";
-  reporter = "User name";
+  title = 'Bug Subject';
+  application = 'Application Name';
+  suspectedLocation = 'bug suspected Location';
+  severity = 'Bug severity';
+  priority = 'Bug priority';
+  reporter = 'User name';
    date =    new Date().toLocaleString() ;
   description = `<!-- <div class="row">
 
@@ -44,9 +44,9 @@ export class BugReportViewComponent implements OnInit {
           </tr>
       </table>
   </div>
-</div> -->";`
-  reproduceSteps = "Bug reproduce Steps";
-  points = "Bug points";
+</div> -->";`;
+  reproduceSteps = 'Bug reproduce Steps';
+  points = 'Bug points';
 
   constructor() { }
 

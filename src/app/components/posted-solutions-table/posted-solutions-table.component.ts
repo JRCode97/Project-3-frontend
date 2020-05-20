@@ -16,7 +16,7 @@ export class PostedSolutionsTableComponent implements AfterViewInit, OnInit {
   dataSource: PostedSolutionsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['solution_title', 'solution_describtion' ,'status','solver'];
+  displayedColumns = ['solution_title', 'solution_describtion' , 'status', 'solver'];
 
   ngOnInit() {
     this.dataSource = new PostedSolutionsTableDataSource();

@@ -1,5 +1,5 @@
-import Application from './Application'
-import Solution from './Solution'
+import Application from './Application';
+import Solution from './Solution';
 
 export class BugReport {
     bId: number;
@@ -9,7 +9,7 @@ export class BugReport {
     description: string;
     location: string;
     repSteps: string;
-    
+
     dateCreated: number;
     approvedTime: number;
     resolvedTime: number;
@@ -18,7 +18,7 @@ export class BugReport {
     severity: string;
     pointValue: number;
     status: string;
-    
+
     app: Application;
     solutions: Solution[];
 }

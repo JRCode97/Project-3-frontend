@@ -1,0 +1,50 @@
+<div class="card-container">
+
+  <mat-card *ngFor="let bug of obs | async ">
+
+    <mat-card-title>
+      {{bug.title}}
+    </mat-card-title>
+
+    <div class="card-content">
+      <mat-card-content>
+        Application: {{bug.application}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Location: {{bug.location}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Severity: {{bug.severity}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Priority: {{bug.priority}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Date: {{bug.date}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Developer: {{bug.developer}}
+      </mat-card-content>
+
+
+    </div>
+
+    <mat-card-content class="inspect-btn">
+      Details: {{bug.details}}
+    </mat-card-content>
+
+
+  </mat-card>
+</div>
+
+<mat-paginator #paginator
+               [length]="dataSource?.data.length"
+               [pageIndex]="0"
+               [pageSize]="6"
+               [pageSizeOptions]="[6, 12, 24, 36, 128]">
+</mat-paginator>
