@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BugReport} from 'src/app/models/BugReport'
 import {Application} from 'src/app/models/application'
+import Solution from '../models/Solution';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,14 @@ export class ApiServiceService {
 
   getApplications():Promise<Application[]>{
     return this.http.get<Application[]>(this.path+'/Application').toPromise();
+  }
+
+  getBugReportById(id:number) {
+    return this.http.get<BugReport>(this.path +`/bugreports/${id}`).toPromise();
+  }
+
+  getSolutionById(id:number) {
+    return this.http.get<Solution>(this.path +`/solutions/${id}`).toPromise();
   }
 
 }
