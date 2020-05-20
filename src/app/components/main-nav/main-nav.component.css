@@ -2,6 +2,10 @@
   height: 10%;
 }
 
+a{
+  cursor:pointer;
+}
+
 .sidenav {
   width: 200px;
 }
@@ -57,4 +61,5 @@ mat-toolbar a{
   transform: rotate(45deg);
 
 }
+
 

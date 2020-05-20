@@ -1,0 +1,60 @@
+.formLabel {
+    font-size: 16px;
+}
+
+.container {
+    border-style: groove;
+    border-radius: 20px;
+}
+
+.formLabel {
+    width: 20%;
+}
+
+.dropDown {
+    padding: 3px 3px;
+    margin: 0 50px 0 0;
+}
+
+.buttonGroup {
+    text-align: right;
+}
+
+.inputType {
+    width: 30%;
+}
+
+.textarea {
+    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow: -moz-scrollbars-vertical;
+    border-style: none;
+    display: inline-block;
+    border: solid 1px skyblue;
+    min-height: 200px;
+    width: 100%;
+}
+
+.textareaDisabled:read-only {
+    background-color: whitesmoke;
+    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    overflow: -moz-scrollbars-vertical;
+    border-style: none;
+    display: inline-block;
+    border: solid 1px #000;
+    min-height: 200px;
+    width: 100%;
+}
+
+.titleH1 {
+    margin-left: -13px;
+    margin-top: 2px;
+    background: linear-gradient(to bottom left, #91c7fc -6%, #bde4fc 59%);
+    border-style: groove;
+    border-width: thin;
+    border-radius: 25px;
+    border-color: rgb(145, 199, 252);
+}

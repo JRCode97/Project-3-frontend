@@ -10,7 +10,6 @@ export class LoginComponent implements OnInit {
   @ViewChild('register') y: ElementRef;
   @ViewChild('btn') z: ElementRef;
 
-
   constructor() {
   }
 

@@ -1,0 +1,60 @@
+div{
+    color: #444444;
+}
+div.mainBug{
+    width: 500px;
+}
+div.mainBugTopHead{
+    border-width: 1px;
+    border-style: solid;
+    border-color: dimgray;
+    background-color: #EFEFEF;
+    padding: 5px 15px;
+    border-radius: 6px 6px 0px 0px;
+}
+a.mainBugTitle{
+    width: 250px;
+    display: inline-block;
+    font-size: 20px;
+    color: darkred;
+}
+div.mainBugTopHeadSub{
+    display: inline-block;
+    font-size: 12px;
+}
+label.mainBugTopLabel{
+    font-weight: bold;
+    padding-left: 20px;
+    display: inline-block;
+}
+label.mainBugTopLabel2{
+    font-weight: bold;
+    padding-left: 20px;
+}
+div.mainBugTopSub{
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    padding: 10px;
+    border-radius: 0px 0px 6px 6px;
+    background-color: #FCFCFC;
+}
+div.mainBugBottomLabel{
+    border-style: solid;
+    background-color: #EFEFEF;
+    border-color: #E0E0E0;
+    border-width: 1px;
+    padding-left: 10px;
+    font-size: large;
+    height: 20px;
+    border-radius: 6px 6px 0px 6px;
+}
+div.mainBugBottomDescription{
+    /* width: 480px; */
+    margin-left: 6px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
+    background-color: #FCFCFC;
+    border-color: #E0E0E0;
+    border-radius: 0px 0px 6px 6px;
+}
