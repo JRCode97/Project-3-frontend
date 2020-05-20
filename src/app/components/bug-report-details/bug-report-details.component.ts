@@ -15,8 +15,8 @@ export class BugReportDetailsComponent implements OnInit {
   reporter = "User name";
   description = "Bug description";
   reproduceSteps = "Bug reproduce Steps";
-  points = "Bug points";
-
+  points = 0;
+  date =    new Date().toLocaleString()  ;
   applications=["Pizza Palor", "Reimbusement Project", "Bug Reports"];
   priorityLevel = ["not urgent", "medium", "urgent"];
   severityLevel = ["not severe", "medium", "very severe"];

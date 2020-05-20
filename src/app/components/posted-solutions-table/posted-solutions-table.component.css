@@ -1,3 +1,43 @@
 .full-width-table {
   width: 100%;
 }
+
+.titleH1 {
+  background: linear-gradient(to bottom left, #91c7fc -6%, #bde4fc 59%);
+  border-style: groove;
+  border-width: thin;
+  border-radius: 25px;
+  border-color: rgb(145, 199, 252);
+}
+
+.mat-elevation-z8 {
+  border: solid 1px black;
+  height: auto;
+  box-shadow: none;
+}
+
+th {
+  /* text-align: center; */
+  font-size: 1.5em;
+  color: whitesmoke;
+  background-color: rgb(51, 48, 48);
+}
+
+tr {
+  border-width: thin;
+}
+
+mat-paginator {
+  color: whitesmoke;
+  background-color: rgb(51, 48, 48);
+}
+
+td {
+  background-color: white;
+  color: black;
+  font-size: 1.2em;
+  border-width: thin;
+  text-align: start;
+  border-style: solid;
+  border-color: rgb(234, 237, 240);
+}
