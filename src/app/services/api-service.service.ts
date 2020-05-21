@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { promise } from 'protractor';
 
 import Application from 'src/app/models/Application';
 import BugReport from 'src/app/models/BugReport';
@@ -18,6 +17,8 @@ export class ApiServiceService {
   path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
   //path: string = 'http://localhost:9000'
 
+  //################ Start of Bug Report Section ###################
+
   getBugReports(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(this.path + '/bugreports').toPromise();
   }
@@ -25,6 +26,11 @@ export class ApiServiceService {
   getBugReportById(id:number) {
     return this.http.get<BugReport>(this.path +`/bugreports/${id}`).toPromise();
   }
+  submitNewBugReport(bugReport: BugReport): Promise<BugReport>{
+    return this.http.post<BugReport>(this.path + '/bugreports', bugReport).toPromise();
+  }
+
+  //################ End of Bug Report Section ###################
 
   //################ Start of Client Section ###################
 
@@ -71,4 +77,10 @@ export class ApiServiceService {
   }
 
   //################ End of Solution Section ###################
+  
+  //################ Start of Applicationn Section ###################
+  getApplications(): Promise<Application[]>{
+    return this.http.get<Application[]>(this.path + '/Application').toPromise();
+  }
+  //################ End of Application Section ###################
 }
