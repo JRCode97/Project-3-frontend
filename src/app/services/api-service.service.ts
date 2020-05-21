@@ -15,7 +15,6 @@ export class ApiServiceService {
   constructor(private http: HttpClient) { }
 
   path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
-  //path: string = 'http://localhost:9000'
 
   //################ Start of Bug Report Section ###################
 
@@ -60,6 +59,10 @@ export class ApiServiceService {
   updatePassword(client:Client):Promise<Client> {
     return this.http.put<Client>(this.path+`/clients`, client).toPromise();
   }
+  //does not work
+  resetPassword(email:string):Promise<any>{
+    return this.http.put(this.path+`/clients`, email).toPromise();
+  }
 
   //################ End of Client Section ###################
 
@@ -84,7 +87,7 @@ export class ApiServiceService {
   
   //################ Start of Applicationn Section ###################
   getApplications(): Promise<Application[]>{
-    return this.http.get<Application[]>(this.path + '/Application').toPromise();
+    return this.http.get<Application[]>(this.path + '/applications').toPromise();
   }
   //################ End of Application Section ###################
 }

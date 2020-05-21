@@ -10,7 +10,6 @@ import { SolutionApprovalComponent } from './components/solution-approval/soluti
 import { UpdatePasswordComponent } from './components/update-password/update-password.component'
 
 const routes: Routes = [
-
   { path: '', component: LoginComponent },
   { path: 'adminbugs', component: AdminBugsComponent},
   { path: 'application', component: ApplicationComponent },

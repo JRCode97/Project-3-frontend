@@ -1,3 +1,4 @@
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/services/api-service.service';
@@ -13,13 +14,11 @@ export class LoginComponent implements OnInit {
   @ViewChild('register') y: ElementRef;
   @ViewChild('btn') z: ElementRef;
 
-  constructor(private serv: ApiServiceService, private router: Router) {
+  closeResult = '';
 
-
-  }
+  constructor(private modalService: NgbModal, private serv: ApiServiceService, private router: Router) {}
   // dummy login function , justto showoff how to store the client object  in local storage session 
   async dummyLocgin() {
-
     let client = new Client();
     client = await this.serv.getClientById(1);
     alert(client.fName)
@@ -31,7 +30,25 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  switch1() {
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+   switch1(){
     this.x.nativeElement.style.left = '-400px';
     this.y.nativeElement.style.left = '50px';
     this.z.nativeElement.style.left = '110px';
