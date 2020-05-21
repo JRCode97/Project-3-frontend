@@ -22,10 +22,6 @@ export class ApiServiceService {
     return this.http.get<BugReport[]>(this.path + '/bugreports').toPromise();
   }
 
-  getSolutionsByBugId(id:number) {
-    return this.http.get<Solution[]>(this.path +`/query/solutions/bugreport?id=${id}`).toPromise();
-  }
-
   getBugReportById(id:number) {
     return this.http.get<BugReport>(this.path +`/bugreports/${id}`).toPromise();
   }
@@ -75,8 +71,8 @@ export class ApiServiceService {
     return ticketPromise;
   }
   //2. Get all Solutions by Bug Report ID 
-  getSolutionsByBugId(brId: number): Promise<Array<Solution>> {
-    return this.http.get<Array<Solution>>(this.path + '/query/solutions/bugreport?id=' + brId).toPromise();
+  getSolutionsByBugId(id:number) {
+    return this.http.get<Solution[]>(this.path +`/query/solutions/bugreport?id=${id}`).toPromise();
   }
 
   getSolutionById(id: number) {
