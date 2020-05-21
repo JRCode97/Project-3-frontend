@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {NewBugReportComponent} from './components/new-bug-report/new-bug-report.component';
-import {LoginComponent} from './components/login/login.component';
-import {AdminBugsComponent} from './components/admin-bugs/admin-bugs.component';
+import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
+import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 
 const routes: Routes = [
