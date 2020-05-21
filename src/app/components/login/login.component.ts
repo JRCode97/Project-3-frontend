@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-login',

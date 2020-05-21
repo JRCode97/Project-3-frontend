@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
+  //TEMP FIELD
+  fName:String = "Sarah";
+  lName:String = "Connor";
+
   constructor() { }
 
   ngOnInit(): void {

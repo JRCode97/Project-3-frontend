@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageApplicationComponent implements OnInit {
 
-  //TEMP FIELD
-  title:String = "Cursed Pizza Online Ordering System App";
-  gitLink:String = "http://github.com/wackywill/cpoos";
+  // TEMP FIELD
+  title: String = 'Cursed Pizza Online Ordering System App';
+  gitLink: String = 'http://github.com/wackywill/cpoos';
   panelOpenState = false;
-  bugCount:Number = 3;
+  bugCount: Number = 3;
 
   constructor() { }
 

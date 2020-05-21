@@ -16,9 +16,9 @@ export interface PostedSolutionsTableItem {
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: PostedSolutionsTableItem[] = [
-  { solution_id: 1, solution_title: 'Rebuild', solution_describtion: "Rebuild the whole project to apply the new changes", solver: "Wael Dawoud", status: "Submitted" },
-  { solution_id: 2, solution_title: 'Clear the cache ', solution_describtion: "clear teh server cache", solver: "Mohamed", status: "Submitted" },
-  { solution_id: 3, solution_title: 'Add new dependencies to POM', solution_describtion: "Add new dependencies to POM.xml and rebuild", solver: "Dylan", status: "Submitted" },
+  { solution_id: 1, solution_title: 'Rebuild', solution_describtion: 'Rebuild the whole project to apply the new changes', solver: 'Wael Dawoud', status: 'Submitted' },
+  { solution_id: 2, solution_title: 'Clear the cache ', solution_describtion: 'clear teh server cache', solver: 'Mohamed', status: 'Submitted' },
+  { solution_id: 3, solution_title: 'Add new dependencies to POM', solution_describtion: 'Add new dependencies to POM.xml and rebuild', solver: 'Dylan', status: 'Submitted' },
 
 ];
 
