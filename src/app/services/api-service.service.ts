@@ -90,4 +90,14 @@ export class ApiServiceService {
   }
   //################ End of Application Section ###################
 
+  //################ Start of Leaderboard Section ###################
+
+  getLeaderboardNames(): Promise<String[]>{
+    return this.http.get<String[]>(this.path + '/clients/leaderboard/username').toPromise();
+  }
+  getLeaderboardPoints(): Promise<number[]>{
+    return this.http.get<number[]>(this.path + '/clients/leaderboard/points').toPromise();
+  }
+
+  //################ End of Leaderboard Section ###################
 }
