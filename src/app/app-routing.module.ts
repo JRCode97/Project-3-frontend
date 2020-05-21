@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'main', component: MainPageApplicationComponent },
   { path: 'application', component: ApplicationComponent },
   { path: 'newbugreport', component:NewBugReportComponent },
-  { path: 'bugreport', component: BugReportViewComponent },
+  { path: 'bugreport/:id', component: BugReportViewComponent },
   { path: 'solutions/resolver', component: SolutionApprovalComponent }
 ];
 

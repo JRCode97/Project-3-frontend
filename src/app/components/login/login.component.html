@@ -6,10 +6,10 @@
     <button type = "button" class="toggle-btn" (click)="switch1()">Register</button>
   </div>
 
-  <form #login id = "login" class="input-group">
+  <form #login id = "login" class="input-group"  >
     <input type = "text" class="input-field" placeholder="Username">
     <input type = "password" class="input-field" placeholder="Password">
-    <button type="submit" class="submit-btn">Log In</button>
+    <button type="submit" (click)="dummyLocgin()" class="submit-btn">Log In</button>
 
   </form>
 
