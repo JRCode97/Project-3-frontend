@@ -1,9 +1,10 @@
 import BugReport from './BugReport';
 import Client from './Client';
+import SolutionStatus from './SolutionStatus';
 
 export class Solution {
    id: number;
-   status: string;
+   status: SolutionStatus;
    timeSubmitted: number;
    title: string;
    description: string;
