@@ -18,7 +18,7 @@
 .mainLeaderboardRow{
     background-color: snow;
     color: darkslategray;
-    text-shadow: 1px 1px rgb(158, 15, 44);
+    /* text-shadow: 1px 1px rgb(158, 15, 44); */
     font-size: 18px;
     padding: 10px 0px 10px 30px;
     border-radius: 0px 0px 10px 10px;
