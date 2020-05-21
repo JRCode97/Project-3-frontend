@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Application} from 'src/app/models/application';
+import { BugReport } from 'src/app/models/BugReport';
 
 @Component({
   selector: 'app-main-page-application',
@@ -7,15 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageApplicationComponent implements OnInit {
 
-  //TEMP FIELD
-  title:String = "Cursed Pizza Online Ordering System App";
-  gitLink:String = "http://github.com/wackywill/cpoos";
   panelOpenState = false;
-  bugCount:Number = 3;
+
+  // TEMP FIELD
+  title: String = 'Cursed Pizza Online Ordering System App';
+  gitLink: String = 'http://github.com/wackywill/cpoos';
+  bugCount: Number = 1;
+  reports:BugReport[];
+  // title & link from @input application object/model
+  // count array of bugs for bugCount
+
+  @Input() application:Application;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.title = this.application.title;
+    this.gitLink = this.application.gitLink;
+    this.bugCount = this.application.reports.length;
+    this.reports = this.application.reports;
   }
 
 }

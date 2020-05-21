@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./bug-report-view.component.css']
 })
 export class BugReportViewComponent implements OnInit {
+ 
 
     public brId: any;
     public solutions: Array<Solution>;
@@ -18,7 +19,7 @@ export class BugReportViewComponent implements OnInit {
     public client: Client;
     public SolDescription: string = '';
     public SolTitle: string = '';
-
+ 
 
 
 
@@ -82,5 +83,4 @@ export class BugReportViewComponent implements OnInit {
         this.getBugSolutionsById();
         return result;
     }
-
 }

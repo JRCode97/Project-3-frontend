@@ -1,1 +1,16 @@
-<p>main-page works!</p>
+<div class="mainPageContainer">
+    <div class="mainTop">
+        <p class="mainLogo"><img class="mainBugL" src="../../../assets/Ladybug-128.png">Bug's @ Large<img
+                class="mainBugR" src="../../../assets/Ladybug-128.png"></p>
+    </div>
+
+    <div class="mainLeft">
+        <mat-accordion>
+            <app-main-page-application *ngFor="let app of applications" [application]="app"></app-main-page-application>
+        </mat-accordion>
+    </div>
+
+    <div class="mainRight">
+        <app-main-page-leaderboard></app-main-page-leaderboard>
+    </div>
+</div>

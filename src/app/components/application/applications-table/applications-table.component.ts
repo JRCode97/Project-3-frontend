@@ -20,7 +20,7 @@ export class ApplicationsTableComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'title', 'gitLink'];
 
-  
+
   ngOnInit() {
     this.dataSource = new ApplicationsTableDataSource();
   }
