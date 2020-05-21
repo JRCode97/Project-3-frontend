@@ -10,7 +10,7 @@ export class BugReport {
     location: string;
     repSteps: string;
 
-    dateCreated: number;
+    createdTime: number;
     approvedTime: number;
     resolvedTime: number;
 
