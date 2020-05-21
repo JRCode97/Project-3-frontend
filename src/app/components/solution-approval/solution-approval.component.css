@@ -16,6 +16,10 @@ h3 {
     padding: .5rem;
 }
 
+.mat-select-value {
+    color: black !important;
+}
+
 .bug-info {
     display: flex;
     align-items: baseline;

@@ -19,9 +19,9 @@ export class MainNavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private router:Router , private serv:ApiServiceService) {}
-    
+
   navNewBugReport(){
-    this.router.navigate(["/newbugreport"]);
+    this.router.navigate(['/newbugreport']);
   }
 
   logout()

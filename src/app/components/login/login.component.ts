@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import Client from 'src/app/models/Client';

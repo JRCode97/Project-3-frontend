@@ -1,0 +1,8 @@
+<h1 class="page-header">Admin Bugs Page</h1>
+<button (click)="toggle()">{{buttonName}}</button>
+
+<app-admin-bugs-table [hidden] = "shown"></app-admin-bugs-table>
+<app-admin-bugs-cards *ngIf="show"></app-admin-bugs-cards>
+
+
+

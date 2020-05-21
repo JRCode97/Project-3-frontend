@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./bug-report-view.component.css']
 })
 export class BugReportViewComponent implements OnInit {
-
     brId: any;
     solutions: Array<Solution>;
     br: BugReport;
@@ -78,5 +77,4 @@ export class BugReportViewComponent implements OnInit {
         console.log(sol);
         return result;
     }
-
 }
