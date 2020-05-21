@@ -20,7 +20,7 @@ export class MainPageComponent implements OnInit {
   }
 
   async getApplications(): Promise<any> {
-    let aList: Array<Application> = await this.apiservice.getAllApplications();
+    let aList: Array<Application> = await this.apiservice.getApplications();
     console.log(aList);
     this.applications = aList;
     console.log(this.applications);
