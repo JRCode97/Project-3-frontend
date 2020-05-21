@@ -38,4 +38,7 @@ export class ApiServiceService {
     return this.http.put<Client>(this.path+`/clients`, client).toPromise();
   }
 
+  getSolutionsByClientId(id:number) {
+    return this.http.get<Solution>(this.path +`/query/solutions/client?id=${id}`).toPromise();
+  }
 }

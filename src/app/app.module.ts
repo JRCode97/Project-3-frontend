@@ -42,7 +42,8 @@ import { PostedSolutionsTableComponent } from './components/posted-solutions-tab
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { BugReportsTableComponent } from './components/profile/profile-tables/bug-reports-table/bug-reports-table.component'
+import { BugReportsTableComponent } from './components/profile/profile-tables/bug-reports-table/bug-reports-table.component';
+import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { BugReportsTableComponent } from './components/profile/profile-tables/bu
     SolutionApprovalComponent,
     UpdatePasswordComponent,
     ProfileComponent,
-    BugReportsTableComponent
+    BugReportsTableComponent,
+    SolutionsTableComponent
   ],
   imports: [
     AppRoutingModule,
