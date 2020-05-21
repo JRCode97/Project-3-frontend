@@ -1,0 +1,69 @@
+.continer{
+    border-style: solid;
+    border-color: black;
+    height: 100vh;
+
+}
+
+    #profileHalf{
+        display: flex;
+        height: 34%;
+    }
+
+        #profileLeftColumn{
+            flex-direction: column; 
+            float: left;
+            width: 30%;
+        }
+
+            #profilePicDiv{
+
+            }
+
+                #profilePic{
+                    padding-top: 15%;
+                    padding-bottom: 5%;
+                    padding-right: 5%;
+                    height: 100%;
+                    width: 100%;
+                }
+
+            #pointsDiv{
+                border-style: solid;
+                border-color: orange;
+                text-align: center;
+            }
+
+        #AboutMeDiv{
+            border-style: solid;
+            border-color: black;
+            width: 70%;
+            flex-direction: column; 
+            float: right;
+            margin-left: 5%;
+        }
+
+            #titleDiv{
+                border-style: solid;
+                border-color: yellow;
+                width: 100%;
+                padding-left: 5vh;
+                padding-top: 2vh;
+            }
+
+            #profileDetail{
+                text-align: center;
+                padding-top: 18%;
+            }
+
+    #bugTableDiv{
+        margin-top: 2vh;
+        border-style: solid;
+        border-color: red;
+    }
+
+    #solutionTableDiv{
+        margin-top: 2vh;
+        border-style: solid;
+        border-color: green;
+    }

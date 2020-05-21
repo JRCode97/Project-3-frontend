@@ -61,9 +61,10 @@ export class ApiServiceService {
   resetPassword(email:string):Promise<any>{
     return this.http.put(this.path+`/clients`, email).toPromise();
   }
-
+  getSolutionsByClientId(id:number) {
+    return this.http.get<Solution>(this.path +`/query/solutions/client?id=${id}`).toPromise();
+  }
   //################ End of Client Section ###################
-
 
   //################ Start of Solution Section ###################
 
@@ -88,4 +89,5 @@ export class ApiServiceService {
     return this.http.get<Application[]>(this.path + '/applications').toPromise();
   }
   //################ End of Application Section ###################
+
 }

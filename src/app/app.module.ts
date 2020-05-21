@@ -31,6 +31,7 @@ import { ApplicationComponent } from './components/application/application.compo
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
 import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
 import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
+import { BugReportsTableComponent } from './components/profile/profile-tables/bug-reports-table/bug-reports-table.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MainPageApplicationComponent } from './components/main-page-application/main-page-application.component';
@@ -38,10 +39,17 @@ import { MainPageBugComponent } from './components/main-page-bug/main-page-bug.c
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { MainPageLeaderboardComponent } from './components/main-page-leaderboard/main-page-leaderboard.component';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
-import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
-import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component'
+import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
+import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -53,6 +61,7 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     ApplicationsTableComponent,
     BugReportViewComponent,
     BugReportDetailsComponent,
+    BugReportsTableComponent,
     LoginComponent,
     MainNavComponent,
     MainPageApplicationComponent,
@@ -60,10 +69,12 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     MainPageBugComponent,
     MainPageLeaderboardComponent,
     NewBugReportComponent,
+    PasswordResetComponent,
     PostedSolutionsTableComponent,
+    ProfileComponent,
     SolutionApprovalComponent,
+    SolutionsTableComponent,
     UpdatePasswordComponent,
-    PasswordResetComponent
   ],
   imports: [
     AppRoutingModule,
