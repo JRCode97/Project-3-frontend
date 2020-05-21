@@ -42,6 +42,9 @@ import { PostedSolutionsTableComponent } from './components/posted-solutions-tab
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component'
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
+import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
+import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     PostedSolutionsTableComponent,
     SolutionApprovalComponent,
     UpdatePasswordComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    AdminSolutionsComponent,
+    UnresolvedbugsTableComponent,
+    ResolvedbugsTableComponent
   ],
   imports: [
     AppRoutingModule,
