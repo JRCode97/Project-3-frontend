@@ -11,11 +11,11 @@
     <div class="form-group row">
 
         <label for="lblapplication" class="col-sm-2 col-form-label">Application:</label>
+        <ng-container *ngIf="br.app !=null">
+            <label id="lblapplication" class="col-sm-2 form-control-plaintext"> {{br.app.title}}</label>
 
-        <label id="lblapplication" class="col-sm-2 form-control-plaintext"> {{br.app.title}}</label>
 
-        <label for="lbllocation" class="col-sm-2 col-form-label">Location:</label>
-
+        </ng-container> <label for="lbllocation" class="col-sm-2 col-form-label">Location:</label>
         <label id="lbllocation" class="col-sm-2 form-control-plaintext"> {{br.location}}</label>
 
     </div>
@@ -76,7 +76,7 @@
     </div>
 
     <hr>
-    <div class="form-group ">
+    <div class="form-group " style="display: none;">
         <h1>Posted Solution(s)</h1>
         <app-posted-solutions-table></app-posted-solutions-table>
     </div>
@@ -104,8 +104,9 @@
                     <td>
                         {{item.title}}
                     </td>
-                    <td>
-                        {{item.description}}
+                    <!-- <td [innerHtml]="item.description"> -->
+                    <td [innerText]="item.description">
+                        <!-- {{item.description}} -->
                     </td>
                     <td>
                         {{item.status}}
@@ -120,28 +121,28 @@
     </div>
 
 </div>
-<div class="container">
+<form class="container">
     <h1 class="titleH1 col-sm-3">Post new Solution</h1>
 
     <div class="form-group row">
 
         <label class="col-sm-2 form-label">Title: </label>
 
-
-        <input type="text" [(ngModel)]="SolTitle" class="col-sm-6 form-control" placeholder="Solution title">
+        <input type="text" id="txtSolTitle" ngModel name="txtSolTitle" #txtSolTitle="ngModel" [(ngModel)]="SolTitle"
+            required minlength="6" maxlength="2000" class="col-sm-6 form-control" placeholder="Solution title">
 
     </div>
     <div class="form-group row">
-
-
         <label class="col-sm-2 form-label">Description: </label>
-        <textarea [(ngModel)]="SolDescription" placeholder="Solution Describtion"
+        <textarea id="txtSolDescribtion"  required minlength="6"  ngModel name="txtSolDescribtion" #txtSolDescribtion="ngModel"  [(ngModel)]="SolDescription" placeholder="Solution Describtion"
             class="col-sm-8 form-control textarea"> </textarea>
     </div>
 
     <div class="buttonGroup">
-        <button type="button" (click)="postSolution()" class="btn btn-secondary">Cancel</button> <span> &nbsp;&nbsp; </span>
-        <button type="button" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-secondary">Cancel</button> <span> &nbsp;&nbsp; </span>
+        <button type="button" [disabled]=" !(txtSolTitle.errors.minlength) ||  !(txtSolDescribtion.errors.minlength)" (click)="postSolution()"
+            class="btn btn-success">Submit</button>
     </div>
+
     <br>
-</div>
+</form>

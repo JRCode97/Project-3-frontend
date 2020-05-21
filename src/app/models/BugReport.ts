@@ -5,15 +5,12 @@ export class BugReport {
     bId: number;
     title: string;
     username: string;
-
     description: string;
     location: string;
     repSteps: string;
     createdTime: number;
-    dateCreated: number;
     approvedTime: number;
     resolvedTime: number;
-
     priority: string;
     severity: string;
     pointValue: number;

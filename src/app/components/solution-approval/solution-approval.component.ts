@@ -11,7 +11,7 @@ dummy.title = 'The Buginning';
 dummy.severity = 'high';
 dummy.username = 'BugMaker3000';
 dummy.description = "There's a snake in my boot!";
-dummy.dateCreated = new Date('2020/5/10/16:20').getTime();
+dummy.createdTime = new Date('2020/5/10/16:20').getTime();
     
 const dumdum = new Client();
 dumdum.username = 'BugWrecker9001';

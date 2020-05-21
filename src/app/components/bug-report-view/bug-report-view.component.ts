@@ -4,7 +4,7 @@ import Solution from 'src/app/models/Solution';
 import BugReport from 'src/app/models/BugReport';
 import Client from 'src/app/models/Client';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
     selector: 'app-bug-report-view',
     templateUrl: './bug-report-view.component.html',
@@ -12,18 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BugReportViewComponent implements OnInit {
 
-    brId: any;
-    solutions: Array<Solution>;
-    br: BugReport;
-    client: Client;
-    SolDescription: string = '';
-    SolTitle: string = '';
+    public brId: any;
+    public solutions: Array<Solution>;
+    public br: BugReport;
+    public client: Client;
+    public SolDescription: string = '';
+    public SolTitle: string = '';
+    registerForm: FormGroup;
+    submitted = false;
 
 
 
 
-
-    constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router) {
+    constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
         // const queryString = window.location.search;
         // const urlParams = new URLSearchParams(queryString);
         // this.brId = urlParams.get("brid");
@@ -41,6 +42,36 @@ export class BugReportViewComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.registerForm = this.formBuilder.group({
+            SolDescription: ['', [Validators.required, Validators.minLength(100)]],
+            txtSolTitle: ['', [Validators.required, Validators.minLength(6)]]
+        });
+    }
+    // convenience getter for easy access to form fields
+    get f() { return this.registerForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+        console.log(this.registerForm.invalid);
+        // stop here if form is invalid
+        if (this.registerForm.invalid) {
+
+            return;
+        }
+
+       else if (!this.registerForm.invalid) {
+            this.postSolution();
+        }
+    
+
+        // display form values on success
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+    }
+
+
+    onReset() {
+        this.submitted = false;
+        this.registerForm.reset();
     }
     //0. Get Client By ID 
     getClient(): Client {
@@ -65,17 +96,20 @@ export class BugReportViewComponent implements OnInit {
     }
     //3. Add new  Solution 
     async postSolution(): Promise<any> {
-        let sol: Solution;
+        let sol = new Solution();
+        console.log(this.br);
         sol.br = this.br;
+
         sol.client = this.client;
         sol.id = 0;
         sol.status = "Pending"
         sol.title = this.SolTitle;
         sol.description = this.SolDescription;
-        sol.timeSubmitted = Number(new Date().toLocaleString());
+        sol.timeSubmitted = new Date().getTime();
 
         let result = await this.apiserv.postSolution(sol);
         console.log(sol);
+        this.getBugSolutionsById();
         return result;
     }
 

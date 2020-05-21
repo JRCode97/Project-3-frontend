@@ -45,7 +45,7 @@ export class NewBugReportComponent implements OnInit {
         report.app = app;
       }
     }
-    report.dateCreated = new Date().getTime();
+    report.createdTime = new Date().getTime();
 
     console.log(report)
     let result = await this.api.submitNewBugReport(report);
