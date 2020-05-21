@@ -15,11 +15,11 @@ export class ApiServiceService {
   path = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000';
 
   submitNewBugReport(bugReport: BugReport): Promise<BugReport>{
-    return this.http.post<BugReport>(this.path + '/BugReport', bugReport).toPromise();
+    return this.http.post<BugReport>(this.path + '/bugreports', bugReport).toPromise();
   }
 
   getApplications(): Promise<Application[]>{
-    return this.http.get<Application[]>(this.path + '/Application').toPromise();
+    return this.http.get<Application[]>(this.path + '/applications').toPromise();
   }
 
   getBugReports(): Promise<BugReport[]>{
@@ -36,6 +36,11 @@ export class ApiServiceService {
 
   updatePassword(client:Client):Promise<Client>{
     return this.http.put<Client>(this.path+`/clients`, client).toPromise();
+  }
+
+  //does not work
+  resetPassword(email:string):Promise<any>{
+    return this.http.put(this.path+`/clients`, email).toPromise();
   }
 
 }

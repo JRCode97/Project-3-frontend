@@ -25,8 +25,8 @@ export class NewBugReportComponent implements OnInit {
 
   applicationList: Application[] = [];
   applicationNameList = [];
-  priorityLevel = ['not urgent', 'medium', 'urgent'];
-  severityLevel = ['not severe', 'medium', 'very severe'];
+  priorityLevel = ['low', 'medium', 'high'];
+  severityLevel = ['low', 'medium', 'high'];
 
 
   constructor(private fb: FormBuilder, private api: ApiServiceService) { }
