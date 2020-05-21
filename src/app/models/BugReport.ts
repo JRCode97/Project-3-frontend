@@ -1,8 +1,5 @@
 import Application from './Application';
 import Solution from './Solution';
-import Priority from './Priority';
-import Severity from './Severity';
-import BugStatus from './BugStatus';
 
 export class BugReport {
     bId: number;
@@ -12,15 +9,15 @@ export class BugReport {
     description: string;
     location: string;
     repSteps: string;
-  
-    createdTime: number;
+
+    dateCreated: number;
     approvedTime: number;
     resolvedTime: number;
 
-    priority: Priority;
-    severity: Severity;
+    priority: string;
+    severity: string;
     pointValue: number;
-    status: BugStatus;
+    status: string;
 
     app: Application;
     solutions: Solution[];

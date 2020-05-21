@@ -40,8 +40,6 @@ import { MainPageLeaderboardComponent } from './components/main-page-leaderboard
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-import { UpdatePasswordComponent } from './components/update-password/update-password.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component'
 
 @NgModule({
   declarations: [
@@ -61,9 +59,7 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     MainPageLeaderboardComponent,
     NewBugReportComponent,
     PostedSolutionsTableComponent,
-    SolutionApprovalComponent,
-    UpdatePasswordComponent,
-    PasswordResetComponent
+    SolutionApprovalComponent
   ],
   imports: [
     AppRoutingModule,

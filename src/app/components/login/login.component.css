@@ -14,9 +14,6 @@
   position: absolute;
 }
 
-.modal-body{
-  height:200px;
-}
 
 .form-box{
   width: 380px;
@@ -84,6 +81,7 @@
 /* end temporary fixes */
 
 
+
 .input-field{
   top: 100%;
   padding: 10px 0;
@@ -94,10 +92,6 @@
   border-right: 0;
   background: #fff;
   height: 20px;
-}
-
-.password-reset{
-  background: #fff;
 }
 
 .submit-btn{

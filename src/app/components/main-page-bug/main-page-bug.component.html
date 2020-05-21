@@ -1,20 +1,21 @@
 <div class="mainBugTop mainBug">
     <div class="mainBugTopHead">
-        <a class="mainBugTitle" href="_blank">{{title}}</a>
+        <a class="mainBugTitle" href="_blank">{{title}}</a><br>
+
         <div class="mainBugTopHeadSub">
-            <label class="mainBugTopLabel">Status:&nbsp;</label>{{status}}
-            <label class="mainBugTopLabel">Points:&nbsp;</label>{{pointValue}}
+            <div class="mainBugField"><label class="mainBugTopLabel">Status:&nbsp;</label>{{status}}</div>
+            <div class="mainBugField"><label class="mainBugTopLabel">Points:&nbsp;</label>{{pointValue}}</div>
         </div>
         <div class="mainBugTopHeadSub">
-                <label class="mainBugTopLabel2">posted by:&nbsp;</label>{{username}}
-                <label class="mainBugTopLabel2">posted on:&nbsp;</label>{{dateApproved.getMonth()+1}}/{{dateApproved.getDate()}}/{{dateApproved.getFullYear()}}
+            <div class="mainBugField"><label class="mainBugTopLabel2">posted by:&nbsp;</label>{{username}}</div>
+            <div class="mainBugField"><label class="mainBugTopLabel2">posted on:&nbsp;</label>{{dateApproved | date:'longDate'}}</div>
         </div>
     </div>
-    <div class="mainBugTopSub">
-        {{description}}
+    <div class="mainBugTopSub" [innerHtml]="description">
+        <!-- {{description}} -->
     </div>
 </div>
 <div class="mainBugBottom mainBug">
     <div class="mainBugBottomLabel">Sub Description</div>
-    <div class="mainBugBottomDescription">{{repSteps}}</div>
+    <div class="mainBugBottomDescription" [innerHtml]="repSteps"></div>
 </div>
