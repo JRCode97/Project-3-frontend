@@ -40,6 +40,7 @@ import { MainPageLeaderboardComponent } from './components/main-page-leaderboard
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component'
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { SolutionApprovalComponent } from './components/solution-approval/soluti
     MainPageLeaderboardComponent,
     NewBugReportComponent,
     PostedSolutionsTableComponent,
-    SolutionApprovalComponent
+    SolutionApprovalComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     AppRoutingModule,

@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
+import {UpdatePasswordComponent} from './components/update-password/update-password.component'
 
 const routes: Routes = [
 
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'application', component: ApplicationComponent },
   { path: 'newbugreport', component: NewBugReportComponent },
   { path: 'bugreport', component: BugReportViewComponent },
+  { path: 'solutions/resolver', component: SolutionApprovalComponent },
+  { path: 'newpassword', component:UpdatePasswordComponent},
   { path: 'bugsolutionreview/:id', component: SolutionApprovalComponent}
 ];
 

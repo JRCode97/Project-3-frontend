@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import {Client} from 'src/app/models/Client';
 import {BugReport} from 'src/app/models/BugReport'
 import {Application} from 'src/app/models/application'
 import Solution from '../models/Solution';
@@ -32,6 +32,10 @@ export class ApiServiceService {
 
   getSolutionById(id:number) {
     return this.http.get<Solution>(this.path +`/solutions/${id}`).toPromise();
+  }
+
+  updatePassword(client:Client):Promise<Client>{
+    return this.http.put<Client>(this.path+`/clients`, client).toPromise();
   }
 
 }
