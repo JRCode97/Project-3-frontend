@@ -96,7 +96,7 @@ export class BugReportsTableDataSource extends DataSource<any> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'title': return compare(a.title, b.title, isAsc);
-        case 'id': return compare(+a.date, +b.date, isAsc);
+        case 'date': return compare(+a.date, +b.date, isAsc);
         case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
