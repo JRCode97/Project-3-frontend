@@ -40,7 +40,9 @@ import { MainPageLeaderboardComponent } from './components/main-page-leaderboard
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-import { UpdatePasswordComponent } from './components/update-password/update-password.component'
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { BugReportsTableComponent } from './components/profile/profile-tables/bug-reports-table/bug-reports-table.component'
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     NewBugReportComponent,
     PostedSolutionsTableComponent,
     SolutionApprovalComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    ProfileComponent,
+    BugReportsTableComponent
   ],
   imports: [
     AppRoutingModule,
