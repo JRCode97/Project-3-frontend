@@ -8,9 +8,7 @@ export class Solution {
    timeSubmitted: number;
    title: string;
    description: string;
-   br = new BugReport();
+   br: BugReport;
    client: Client;
 }
-
 export default Solution;
-

@@ -14,9 +14,7 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-
   path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
-
 
   //################ Start of Bug Report Section ###################
 
@@ -73,8 +71,8 @@ export class ApiServiceService {
     return ticketPromise;
   }
   //2. Get all Solutions by Bug Report ID 
-  getSolutionsByBugId(id:number) {
-    return this.http.get<Solution[]>(this.path +`/query/solutions/bugreport?id=${id}`).toPromise();
+  getSolutionsByBugId(brId: number): Promise<Array<Solution>> {
+    return this.http.get<Array<Solution>>(this.path + '/query/solutions/bugreport?id=' + brId).toPromise();
   }
 
   getSolutionById(id: number) {
@@ -88,4 +86,13 @@ export class ApiServiceService {
     return this.http.get<Application[]>(this.path + '/applications').toPromise();
   }
   //################ End of Application Section ###################
+
+  //################ Start of Leaderboard Section #################
+  getLeaderboardNames(): Promise<String[]>{
+    return this.http.get<String[]>(this.path + '/clients/leaderboard/username').toPromise();
+  }
+  getLeaderboardPoints(): Promise<number[]>{
+    return this.http.get<number[]>(this.path + '/clients/leaderboard/points').toPromise();
+  }
+  //################ End of Lederboard Section ###################
 }

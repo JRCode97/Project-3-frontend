@@ -8,6 +8,7 @@ export class BugReport {
     bId: number;
     title: string;
     username: string;
+
     description: string;
     location: string;
     repSteps: string;
@@ -15,11 +16,9 @@ export class BugReport {
     createdTime: number;
     approvedTime: number;
     resolvedTime: number;
- 
 
     priority: Priority;
     severity: Severity;
- 
     pointValue: number;
     status: BugStatus;
 
