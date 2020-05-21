@@ -10,7 +10,7 @@
     <input type = "text" class="input-field" placeholder="Username">
     <input type = "password" class="input-field" placeholder="Password">
     <a class="password-reset" (click)="open(content)">Reset Password</a>
-    <button type="submit" class="submit-btn">Log In</button>
+    <button type="submit" (click)="dummyLocgin()" class="submit-btn">Log In</button>
   </form>
 
     <form #register id = "register" class="input-group register-input">

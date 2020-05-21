@@ -17,23 +17,14 @@ export class UpdatePasswordComponent implements OnInit {
     verifyPassword:['']
   }, {validators:this.validatePassword});
 
-  client:Client = {
-    "cId": 1,
-    "fName": "Jesse",
-    "lName": "the real jesse",
-    "username": "theRaidman",
-    "email": "nb231111@gmail.com",
-    "password": "password",
-    "role": 0,
-    "solutions": []
-    }
+  client:Client = this.api.getLoggedClient();
 
   passwordCorrect:boolean;
 
   constructor(private fb:FormBuilder, private api:ApiServiceService) { }
 
   ngOnInit(): void {
-    console.log(this.passwordForm);
+    console.log(this.client);
   }
 
   async submit(){
