@@ -13,10 +13,14 @@ div.mainBugTopHead{
     border-radius: 6px 6px 0px 0px;
 }
 a.mainBugTitle{
-    width: 250px;
+    width: 470px;
     display: inline-block;
     font-size: 20px;
-    color: darkred;
+    color: crimson;
+}
+.mainBugField{
+    width: 200px;
+    display: inline-block;
 }
 div.mainBugTopHeadSub{
     display: inline-block;
@@ -24,12 +28,12 @@ div.mainBugTopHeadSub{
 }
 label.mainBugTopLabel{
     font-weight: bold;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     display: inline-block;
 }
 label.mainBugTopLabel2{
     font-weight: bold;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 div.mainBugTopSub{
     border-width: 0px 1px 1px 1px;
