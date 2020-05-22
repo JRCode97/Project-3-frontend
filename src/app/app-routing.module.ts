@@ -15,7 +15,7 @@ import { SolutionApprovalComponent } from './components/solution-approval/soluti
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'adminbugs', component: AdminBugsComponent},
-  { path: 'application', component: ApplicationComponent },
+  { path: 'applications', component: ApplicationComponent },
   { path: 'bugreport/:id', component: BugReportViewComponent },
   { path: 'bugsolutionreview/:id', component: SolutionApprovalComponent},
   { path: 'main', component: MainPageComponent },
