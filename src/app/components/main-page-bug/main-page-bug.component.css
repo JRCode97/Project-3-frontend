@@ -2,7 +2,7 @@ div{
     color: #444444;
 }
 div.mainBug{
-    width: 500px;
+    width: 600px;
 }
 div.mainBugTopHead{
     border-width: 1px;
@@ -13,12 +13,16 @@ div.mainBugTopHead{
     border-radius: 6px 6px 0px 0px;
 }
 a.mainBugTitle{
-    width: 470px;
+    width: 570px;
     display: inline-block;
     font-size: 20px;
     color: crimson;
 }
-.mainBugField{
+.mainBugField1{
+    width: 135px;
+    display: inline-block;
+}
+.mainBugField2{
     width: 200px;
     display: inline-block;
 }
@@ -53,7 +57,8 @@ div.mainBugBottomLabel{
     border-radius: 6px 6px 0px 6px;
 }
 div.mainBugBottomDescription{
-    /* width: 480px; */
+    width: 594px;
+    height: 37px;
     margin-left: 6px;
     padding: 10px;
     border-style: solid;
@@ -61,4 +66,22 @@ div.mainBugBottomDescription{
     background-color: #FCFCFC;
     border-color: #E0E0E0;
     border-radius: 0px 0px 6px 6px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  span.High{
+      color: crimson;
+  }
+  span.Medium{
+    color: goldenrod;
+  }
+  span.Low{
+    color: yellowgreen;
+  }

@@ -3,16 +3,37 @@
         <a class="mainBugTitle" routerLink="/bugreport/{{id}}">{{title}}</a><br>
 
         <div class="mainBugTopHeadSub">
-            <div class="mainBugField"><label class="mainBugTopLabel">Status:&nbsp;</label>{{status}}</div>
-            <div class="mainBugField"><label class="mainBugTopLabel">Points:&nbsp;</label>{{pointValue}}</div>
+            <div class="mainBugField1">
+                <label class="mainBugTopLabel">
+                    Status:&nbsp;
+                </label>
+                {{status}}
+            </div>
+            <div class="mainBugField1">
+                <label class="mainBugTopLabel">
+                    Points:&nbsp;
+                </label>
+                {{pointValue}}
+            </div>
+            <div class="mainBugField1">
+                <label class="mainBugTopLabel">
+                    Severity:&nbsp;
+                </label>
+            <span [class]="severity">{{severity}}</span>
+            </div>
+            <div class="mainBugField1">
+                <label class="mainBugTopLabel">
+                    Priority:&nbsp;
+                </label>
+                <span [class]="priority">{{priority}}</span>
+            </div>
         </div>
         <div class="mainBugTopHeadSub">
-            <div class="mainBugField"><label class="mainBugTopLabel2">posted by:&nbsp;</label>{{username}}</div>
-            <div class="mainBugField"><label class="mainBugTopLabel2">posted on:&nbsp;</label>{{dateApproved | date:'longDate'}}</div>
+            <div class="mainBugField2"><label class="mainBugTopLabel2">posted by:&nbsp;</label>{{username}}</div>
+            <div class="mainBugField2"><label class="mainBugTopLabel2">posted on:&nbsp;</label>{{dateApproved | date:'longDate'}}</div>
         </div>
     </div>
     <div class="mainBugTopSub" [innerHtml]="description">
-        <!-- {{description}} -->
     </div>
 </div>
 <div class="mainBugBottom mainBug">
