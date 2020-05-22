@@ -8,6 +8,7 @@ a{
 
 .sidenav {
   width: 200px;
+  z-index: 1;
 }
 
 .sidenav .mat-toolbar {

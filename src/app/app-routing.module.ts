@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'bugsolutionreview/:id', component: SolutionApprovalComponent},
   { path: 'main', component: MainPageComponent },
   { path: 'newbugreport', component: NewBugReportComponent },
-  { path: 'newpassword', component:UpdatePasswordComponent},
+  { path: 'newpassword', component: UpdatePasswordComponent},
   { path: 'profile', component: ProfileComponent}
 ];
 

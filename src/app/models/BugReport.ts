@@ -11,6 +11,8 @@ export class BugReport {
     description: string;
     location: string;
     repSteps: string;
+
+    dateCreated: number; // schaud added
   
     createdTime: number;
     approvedTime: number;

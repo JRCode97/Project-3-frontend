@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiServiceService } from '../../services/api-service.service';
-import { Application } from 'src/app/models/application';
+import { Application } from 'src/app/models/Application';
 
 @Component({
   selector: 'app-main-page',
