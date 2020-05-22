@@ -7,10 +7,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component'
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-
-
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -20,6 +19,8 @@ const routes: Routes = [
   { path: 'bugsolutionreview/:id', component: SolutionApprovalComponent},
   { path: 'main', component: MainPageComponent },
   { path: 'newbugreport', component: NewBugReportComponent },
+  { path: 'newpassword', component:UpdatePasswordComponent},
+  { path: 'adminsolutions', component:AdminSolutionsComponent}
   { path: 'newpassword', component: UpdatePasswordComponent},
   { path: 'profile', component: ProfileComponent}
 ];

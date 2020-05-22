@@ -45,9 +45,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component'
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
+import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
+import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
-
-
 
 
 
@@ -76,7 +78,12 @@ import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading
     SolutionApprovalComponent,
     SolutionsTableComponent,
     UpdatePasswordComponent,
+    PasswordResetComponent,
+    AdminSolutionsComponent,
+    UnresolvedbugsTableComponent,
+    ResolvedbugsTableComponent
     LoadingSpinnerComponent,
+
   ],
   imports: [
     AppRoutingModule,
