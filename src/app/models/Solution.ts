@@ -8,7 +8,10 @@ export class Solution {
    timeSubmitted: number;
    title: string;
    description: string;
+// schaud
+   // br: BugReport;
    br = new BugReport();
+
    client: Client;
 }
 

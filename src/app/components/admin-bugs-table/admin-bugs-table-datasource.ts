@@ -4,41 +4,41 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
+import {Input} from '@angular/core';
+import BugReport from '../../models/BugReport';
+import {AdminBugsTableComponent} from './admin-bugs-table.component';
+import Solution from '../../models/Solution';
+import {ApiServiceService} from '../../services/api-service.service';
 
 // TODO: Replace this with your own data model type
+
 export interface AdminBugsTableItem {
-  title: string;
-  application: string;
+  app: string[];
+  approvedTime: number;
+  bId: number;
+  createdTime: number;
+  description: string;
   location: string;
-  severity: string;
+  pointValue: number;
   priority: string;
-  date: string;
-  developer: string;
-  details: string;
+  repSteps: string;
+  resolvedTime: number;
+  severity: string;
+  solutions: Solution[];
+  status: string;
+  title: string;
+  username: string;
 }
 
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: AdminBugsTableItem[] = [
-  {title: 'Bug1', application: 'App1', location: 'Page1', severity: 'Severe', priority: 'Urgent', date: '05/13/2020', developer: 'Developer1', details: 'Inspect'},
-  {title: 'Bug2', application: 'App2', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer3', details: 'Inspect'},
-  {title: 'Bug3', application: 'App2', location: 'Page5', severity: 'Medium', priority: 'Middle', date: '05/10/2020', developer: 'Developer2', details: 'Inspect'},
-  {title: 'Bug4', application: 'App3', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer5', details: 'Inspect'},
-  {title: 'Bug5', application: 'App1', location: 'Page1', severity: 'Severe', priority: 'Urgent', date: '05/13/2020', developer: 'Developer1', details: 'Inspect'},
-  {title: 'Bug6', application: 'App2', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer3', details: 'Inspect'},
-  {title: 'Bug7', application: 'App2', location: 'Page5', severity: 'Medium', priority: 'Middle', date: '05/10/2020', developer: 'Developer2', details: 'Inspect'},
-  {title: 'Bug8', application: 'App3', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer5', details: 'Inspect'},
-  {title: 'Bug9', application: 'App2', location: 'Page5', severity: 'Medium', priority: 'Middle', date: '05/10/2020', developer: 'Developer2', details: 'Inspect'},
-  {title: 'Bug10', application: 'App3', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer5', details: 'Inspect'}
-];
 
 /**
  * Data source for the AdminBugsTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class AdminBugsTableDataSource extends DataSource<AdminBugsTableItem> {
-  data: AdminBugsTableItem[] = EXAMPLE_DATA;
+export class AdminBugsTableDataSource extends DataSource<BugReport> {
+  @Input() bugReports: BugReport[];
+  data: BugReport[] = this.bugReports;
   paginator: MatPaginator;
   sort: MatSort;
 
@@ -51,7 +51,7 @@ export class AdminBugsTableDataSource extends DataSource<AdminBugsTableItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<AdminBugsTableItem[]> {
+  connect(): Observable<BugReport[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -77,7 +77,7 @@ export class AdminBugsTableDataSource extends DataSource<AdminBugsTableItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from theng server.
    */
-  private getPagedData(data: AdminBugsTableItem[]) {
+  private getPagedData(data: BugReport[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -86,7 +86,7 @@ export class AdminBugsTableDataSource extends DataSource<AdminBugsTableItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: AdminBugsTableItem[]) {
+  private getSortedData(data: BugReport[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -95,13 +95,13 @@ export class AdminBugsTableDataSource extends DataSource<AdminBugsTableItem> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'title': return compare(a.title, b.title, isAsc);
-        case 'application': return compare(a.application, b.application, isAsc);
+        case 'app': return compare(a.app.title, b.app.title, isAsc);
         case 'location': return compare(a.location, b.location, isAsc);
         case 'severity': return compare(a.severity, b.severity, isAsc);
         case 'priority': return compare(a.priority, b.priority, isAsc);
-        case 'date': return compare(a.date, b.date, isAsc);
-        case 'developer': return compare(a.developer, b.developer, isAsc);
-        case 'details': return compare(a.details, b.details, isAsc);
+        case 'date': return compare(a.dateCreated, b.dateCreated, isAsc);
+        case 'username': return compare(a.username, b.username, isAsc);
+        case 'description': return compare(a.description, b.description, isAsc);
         default: return 0;
       }
     });
