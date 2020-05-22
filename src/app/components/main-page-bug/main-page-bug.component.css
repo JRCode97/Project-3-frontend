@@ -78,10 +78,13 @@ div.mainBugBottomDescription{
   }
   span.High{
       color: crimson;
+      font-weight: bold;
   }
   span.Medium{
     color: goldenrod;
+    font-weight: bold;
   }
   span.Low{
     color: yellowgreen;
+    font-weight: bold;
   }

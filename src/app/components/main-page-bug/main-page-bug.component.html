@@ -19,7 +19,7 @@
                 <label class="mainBugTopLabel">
                     Severity:&nbsp;
                 </label>
-            <span [class]="severity">{{severity}}</span>
+                <span [class]="severity">{{severity}}</span>
             </div>
             <div class="mainBugField1">
                 <label class="mainBugTopLabel">
@@ -30,7 +30,8 @@
         </div>
         <div class="mainBugTopHeadSub">
             <div class="mainBugField2"><label class="mainBugTopLabel2">posted by:&nbsp;</label>{{username}}</div>
-            <div class="mainBugField2"><label class="mainBugTopLabel2">posted on:&nbsp;</label>{{dateApproved | date:'longDate'}}</div>
+            <div class="mainBugField2"><label class="mainBugTopLabel2">posted
+                    on:&nbsp;</label>{{dateApproved | date:'longDate'}}</div>
         </div>
     </div>
     <div class="mainBugTopSub" [innerHtml]="description">
