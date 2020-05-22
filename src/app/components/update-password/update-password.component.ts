@@ -32,9 +32,10 @@ export class UpdatePasswordComponent implements OnInit {
       this.client.password = this.passwordForm.value.newPassword;
       let result = await this.api.updatePassword(this.client);
       console.log(result);
+      this.api.setLoggedClient(result);
       this.passwordCorrect = true;
+      alert("password successfully updated");
     }else{
-      console.log(false)
       this.passwordCorrect = false;
     }
   }
@@ -43,7 +44,6 @@ export class UpdatePasswordComponent implements OnInit {
     let newPassword = form.value.newPassword;
     let validatePassword = form.value.verifyPassword;
     if(validatePassword !== newPassword){
-      // {'forbiddenName': {value: control.value}}
       return {'passwordNotMatch': {value: form.value}};
     }else{
       return null;

@@ -6,11 +6,18 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Main</a>
-      <a mat-list-item  routerLink="/profile">Profile</a>
-      <a mat-list-item href="#">Login</a>
-      <a mat-list-item (click)="navNewBugReport()">New Bug Report</a>
-      <a mat-list-item href="#">Logout</a>
+      <a mat-list-item routerLink="/">Login</a>
+      <a mat-list-item routerLink="/main">Main</a>
+      <ng-container *ngIf="clientRole >= 1"><!-- Dev & Admin-->
+        <a mat-list-item routerLink="/profile">Profile</a>
+        <a mat-list-item routerLink="/newbugreport">New Bug Report</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </ng-container>
+      <ng-container *ngIf="clientRole == 2"><!-- Admin -->
+        <a mat-list-item routerLink="/adminbugs">Admin Bugs</a>
+        <!--<a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>-->
+        <a mat-list-item routerLink="/applications">Applications</a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,11 +29,18 @@
       <span><img class="logo" src="../../../assets/Ladybug-128.png"></span>
       <span>Bug Bounty System</span>
       <span class="spacer"></span>
-      <a href="#">Main</a>
-      <a routerLink="/profile">Profile</a>
-      <a href="#">Login</a>
-      <a (click)="navNewBugReport()">New Bug Report</a>
-      <a (click)="logout()">Logout</a>
+      <a routerLink="/main">Main</a>
+      <div class="links" *ngIf="clientRole >= 1"><!-- Dev & Admin-->
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/newbugreport">New Bug Report</a>
+      </div>
+      <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->
+        <a routerLink="/adminbugs">Admin Bugs</a>
+        <!--<a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>-->
+        <a routerLink="/applications">Applications</a>
+      </div>
+      <a class="login" *ngIf="clientRole != 0" (click)="logout()">Logout</a>
+      <a class="login" *ngIf="clientRole == 0" routerLink="/">Login</a>
     </mat-toolbar>
     <!-- Add Content Here -->
   </mat-sidenav-content>
