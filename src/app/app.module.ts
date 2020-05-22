@@ -45,6 +45,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
 
 
 
@@ -75,6 +76,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     SolutionApprovalComponent,
     SolutionsTableComponent,
     UpdatePasswordComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     AppRoutingModule,

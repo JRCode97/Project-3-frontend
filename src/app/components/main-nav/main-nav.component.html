@@ -6,18 +6,25 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
+
+      <!--initial-->
       <a mat-list-item routerLink="/">Login</a>
       <a mat-list-item routerLink="/main">Main</a>
+
+      <!--dev-->
       <ng-container *ngIf="clientRole >= 1"><!-- Dev & Admin-->
         <a mat-list-item routerLink="/profile">Profile</a>
         <a mat-list-item routerLink="/newbugreport">New Bug Report</a>
         <a mat-list-item (click)="logout()">Logout</a>
       </ng-container>
+
+      <!--admin-->
       <ng-container *ngIf="clientRole == 2"><!-- Admin -->
         <a mat-list-item routerLink="/adminbugs">Admin Bugs</a>
         <!--<a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>-->
         <a mat-list-item routerLink="/applications">Applications</a>
       </ng-container>
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
