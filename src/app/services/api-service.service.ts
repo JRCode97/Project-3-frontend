@@ -21,7 +21,15 @@ export class ApiServiceService {
   getBugReports(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(this.path + '/bugreports').toPromise();
   }
+  
+  getResolvedBugs(): Promise<BugReport[]> {
+    return this.http.get<BugReport[]>(this.path +`/bugreports/status/resolved`).toPromise();
+  }
 
+  getUnResolvedBugs(): Promise<BugReport[]> {
+    return this.http.get<BugReport[]>(this.path +`/bugreports/status/unresolved`).toPromise();
+  }
+  
   getSolutionsByBugId(id:number) {
     return this.http.get<Solution[]>(this.path +`/query/solutions/bugreport?id=${id}`).toPromise();
   }
