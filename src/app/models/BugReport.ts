@@ -11,6 +11,7 @@ export class BugReport {
     repSteps: string;
 
     dateCreated: number;
+    createdTime: number;
     approvedTime: number;
     resolvedTime: number;
 

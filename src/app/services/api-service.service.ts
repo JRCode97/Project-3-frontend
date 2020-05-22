@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {BugReport} from 'src/app/models/BugReport'
-import {Application} from 'src/app/models/application'
+import {BugReport} from 'src/app/models/BugReport';
+import {Application} from 'src/app/models/Application';
 import Solution from '../models/Solution';
 
 @Injectable({
