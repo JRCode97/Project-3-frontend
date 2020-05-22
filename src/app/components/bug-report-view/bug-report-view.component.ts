@@ -4,6 +4,7 @@ import Solution from 'src/app/models/Solution';
 import BugReport from 'src/app/models/BugReport';
 import Client from 'src/app/models/Client';
 import { ActivatedRoute, Router } from '@angular/router';
+import SolutionStatus from 'src/app/models/SolutionStatus';
 
 @Component({
     selector: 'app-bug-report-view',
@@ -73,7 +74,7 @@ export class BugReportViewComponent implements OnInit {
 
         sol.client = this.client;
         sol.id = 0;
-        sol.status = "Pending"
+        sol.status = SolutionStatus.pending;
         sol.title = this.SolTitle;
         sol.description = this.SolDescription;
         sol.timeSubmitted = new Date().getTime();

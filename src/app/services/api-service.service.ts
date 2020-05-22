@@ -53,16 +53,13 @@ export class ApiServiceService {
   clearLoggedClient() {
     localStorage.clear();
   }
-  
+
   updatePassword(client:Client):Promise<Client> {
     return this.http.put<Client>(this.path+`/clients`, client).toPromise();
   }
   //does not work
   resetPassword(email:string):Promise<any>{
     return this.http.put(this.path+`/clients`, email).toPromise();
-  }
-  getSolutionsByClientId(id:number) {
-    return this.http.get<Solution>(this.path +`/query/solutions/client?id=${id}`).toPromise();
   }
   //################ End of Client Section ###################
 
@@ -82,6 +79,10 @@ export class ApiServiceService {
     return this.http.get<Solution>(this.path + `/solutions/${id}`).toPromise();
   }
 
+  getSolutionsByClientId(id:number) {
+    return this.http.get<Solution[]>(this.path +`/query/solutions/client?id=${id}`).toPromise();
+  }
+
   //################ End of Solution Section ###################
   
   //################ Start of Applicationn Section ###################
@@ -90,4 +91,14 @@ export class ApiServiceService {
   }
   //################ End of Application Section ###################
 
+  //################ Start of Leaderboard Section ###################
+
+  getLeaderboardNames(): Promise<String[]>{
+    return this.http.get<String[]>(this.path + '/clients/leaderboard/username').toPromise();
+  }
+  getLeaderboardPoints(): Promise<number[]>{
+    return this.http.get<number[]>(this.path + '/clients/leaderboard/points').toPromise();
+  }
+
+  //################ End of Leaderboard Section ###################
 }
