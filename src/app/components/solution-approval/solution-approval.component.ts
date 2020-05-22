@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import Severity from 'src/app/models/Severity';
 import Priority from 'src/app/models/Priority';
 import SolutionStatus from 'src/app/models/SolutionStatus';
+import BugStatus from 'src/app/models/BugStatus';
 
 const dummy = new BugReport();
 dummy.bId = 1;
@@ -56,22 +57,37 @@ export class SolutionApprovalComponent implements OnInit {
   displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status' ];
   dataSource: MatTableDataSource<Solution>;
   report: BugReport = dummy;
-  id: string;
+  toDetails: string = "";
+  isResolved: boolean = false;
 
   constructor(private api: ApiServiceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.report.solutions);
     this.dataSource.sort = this.sort;
-    this.addData()
-    this.id = this.route.snapshot.paramMap.get('id')
+
+    const id = this.route.snapshot.paramMap.get('id')
+    this.toDetails = `/bugreport/${id}`
+    this.getData(id)
   }
 
-  async addData() {
-    const bugReport:BugReport = await this.api.getBugReportById(1);
-    const solutions:Solution[] = await this.api.getSolutionsByBugId(1);
+  async getData(id:string) {
+    const bugReport:BugReport = await this.api.getBugReportById(Number(id));
+    const solutions:Solution[] = await this.api.getSolutionsByBugId(Number(id));
     this.report = bugReport;
+    this.updateIsResolved(bugReport);
     this.dataSource = new MatTableDataSource(solutions);
+  }
+
+  async closeBug() {
+    this.report.status = BugStatus.resolved;
+    const bugReport:BugReport = await this.api.putBugReport(this.report);
+    this.updateIsResolved(bugReport);
+    this.report = bugReport;
+  }
+
+  updateIsResolved(bugReport:BugReport) {
+    this.isResolved = (bugReport && bugReport.status === BugStatus.resolved) ? true : false;
   }
 
 }
