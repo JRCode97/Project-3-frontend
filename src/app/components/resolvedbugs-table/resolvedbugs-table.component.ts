@@ -3,6 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ResolvedbugsTableDataSource, ResolvedbugsTableItem } from './resolvedbugs-table-datasource';
+import { ApiServiceService } from 'src/app/services/api-service.service';
+import BugReport from 'src/app/models/BugReport';
+import Solution from 'src/app/models/Solution';
 
 @Component({
   selector: 'app-resolvedbugs-table',
@@ -16,10 +19,14 @@ export class ResolvedbugsTableComponent implements AfterViewInit, OnInit {
   dataSource: ResolvedbugsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['bugtit', 'bugdet','reporter','soltit','soltext','solver'];
+  displayedColumns = ['title', 'bugdetails','username'];
+
+  constructor(private api:ApiServiceService){}
 
   ngOnInit() {
-    this.dataSource = new ResolvedbugsTableDataSource();
+    this.initResolvedBugs();
+    this.dataSource = new ResolvedbugsTableDataSource(this.bugreports);
+    this.dataSource.sort=this.sort;
   }
 
   ngAfterViewInit() {
@@ -27,4 +34,24 @@ export class ResolvedbugsTableComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+  bugreports: Array<BugReport>;
+  solutions: Array<Solution>;
+
+  async initResolvedBugs(){
+    console.log("Hit");
+    const bugreports= await this.api.getResolvedBugs();
+    const solutions = await this.api.getSolutionsByBugId(Number(1));
+    console.log(bugreports);
+    console.log(solutions);
+    this.dataSource= new ResolvedbugsTableDataSource(bugreports);
+  }
+
+  // async getData(id:string) {
+  //   const bugReport:BugReport = await this.api.getBugReportById(Number(id));
+  //   const solutions:Solution[] = await this.api.getSolutionsByBugId(Number(id));
+  //   this.report = bugReport;
+  //   this.updateIsResolved(bugReport);
+  //   this.dataSource = new MatTableDataSource(solutions);
+  // }
 }

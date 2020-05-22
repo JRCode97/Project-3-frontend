@@ -3,40 +3,40 @@
   <h1>RESOLVED BUGS</h1>
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
-    <ng-container matColumnDef="bugtit">
+    <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Bug Title</th>
-      <td mat-cell *matCellDef="let row">{{row.bugtit}}</td>
+      <td mat-cell *matCellDef="let report">{{report.title}}</td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="bugdet">
+    <ng-container matColumnDef="bugdetails">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Bug Details</th>
-      <td mat-cell *matCellDef="let row"><a routerLink="/bugreport">View Bug Details</a></td>
+      <td mat-cell *matCellDef="let report"><a routerLink="/bugreport/{{report.bId}}">View Bug Details</a></td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="reporter">
+    <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Reporter</th>
-      <td mat-cell *matCellDef="let row">{{row.reporter}}</td>
+      <td mat-cell *matCellDef="let report">{{report.username}}</td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="soltit">
+    <!-- <ng-container matColumnDef="solutiontitle">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Solution Title</th>
-      <td mat-cell *matCellDef="let row">{{row.soltit}}</td>
-    </ng-container>
+      <td mat-cell *matCellDef="let report">{{report.solutions.title}}</td>
+    </ng-container> -->
 
     <!-- Name Column -->
-    <ng-container matColumnDef="soltext">
+    <!-- <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Solution Description</th>
-      <td mat-cell *matCellDef="let row">{{row.soltext}}</td>
-    </ng-container>
+      <td mat-cell *matCellDef="let report">{{report.solutions.description}}</td>
+    </ng-container> -->
 
     <!-- Name Column -->
-    <ng-container matColumnDef="solver">
+    <!-- <ng-container matColumnDef="client">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Solver</th>
-      <td mat-cell *matCellDef="let row">{{row.solver}}</td>
-    </ng-container>
+      <td mat-cell *matCellDef="let report">{{report.solutions.status}}</td>
+    </ng-container> -->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

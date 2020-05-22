@@ -4,18 +4,24 @@
   <h1>UNRESOLVED BUGS</h1>
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
+    <!-- <ng-container matColumnDef="bId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bug Id</th>
+      <td mat-cell *matCellDef="let row">{{row.bId}}</td>
+    </ng-container> -->
+    <!-- Id Column -->
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Bug Title</th>
-      <td mat-cell *matCellDef="let row">{{row.title}}</td>
+      <td mat-cell *matCellDef="let report">{{report.title}}</td>
     </ng-container>
-    <!-- Name Column
-    <ng-container matColumnDef="solutions">
+    <!-- Name Column --> 
+     <ng-container matColumnDef="solutions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Solutions</th>
-      <td mat-cell *matCellDef="let row">{{row.solutions}}</td>
-      <td mat-cell *matCellDef="let row"><a routerLink="bugsolutionreview/row.bugid">View Solutions</a></td> 
-    </ng-container> -->
+      <td mat-cell *matCellDef="let report"><a routerLink="/bugsolutionreview/{{report.bId}}">View Solutions</a></td> 
+      <!-- <td mat-cell *matCellDef="let report"><a routerLink="/bugsolutionreview/{{report.bId}}"><p class="SolCount" *ngIf="!panelOpenState">&nbsp;({{report.solCount}})&nbsp;View Solutions</p></a></td>  -->
+    </ng-container> 
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let report; columns: displayedColumns;"></tr>
   </table>
   <mat-paginator #paginator
       [length]="dataSource?.data.length"

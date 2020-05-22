@@ -43,10 +43,16 @@ th, td {
   width:200px; 
   height: 30px;  
 
+  text-align: center;
 }
 
 th{
   color: whitesmoke;
   background-color: black;
+  text-align: center;
   font-size: medium;
+}
+.SolCount{
+  color: rgb(206, 21, 58);
+  font-size: small;
 }

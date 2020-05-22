@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTable } from '@angular/material/table';
 import { UnresolvedbugsTableDataSource,UnresolvedbugsTableItem } from './unresolvedbugs-table-datasource';
 //import {BugReport} from 'src/app/models/BugReport';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import BugReport from 'src/app/models/BugReport';
+import Solution from 'src/app/models/Solution';
 // import { ActivatedRoute } from '@angular/router';
 // import {AdminsolutionsService} from 'src/app/services/adminsolutions.service';
 
@@ -20,7 +22,8 @@ export class UnresolvedbugsTableComponent implements AfterViewInit, OnInit {
   dataSource: UnresolvedbugsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['title'];
+  displayedColumns = ['title','solutions'];
+  //bugCount: number;
 
   constructor(private api:ApiServiceService){}
  // constructor(private adminsolutionservice:AdminsolutionsService){}
@@ -29,11 +32,14 @@ export class UnresolvedbugsTableComponent implements AfterViewInit, OnInit {
   // report:BugReport;
   // //id:string;
   // api: any;
-
+  // panelOpenState = false;
+  // bugCount:Number=0;
 
   ngOnInit() {
-    this.addUnresolvedBugs();
-    let dataSource=new UnresolvedbugsTableDataSource(null);
+    this.initUnresolvedBugs();
+    let dataSource=new UnresolvedbugsTableDataSource(this.bugreports);
+    this.dataSource.sort=this.sort;
+    //this.bugCount = this.bugreports.solutions.length;
     //this.dataSource=dataInstance;
   }
 
@@ -42,26 +48,19 @@ export class UnresolvedbugsTableComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+ 
+    bugreports: Array<BugReport>;
+  //solutions: Array<Solution>;
 
-  bugReportsArray=[]
-
-  async addUnresolvedBugs(){
+  async initUnresolvedBugs(){
     console.log("Hit");
-    let bugreports=await this.api.getBugReports();
-    // //this.reports=bugReports;
+    const bugreports=await this.api.getUnResolvedBugs();
+   // const solutions = await this.api.getSolutionsByBugId(Number(1));
     console.log(bugreports);
-    bugreports.forEach(report => {
-      let obj:any={}
-     // obj.bId=report.bId;
-      obj.title=report.title;
-     // obj.createdTime=report.createdTime;
-      //obj.solutions=report.solutions;
-      
-      this.bugReportsArray.push(obj);
-    });
-    this.dataSource=new UnresolvedbugsTableDataSource(this.bugReportsArray);
-    console.log(this.dataSource);
-    //return this.dataSource;
-  }
-   
+    // console.log(this.bugreports.solutions.length);
+    // console.log("bug count"+this.bugCount);
+    //console.log(solutions);
+    //console.log(this.bugreports.length);
+    this.dataSource=new UnresolvedbugsTableDataSource(bugreports);
+  }  
 }

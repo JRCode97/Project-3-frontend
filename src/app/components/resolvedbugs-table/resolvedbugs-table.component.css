@@ -30,10 +30,13 @@ th, td {
   width:200px; 
   height: 30px;  
 
+  text-align: center;
 }
 
 th{
   color: whitesmoke;
   background-color: black;
   font-size: medium;
+  position: center;
+  text-align: center;
 }

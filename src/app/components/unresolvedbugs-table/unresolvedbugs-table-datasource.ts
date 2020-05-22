@@ -10,8 +10,11 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface UnresolvedbugsTableItem {
+  bId:number;
   title: string;
-  //solutions: string;
+  solutions: string;
+ // panelOpenState = false;
+  //bugCount:Number;
 }
 
 // TODO: replace this with real data from your application
@@ -37,7 +40,7 @@ export interface UnresolvedbugsTableItem {
  */
 export class UnresolvedbugsTableDataSource extends DataSource<any> {
 
-  data: any[]=this.givenData;
+  data: any[] = this.givenData;
   paginator: MatPaginator;
   sort: MatSort;
  
