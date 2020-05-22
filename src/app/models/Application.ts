@@ -4,6 +4,6 @@ export class Application {
     id: number;
     title: string;
     gitLink: string;
-    // reports: BugReport[];
+    reports: BugReport[];
 }
 export default Application;
