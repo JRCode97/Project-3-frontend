@@ -25,13 +25,16 @@ export class ApiServiceService {
   }
 
   getBugReportById(id:number) {
-    return this.http.get<BugReport>(this.path +`/bugreports/${id}`).toPromise();
+    return this.http.get<BugReport>(`${this.path}/bugreports/${id}`).toPromise();
   }
+
   submitNewBugReport(bugReport: BugReport): Promise<BugReport>{
     return this.http.post<BugReport>(this.path + '/bugreports', bugReport).toPromise();
   }
 
-  //################ End of Bug Report Section ###################
+  putBugReport(bugReport: BugReport): Promise<BugReport> {
+    return this.http.put<BugReport>(`${this.path}/bugreports`, bugReport).toPromise();
+  }
 
   //################ Start of Client Section ###################
 
@@ -61,7 +64,6 @@ export class ApiServiceService {
   resetPassword(email:string):Promise<any>{
     return this.http.put(this.path+`/clients`, email).toPromise();
   }
-  //################ End of Client Section ###################
 
   //################ Start of Solution Section ###################
 
@@ -82,14 +84,11 @@ export class ApiServiceService {
   getSolutionsByClientId(id:number) {
     return this.http.get<Solution[]>(this.path +`/query/solutions/client?id=${id}`).toPromise();
   }
-
-  //################ End of Solution Section ###################
   
   //################ Start of Applicationn Section ###################
   getApplications(): Promise<Application[]>{
     return this.http.get<Application[]>(this.path + '/applications').toPromise();
   }
-  //################ End of Application Section ###################
 
   //################ Start of Leaderboard Section ###################
 
@@ -100,5 +99,4 @@ export class ApiServiceService {
     return this.http.get<number[]>(this.path + '/clients/leaderboard/points').toPromise();
   }
 
-  //################ End of Leaderboard Section ###################
 }

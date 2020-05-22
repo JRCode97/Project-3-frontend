@@ -11,6 +11,7 @@ h3 {
 }
 
 .mat-card-title {
+    color: white;
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgb(20,20,20) 0%, rgb(59,59,59) 20%, rgb(179,179,179) 100%);
     padding: .5rem;
@@ -45,8 +46,33 @@ h3 {
 }
 
 table {
+    border-radius: 4px;
     background-color: whitesmoke;
     width: 80vw;
     margin-top: 1vh;
     margin-left: 3vw;
+}
+
+tr td {
+    vertical-align: text-top;
+    padding-top: 9px; 
+}
+
+.solution {
+    width: 50%;
+}
+
+.timeSubmitted {
+    padding-left: 10px;
+}
+
+.resolved {
+    font-size: 1.2em;
+    color: #ff4081;
+}
+
+.mat-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
