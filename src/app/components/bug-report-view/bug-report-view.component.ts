@@ -4,6 +4,7 @@ import Solution from 'src/app/models/Solution';
 import BugReport from 'src/app/models/BugReport';
 import Client from 'src/app/models/Client';
 import { ActivatedRoute, Router } from '@angular/router';
+import SolutionStatus from 'src/app/models/SolutionStatus';
 
 @Component({
     selector: 'app-bug-report-view',
@@ -11,13 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./bug-report-view.component.css']
 })
 export class BugReportViewComponent implements OnInit {
-    brId: any;
-    solutions: Array<Solution>;
-    br: BugReport;
-    client: Client;
-    SolDescription: string = '';
-    SolTitle: string = '';
+ 
 
+    public brId: any;
+    public solutions: Array<Solution>;
+    public br: BugReport;
+    public client: Client;
+    public SolDescription: string = '';
+    public SolTitle: string = '';
+ 
 
 
 
@@ -64,17 +67,21 @@ export class BugReportViewComponent implements OnInit {
     }
     //3. Add new  Solution 
     async postSolution(): Promise<any> {
-        let sol: Solution;
+        
+        let sol = new Solution();
+        console.log(this.br);
         sol.br = this.br;
+
         sol.client = this.client;
         sol.id = 0;
-        sol.status = "Pending"
+        sol.status = SolutionStatus.pending;
         sol.title = this.SolTitle;
         sol.description = this.SolDescription;
-        sol.timeSubmitted = Number(new Date().toLocaleString());
+        sol.timeSubmitted = new Date().getTime();
 
         let result = await this.apiserv.postSolution(sol);
         console.log(sol);
+        this.getBugSolutionsById();
         return result;
     }
 }

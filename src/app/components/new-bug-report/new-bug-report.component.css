@@ -31,3 +31,8 @@
 .inputType{
     width: 50%;
 }
+
+.warningPost{
+    color:red;
+    text-align: center;
+}

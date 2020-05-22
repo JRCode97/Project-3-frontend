@@ -1,0 +1,60 @@
+<div class="container">
+
+    <div id="profileHalf">
+
+        <div id="profileLeftColumn">
+
+            <div id="profilePicDiv">
+
+                
+                <!-- <img id="profilePic" src="https://www.thegivingtree.com/images/placeholder-images/placeholder_profile_photo.png" alt="Profile Pic"> -->
+                <img id="profilePic" src="https://image.shutterstock.com/z/stock-vector-exterminator-leaning-on-pest-sprayer-and-killing-bug-isolated-in-white-background-621003470.jpg" alt="Profile Pic">
+
+            </div>
+
+            <div id="pointsDiv">
+                <h1>Points</h1>
+                <h1>5000</h1>
+            </div>
+
+        </div>
+
+        <div id="AboutMeDiv">
+            <div id="titleDiv"><h1>About me</h1></div>
+            <div id="profileDetail">
+                <h2>Name: First Last</h2>
+                <h2>Username: username</h2>
+                <h2>Role: Developer</h2>
+                <a class="password-reset" (click)="open(content)">Update Password</a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div id="bugTableDiv">
+        <app-bug-reports-table></app-bug-reports-table>
+    </div>
+    
+
+    <div id="solutionTableDiv">
+        <app-solutions-table></app-solutions-table>
+    </div>
+    
+
+</div>
+
+<ng-template class="modal-view" #content let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-update-password></app-update-password>
+    </div>
+  </ng-template>
+  <hr>
+  
+  <pre>{{ closeResult }}</pre>

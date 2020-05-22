@@ -1,5 +1,4 @@
 *{
-  background-color: wheat;
   margin: 0;
 
 }
@@ -120,4 +119,27 @@
 #register{
   left: 450px;
 }
+
+.dim {
+  background-color: white;
+  opacity: 90%;
+}
+
+.hide{
+  display: none;
+}
+
+.spinner{
+  position: absolute; /* or absolute */
+  top: 25%;
+  left: 45%;
+  z-index: 1;
+  background-color: white;
+  text-align: center;
+  font-weight: 500;
+
+}
+
+
+
 

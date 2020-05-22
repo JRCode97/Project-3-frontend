@@ -59,6 +59,7 @@
             <button type="submit" class="btn btn-success" (click)="submitReport()" [disabled]="bugForm.invalid">Submit for Review</button>
         </div>
         </form> 
+        <p *ngIf="failToPost" class="warningPost">The bug failed to post. Please review the request</p>
         <!-- <p>{{bugForm.value | json}}</p> -->
     </div>
 </div>

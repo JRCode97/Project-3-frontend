@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+//  schaud
+// import {BugReport} from 'src/app/models/BugReport';
+// import {Application} from 'src/app/models/Application';
+
 import Application from 'src/app/models/Application';
 import BugReport from 'src/app/models/BugReport';
 import Client from '../models/Client';
+
 import Solution from '../models/Solution';
 
 @Injectable({
@@ -14,7 +19,9 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
+
   path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
+
 
   //################ Start of Bug Report Section ###################
 
@@ -35,13 +42,16 @@ export class ApiServiceService {
   }
 
   getBugReportById(id:number) {
-    return this.http.get<BugReport>(this.path +`/bugreports/${id}`).toPromise();
+    return this.http.get<BugReport>(`${this.path}/bugreports/${id}`).toPromise();
   }
+
   submitNewBugReport(bugReport: BugReport): Promise<BugReport>{
     return this.http.post<BugReport>(this.path + '/bugreports', bugReport).toPromise();
   }
 
-  //################ End of Bug Report Section ###################
+  putBugReport(bugReport: BugReport): Promise<BugReport> {
+    return this.http.put<BugReport>(`${this.path}/bugreports`, bugReport).toPromise();
+  }
 
   //################ Start of Client Section ###################
 
@@ -63,7 +73,7 @@ export class ApiServiceService {
   clearLoggedClient() {
     localStorage.clear();
   }
-  
+
   updatePassword(client:Client):Promise<Client> {
     return this.http.put<Client>(this.path+`/clients`, client).toPromise();
   }
@@ -71,9 +81,6 @@ export class ApiServiceService {
   resetPassword(email:string):Promise<any>{
     return this.http.put(this.path+`/clients`, email).toPromise();
   }
-
-  //################ End of Client Section ###################
-
 
   //################ Start of Solution Section ###################
 
@@ -83,19 +90,34 @@ export class ApiServiceService {
     return ticketPromise;
   }
   //2. Get all Solutions by Bug Report ID 
-  getSolutionsByBugId(brId: number): Promise<Array<Solution>> {
-    return this.http.get<Array<Solution>>(this.path + '/query/solutions/bugreport?id=' + brId).toPromise();
+  getSolutionsByBugId(id:number) {
+    return this.http.get<Solution[]>(this.path +`/query/solutions/bugreport?id=${id}`).toPromise();
   }
 
   getSolutionById(id: number) {
     return this.http.get<Solution>(this.path + `/solutions/${id}`).toPromise();
   }
 
-  //################ End of Solution Section ###################
+  getSolutionsByClientId(id:number) {
+    return this.http.get<Solution[]>(this.path +`/query/solutions/client?id=${id}`).toPromise();
+  }
+
+  putSolution(solution:Solution) {
+    return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
+  }
   
   //################ Start of Applicationn Section ###################
   getApplications(): Promise<Application[]>{
     return this.http.get<Application[]>(this.path + '/applications').toPromise();
   }
-  //################ End of Application Section ###################
+
+  //################ Start of Leaderboard Section ###################
+
+  getLeaderboardNames(): Promise<String[]>{
+    return this.http.get<String[]>(this.path + '/clients/leaderboard/username').toPromise();
+  }
+  getLeaderboardPoints(): Promise<number[]>{
+    return this.http.get<number[]>(this.path + '/clients/leaderboard/points').toPromise();
+  }
+
 }

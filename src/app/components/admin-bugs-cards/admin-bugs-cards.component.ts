@@ -1,59 +1,59 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import {ChangeDetectorRef, Component, Input, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {Observable} from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface AdminBugsCards {
-  title: string;
-  application: string;
-  location: string;
-  severity: string;
-  priority: string;
-  date: string;
-  developer: string;
-  details: string;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: AdminBugsCards[] = [
-  {title: 'Bug1', application: 'App1', location: 'Page1', severity: 'Severe', priority: 'Urgent', date: '05/13/2020', developer: 'Developer1', details: 'Inspect'},
-  {title: 'Bug2', application: 'App2', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer3', details: 'Inspect'},
-  {title: 'Bug3', application: 'App2', location: 'Page5', severity: 'Medium', priority: 'Middle', date: '05/10/2020', developer: 'Developer2', details: 'Inspect'},
-  {title: 'Bug4', application: 'App3', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer5', details: 'Inspect'},
-  {title: 'Bug5', application: 'App1', location: 'Page1', severity: 'Severe', priority: 'Urgent', date: '05/13/2020', developer: 'Developer1', details: 'Inspect'},
-  {title: 'Bug6', application: 'App2', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer3', details: 'Inspect'},
-  {title: 'Bug7', application: 'App2', location: 'Page5', severity: 'Medium', priority: 'Middle', date: '05/10/2020', developer: 'Developer2', details: 'Inspect'},
-  {title: 'Bug8', application: 'App3', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer5', details: 'Inspect'},
-  {title: 'Bug9', application: 'App2', location: 'Page5', severity: 'Medium', priority: 'Middle', date: '05/10/2020', developer: 'Developer2', details: 'Inspect'},
-  {title: 'Bug10', application: 'App3', location: 'Page3', severity: 'Mild', priority: 'Low', date: '05/01/2020', developer: 'Developer5', details: 'Inspect'}
-];
+import BugReport from '../../models/BugReport';
+import {MatCard} from '@angular/material/card';
 
 @Component({
   selector: 'app-admin-bugs-cards',
   templateUrl: './admin-bugs-cards.component.html',
   styleUrls: ['./admin-bugs-cards.component.css']
 })
-export class AdminBugsCardsComponent implements OnInit {
 
+export class AdminBugsCardsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Input() bugReports: BugReport[];
+  @ViewChild(MatCard) card: MatCard;
   obs: Observable<any>;
-  dataSource: MatTableDataSource<AdminBugsCards> = new MatTableDataSource<AdminBugsCards>(EXAMPLE_DATA);
+  dataSource: MatTableDataSource<BugReport> = new MatTableDataSource<BugReport>();
+  currentItemsToShow = [];
+  pageSize = 6; // number of cards per page
 
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-  }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+
 
   ngOnInit() {
+    this.currentItemsToShow = this.bugReports.slice(0, this.pageSize);
+    this.dataSource = new MatTableDataSource<BugReport>(this.bugReports);
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
   }
 
-  ngOnDestroy() {
-    if (this.dataSource) {
-      this.dataSource.disconnect();
-    }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
+
+  onPageChange($event){
+    this.currentItemsToShow = this.bugReports;
+    this.currentItemsToShow = this.bugReports.slice(
+      $event.pageIndex * $event.pageSize,
+      $event.pageIndex * $event.pageSize +
+      $event.pageSize
+    );
+
+  }
+
+
+  // ngOnDestroy() {
+  //   if (this.dataSource) {
+  //     this.dataSource.disconnect();
+  //   }
+  // }
 }
+
+
 
 

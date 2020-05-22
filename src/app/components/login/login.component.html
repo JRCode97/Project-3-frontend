@@ -1,16 +1,21 @@
-<div class = "container">
-  <div class = "form-box">
+
+
+<div [ngClass]="{'dim' : toggle, '*': !toggle}" class = "container">
+  <div *ngIf="showSpinner" class="spinner">Logging in...<app-loading-spinner></app-loading-spinner></div>
+
+  <div [ngClass]="{'hide' : toggle, '*': !toggle}" class = "form-box">
     <div class = "button-box">
     <div #btn id = "btn"></div>
     <button type = "button" class="toggle-btn" (click)="switch2()">Login</button>
     <button type = "button" class="toggle-btn" (click)="switch1()">Register</button>
   </div>
 
-  <form #login id = "login" class="input-group login-input">
+    <form #login id = "login" class="input-group login-input">
     <input type = "text" class="input-field" placeholder="Username">
     <input type = "password" class="input-field" placeholder="Password">
     <a class="password-reset" (click)="open(content)">Reset Password</a>
-    <button type="submit" (click)="dummyLocgin()" class="submit-btn">Log In</button>
+    <button type="submit" (click)="dummyLocgin(); enableDisableRule()" class="submit-btn">Log In
+    </button>
   </form>
 
     <form #register id = "register" class="input-group register-input">

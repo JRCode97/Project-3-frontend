@@ -15,18 +15,36 @@ export class LoginComponent implements OnInit {
   @ViewChild('btn') z: ElementRef;
 
   closeResult = '';
+  showSpinner: boolean;
+
+  toggle = false;
+  status = 'Enable';
 
   constructor(private modalService: NgbModal, private serv: ApiServiceService, private router: Router) {}
-  // dummy login function , justto showoff how to store the client object  in local storage session 
+  // dummy login function , just to showoff how to store the client object  in local storage session
   async dummyLocgin() {
+    this.showSpinner = true;
     let client = new Client();
     client = await this.serv.getClientById(1);
-    alert(client.fName)
+    // alert(client.fName);
     this.serv.setLoggedClient(client);
-    //dummy route 
-    this.router.navigate(["bugreport/1"]);
+    // dummy route
+    // await this.router.navigate(['bugreport/1']);
+    setTimeout(() => {
+      window.location.href = '/main';
+    }, 2000);
 
   }
+
+
+
+  enableDisableRule() {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
+  }
+
+
+
   ngOnInit(): void {
   }
 
