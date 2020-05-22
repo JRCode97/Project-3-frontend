@@ -20,8 +20,8 @@ enum ClientRole {
 
 export class MainNavComponent {
 
-  clientRole:ClientRole;
-  client:Client;
+  clientRole: ClientRole;
+  client: Client;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -30,10 +30,10 @@ export class MainNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router:Router, private serv:ApiServiceService) {
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private serv: ApiServiceService) {
     this.client = this.serv.getLoggedClient();
     if (!this.client) {
-      this.clientRole = ClientRole.unregistered
+      this.clientRole = ClientRole.unregistered;
     } else {
       this.clientRole = this.client.role ? ClientRole.admin : ClientRole.developer;
     }
@@ -43,6 +43,6 @@ export class MainNavComponent {
   {
     this.clientRole = ClientRole.unregistered;
     this.serv.clearLoggedClient();
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 }

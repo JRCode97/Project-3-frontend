@@ -41,16 +41,18 @@
 
   </mat-card>
 
-  <mat-paginator #paginator
-                 (page) = "onPageChange($event)"
-                 [length]="dataSource?.data.length"
-                 [pageIndex]="0"
-                 [pageSize]="pageSize"
-                 [pageSizeOptions]="[6, 12, 24, 36, 128]">
-  </mat-paginator>
 
 
 </div>
+
+
+<mat-paginator #paginator
+               (page) = "onPageChange($event)"
+               [length]="dataSource?.data.length"
+               [pageIndex]="0"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[6, 12, 24, 36, 128]">
+</mat-paginator>
 
 
 
