@@ -1,45 +1,66 @@
 <div class="container">
-    <h1 class="titleH1 col-sm-3"> Bug Report View#</h1>
+    <h1 class="titleH1 col-sm-3"> Bug Report View#{{br.bId}}</h1>
 
     <div class="form-group row">
 
         <label for="txttitle" class="col-sm-2 col-form-label">Title:</label>
 
-        <input id="txttitle" type="text" readonly class="col-sm-10 form-control-plaintext" value="{{title}}">
+        <label id="txttitle" class="col-sm-10 form-control-plaintext"> {{br.title}} </label>
+    </div>
 
+    <div class="form-group row">
+
+        <label for="lblapplication" class="col-sm-2 col-form-label">Application:</label>
+        <ng-container *ngIf="br.app !=null">
+            <label id="lblapplication" class="col-sm-2 form-control-plaintext"> {{br.app.title}}</label>
+
+
+        </ng-container> <label for="lbllocation" class="col-sm-2 col-form-label">Location:</label>
+        <label id="lbllocation" class="col-sm-2 form-control-plaintext"> {{br.location}}</label>
 
     </div>
     <div class="form-group row">
 
         <label for="lblseverity" class="col-sm-2 col-form-label">Severity: </label>
 
-        <label id="lblseverity" class="col-sm-2  form-control-plaintext">{{severity}}</label>
+        <label id="lblseverity" class="col-sm-2  form-control-plaintext">{{br.severity}}</label>
 
         <label for="lblpriority" class="col-sm-2 col-form-label">Priority: </label>
 
-        <label id="lblpriority" class="col-sm-2  form-control-plaintext">{{priority}}</label>
+        <label id="lblpriority" class="col-sm-2  form-control-plaintext">{{br.priority}}</label>
+        <label for="txtreporter" class="col-sm-1 col-form-label">Points:</label>
+
+        <label class="col-sm-1  form-control-plaintext" id="txtreporter">{{br.pointValue}}</label>
+    </div>
+    <div class="form-group row">
+        <label for="txtdate" class="col-sm-2 col-form-label">Creation Time:</label>
+
+        <label type="datetime" readonly class="col-sm-2  form-control-plaintext" id="txtreporter">
+            {{br.createdTime|date:'medium'}} </label>
+
+        <label for="txtreporter" class="col-sm-2 col-form-label">Reporter:</label>
+
+        <label class="col-sm-2  form-control-plaintext" id="txtreporter">{{br.username}} </label>
 
     </div>
     <div class="form-group row">
-        <label for="txtdate" class="col-sm-2 col-form-label">Date:</label>
 
-        <input type="datetime" readonly class="col-sm-2  form-control-plaintext" id="txtreporter" value="{{date}}">
-        <label for="txtreporter" class="col-sm-2 col-form-label">Reporter:</label>
+        <label for="lblapprovedTime" class="col-sm-2 col-form-label">Approved Time: </label>
 
-        <input type="text" readonly class="col-sm-2  form-control-plaintext" id="txtreporter" value="{{reporter}}">
+        <label id="lblapprovedTime" class="col-sm-2  form-control-plaintext">{{br.approvedTime|date:'medium'}}</label>
 
-        <label for="txtreporter" class="col-sm-1 col-form-label">Points:</label>
+        <label for="lblresolvedTime" class="col-sm-2 col-form-label">Resolved Time: </label>
 
-        <input type="text" readonly class="col-sm-1  form-control-plaintext" id="txtreporter" value="{{points}}">
+        <label id="lblresolvedTime" class="col-sm-2  form-control-plaintext">{{br.resolvedTime|date:'medium'}}</label>
 
     </div>
-
 
     <div class="form-group row">
 
         <label for="txtdescription" class="col-sm-2 form-label"> Description:</label>
 
-        <textarea id="txtdescription" readonly class="col-sm-8 form-control textareaDisabled">{{description}}</textarea>
+        <textarea id="txtdescription" readonly
+            class="col-sm-8 form-control textareaDisabled">{{br.description}}</textarea>
 
     </div>
 
@@ -50,70 +71,78 @@
         <label for="txtreproduceSteps" class="col-sm-2 form-label">Reproduce Steps:</label>
 
         <textarea id="txtreproduceSteps" readonly
-            class="col-sm-8 form-control textareaDisabled">{{reproduceSteps}}</textarea>
+            class="col-sm-8 form-control textareaDisabled">{{br.repSteps}}</textarea>
 
     </div>
 
     <hr>
-    <div class="form-group ">
+    <div class="form-group " style="display: none;">
         <h1>Posted Solution(s)</h1>
         <app-posted-solutions-table></app-posted-solutions-table>
     </div>
     <br>
-    <!-- <div class="row">
+    <div class="row">
 
-        <div class="col-6">
+        <div class="col-12">
             <table class="table">
                 <thead>
                     <th>
-                        <b>Solution Title</b>
+                        Title
                     </th>
                     <th>
-                        <b>Solution Describtion</b>
+                        Describtion
                     </th>
                     <th>
-                        <b>Solver </b>
+                        Status
+                    </th>
+                    <th>
+                        Solver
                     </th>
 
                 </thead>
-                <tr>
+                <tr *ngFor="let item of solutions">
                     <td>
-                        Solution 1 Title
+                        {{item.title}}
+                    </td>
+                    <!-- <td [innerHtml]="item.description"> -->
+                    <td [innerText]="item.description">
+                        <!-- {{item.description}} -->
                     </td>
                     <td>
-                        Solution 1 Describtion
+                        {{item.status}}
                     </td>
                     <td>
-                        Developer 1
+                        {{item.client.username}}
                     </td>
 
                 </tr>
             </table>
         </div>
-    </div> -->
+    </div>
 
 </div>
-<div class="container">
+<form class="container">
     <h1 class="titleH1 col-sm-3">Post new Solution</h1>
 
     <div class="form-group row">
 
         <label class="col-sm-2 form-label">Title: </label>
 
-
-        <input type="text" class="col-sm-2 form-control" placeholder="Solution title">
+        <input type="text" id="txtSolTitle" ngModel name="txtSolTitle" #txtSolTitle="ngModel" [(ngModel)]="SolTitle"
+            required minlength="6" maxlength="2000" class="col-sm-6 form-control" placeholder="Solution title">
 
     </div>
     <div class="form-group row">
-
-
         <label class="col-sm-2 form-label">Description: </label>
-        <textarea class="col-sm-8 form-control textarea">{{description}}</textarea>
+        <textarea id="txtSolDescribtion"  required minlength="6"  ngModel name="txtSolDescribtion" #txtSolDescribtion="ngModel"  [(ngModel)]="SolDescription" placeholder="Solution Describtion"
+            class="col-sm-8 form-control textarea"> </textarea>
     </div>
 
     <div class="buttonGroup">
-        <button type="button" class="btn btn-secondary">Cancel</button> <span> &nbsp;&nbsp; </span>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-secondary">Cancel</button> <span> &nbsp;&nbsp; </span>
+        <button type="button" [disabled]=" !(txtSolTitle.errors.minlength) ||  !(txtSolDescribtion.errors.minlength)" (click)="postSolution()"
+            class="btn btn-success">Submit</button>
     </div>
+
     <br>
-</div>
+</form>

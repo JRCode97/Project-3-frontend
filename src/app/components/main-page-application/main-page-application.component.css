@@ -1,7 +1,7 @@
 .mainApp{
     width: 500px;
     background-color: #F4F4F4;
-    padding: 0px 0px 0px 9px;
+    padding: 0px 0px 0px 6px;
     border-style: solid;
     border-width: 1px;
     border-color: dimgray;
@@ -21,7 +21,7 @@ mat-expansion-panel-header{
     margin: 0px;
 }
 .mainBugContainer{
-    padding: 0px 0px 15px 0px;
+    padding: 0px 0px 6px 6px;
 }
 .mainBugCount{
     color: rgb(206, 21, 58);

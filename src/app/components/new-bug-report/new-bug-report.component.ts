@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {BugReport} from 'src/app/models/BugReport';
+import {Client} from 'src/app/models/Client';
 import {Application} from 'src/app/models/Application';
 import {ApiServiceService} from 'src/app/services/api-service.service';
 import { Validators } from '@angular/forms';
@@ -18,15 +19,16 @@ export class NewBugReportComponent implements OnInit {
     suspectedLocation: [''],
     severity: [''],
     priority: [''],
-    reporter: ['awesomesauce'],
+    reporter: [''],
     description: ['', Validators.required],
     reproduceSteps: ['']
   });
 
+  client:Client;
   applicationList: Application[] = [];
   applicationNameList = [];
-  priorityLevel = ['not urgent', 'medium', 'urgent'];
-  severityLevel = ['not severe', 'medium', 'very severe'];
+  priorityLevel = ['low', 'medium', 'high'];
+  severityLevel = ['low', 'medium', 'high'];
 
 
   constructor(private fb: FormBuilder, private api: ApiServiceService) { }
@@ -45,7 +47,7 @@ export class NewBugReportComponent implements OnInit {
         report.app = app;
       }
     }
-    report.dateCreated = new Date().getTime();
+    report.createdTime = new Date().getTime();
 
     console.log(report);
     const result = await this.api.submitNewBugReport(report);
@@ -54,14 +56,20 @@ export class NewBugReportComponent implements OnInit {
 
   async getApplication(){
     this.applicationList = await this.api.getApplications();
-    console.log(this.applicationList);
     for (const app of this.applicationList){
       this.applicationNameList.push(app.title);
     }
   }
 
+  getClient(){
+    this.client = this.api.getLoggedClient();
+    this.bugForm.value.reporter = this.client.username;
+    console.log(this.bugForm.value.reporter);
+  }
+
   ngOnInit(): void {
     this.getApplication();
+    this.getClient();
   }
 
 
