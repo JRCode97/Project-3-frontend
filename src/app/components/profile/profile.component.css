@@ -16,10 +16,6 @@
             width: 30%;
         }
 
-            #profilePicDiv{
-
-            }
-
                 #profilePic{
                     padding-top: 15%;
                     padding-bottom: 5%;
@@ -66,4 +62,8 @@
         margin-top: 2vh;
         border-style: solid;
         border-color: green;
+    }
+
+    .password-reset{
+        cursor: pointer;
     }
