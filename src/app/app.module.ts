@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 import { AdminBugsCardsComponent } from './components/admin-bugs-cards/admin-bugs-cards.component';
 import { AdminBugsTableComponent } from './components/admin-bugs-table/admin-bugs-table.component';
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { AppComponent } from './app.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
@@ -45,8 +46,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component'
-import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
@@ -59,6 +58,7 @@ import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading
     AdminBugsComponent,
     AdminBugsCardsComponent,
     AdminBugsTableComponent,
+    AdminSolutionsComponent,
     AppComponent,
     ApplicationComponent,
     ApplicationsTableComponent,
@@ -75,15 +75,12 @@ import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading
     PasswordResetComponent,
     PostedSolutionsTableComponent,
     ProfileComponent,
+    ResolvedbugsTableComponent,
     SolutionApprovalComponent,
     SolutionsTableComponent,
     UpdatePasswordComponent,
-    PasswordResetComponent,
-    AdminSolutionsComponent,
     UnresolvedbugsTableComponent,
-    ResolvedbugsTableComponent
     LoadingSpinnerComponent,
-
   ],
   imports: [
     AppRoutingModule,
