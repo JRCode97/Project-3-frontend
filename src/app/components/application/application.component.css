@@ -1,12 +1,12 @@
 button{
-    margin: .5rem;
+  margin: .5rem;
 }
 #formDiv{
-    margin-top: 1%;
-    margin-left: 5%;
+  margin-top: 1%;
+  margin-left: 5%;
 }
 .mat-display-2{
-  margin-bottom: 2%;
+margin-bottom: 2%;
 }
 label{
 font-size: 1.2em;
@@ -14,76 +14,58 @@ color: black;
 }
 
 #save{
-    background-color: rgb(1, 6, 14);
-    color: white;
+  background-color: rgb(1, 6, 14);
+  color: white;
 }
 
 #canc{
-    background-color: rgb(245, 18, 18);
+  background-color: rgb(245, 18, 18);
 }
 
 span{
-    color: rgb(245, 18, 18);
-    font-weight: bold;
+  color: rgb(245, 18, 18);
+  font-weight: bold;
 }
 
 input{
-    width: 25%;
-    height: 1.9rem;
-    font-size: 1.5em;
+  width: 25%;
+  height: 1.9rem;
+  font-size: 1.5em;
 }
 
 #tErr, #lErr{
-    color: rgb(245, 18, 18);
+  color: rgb(245, 18, 18);
 }
-/* table{
-    margin-top: 5%;
-    margin-left: 5%;
-    border: solid 1px black;
-    width: 45%;
-    height: auto;
-    text-align: center;
-}
-th,td{
-    font-size: 1.2em;
-    padding: 8px;
-    border: 1px solid #dddddd;
-}
-
-th{
-    background-color: rgb(51, 48, 48);
-    color: white;
-} */
 
 .mat-elevation-z8{
-    width:50%;
-    margin-top: 5%;
-    margin-left: 5%;
-    margin-bottom: 5%;
-    border: solid 1px black;
-    height: auto;
-    box-shadow: none;
-    
-  }
-  .full-width-table {
-    width: 100%;
-  }
-  th{
-    /* text-align: center; */
-    font-size: 1.5em;
-    color: whitesmoke;
-    background-color: rgb(51, 48, 48);
-    
-  }
-  mat-paginator{
-    color: whitesmoke;
-    background-color: rgb(51, 48, 48);
-    
-  }
+  width:50%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  border: solid 1px black;
+  height: auto;
+  box-shadow: none;
   
-  td{
-    background-color: white;
-    color: black;
-    font-size: 1.2em;
+}
+.full-width-table {
+  width: 100%;
+}
+th{
+  /* text-align: center; */
+  font-size: 1.5em;
+  color: whitesmoke;
+  background-color: rgb(51, 48, 48);
   
-  }
+}
+mat-paginator{
+  color: whitesmoke;
+  background-color: rgb(51, 48, 48);
+  
+}
+
+td{
+  background-color: white;
+  color: black;
+  font-size: 1.2em;
+
+}
