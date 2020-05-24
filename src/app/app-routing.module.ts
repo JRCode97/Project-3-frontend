@@ -20,8 +20,7 @@ const routes: Routes = [
   { path: 'main', component: MainPageComponent },
   { path: 'newbugreport', component: NewBugReportComponent },
   { path: 'newpassword', component:UpdatePasswordComponent},
-  { path: 'adminsolutions', component:AdminSolutionsComponent}
-  { path: 'newpassword', component: UpdatePasswordComponent},
+  { path: 'adminsolutions', component:AdminSolutionsComponent},
   { path: 'profile', component: ProfileComponent}
 ];
 

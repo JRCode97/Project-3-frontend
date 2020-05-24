@@ -39,13 +39,12 @@ import { MainPageBugComponent } from './components/main-page-bug/main-page-bug.c
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { MainPageLeaderboardComponent } from './components/main-page-leaderboard/main-page-leaderboard.component';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component'
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
+import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component'
 import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
@@ -81,7 +80,7 @@ import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading
     PasswordResetComponent,
     AdminSolutionsComponent,
     UnresolvedbugsTableComponent,
-    ResolvedbugsTableComponent
+    ResolvedbugsTableComponent,
     LoadingSpinnerComponent,
 
   ],
