@@ -37,7 +37,6 @@ export class AdminBugsComponent implements OnInit {
 
   async getBugReports(){
     this.bugReports = await this.apiservice.getBugReports();
-    console.log(this.bugReports);
     return this.bugReports;
   }
 
