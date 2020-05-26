@@ -1,45 +1,82 @@
-
-
-<div [ngClass]="{'dim' : toggle, '*': !toggle}" class = "container">
-  <div *ngIf="showSpinner" class="spinner">Logging in...<app-loading-spinner></app-loading-spinner></div>
-
-  <div [ngClass]="{'hide' : toggle, '*': !toggle}" class = "form-box">
-    <div class = "button-box">
-    <div #btn id = "btn"></div>
-    <button type = "button" class="toggle-btn" (click)="switch2()">Login</button>
-    <button type = "button" class="toggle-btn" (click)="switch1()">Register</button>
-  </div>
-
-    <form #login id = "login" class="input-group login-input">
-    <input type = "text" class="input-field" placeholder="Username">
-    <input type = "password" class="input-field" placeholder="Password">
-    <a class="password-reset" (click)="open(content)">Reset Password</a>
-    <button type="submit" (click)="dummyLocgin(); enableDisableRule()" class="submit-btn">Log In
-    </button>
-  </form>
-
-    <form #register id = "register" class="input-group register-input">
-      <input type = "text" class="input-field" placeholder="Enter your first name: ">
-      <input type = "text" class="input-field" placeholder="Enter your last name: ">
-      <input type = "text" class="input-field" placeholder="Enter an email address: ">
-      <input type = "text" class="input-field" placeholder="Enter a username: ">
-      <input type = "password" class="input-field" placeholder="Enter a password: ">
-      <input type = "password" class="input-field" placeholder="Confirm password: ">
-      <button type="submit" class="submit-btn">Register</button>
-    </form>
-  </div>
-</div>
-
-<ng-template class="modal-view" #content let-modal>
-  <div class="modal-header">
-    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
-      <span>&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <app-password-reset></app-password-reset>
-  </div>
-</ng-template>
-<hr>
-
-<pre>{{ closeResult }}</pre>
+ <div class="container">
+        <div class="form-box">
+            <div class="button-box">
+                <div #btn id="btn"></div>
+                <button type="button" class="toggle-btn" (click)="switch2()">Login</button>
+                <button type="button" class="toggle-btn" (click)="switch1()">Register</button>
+            </div>
+            <div [ngClass]="{'dim' : toggle, '*': !toggle}" class="container">
+                <div *ngIf="showSpinner" class="spinner">
+                    Logging in...<app-loading-spinner></app-loading-spinner>
+                </div>
+                <div [ngClass]="{'hide' : toggle, '*': !toggle}" class="form-box">
+                    <div class="button-box">
+                        <div #btn id="btn">
+                        </div>
+                        <button type="button" class="toggle-btn" (click)="switch2()">Login</button>
+                        <button type="button" class="toggle-btn" (click)="switch1()">Register</button>
+                    </div>
+                    <form #login id="login" class="input-group login-input">
+                        <input #txtusername id="txtusername" type="text" class="input-field" placeholder="Username"
+                               (input)="resetlogin()">
+                        <input #txtpassword id="txtpassword" type="password" class="input-field" placeholder="Password"
+                               (input)="resetlogin()">
+                        <a class="password-reset" (click)="open(content)">Reset Password</a>
+                        <button type="button" (click)="clientLogin()" class="submit-btn">Log In</button>
+                        <label *ngIf="inValidUser">Wrong username or password </label>
+                    </form>
+                    <form [formGroup]="registerform" id="register" #register class="input-group register-input ">
+                        <div class="form-group row">
+                            <label for="txtFname" class="col  form-label">First Nanme:</label>
+                            <input type="text" id="txtFname" #txtFname name="txtFname" [(ngModel)]="Fname"
+                                   placeholder="Enter your first name: " class="col  form-control input-field" (input)="resetregister()" formControlName="Fname">
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtLname" class="col form-label">Last Nanme:</label>
+                            <input type="text" id="txtLname" #txtLname name="txtLname" [(ngModel)]="Lname"
+                                   placeholder="Enter your last name: " class="col form-control input-field" (input)="resetregister()" formControlName="Lname">
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtEmail" class="col form-label">Email:</label>
+                            <input type="email" id="txtEmail" #txtEmail name="txtEmail" [(ngModel)]="Email"
+                                   placeholder="Enter an email address: " class="col form-control" (input)="resetregister()" formControlName="Email">
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtUsername" class="col form-label">Username:</label>
+                            <input type="text" id="txtUsername" #txtUsername name="txtUsername" [(ngModel)]="Username"
+                                   placeholder="Enter a username: " class="col form-control input-field" (input)="resetregister()" formControlName="UserName">
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtPass" class="col form-label">Password:</label>
+                            <input type="password" id="txtPass" #txtPass name="txtPass" [(ngModel)]="Pass"
+                                   placeholder="Enter a password: " class="col form-control input-field" (input)="resetregister()" formControlName="Password">
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtConfPass" class="col form-label">Confirm password:</label>
+                            <input type="password" id="txtConfPass" #txtConfPass name="txtConfPass" [(ngModel)]="ConfPass"
+                                   placeholder="Confirm password: " class="col form-control input-field" (input)="resetregister()" formControlName="ConfPass">
+                        </div>
+                        <button type="submit" #btnRegister id="btnRegister" class="submit-btn"
+                                (click)="clientRegister()" [disabled]="registerform.invalid">
+                            Register
+                        </button>
+                        <label *ngIf="savingfailed">Error : Saving Falied</label>
+                        <label *ngIf="txtConfPass.value!==txtPass.value"> Password does not match</label>
+                        <label *ngIf="valiationMsg!==''"> {{valiationMsg}}</label>
+                    </form>
+                </div>
+            </div>
+            <ng-template class="modal-view" #content let-modal>
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <app-password-reset></app-password-reset>
+                </div>
+            </ng-template>
+            <hr>
+            <pre>{{ closeResult }}</pre>
+        </div>
+    </div>

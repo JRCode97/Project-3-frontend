@@ -5,6 +5,7 @@ import BugReport from 'src/app/models/BugReport';
 import Client from 'src/app/models/Client';
 import { ActivatedRoute, Router } from '@angular/router';
 import SolutionStatus from 'src/app/models/SolutionStatus';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'app-bug-report-view',
@@ -12,16 +13,18 @@ import SolutionStatus from 'src/app/models/SolutionStatus';
     styleUrls: ['./bug-report-view.component.css']
 })
 export class BugReportViewComponent implements OnInit {
- 
+
 
     public brId: any;
     public solutions: Array<Solution>;
-    public br: BugReport;
+    public br = new BugReport();
     public client: Client;
     public SolDescription: string = '';
     public SolTitle: string = '';
- 
 
+    //displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status'];
+    displayedColumns: string[] = [ 'description' ];
+    dataSource: MatTableDataSource<Solution>;
 
 
 
@@ -33,41 +36,41 @@ export class BugReportViewComponent implements OnInit {
         if (this.client == null || this.client === undefined)
             this.router.navigate(["/"]);
         else {
-            console.log(this.client);
+            //console.log(this.client);
             this.brId = this.route.snapshot.paramMap.get("id");
             this.getBugReportById();
-
             this.getBugSolutionsById();
         }
 
     }
 
     ngOnInit(): void {
+
     }
     //0. Get Client By ID 
     getClient(): Client {
         this.client = this.apiserv.getLoggedClient();
-
-        console.log(this.client);
+        /// console.log(this.client);
         return this.client;
     }
     //1. Get Bug Report By ID 
     async  getBugReportById(): Promise<BugReport> {
         this.br = await this.apiserv.getBugReportById(this.brId);
 
-        console.log(this.br);
+        //console.log(this.br.solutions);
+        //  console.log(this.br);
         return this.br;
     }
     //2. Get all Solutions  by Bug Report ID 
     async  getBugSolutionsById(): Promise<Array<Solution>> {
         this.solutions = await this.apiserv.getSolutionsByBugId(this.brId);
-
+        this.dataSource = new MatTableDataSource(this.solutions);
         console.log(this.solutions);
         return this.solutions;
     }
     //3. Add new  Solution 
     async postSolution(): Promise<any> {
-        
+
         let sol = new Solution();
         console.log(this.br);
         sol.br = this.br;
