@@ -15,7 +15,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.client = this.api.getLoggedClient()
     this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
+    this.getClientPoint()
   }
+
+  points
 
   client
 
@@ -29,6 +32,11 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  async getClientPoint(){
+   this.points = await this.api.getPoints(this.client.cId)
+   console.log(this.points)
+  }
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -40,9 +48,10 @@ export class ProfileComponent implements OnInit {
   }
 
   bugStatus
+  solutionStatus
 
   test(){
-    console.log(this.bugStatus)
+    console.log(this.solutionStatus)
   }
 
 }
