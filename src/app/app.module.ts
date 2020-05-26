@@ -49,6 +49,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -82,31 +83,32 @@ import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading
     UnresolvedbugsTableComponent,
     LoadingSpinnerComponent,
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    EditorModule,
-    FormsModule,
-    HttpClientModule,
-    LayoutModule,
-    MatButtonModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSortModule,
-    MatTableModule,
-    MatToolbarModule,
-    NgbModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        EditorModule,
+        FormsModule,
+        HttpClientModule,
+        LayoutModule,
+        MatButtonModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSliderModule,
+        MatSortModule,
+        MatTableModule,
+        MatToolbarModule,
+        NgbModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+    ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })
