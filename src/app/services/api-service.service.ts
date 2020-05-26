@@ -54,6 +54,11 @@ export class ApiServiceService {
   getClientById(id: number): Promise<Client> {
     return this.http.get<Client>(this.path + `/clients/${id}`).toPromise();
   }
+
+  // points displayed in profile page
+  getPoints(id:number){
+    return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
+  }
   //to be set within the login function 
   setLoggedClient(client: Client) {
     localStorage.setItem('client', JSON.stringify(client));

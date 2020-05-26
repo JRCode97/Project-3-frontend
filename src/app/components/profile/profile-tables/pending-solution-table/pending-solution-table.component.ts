@@ -2,19 +2,19 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { BugReportsTableDataSource, BugReportsTableItem } from './bug-reports-table-datasource';
+import { PendingSolutionTableDataSource, PendingSolutionTableItem } from './pending-solution-table-datasource';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 
 @Component({
-  selector: 'app-bug-reports-table',
-  templateUrl: './bug-reports-table.component.html',
-  styleUrls: ['./bug-reports-table.component.css']
+  selector: 'app-pending-solution-table',
+  templateUrl: './pending-solution-table.component.html',
+  styleUrls: ['./pending-solution-table.component.css']
 })
-export class BugReportsTableComponent implements AfterViewInit, OnInit {
+export class PendingSolutionTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<BugReportsTableItem>;
-  dataSource: BugReportsTableDataSource;
+  @ViewChild(MatTable) table: MatTable<PendingSolutionTableItem>;
+  dataSource: PendingSolutionTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['date', 'title', 'status'];
@@ -22,24 +22,23 @@ export class BugReportsTableComponent implements AfterViewInit, OnInit {
   constructor(private api:ApiServiceService){}
 
   ngOnInit() {
-    this.initBugreports()
-    this.dataSource = new BugReportsTableDataSource(null);
+    this.initSolutions()
+    this.dataSource = new PendingSolutionTableDataSource(null);
   }
 
   ngAfterViewInit() {
-
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
 
-  bugreportsArray = []
+  solutionArray=[]
 
-  async initBugreports(){
-    let bugreports = await this.api.getBugReports()
-    console.log(bugreports)
+  async initSolutions(){
+    let solutions = await this.api.getSolutionsByClientId(1)
+    console.log(solutions)
     
-    this.dataSource = new BugReportsTableDataSource(bugreports);
+    this.dataSource = new PendingSolutionTableDataSource(solutions);
     console.log(this.dataSource)
   }
 }

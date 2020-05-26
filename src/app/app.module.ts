@@ -49,6 +49,11 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
+import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
+import { UnresolvedBugreportTableComponent } from './components/profile/profile-tables/unresolved-bugreport-table/unresolved-bugreport-table.component';
+import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
+import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
+import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
 
 
 
@@ -81,6 +86,11 @@ import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading
     UpdatePasswordComponent,
     UnresolvedbugsTableComponent,
     LoadingSpinnerComponent,
+    RequestedBugreportTableComponent,
+    UnresolvedBugreportTableComponent,
+    ResolvedBugreportTableComponent,
+    DeniedBugreportTableComponent,
+    PendingSolutionTableComponent,
   ],
   imports: [
     AppRoutingModule,
