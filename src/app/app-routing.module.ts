@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,11 +11,10 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 
-
-
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'adminbugs', component: AdminBugsComponent},
+  { path: 'adminsolutions', component:AdminSolutionsComponent},
   { path: 'applications', component: ApplicationComponent },
   { path: 'bugreport/:id', component: BugReportViewComponent },
   { path: 'bugsolutionreview/:id', component: SolutionApprovalComponent},

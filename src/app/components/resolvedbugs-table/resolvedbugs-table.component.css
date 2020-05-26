@@ -1,0 +1,42 @@
+.container{
+  height: 100%;
+  width: 100%;
+  background-position: center;
+
+  position: center;
+} 
+
+table{
+  /* background-position: center; */
+  position: center;
+  background-position: center;
+
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding:10px;
+  
+   width:1000px; 
+   height: 200px;  
+  }
+
+th, td {
+  background-position: center;
+  position: center;
+
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding:10px;
+
+  width:200px; 
+  height: 30px;  
+
+  text-align: center;
+}
+
+th{
+  color: whitesmoke;
+  background-color: black;
+  font-size: medium;
+  position: center;
+  text-align: center;
+}

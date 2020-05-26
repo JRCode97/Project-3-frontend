@@ -3,31 +3,53 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-// import {ApplicationsService} from 'src/app/services/applications.service';
-
+// import {AdminsolutionsService} from 'src/app/services/adminsolutions.service';
+// import {HttpClient} from '@angular/common/http';
+// import {ApiServiceService} from 'src/app/services/api-service.service';
+// import { ActivatedRoute } from '@angular/router';
 
 // TODO: Replace this with your own data model type
-export interface ApplicationsTableItem {
+export interface UnresolvedbugsTableItem {
+  bId:number;
   title: string;
-  gitLink: string;
-  id: number;
+  solutions: string;
+ // panelOpenState = false;
+  //bugCount:Number;
 }
 
-// TODO: CALL GET APPS METHOD = await this.applications.getApps();
-const TABLE_DATA: ApplicationsTableItem[] = [{id: 1, title: 'Project 1', gitLink: 'github.com'}, {id: 2, title: 'Project 2', gitLink: 'github2.com'}];
+// TODO: replace this with real data from your application
+// const EXAMPLE_DATA: UnresolvedbugsTableItem[] = [
+//   {bugtit: 'Bug 1', sols:'Solution 1'},
+//   {bugtit: 'Bug 2', sols:'Solution 2'},
+//   {bugtit: 'Bug 3', sols:'Solution 3'},
+//   {bugtit: 'Bug 4', sols:'Solution 4'},
+//   {bugtit: 'Bug 5', sols:'Solution 5'},
+//   {bugtit: 'Bug 6', sols:'Solution 6'},
+//   {bugtit: 'Bug 7', sols:'Solution 7'},
+//   {bugtit: 'Bug 8', sols:'Solution 8'},
+//   {bugtit: 'Bug 9', sols:'Solution 9'},
+//   {bugtit: 'Bug 10', sols:'Solution 10'},
+//   {bugtit: 'Bug 11', sols:'Solution 11'},
+//   {bugtit: 'Bug 12', sols:'Solution 12'}
+// ];
 
 /**
- * Data source for the ApplicationsTable view. This class should
+ * Data source for the UnresolvedbugsTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ApplicationsTableDataSource extends DataSource<any> {
+export class UnresolvedbugsTableDataSource extends DataSource<any> {
+
   data: any[] = this.givenData;
   paginator: MatPaginator;
   sort: MatSort;
-
-  // private applications:ApplicationsService
-  constructor(private givenData) {
+ 
+  // bId:number;
+  // title: string;
+  // createdTime:number;
+  // sols: string;
+  
+  constructor(private givenData) { 
     super();
   }
 
@@ -36,9 +58,10 @@ export class ApplicationsTableDataSource extends DataSource<any> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<ApplicationsTableItem[]> {
+  connect(): Observable<UnresolvedbugsTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
+    
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,
@@ -60,7 +83,7 @@ export class ApplicationsTableDataSource extends DataSource<any> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: ApplicationsTableItem[]) {
+  private getPagedData(data: UnresolvedbugsTableItem[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -69,7 +92,7 @@ export class ApplicationsTableDataSource extends DataSource<any> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: ApplicationsTableItem[]) {
+  private getSortedData(data: UnresolvedbugsTableItem[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -77,9 +100,8 @@ export class ApplicationsTableDataSource extends DataSource<any> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'gitLink': return compare(a.gitLink, b.gitLink, isAsc);
         case 'title': return compare(a.title, b.title, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        //case 'solutions': return compare(+a.sols, +b.sols, isAsc);
         default: return 0;
       }
     });
