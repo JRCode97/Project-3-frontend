@@ -22,9 +22,9 @@
         <div id="AboutMeDiv">
             <div id="titleDiv"><h1>About me</h1></div>
             <div id="profileDetail">
-                <h2>Name: First Last</h2>
-                <h2>Username: username</h2>
-                <h2>Role: Developer</h2>
+                <h2>Name: {{client.fName}} {{client.lName}}</h2>
+                <h2>Username: {{client.username}}</h2>
+                <h2>Role: {{client.Role}}</h2> 
                 <a class="password-reset" (click)="open(content)">Update Password</a>
             </div>
         </div>
@@ -33,14 +33,46 @@
 
 
 
-    <div id="bugTableDiv">
+    <!-- <div id="bugTableDiv">
         <app-bug-reports-table></app-bug-reports-table>
-    </div>
+    </div> -->
     
-
+<!-- 
     <div id="solutionTableDiv">
         <app-solutions-table></app-solutions-table>
+    </div> -->
+
+
+    <!-- create new tables for each status and filter results by status  -->
+    <!-- redirect -->
+    <!-- autherize -->
+
+    <div>
+        <mat-form-field>
+            <mat-select (selectionChange)="test()" [(value)]="bugStatus">
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="Accepted">Accepted</mat-option>
+                <mat-option value="Rejected">Rejected</mat-option>
+            </mat-select></mat-form-field>
     </div>
+
+    <ng-container [ngSwitch]="bugStatus">
+        <ng-container *ngSwitchCase="'Pending'">
+            <h1>Pending</h1>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Accepted'">
+            <h1>Accepted</h1>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Rejected'">
+            <h1>Rejected</h1>
+        </ng-container>
+        <ng-container *ngSwitchDefault="'All'">
+            <div id="bugTableDiv">
+                <app-bug-reports-table></app-bug-reports-table>
+            </div>
+        </ng-container>
+    </ng-container>
     
 
 </div>

@@ -44,6 +44,7 @@ export class SolutionsTableComponent implements AfterViewInit, OnInit {
       obj.status = solution.status
       obj.date = solution.timeSubmitted
       this.solutionArray.push(obj)
+      console.log(solution.description)
     })
     console.log(this.solutionArray)
     // console.log(this.profileservice.bugreportsArray)

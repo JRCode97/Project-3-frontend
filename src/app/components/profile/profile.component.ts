@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ApiServiceService } from 'src/app/services/api-service.service';
+import Client from 'src/app/models/Client';
 
 @Component({
   selector: 'app-profile',
@@ -8,10 +10,14 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private api: ApiServiceService) { }
 
   ngOnInit(): void {
+    this.client = this.api.getLoggedClient()
+    this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
   }
+
+  client
 
   closeResult = '';
 
@@ -31,6 +37,12 @@ export class ProfileComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  bugStatus
+
+  test(){
+    console.log(this.bugStatus)
   }
 
 }
