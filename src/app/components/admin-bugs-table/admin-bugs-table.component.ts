@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import BugReport from '../../models/BugReport';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 @Component({
   selector: 'app-admin-bugs-table',
