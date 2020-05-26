@@ -21,7 +21,7 @@ export class NewBugReportComponent implements OnInit {
     suspectedLocation: [''],
     severity: [''],
     priority: [''],
-    reporter: [''],
+    reporter: [{value: '', disabled: true}],
     description: ['', Validators.required],
     reproduceSteps: ['']
   });
@@ -72,8 +72,7 @@ export class NewBugReportComponent implements OnInit {
 
   getClient(){
     this.client = this.api.getLoggedClient();
-    this.bugForm.value.reporter = this.client.username;
-    console.log(this.bugForm.value.reporter);
+    this.bugForm.controls['reporter'].setValue(this.client.username)
   }
 
   ngOnInit(): void {

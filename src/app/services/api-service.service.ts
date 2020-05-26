@@ -26,23 +26,23 @@ export class ApiServiceService {
   //################ Start of Bug Report Section ###################
 
   getBugReports(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(this.path + '/bugreports').toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports`).toPromise();
   }
   
   getResolvedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(this.path +`/bugreports/status/resolved`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
   }
 
   getUnResolvedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(this.path +`/bugreports/status/unresolved`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();
   }
   
   getBugReportById(id:number) {
-    return this.http.get<BugReport>(`${this.path}/bugreports/${id}`).toPromise();
+    return this.http.get<BugReport>(`${this.path}/bugreports?id=${id}`).toPromise();
   }
 
   submitNewBugReport(bugReport: BugReport): Promise<BugReport>{
-    return this.http.post<BugReport>(this.path + '/bugreports', bugReport).toPromise();
+    return this.http.post<BugReport>(`${this.path}/bugreports`, bugReport).toPromise();
   }
 
   putBugReport(bugReport: BugReport): Promise<BugReport> {
@@ -52,7 +52,7 @@ export class ApiServiceService {
   //################ Start of Client Section ###################
 
   getClientById(id: number): Promise<Client> {
-    return this.http.get<Client>(this.path + `/clients/${id}`).toPromise();
+    return this.http.get<Client>(`${this.path}/clients/${id}`).toPromise();
   }
   //to be set within the login function 
   setLoggedClient(client: Client) {
@@ -71,49 +71,56 @@ export class ApiServiceService {
   }
 
   updatePassword(client:Client):Promise<Client> {
-    return this.http.put<Client>(this.path+`/clients`, client).toPromise();
+    return this.http.put<Client>(`${this.path}/clients`, client).toPromise();
   }
   //does not work
   resetPassword(email:string):Promise<any>{
-    return this.http.put(this.path+`/clients`, email).toPromise();
+    return this.http.post(`${this.path}/resetpassword/${email}`, email).toPromise();
   }
 
   //################ Start of Solution Section ###################
 
   //1. Add new Solution 
-  async postSolution(slution: Solution): Promise<any> {
-    let ticketPromise = await this.http.post(this.path + "/solutions", slution).toPromise();
+  // TODO: check if Promise<Solution> is okay
+  async postSolution(solution: Solution): Promise<Solution> {
+    let ticketPromise = await this.http.post<Solution>(`${this.path}/solutions`, solution).toPromise();
     return ticketPromise;
   }
+
   //2. Get all Solutions by Bug Report ID 
   getSolutionsByBugId(id:number) {
-    return this.http.get<Solution[]>(this.path +`/query/solutions/bugreport?id=${id}`).toPromise();
+    return this.http.get<Solution[]>(`${this.path}/solutions?bId=${id}`).toPromise();
   }
 
   getSolutionById(id: number) {
-    return this.http.get<Solution>(this.path + `/solutions/${id}`).toPromise();
+    return this.http.get<Solution>(`${this.path}/solutions?id=${id}`).toPromise();
   }
 
   getSolutionsByClientId(id:number) {
-    return this.http.get<Solution[]>(this.path +`/query/solutions/client?id=${id}`).toPromise();
+    return this.http.get<Solution[]>(`${this.path}/solutions?cId=${id}`).toPromise();
   }
 
   putSolution(solution:Solution) {
     return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
   }
   
-  //################ Start of Applicationn Section ###################
+  //################ Start of Application Section ###################
   getApplications(): Promise<Application[]>{
-    return this.http.get<Application[]>(this.path + '/applications').toPromise();
+    return this.http.get<Application[]>(`${this.path}/applications`).toPromise();
+  }
+
+  postApplication(appTitle:string,appLink:string):Promise<Application>{
+    let appJson = {"id":0, "title":`${appTitle}`, "gitLink":`${appLink}`}
+    return this.http.post<Application>(`${this.path}/applications/`, appJson).toPromise();
   }
 
   //################ Start of Leaderboard Section ###################
 
   getLeaderboardNames(): Promise<String[]>{
-    return this.http.get<String[]>(this.path + '/clients/leaderboard/username').toPromise();
+    return this.http.get<String[]>(`${this.path}/clients/leaderboard/username`).toPromise();
   }
   getLeaderboardPoints(): Promise<number[]>{
-    return this.http.get<number[]>(this.path + '/clients/leaderboard/points').toPromise();
+    return this.http.get<number[]>(`${this.path}/clients/leaderboard/points`).toPromise();
   }
 
 }

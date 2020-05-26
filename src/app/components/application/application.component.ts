@@ -1,6 +1,5 @@
 import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {ApplicationsService} from 'src/app/services/applications.service';
 import { Client } from 'src/app/models/Client';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 
@@ -14,7 +13,7 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('linkErr') y: ElementRef;
   public client: Client;
 
-  constructor(private router: Router,private applications:ApplicationsService,private api: ApiServiceService) {
+  constructor(private router: Router, private api: ApiServiceService) {
 
     this.getClient();
     if (this.client == null || this.client === undefined || this.client.role != 1) this.router.navigate(["/"]);
@@ -50,7 +49,7 @@ export class ApplicationComponent implements OnInit {
       if(this.appLink == undefined) this.y.nativeElement.innerHTML = 'Application Github Link is required!';
       else this.y.nativeElement.innerHTML = '';
       if(this.appTitle != undefined && this.appLink != undefined){
-        this.app = await this.applications.addApp(this.appTitle,this.appLink)
+        this.app = await this.api.postApplication(this.appTitle,this.appLink)
         this.clear()
         if(this.app) 
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

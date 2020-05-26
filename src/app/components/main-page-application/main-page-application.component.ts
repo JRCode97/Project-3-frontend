@@ -21,7 +21,6 @@ export class MainPageApplicationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.application)
     this.title = this.application.title;
     this.gitLink = this.application.gitLink;
     this.bugCount = this.application.reports.length;
