@@ -38,16 +38,8 @@ export class SolutionsTableComponent implements AfterViewInit, OnInit {
   async initSolutions(){
     let solutions = await this.api.getSolutionsByClientId(1)
     console.log(solutions)
-    solutions.forEach(solution => {
-      let obj:any = {}
-      obj.title = solution.title
-      obj.status = solution.status
-      obj.date = solution.timeSubmitted
-      this.solutionArray.push(obj)
-    })
-    console.log(this.solutionArray)
-    // console.log(this.profileservice.bugreportsArray)
-    this.dataSource = new SolutionsTableDataSource(this.solutionArray);
+
+    this.dataSource = new SolutionsTableDataSource(solutions);
     console.log(this.dataSource)
   }
 }
