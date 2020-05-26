@@ -28,8 +28,19 @@ export class ApiServiceService {
   getBugReports(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(this.path + '/bugreports').toPromise();
   }
+  
+  getResolvedBugs(): Promise<BugReport[]> {
+    return this.http.get<BugReport[]>(this.path +`/bugreports/status/resolved`).toPromise();
+  }
 
-  getBugReportById(id: number) {
+ 
+ 
+  getUnResolvedBugs(): Promise<BugReport[]> {
+    return this.http.get<BugReport[]>(this.path +`/bugreports/status/unresolved`).toPromise();
+  }
+  
+  getBugReportById(id:number) {
+ 
     return this.http.get<BugReport>(`${this.path}/bugreports/${id}`).toPromise();
   }
 
@@ -53,6 +64,11 @@ export class ApiServiceService {
   }
   getClientById(id: number): Promise<Client> {
     return this.http.get<Client>(this.path + `/clients/${id}`).toPromise();
+  }
+
+  // points displayed in profile page
+  getPoints(id:number){
+    return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
   }
   //to be set within the login function 
   setLoggedClient(client: Client) {
@@ -94,8 +110,14 @@ export class ApiServiceService {
     return this.http.get<Solution>(this.path + `/solutions/${id}`).toPromise();
   }
 
-  getSolutionsByClientId(id: number) {
-    return this.http.get<Solution[]>(this.path + `/query/solutions/client?id=${id}`).toPromise();
+ 
+  getSolutionsByClientId(id:number) {
+    return this.http.get<Solution[]>(this.path +`/solutions?cid=${id}`).toPromise();
+  }
+
+  putSolution(solution:Solution) {
+    return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
+ 
   }
 
   //################ Start of Applicationn Section ###################

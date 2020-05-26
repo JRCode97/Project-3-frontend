@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 import { AdminBugsCardsComponent } from './components/admin-bugs-cards/admin-bugs-cards.component';
 import { AdminBugsTableComponent } from './components/admin-bugs-table/admin-bugs-table.component';
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { AppComponent } from './app.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
@@ -42,10 +43,18 @@ import { NewBugReportComponent } from './components/new-bug-report/new-bug-repor
 import { PasswordResetComponent } from './components/password-reset/password-reset.component'
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
+import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
-import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 
+import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
+import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
+import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
+import { UnresolvedBugreportTableComponent } from './components/profile/profile-tables/unresolved-bugreport-table/unresolved-bugreport-table.component';
+import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
+import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
+import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
 
 
 
@@ -56,6 +65,7 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
     AdminBugsComponent,
     AdminBugsCardsComponent,
     AdminBugsTableComponent,
+    AdminSolutionsComponent,
     AppComponent,
     ApplicationComponent,
     ApplicationsTableComponent,
@@ -71,36 +81,44 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
     NewBugReportComponent,
     PasswordResetComponent,
     ProfileComponent,
+    ResolvedbugsTableComponent,
     SolutionApprovalComponent,
     SolutionsTableComponent,
     UpdatePasswordComponent,
-    EnumToArrayPipe,
+    UnresolvedbugsTableComponent,
+    LoadingSpinnerComponent,
+    RequestedBugreportTableComponent,
+    UnresolvedBugreportTableComponent,
+    ResolvedBugreportTableComponent,
+    DeniedBugreportTableComponent,
+    PendingSolutionTableComponent,
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    EditorModule,
-    FormsModule,
-    HttpClientModule,
-    LayoutModule,
-    MatButtonModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSortModule,
-    MatTableModule,
-    MatToolbarModule,
-    NgbModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        EditorModule,
+        FormsModule,
+        HttpClientModule,
+        LayoutModule,
+        MatButtonModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSliderModule,
+        MatSortModule,
+        MatTableModule,
+        MatToolbarModule,
+        NgbModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+    ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })

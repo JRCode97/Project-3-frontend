@@ -80,6 +80,7 @@ export class SolutionApprovalComponent implements OnInit {
   }
 
   async closeBug() {
+    this.report.resolvedTime = new Date().getTime()
     this.report.status = BugStatus.resolved;
     const bugReport:BugReport = await this.api.putBugReport(this.report);
     this.updateIsResolved(bugReport);
@@ -88,6 +89,10 @@ export class SolutionApprovalComponent implements OnInit {
 
   updateIsResolved(bugReport:BugReport) {
     this.isResolved = (bugReport && bugReport.status === BugStatus.resolved) ? true : false;
+  }
+
+  async updateSolution(solution:Solution) {
+    await this.api.putSolution(solution)
   }
 
 }

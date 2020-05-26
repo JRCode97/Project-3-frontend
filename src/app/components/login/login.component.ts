@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   Pass: string;
   ConfPass: string;
   closeResult = '';
+ 
   valiationMsg:any;
   public savingfailed: boolean = false;
   public inValidUser: boolean = false;
@@ -42,7 +43,23 @@ export class LoginComponent implements OnInit {
       //dummy route 
       this.router.navigate(["/main"]);
     }
+ 
+  showSpinner: boolean;
+
+  toggle = false;
+  status = 'Enable';
+ 
+
+
+
+  enableDisableRule() {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
+ 
   }
+
+
+
   ngOnInit(): void {
   }
   // dummy login function , justto showoff how to store the client object  in local storage session 

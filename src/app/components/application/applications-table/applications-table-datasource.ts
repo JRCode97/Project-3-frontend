@@ -21,13 +21,13 @@ const TABLE_DATA: ApplicationsTableItem[] = [{id: 1, title: 'Project 1', gitLink
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ApplicationsTableDataSource extends DataSource<ApplicationsTableItem> {
-  data: ApplicationsTableItem[] = TABLE_DATA;
+export class ApplicationsTableDataSource extends DataSource<any> {
+  data: any[] = this.givenData;
   paginator: MatPaginator;
   sort: MatSort;
 
   // private applications:ApplicationsService
-  constructor() {
+  constructor(private givenData) {
     super();
   }
 

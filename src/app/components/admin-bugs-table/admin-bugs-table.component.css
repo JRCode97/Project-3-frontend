@@ -8,4 +8,16 @@
   padding-bottom: 20px;
 }
 
+.mat-elevation-z8{
+  margin-left: 50px;
+  margin-right: 50px;
+  justify-content: center;
+}
 
+
+div>table{
+  width: 100%;
+}
+table>td{
+  padding: 20px;
+}

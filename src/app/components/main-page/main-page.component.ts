@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiServiceService } from '../../services/api-service.service';
 import { Application } from 'src/app/models/Application';
+import { OverlayContainer} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-main-page',
@@ -11,6 +12,8 @@ import { Application } from 'src/app/models/Application';
 export class MainPageComponent implements OnInit {
 
   applications: Array<Application> = [];
+  overlayContainer;
+  componentCssClass;
 
   constructor(private apiservice: ApiServiceService) { }
 
@@ -25,5 +28,9 @@ export class MainPageComponent implements OnInit {
     this.applications = aList;
     console.log(this.applications);
   }
+
+
+
+
 
 }

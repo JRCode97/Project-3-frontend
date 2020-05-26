@@ -21,31 +21,19 @@ export class AdminBugsCardsComponent implements OnInit, AfterViewInit {
   pageSize = 6; // number of cards per page
 
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-
-  }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
 
   ngOnInit() {
     this.currentItemsToShow = this.bugReports.slice(0, this.pageSize);
-    console.log(this.paginator);
-    console.log(this.bugReports);
     this.dataSource = new MatTableDataSource<BugReport>(this.bugReports);
-    console.log('Datasource');
-    console.log(this.dataSource);
-
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
-
     this.obs = this.dataSource.connect();
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource.data);
-    console.log('Paginator');
-    console.log(this.dataSource.paginator);
-
   }
 
   onPageChange($event){

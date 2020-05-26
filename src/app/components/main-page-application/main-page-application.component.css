@@ -1,5 +1,5 @@
 .mainApp{
-    width: 500px;
+    width: 600px;
     background-color: #F4F4F4;
     padding: 0px 0px 0px 6px;
     border-style: solid;
@@ -19,11 +19,19 @@ mat-expansion-panel-header{
     font-size: large;
     color: dimgray;
     margin: 0px;
+    padding-top: 10px;
+}
+.mainAppTitle *{
+    width: 425px;
 }
 .mainBugContainer{
     padding: 0px 0px 6px 6px;
 }
-.mainBugCount{
+.mainBugError{
     color: rgb(206, 21, 58);
     font-size: small;
+}
+.mainBugGood{
+    font-size: small;
+    color: yellowgreen;
 }

@@ -22,7 +22,7 @@ p.mainLogo{
 .mainLeft{
     /* border-style: dotted; */
     width: 60%;
-    padding-left: 20px;
+    padding-left: 50px;
     float: left;
     z-index: 2;
 }
@@ -30,7 +30,7 @@ p.mainLogo{
     /* border-style: ridge; */
     margin-left: 60%;
     position: fixed;
-    padding: 20px 0px 0px 20px;
+    padding: 95px 0px 0px 20px;
     z-index: 1;
 }
 .mainAvatar{
