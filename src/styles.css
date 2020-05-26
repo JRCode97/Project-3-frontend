@@ -2,3 +2,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:root {
+  --accent: #e53935;
+  --primary: #263238;
+  --warn: #b71c1c;
+}

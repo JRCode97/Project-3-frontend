@@ -7,7 +7,7 @@
     font-weight: bold;
 }
 .mainLeaderboardLogo{
-    background-color: crimson;
+    background-color: var(--accent);
     color: ghostwhite;
     padding: 15px 0px 15px 0px;
     text-align: center;
@@ -26,3 +26,4 @@
     border-color: inherit;
     border-width: 1px 0px 0px 0px;
 }
+
