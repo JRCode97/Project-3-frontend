@@ -54,6 +54,8 @@ import { UnresolvedBugreportTableComponent } from './components/profile/profile-
 import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
 import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
 import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
+import { AcceptedSolutionTableComponent } from './components/profile/profile-tables/accepted-solution-table/accepted-solution-table.component';
+import { RejectedSolutionTableComponent } from './components/profile/profile-tables/rejected-solution-table/rejected-solution-table.component';
 
 
 
@@ -91,6 +93,8 @@ import { PendingSolutionTableComponent } from './components/profile/profile-tabl
     ResolvedBugreportTableComponent,
     DeniedBugreportTableComponent,
     PendingSolutionTableComponent,
+    AcceptedSolutionTableComponent,
+    RejectedSolutionTableComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -94,10 +94,10 @@
             <app-pending-solution-table></app-pending-solution-table>
         </ng-container>
         <ng-container *ngSwitchCase="'Accepted'">
-            <h1>Accepted</h1>
+            <app-accepted-solution-table></app-accepted-solution-table>
         </ng-container>
         <ng-container *ngSwitchCase="'Rejected'">
-            <h1>Rejected</h1>
+            <app-rejected-solution-table></app-rejected-solution-table>
         </ng-container>
         <ng-container *ngSwitchDefault="'All'">
             <div id="solutionTableDiv">
