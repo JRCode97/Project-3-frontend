@@ -28,6 +28,10 @@ export class ApiServiceService {
   getBugReports(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(this.path + '/bugreports').toPromise();
   }
+
+  getbugReportByClientUsername(username:string){
+    return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
+  }
   
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(this.path +`/bugreports/status/resolved`).toPromise();
