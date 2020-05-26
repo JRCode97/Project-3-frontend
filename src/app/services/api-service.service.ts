@@ -87,7 +87,7 @@ export class ApiServiceService {
   }
 
   getSolutionsByClientId(id:number) {
-    return this.http.get<Solution[]>(this.path +`/query/solutions/client?id=${id}`).toPromise();
+    return this.http.get<Solution[]>(this.path +`/solutions?cid=${id}`).toPromise();
   }
   
   //################ Start of Applicationn Section ###################
