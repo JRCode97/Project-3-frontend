@@ -26,9 +26,4 @@ export class MainPageComponent implements OnInit {
     let aList: Array<Application> = await this.apiservice.getApplications();
     this.applications = aList;
   }
-
-  onSetTheme(theme) {
-    this.overlayContainer.getContainerElement().classList.add(theme);
-    this.componentCssClass = theme;
-  }
 }

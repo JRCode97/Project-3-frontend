@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ApiServiceService } from 'src/app/services/api-service.service';
+import Client from 'src/app/models/Client';
 
 @Component({
   selector: 'app-profile',
@@ -8,10 +10,17 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private api: ApiServiceService) { }
 
   ngOnInit(): void {
+    this.client = this.api.getLoggedClient()
+    this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
+    this.getClientPoint()
   }
+
+  points
+
+  client
 
   closeResult = '';
 
@@ -23,6 +32,11 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  async getClientPoint(){
+   this.points = await this.api.getPoints(this.client.cId)
+   console.log(this.points)
+  }
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -31,6 +45,13 @@ export class ProfileComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  bugStatus
+  solutionStatus
+
+  test(){
+    console.log(this.solutionStatus)
   }
 
 }

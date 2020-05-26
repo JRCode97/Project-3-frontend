@@ -7,7 +7,7 @@
     <label>Github Link<span> *</span> </label><br>
     <input type = "text" placeholder="https://github.com/application/githublink" [(ngModel)] = "appLink" > <p #linkErr id="lErr"></p><br><br>
 
-    <button id="canc" mat-raised-button color="accent" (click)="clear()">Cancel</button>
+    <button id="canc" mat-raised-button (click)="clear()">Cancel</button>
     <button id="save" mat-raised-button (click)="addApplication()">Save</button>
 </div>
 

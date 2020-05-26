@@ -20,19 +20,25 @@ export class ApiServiceService {
   constructor(private http: HttpClient) { }
 
 
-  path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
-
+  //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
+  path: string = 'http://localhost:9000'
 
   //################ Start of Bug Report Section ###################
 
   getBugReports(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports`).toPromise();
   }
+
+  getbugReportByClientUsername(username:string){
+    return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
+  }
   
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
   }
 
+ 
+ 
   getUnResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();
   }
@@ -50,9 +56,22 @@ export class ApiServiceService {
   }
 
   //################ Start of Client Section ###################
-
+  clientLogin(username: any, pass: any): Promise<Client> {
+    return this.http.get<Client>(this.path + `/clients/login?username=${username}&password=${pass}`).toPromise();
+  }
+  getClientByUserName(username: any): Promise<Client> {
+    return this.http.get<Client>(this.path + `/query/clients?username=${username}`).toPromise();
+  }
+  async clientRegister(client: Client): Promise<Client> {
+    return await this.http.post<Client>(this.path + `/clients`, client).toPromise();
+  }
   getClientById(id: number): Promise<Client> {
     return this.http.get<Client>(`${this.path}/clients/${id}`).toPromise();
+  }
+
+  // points displayed in profile page
+  getPoints(id:number){
+    return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
   }
   //to be set within the login function 
   setLoggedClient(client: Client) {
@@ -76,6 +95,7 @@ export class ApiServiceService {
   //does not work
   resetPassword(email:string):Promise<any>{
     return this.http.post(`${this.path}/resetpassword/${email}`, email).toPromise();
+
   }
 
   //################ Start of Solution Section ###################
@@ -90,18 +110,21 @@ export class ApiServiceService {
   //2. Get all Solutions by Bug Report ID 
   getSolutionsByBugId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?bId=${id}`).toPromise();
+
   }
 
   getSolutionById(id: number) {
     return this.http.get<Solution>(`${this.path}/solutions?id=${id}`).toPromise();
   }
 
+ 
   getSolutionsByClientId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?cId=${id}`).toPromise();
   }
 
   putSolution(solution:Solution) {
     return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
+ 
   }
   
   //################ Start of Application Section ###################
@@ -115,10 +138,10 @@ export class ApiServiceService {
   }
 
   //################ Start of Leaderboard Section ###################
-
   getLeaderboardNames(): Promise<String[]>{
     return this.http.get<String[]>(`${this.path}/clients/leaderboard/username`).toPromise();
   }
+  
   getLeaderboardPoints(): Promise<number[]>{
     return this.http.get<number[]>(`${this.path}/clients/leaderboard/points`).toPromise();
   }
