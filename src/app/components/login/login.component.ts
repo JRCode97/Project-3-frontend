@@ -39,9 +39,12 @@ export class LoginComponent implements OnInit {
   constructor(private modalService: NgbModal, private serv: ApiServiceService, private router: Router , private fb:FormBuilder) {
     this.client = serv.getLoggedClient()
     if (this.client != null && this.client.cId > 0) {
+      this.showSpinner = true;
+      this.enableDisableRule();
       this.serv.setLoggedClient(this.client);
-      //dummy route 
-      this.router.navigate(["/main"]);
+      setTimeout(() => {
+        window.location.href = '/main';
+      }, 1000);
     }
   }
   showSpinner: boolean;
@@ -52,7 +55,6 @@ export class LoginComponent implements OnInit {
   enableDisableRule() {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
- 
   }
 
   ngOnInit(): void {
@@ -81,6 +83,7 @@ export class LoginComponent implements OnInit {
     return this.client;
   }
 
+
  async clientLogin() {
     let username = this.txtusername.nativeElement.value;
     try {
@@ -92,7 +95,7 @@ export class LoginComponent implements OnInit {
         this.showSpinner = true;
         setTimeout(() => {
           window.location.href = '/main';
-        }, 1500);
+        }, 1000);
       }
       else {
         this.txtusername.nativeElement.focus();

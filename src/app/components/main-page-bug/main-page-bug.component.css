@@ -2,7 +2,8 @@ div{
     color: #444444;
 }
 div.mainBug{
-    width: 600px;
+    width: 100%;
+    padding-right: 12px;
 }
 div.mainBugTopHead{
     border-width: 1px;
@@ -57,7 +58,6 @@ div.mainBugBottomLabel{
     border-radius: 6px 6px 0px 6px;
 }
 div.mainBugBottomDescription{
-    width: 594px;
     height: 37px;
     margin-left: 6px;
     padding: 10px;
