@@ -43,22 +43,17 @@ export class LoginComponent implements OnInit {
       //dummy route 
       this.router.navigate(["/main"]);
     }
- 
+  }
   showSpinner: boolean;
 
   toggle = false;
   status = 'Enable';
  
-
-
-
   enableDisableRule() {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
  
   }
-
-
 
   ngOnInit(): void {
   }
@@ -85,7 +80,8 @@ export class LoginComponent implements OnInit {
     }
     return this.client;
   }
- async clientLogin(): Promise<Client> {
+
+ async clientLogin() {
     let username = this.txtusername.nativeElement.value;
     try {
       this.client = await this.serv.getClientByUserName(username);
@@ -93,8 +89,10 @@ export class LoginComponent implements OnInit {
       // alert(client.fName)
       if (this.client != null && this.client.cId > 0) {
         this.serv.setLoggedClient(this.client);
-        //dummy route 
-        this.router.navigate(["/main"]);
+        this.showSpinner = true;
+        setTimeout(() => {
+          window.location.href = '/main';
+        }, 1500);
       }
       else {
         this.txtusername.nativeElement.focus();
@@ -105,7 +103,6 @@ export class LoginComponent implements OnInit {
       this.txtusername.nativeElement.focus();
       this.inValidUser = true;
     }
-    return this.client;
   }
 
   async clientRegister(): Promise<Client> {
