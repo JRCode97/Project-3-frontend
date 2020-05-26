@@ -1,6 +1,29 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
+@mixin global-theme($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  body{
+    background-color: mat-color($background, background);
+    color: mat-color($foreground, text)
+  }
+
+  .content{
+    background-color: mat-color($background, background);
+    color: mat-color($foreground, text)
+  }
+
+  a {
+    color: mat-color($primary)
+  }
+
+}
+
 $theme-primary: mat-palette($mat-gray, 900);
 $theme-accent:  mat-palette($mat-red, 600);
 $theme-warn:    mat-palette($mat-red);
@@ -9,10 +32,10 @@ $main-theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 
 @include angular-material-theme($main-theme);
 
-$theme-dark-primary: mat-palette($mat-indigo);
-$theme-dark-accent:  mat-palette($mat-red, 600);
+$theme-dark-primary: mat-palette($mat-red, 600);
+$theme-dark-accent:  mat-palette($mat-grey, 900);
 $theme-dark-warn:    mat-palette($mat-red);
-$dark-theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+$dark-theme: mat-dark-theme($theme-dark-primary, $theme-dark-accent, $theme-dark-warn);
 
 
 
@@ -22,4 +45,7 @@ $dark-theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 
 .dark-theme{
   @include angular-material-theme($dark-theme);
+  @include global-theme($dark-theme);
+  background-color: #212121;
+
 }

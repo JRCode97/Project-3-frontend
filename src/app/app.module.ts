@@ -49,6 +49,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
 import { UnresolvedBugreportTableComponent } from './components/profile/profile-tables/unresolved-bugreport-table/unresolved-bugreport-table.component';
 import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
@@ -92,31 +93,32 @@ import { PendingSolutionTableComponent } from './components/profile/profile-tabl
     DeniedBugreportTableComponent,
     PendingSolutionTableComponent,
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    EditorModule,
-    FormsModule,
-    HttpClientModule,
-    LayoutModule,
-    MatButtonModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSortModule,
-    MatTableModule,
-    MatToolbarModule,
-    NgbModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        EditorModule,
+        FormsModule,
+        HttpClientModule,
+        LayoutModule,
+        MatButtonModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSliderModule,
+        MatSortModule,
+        MatTableModule,
+        MatToolbarModule,
+        NgbModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+    ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })

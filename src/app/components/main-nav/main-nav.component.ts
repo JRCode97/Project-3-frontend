@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -22,6 +22,7 @@ export class MainNavComponent {
 
   clientRole: ClientRole;
   client: Client;
+  theme = 'Light Mode';
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -39,10 +40,30 @@ export class MainNavComponent {
     }
   }
 
+  ngOnInit(): void {
+    document.body.classList.add('light-theme');
+  }
+
+
   logout()
   {
     this.clientRole = ClientRole.unregistered;
     this.serv.clearLoggedClient();
     this.router.navigate(['/']);
+  }
+
+  changeTheme(){
+    if (document.body.classList.contains('light-theme')){
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+      this.theme = 'Dark Mode';
+    }
+    else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+      this.theme = 'Light Mode';
+    }
+    console.log(document.body.classList);
+
   }
 }

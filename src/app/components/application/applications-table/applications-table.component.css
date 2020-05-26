@@ -7,17 +7,18 @@
   border: solid 1px black;
   height: auto;
   box-shadow: none;
-  
+
 }
 .full-width-table {
   width: 100%;
 }
+
 th{
   /* text-align: center; */
   font-size: 1.5em;
   color: whitesmoke;
   background-color: rgb(51, 48, 48);
-  
+
 }
 mat-paginator{
   color: whitesmoke;
@@ -28,5 +29,4 @@ td{
   background-color: white;
   color: black;
   font-size: 1.2em;
-
 }

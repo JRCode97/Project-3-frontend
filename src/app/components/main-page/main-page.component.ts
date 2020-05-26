@@ -29,10 +29,6 @@ export class MainPageComponent implements OnInit {
     console.log(this.applications);
   }
 
-  onSetTheme(theme) {
-    this.overlayContainer.getContainerElement().classList.add(theme);
-    this.componentCssClass = theme;
-  }
 
 
 

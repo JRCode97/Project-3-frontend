@@ -14,13 +14,15 @@ color: black;
 }
 
 #save{
-  background-color: rgb(1, 6, 14);
+  /*background-color: rgb(1, 6, 14);*/
+  background-color: forestgreen;
   color: white;
 }
 
-/*#canc{*/
-/*  background-color: rgb(245, 18, 18);*/
-/*}*/
+#canc{
+  background-color: var(--accent);
+  color: white;
+}
 
 span{
   color: rgb(245, 18, 18);
@@ -67,5 +69,5 @@ td{
   background-color: white;
   color: black;
   font-size: 1.2em;
-
 }
+

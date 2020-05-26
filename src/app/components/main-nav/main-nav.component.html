@@ -4,9 +4,8 @@
       [ngClass]="{hidden: (isHandset$ | async) === true}"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar> Menu </mat-toolbar>
     <mat-nav-list>
-
       <!--initial-->
       <a mat-list-item routerLink="/">Login</a>
       <a mat-list-item routerLink="/main">Main</a>
@@ -33,8 +32,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span><img class="logo" src="../../../assets/Ladybug-128.png"></span>
-      <span>Bug Bounty System</span>
+      <span><img class="logo" src="../../../assets/Ladybug-128.png" routerLink="/main"> </span>
+      <span>Bug Bounty System </span>
+      <mat-slide-toggle id="theme-toggle" (click)="changeTheme()">{{theme}}</mat-slide-toggle>
       <span class="spacer"></span>
       <a routerLink="/main">Main</a>
       <div class="links" *ngIf="clientRole >= 1"><!-- Dev & Admin-->
