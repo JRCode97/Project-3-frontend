@@ -17,11 +17,10 @@ export class ProfileComponent implements OnInit {
     this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
     this.getClientPoint()
   }
-
+  bugStatus
+  solutionStatus
   points
-
   client
-
   closeResult = '';
 
   open(content) {
@@ -47,8 +46,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  bugStatus
-  solutionStatus
+
 
   test(){
     console.log(this.solutionStatus)
