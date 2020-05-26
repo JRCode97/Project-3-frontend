@@ -20,7 +20,7 @@
       <!--admin-->
       <ng-container *ngIf="clientRole == 2"><!-- Admin -->
         <a mat-list-item routerLink="/adminbugs">Admin Bugs</a>
-        <!--<a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>-->
+        <a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>
         <a mat-list-item routerLink="/applications">Applications</a>
       </ng-container>
 
@@ -43,7 +43,7 @@
       </div>
       <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->
         <a routerLink="/adminbugs">Admin Bugs</a>
-        <!--<a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>-->
+        <a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>
         <a routerLink="/applications">Applications</a>
       </div>
       <a class="login" *ngIf="clientRole != 0" (click)="logout()">Logout</a>

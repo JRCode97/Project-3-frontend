@@ -3,15 +3,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ApplicationsTableDataSource, ApplicationsTableItem } from './applications-table-datasource';
-import {ApplicationsService} from 'src/app/services/applications.service'
-
-
+import { ApiServiceService } from 'src/app/services/api-service.service';
 
 @Component({
   selector: 'app-applications-table',
   templateUrl: './applications-table.component.html',
   styleUrls: ['./applications-table.component.css']
 })
+
 export class ApplicationsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,7 +20,7 @@ export class ApplicationsTableComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'title', 'gitLink'];
 
-  constructor(private applications:ApplicationsService){}
+  constructor(private api:ApiServiceService){}
 
   ngOnInit() {
     this.getApplications()
@@ -36,7 +35,7 @@ export class ApplicationsTableComponent implements AfterViewInit, OnInit {
 
   apps = []
   async getApplications(){
-    this.apps = await this.applications.getApps();
+    this.apps = await this.api.getApplications();
     this.dataSource = new ApplicationsTableDataSource(this.apps);
     
   }

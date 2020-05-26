@@ -40,12 +40,12 @@ import { MainPageBugComponent } from './components/main-page-bug/main-page-bug.c
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { MainPageLeaderboardComponent } from './components/main-page-leaderboard/main-page-leaderboard.component';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component'
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
@@ -55,6 +55,9 @@ import { UnresolvedBugreportTableComponent } from './components/profile/profile-
 import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
 import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
 import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
+import { AcceptedSolutionTableComponent } from './components/profile/profile-tables/accepted-solution-table/accepted-solution-table.component';
+import { RejectedSolutionTableComponent } from './components/profile/profile-tables/rejected-solution-table/rejected-solution-table.component';
+
 
 
 
@@ -79,7 +82,6 @@ import { PendingSolutionTableComponent } from './components/profile/profile-tabl
     MainPageLeaderboardComponent,
     NewBugReportComponent,
     PasswordResetComponent,
-    PostedSolutionsTableComponent,
     ProfileComponent,
     ResolvedbugsTableComponent,
     SolutionApprovalComponent,
@@ -92,6 +94,8 @@ import { PendingSolutionTableComponent } from './components/profile/profile-tabl
     ResolvedBugreportTableComponent,
     DeniedBugreportTableComponent,
     PendingSolutionTableComponent,
+    AcceptedSolutionTableComponent,
+    RejectedSolutionTableComponent,
   ],
     imports: [
         AppRoutingModule,

@@ -5,34 +5,47 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
-export interface PostedSolutionsTableItem {
-
-  solution_id: number;
-  solution_title: string;
-  solution_describtion: string;
+export interface RejectedSolutionTableItem {
+  title: string;
+  date: number;
   status: string;
-  solver: string;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: PostedSolutionsTableItem[] = [
-  { solution_id: 1, solution_title: 'Rebuild', solution_describtion: 'Rebuild the whole project to apply the new changes', solver: 'Wael Dawoud', status: 'Submitted' },
-  { solution_id: 2, solution_title: 'Clear the cache ', solution_describtion: 'clear teh server cache', solver: 'Mohamed', status: 'Submitted' },
-  { solution_id: 3, solution_title: 'Add new dependencies to POM', solution_describtion: 'Add new dependencies to POM.xml and rebuild', solver: 'Dylan', status: 'Submitted' },
-
-];
+// const EXAMPLE_DATA: RejectedSolutionTableItem[] = [
+//   {id: 1, name: 'Hydrogen'},
+//   {id: 2, name: 'Helium'},
+//   {id: 3, name: 'Lithium'},
+//   {id: 4, name: 'Beryllium'},
+//   {id: 5, name: 'Boron'},
+//   {id: 6, name: 'Carbon'},
+//   {id: 7, name: 'Nitrogen'},
+//   {id: 8, name: 'Oxygen'},
+//   {id: 9, name: 'Fluorine'},
+//   {id: 10, name: 'Neon'},
+//   {id: 11, name: 'Sodium'},
+//   {id: 12, name: 'Magnesium'},
+//   {id: 13, name: 'Aluminum'},
+//   {id: 14, name: 'Silicon'},
+//   {id: 15, name: 'Phosphorus'},
+//   {id: 16, name: 'Sulfur'},
+//   {id: 17, name: 'Chlorine'},
+//   {id: 18, name: 'Argon'},
+//   {id: 19, name: 'Potassium'},
+//   {id: 20, name: 'Calcium'},
+// ];
 
 /**
- * Data source for the PostedSolutionsTable view. This class should
+ * Data source for the RejectedSolutionTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class PostedSolutionsTableDataSource extends DataSource<PostedSolutionsTableItem> {
-  data: PostedSolutionsTableItem[] = EXAMPLE_DATA;
+export class RejectedSolutionTableDataSource extends DataSource<any> {
+  data: any[] = this.givenData;
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(private givenData) {
     super();
   }
 
@@ -41,7 +54,7 @@ export class PostedSolutionsTableDataSource extends DataSource<PostedSolutionsTa
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<PostedSolutionsTableItem[]> {
+  connect(): Observable<RejectedSolutionTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -59,13 +72,13 @@ export class PostedSolutionsTableDataSource extends DataSource<PostedSolutionsTa
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() { }
+  disconnect() {}
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: PostedSolutionsTableItem[]) {
+  private getPagedData(data: RejectedSolutionTableItem[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -74,7 +87,7 @@ export class PostedSolutionsTableDataSource extends DataSource<PostedSolutionsTa
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: PostedSolutionsTableItem[]) {
+  private getSortedData(data: RejectedSolutionTableItem[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -82,9 +95,9 @@ export class PostedSolutionsTableDataSource extends DataSource<PostedSolutionsTa
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'solution_title': return compare(a.solution_title, b.solution_title, isAsc);
-        case 'solver': return compare(+a.solver, +b.solver, isAsc);
-        case 'status': return compare(+a.status, +b.status, isAsc);
+        case 'title': return compare(a.title, b.title, isAsc);
+        case 'date': return compare(+a.date, +b.date, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });

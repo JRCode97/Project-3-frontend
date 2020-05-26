@@ -67,3 +67,8 @@
     .password-reset{
         cursor: pointer;
     }
+
+    .selectDivs{
+        float: right;
+        padding-top: 15px;
+    }

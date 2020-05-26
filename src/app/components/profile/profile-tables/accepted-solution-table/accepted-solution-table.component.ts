@@ -2,19 +2,19 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { PendingSolutionTableDataSource, PendingSolutionTableItem } from './pending-solution-table-datasource';
+import { AcceptedSolutionTableDataSource, AcceptedSolutionTableItem } from './accepted-solution-table-datasource';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 
 @Component({
-  selector: 'app-pending-solution-table',
-  templateUrl: './pending-solution-table.component.html',
-  styleUrls: ['./pending-solution-table.component.css']
+  selector: 'app-accepted-solution-table',
+  templateUrl: './accepted-solution-table.component.html',
+  styleUrls: ['./accepted-solution-table.component.css']
 })
-export class PendingSolutionTableComponent implements AfterViewInit, OnInit {
+export class AcceptedSolutionTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<PendingSolutionTableItem>;
-  dataSource: PendingSolutionTableDataSource;
+  @ViewChild(MatTable) table: MatTable<AcceptedSolutionTableItem>;
+  dataSource: AcceptedSolutionTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['date', 'title', 'status'];
@@ -23,7 +23,7 @@ export class PendingSolutionTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.initSolutions()
-    this.dataSource = new PendingSolutionTableDataSource(null);
+    this.dataSource = new AcceptedSolutionTableDataSource(null);
   }
 
   ngAfterViewInit() {
@@ -38,8 +38,8 @@ export class PendingSolutionTableComponent implements AfterViewInit, OnInit {
     let client = this.api.getLoggedClient()
     let solutions = await this.api.getSolutionsByClientId(client.cId)
     console.log(solutions)
-    solutions = solutions.filter(sol => sol.status === "Pending")
-    this.dataSource = new PendingSolutionTableDataSource(solutions);
+    solutions = solutions.filter(sol => sol.status === "Accepted")
+    this.dataSource = new AcceptedSolutionTableDataSource(solutions);
     console.log(this.dataSource)
   }
 }

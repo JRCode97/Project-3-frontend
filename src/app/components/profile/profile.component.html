@@ -47,7 +47,8 @@
     <!-- redirect -->
     <!-- autherize -->
 
-    <div>
+    <div class="selectDivs">
+        Bug Report Status: 
         <mat-form-field>
             <mat-select [(value)]="bugStatus">
                 <mat-option value="All">All</mat-option>
@@ -60,16 +61,24 @@
 
     <ng-container [ngSwitch]="bugStatus">
         <ng-container *ngSwitchCase="'Requested'">
-            <app-requested-bugreport-table></app-requested-bugreport-table>
+            <div id="bugTableDiv">
+                <app-requested-bugreport-table></app-requested-bugreport-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Denied'">
+            <div id="bugTableDiv">
             <app-denied-bugreport-table></app-denied-bugreport-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Unrsolved'">
-            <app-unresolved-bugreport-table></app-unresolved-bugreport-table>
+            <div id="bugTableDiv">
+                <app-unresolved-bugreport-table></app-unresolved-bugreport-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Resolved'">
-            <app-resolved-bugreport-table></app-resolved-bugreport-table>
+            <div id="bugTableDiv">
+                <app-resolved-bugreport-table></app-resolved-bugreport-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchDefault="'All'">
             <div id="bugTableDiv">
@@ -79,7 +88,8 @@
     </ng-container>
 
 
-    <div>
+    <div class="selectDivs">
+        Solution Status: 
         <mat-form-field>
             <mat-select (selectionChange)="test()" [(value)]="solutionStatus">
                 <mat-option value="All">All</mat-option>
@@ -91,13 +101,19 @@
 
     <ng-container [ngSwitch]="solutionStatus">
         <ng-container *ngSwitchCase="'Pending'">
+            <div id="solutionTableDiv">
             <app-pending-solution-table></app-pending-solution-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Accepted'">
-            <h1>Accepted</h1>
+            <div id="solutionTableDiv">
+            <app-accepted-solution-table></app-accepted-solution-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Rejected'">
-            <h1>Rejected</h1>
+            <div id="solutionTableDiv">
+                <app-rejected-solution-table></app-rejected-solution-table>
+            </div>
         </ng-container>
         <ng-container *ngSwitchDefault="'All'">
             <div id="solutionTableDiv">

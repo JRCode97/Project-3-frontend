@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { RequestedBugreportTableDataSource, RequestedBugreportTableItem } from './requested-bugreport-table-datasource';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import { Client } from 'src/app/models/Client';
 
 @Component({
   selector: 'app-requested-bugreport-table',
@@ -35,7 +36,8 @@ export class RequestedBugreportTableComponent implements AfterViewInit, OnInit {
   bugreportsArray = []
 
   async initBugreports(){
-    let bugreports = await this.api.getBugReports()
+    let client:Client = this.api.getLoggedClient()
+    let bugreports = await this.api.getbugReportByClientUsername(client.username)
     console.log(bugreports)
     bugreports = bugreports.filter(br => br.status === "Requested")
     this.dataSource = new RequestedBugreportTableDataSource(bugreports);
