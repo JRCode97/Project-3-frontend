@@ -18,9 +18,9 @@ color: black;
   color: white;
 }
 
-#canc{
-  background-color: rgb(245, 18, 18);
-}
+/*#canc{*/
+/*  background-color: rgb(245, 18, 18);*/
+/*}*/
 
 span{
   color: rgb(245, 18, 18);
@@ -45,7 +45,7 @@ input{
   border: solid 1px black;
   height: auto;
   box-shadow: none;
-  
+
 }
 .full-width-table {
   width: 100%;
@@ -55,12 +55,12 @@ th{
   font-size: 1.5em;
   color: whitesmoke;
   background-color: rgb(51, 48, 48);
-  
+
 }
 mat-paginator{
   color: whitesmoke;
   background-color: rgb(51, 48, 48);
-  
+
 }
 
 td{

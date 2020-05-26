@@ -25,14 +25,14 @@ export class LoginComponent implements OnInit {
   async dummyLocgin() {
     this.showSpinner = true;
     let client = new Client();
-    client = await this.serv.getClientById(1);
+    client = await this.serv.getClientById(2);
     // alert(client.fName);
     this.serv.setLoggedClient(client);
     // dummy route
     // await this.router.navigate(['bugreport/1']);
     setTimeout(() => {
       window.location.href = '/main';
-    }, 2000);
+    }, 1500);
 
   }
 
