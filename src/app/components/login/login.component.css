@@ -1,25 +1,32 @@
 *{
-  background-color: wheat;
+  margin: 0;
+
 }
 .container{
   height: 100%;
   width: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 0;
   background-position: center;
   background-size: cover;
   position: absolute;
 }
 
+.modal-body{
+  height:200px;
+}
 
 .form-box{
-  width: 380px;
-  height: 480px;
+  width: 500px;
+  height: 550px;
   position: relative;
   margin: 6% auto;
-  background: #fff;
+  
   padding: 5px;
   overflow:hidden;
   border-radius: 5px;
-  border: solid #ff105f 2px;
+  border: solid #999194 2px;
   opacity: 90%;
 }
 
@@ -28,7 +35,7 @@
   margin: 35px auto;
   position: relative;
   border-radius: 30px;
-  background:wheat;
+  background:rgb(238, 217, 217);
 }
 
 .toggle-btn{
@@ -55,10 +62,26 @@
   top: 100px;
   position: absolute;
   width: 200px;
-  height: 100%;
-  background: #fff;
+  /*height: 100%;*/
+
   transition: .5s;
 }
+
+
+/* temporary fixes */
+
+.login-input input{
+  height: 50%;
+
+}
+
+.register-input input{
+  height: 75%;
+  width: 200px;
+}
+
+/* end temporary fixes */
+
 
 .input-field{
   top: 100%;
@@ -68,15 +91,24 @@
   border-left: 0;
   border-bottom: 1px solid #999;
   border-right: 0;
-  background: #fff;
+  
+  height: 20px;
+  width: 200px;;
+}
+
+.password-reset{
+ 
+  text-decoration:underline;
+  cursor: pointer;
 }
 
 .submit-btn{
   width: 85%;
+  height: 10%;
   padding: 10px 30px;
   cursor: pointer;
   display: block;
-  margin: 30px 20px;
+  margin: 30px -5px;
   background: red;
   border: 0;
   outline: none;
@@ -84,10 +116,32 @@
 }
 
 #login{
-  left: 50px;
+  left: 150px;
+  width: 300px;
 }
 
-#register{
-  left: 450px;
+#register  {
+  left: 510px;
+  width: 400px;
+  height: 700px;
 }
 
+.dim {
+  background-color: white;
+  opacity: 90%;
+}
+
+.hide{
+  display: none;
+}
+
+.spinner{
+  position: absolute; /* or absolute */
+  top: 25%;
+  left: 45%;
+  z-index: 1;
+  background-color: white;
+  text-align: center;
+  font-weight: 500;
+
+}

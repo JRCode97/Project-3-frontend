@@ -20,8 +20,9 @@ export class ApiServiceService {
   constructor(private http: HttpClient) { }
 
 
-  path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111';
-  //path: string = 'http://localhost:9000'
+  //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
+  path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111/'
+
 
   //################ Start of Bug Report Section ###################
 
@@ -37,7 +38,9 @@ export class ApiServiceService {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
   }
 
-
+  getRequestedBugs(): Promise<BugReport[]> {
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=requested`).toPromise();
+  }
 
   getUnResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();

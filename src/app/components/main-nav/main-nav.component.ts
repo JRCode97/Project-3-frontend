@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -12,8 +12,6 @@ enum ClientRole {
   admin
 }
 
-
-
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
@@ -25,10 +23,7 @@ export class MainNavComponent {
   clientRole: ClientRole;
   client: Client;
   theme = 'Light Mode';
-
-  @ViewChild('drawer') sidebar: ElementRef;
   show = true;
-
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -70,10 +65,11 @@ export class MainNavComponent {
       this.theme = 'Light Mode';
     }
     console.log(document.body.classList);
-  }
 
+  }
   showNav(){
     this.show = true;
     this.show = !this.show;
   }
+
 }

@@ -28,7 +28,6 @@ p.mainLogo{
 }
 .mainRight{
     /* border-style: ridge; */
-  width: 45%;
     margin-left: 60%;
     position: fixed;
     padding: 95px 0px 0px 20px;
@@ -48,8 +47,4 @@ p.mainLogo{
     width: 65px;
     height: 65px;
     transform: rotate(225deg);
-}
-
-.mainRight mat-expansion-panel{
-  background-color: red;
 }

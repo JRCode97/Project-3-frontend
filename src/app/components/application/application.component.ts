@@ -1,7 +1,7 @@
 import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
-// import {Application} from 'src/app/models/application';
 import { Router } from '@angular/router';
-//import {ApplicationsService} from 'src/app/services/applications.service';
+import { Client } from 'src/app/models/Client';
+import { ApiServiceService } from 'src/app/services/api-service.service';
 
 @Component({
   selector: 'app-application',
@@ -11,45 +11,52 @@ import { Router } from '@angular/router';
 export class ApplicationComponent implements OnInit {
   @ViewChild('titlErr') x: ElementRef;
   @ViewChild('linkErr') y: ElementRef;
+  public client: Client;
 
-  constructor(private router: Router) { }
-//private applications:ApplicationsService
+  constructor(private router: Router, private api: ApiServiceService) {
+
+    this.getClient();
+    if (this.client == null || this.client === undefined || this.client.role != 1) this.router.navigate(["/"]);
+
+   }
+
+
   ngOnInit(): void {
-   this.getApplications()
-   
+
   }
-  apps:Array<any>
+
+  getClient(): Client {
+    this.client = this.api.getLoggedClient();
+
+    console.log(this.client);
+    return this.client;
+}
 
   app:any
-
- 
   appTitle:string
   appLink:string
 
-   //method that calls applcations get
-  async getApplications(){
-    // this.apps = await this.applications.getApps();
-    this.apps = [{"id":1, "title":"Project 1","gitLink":"github.com"},{"id":2, "title":"Project 2","gitLink":"github2.com"}]
-   }
    clear(){
-     //clears fields
      this.appTitle = undefined
      this.appLink = undefined
+     this.x.nativeElement.innerHTML = '';
+     this.y.nativeElement.innerHTML = '';
    }
   
-
-  // method that calls applications post
-    // async addApplication(){
-    //   if(this.appTitle == undefined) this.x.nativeElement.innerHTML = 'Application Title is required!';
-    //   else this.x.nativeElement.innerHTML = '';
-    //   if(this.appLink == undefined) this.y.nativeElement.innerHTML = 'Application Github Link is required!';
-    //   else this.y.nativeElement.innerHTML = '';
-    //   if(this.title != undefined && this.link != undefined){
-    //     this.app = await this.applications.addApp(this.appTitle,this.appLink)
-    //     this.clear()
-    //     if(this.app)this.router.navigate(['/application']); 
-    //   }
-    // }
+    async addApplication(){
+      if(this.appTitle == undefined) this.x.nativeElement.innerHTML = 'Application Title is required!';
+      else this.x.nativeElement.innerHTML = '';
+      if(this.appLink == undefined) this.y.nativeElement.innerHTML = 'Application Github Link is required!';
+      else this.y.nativeElement.innerHTML = '';
+      if(this.appTitle != undefined && this.appLink != undefined){
+        this.app = await this.api.postApplication(this.appTitle,this.appLink)
+        this.clear()
+        if(this.app) 
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/application']);}); 
+      }
+    }
 
 
 }
+

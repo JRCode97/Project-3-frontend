@@ -1,0 +1,60 @@
+<div class="card-container">
+
+  <mat-card *ngFor="let bug of currentItemsToShow">
+
+    <mat-card-title>
+      {{bug.title}}
+    </mat-card-title>
+
+    <div class="card-content">
+      <mat-card-content>
+        Application: {{bug.app.title}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Location: {{bug.location}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Severity: {{bug.severity}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Priority: {{bug.priority}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Date: {{bug.createdTime | date:'short'}}
+      </mat-card-content>
+
+      <mat-card-content>
+        Developer: {{bug.username}}
+      </mat-card-content>
+
+
+    </div>
+
+    <mat-card-content class="inspect-btn">
+      <a routerLink="/bugreportapprove/{{bug.bId}}">Inspect</a>
+    </mat-card-content>
+
+
+  </mat-card>
+
+
+
+</div>
+
+
+<mat-paginator #paginator
+               (page) = "onPageChange($event)"
+               [length]="dataSource?.data.length"
+               [pageIndex]="0"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[6, 12, 24, 36, 128]">
+</mat-paginator>
+
+
+
+
+

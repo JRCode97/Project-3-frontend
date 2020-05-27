@@ -1,0 +1,15 @@
+<mat-expansion-panel class="mainApp" (closed)="panelOpenState=false" (opened)="panelOpenState=true">
+    <mat-expansion-panel-header class="collapsable">
+        <mat-panel-title class="mainAppTitle">
+            <span class="mainAppTitleLogo">{{title}}</span>
+            <p [ngClass]="bugCount == 0 ? 'mainBugGood' : 'mainBugError'" *ngIf="!panelOpenState">
+                <!-- class="mainBugCount" -->
+                &nbsp;Bugs:&nbsp;({{bugCount}})
+            </p>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    Link to project:&nbsp;<a href="blank_" class="mainAppLink">{{gitLink}}</a>
+    <mat-action-row class="mainBugContainer" *ngFor="let report of reports">
+        <app-main-page-bug [bugReport]="report"></app-main-page-bug>
+    </mat-action-row>
+</mat-expansion-panel>

@@ -1,0 +1,71 @@
+.container {
+    padding-top: 10px;
+}
+    #profileHalf{
+        display: flex;
+        height: 34%;
+    }
+
+        #profileLeftColumn{
+            flex-direction: column; 
+            float: left;
+            width: 30%;
+        }
+
+                #profilePic{
+                    padding-top: 12%;
+                    padding-bottom: 3%;
+                    padding-right: 3%;
+                    height: 100%;
+                    width: 100%;
+                }
+
+            #pointsDiv{
+                border-style: solid;
+                border-color: orange;
+                text-align: center;
+            }
+
+        #AboutMeDiv{
+            border-style: solid;
+            border-color: black;
+            width: 70%;
+            flex-direction: column; 
+            float: right;
+            margin-left: 5%;
+        }
+
+            #titleDiv{
+                border-style: solid;
+                border-color: yellow;
+                width: 100%;
+                padding-left: 5vh;
+                padding-top: 2vh;
+            }
+
+            #profileDetail{
+                text-align: center;
+                padding-top: 18%;
+            }
+
+    #bugTableDiv{
+        margin-top: 2vh;
+        border-style: solid;
+        border-color: red;
+    }
+
+    #solutionTableDiv{
+        margin-top: 2vh;
+        border-style: solid;
+        border-color: green;
+    }
+
+    .password-reset{
+        cursor: pointer;
+    }
+
+    .selectDivs{
+        margin-right: 10px;
+        float: right;
+        padding-top: 15px;
+    }

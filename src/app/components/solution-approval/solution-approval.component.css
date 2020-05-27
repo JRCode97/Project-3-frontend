@@ -1,0 +1,64 @@
+h3 {
+    margin-right: 10px;
+}
+
+/*TODO: Add keyframes */
+.mat-card {
+    width: 45vw;
+    margin-left: 3vw;
+    margin-top: 3vw;
+}
+
+.mat-card-title {
+    padding: 7px 0;
+    border-bottom: 1px solid gray;
+}
+
+.bug-info {
+    display: flex;
+    align-items: baseline;
+}
+
+.bug-info h3, .mat-header-cell {
+    font-weight: 500;
+}
+
+.bug-description {
+    flex-direction: column;
+}
+
+.bug-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0;
+}
+
+table {
+    border-radius: 4px;
+    width: 80vw;
+    margin-top: 1vh;
+    margin-left: 3vw;
+}
+
+tr td {
+    vertical-align: text-top;
+    padding-top: 9px; 
+}
+
+.solution {
+    width: 50%;
+}
+
+.timeSubmitted {
+    padding-left: 10px;
+}
+
+.resolved {
+    font-size: 1.2em;
+}
+
+.mat-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}

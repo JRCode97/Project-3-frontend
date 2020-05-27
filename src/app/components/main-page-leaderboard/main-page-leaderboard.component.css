@@ -1,0 +1,29 @@
+.mainLeaderboard{
+    width: 300px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkslategrey;
+    border-radius: 10px;
+    font-weight: 500;
+}
+.mainLeaderboardLogo{
+    background-color: var(--accent);
+    color: ghostwhite;
+    padding: 15px 0px 15px 0px;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 24px;
+    text-shadow: 2px 1px #090909;
+}
+.mainLeaderboardRow{
+    /* text-shadow: 1px 1px rgb(158, 15, 44); */
+    font-size: 18px;
+    padding: 10px 0px 10px 30px;
+    border-style: inherit;
+    border-color: inherit;
+    border-width: 1px 0px 0px 0px;
+}
+
+.mainLeaderboardRow:last-child{
+    border-radius: 0px 0px 10px 10px;
+}
