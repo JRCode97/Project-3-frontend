@@ -73,8 +73,8 @@
 
             <label for="txtdescription" class="col-sm-2 form-label"> Description:</label>
 
-            <textarea id="txtdescription" readonly
-                class="col-sm-8 form-control textareaDisabled">{{br.description}}</textarea>
+            <div id="txtdescription" readonly
+                class="col-sm-8 form-control textareaDisabled" [innerHtml]="br.description"></div>
 
         </div>
 
@@ -84,8 +84,8 @@
 
             <label for="txtreproduceSteps" class="col-sm-2 form-label">Reproduce Steps:</label>
 
-            <textarea id="txtreproduceSteps" readonly
-                class="col-sm-8 form-control textareaDisabled">{{br.repSteps}}</textarea>
+            <div id="txtreproduceSteps" readonly
+                class="col-sm-8 form-control textareaDisabled" [innerHtml]="br.repSteps"></div>
 
         </div>
 

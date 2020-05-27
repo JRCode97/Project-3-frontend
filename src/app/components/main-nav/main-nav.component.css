@@ -1,5 +1,7 @@
 .sidenav-container {
-  height: 10%;
+  z-index: 40;
+  width: 100%;
+  position: fixed;
 }
 
 a{
@@ -8,11 +10,11 @@ a{
 
 .sidenav {
   width: 200px;
-  z-index: 1;
 }
 
-.sidenav .mat-toolbar {
+.sidenav, .mat-toolbar {
   background: inherit;
+  overflow: hidden;
 }
 
 .mat-toolbar.mat-primary {
@@ -49,6 +51,13 @@ mat-toolbar a{
 }
 
 @media (max-width: 768px){
+  .links {
+    display: none;
+  }
+  .admin-links{
+    display: none;
+  }
+
   mat-toolbar a{
     display: none;
   }

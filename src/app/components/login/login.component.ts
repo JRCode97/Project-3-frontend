@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
   @ViewChild('login') x: ElementRef;
   @ViewChild('register') y: ElementRef;
   @ViewChild('btn') z: ElementRef;
-  @ViewChild('txtusername') txtusername: ElementRef;
-  @ViewChild('txtpassword') txtpassword: ElementRef;
+  @ViewChild('txtuname') txtusername: ElementRef;
+  @ViewChild('txtpass') txtpassword: ElementRef;
   client = new Client();
   Fname: string;
   Lname: string;
@@ -39,9 +39,12 @@ export class LoginComponent implements OnInit {
   constructor(private modalService: NgbModal, private serv: ApiServiceService, private router: Router , private fb:FormBuilder) {
     this.client = serv.getLoggedClient()
     if (this.client != null && this.client.cId > 0) {
+      this.showSpinner = true;
+      this.enableDisableRule();
       this.serv.setLoggedClient(this.client);
-      //dummy route 
-      this.router.navigate(["/main"]);
+      setTimeout(() => {
+        window.location.href = '/main';
+      }, 1000);
     }
   }
   showSpinner: boolean;
@@ -52,13 +55,12 @@ export class LoginComponent implements OnInit {
   enableDisableRule() {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
- 
   }
 
   ngOnInit(): void {
   }
   // dummy login function , justto showoff how to store the client object  in local storage session 
-  async getClientByUsername(): Promise<Client> {
+  async clientLogin()  {
     let user= new Client();
     let username = this.txtusername.nativeElement.value;
     let pass = this.txtpassword.nativeElement.value;
@@ -68,7 +70,35 @@ export class LoginComponent implements OnInit {
       // alert(client.fName)
       if (this.client != null && this.client.cId > 0) {
         this.serv.setLoggedClient(this.client);
-        //dummy route 
+        this.showSpinner = true;
+        setTimeout(() => {
+          window.location.href = '/main';
+        }, 1000);
+       this.enableDisableRule();
+      }
+
+      else {
+        this.txtusername.nativeElement.focus();
+        this.inValidUser = true;
+      }
+    }
+    catch{
+      this.txtusername.nativeElement.focus();
+      this.inValidUser = true;
+    }
+    
+
+  }
+
+
+ async  getClientByUsername() : Promise<Client>{
+    let username = this.txtusername.nativeElement.value;
+    try {
+      this.client = await this.serv.getClientByUserName(username);
+      console.log(this.client);
+      // alert(client.fName)
+      if (this.client != null && this.client.cId > 0) {
+        this.serv.setLoggedClient(this.client);
         this.valiationMsg ="This Username is not available , please select another one"
       }
       else {
@@ -79,30 +109,6 @@ export class LoginComponent implements OnInit {
       this.valiationMsg ="";
     }
     return this.client;
-  }
-
- async clientLogin() {
-    let username = this.txtusername.nativeElement.value;
-    try {
-      this.client = await this.serv.getClientByUserName(username);
-      console.log(this.client);
-      // alert(client.fName)
-      if (this.client != null && this.client.cId > 0) {
-        this.serv.setLoggedClient(this.client);
-        this.showSpinner = true;
-        setTimeout(() => {
-          window.location.href = '/main';
-        }, 1500);
-      }
-      else {
-        this.txtusername.nativeElement.focus();
-        this.inValidUser = true;
-      }
-    }
-    catch{
-      this.txtusername.nativeElement.focus();
-      this.inValidUser = true;
-    }
   }
 
   async clientRegister(): Promise<Client> {
@@ -120,8 +126,8 @@ export class LoginComponent implements OnInit {
       newclient = await this.serv.clientRegister(newclient);
       console.log(newclient);
       if (newclient != null && newclient.cId > 0) {
-
-        this.router.navigate(["/"]);
+        window.location.href = '/';
+        //this.router.navigate(["/"]);
       }
       else {
         this.savingfailed = true;
@@ -153,14 +159,14 @@ export class LoginComponent implements OnInit {
   }
 
   switch1() {
-    this.x.nativeElement.style.left = '-400px';
+    this.x.nativeElement.style.left = '-550px';
     this.y.nativeElement.style.left = '50px';
     this.z.nativeElement.style.left = '110px';
   }
 
   switch2() {
-    this.x.nativeElement.style.left = '50px';
-    this.y.nativeElement.style.left = '450px';
+    this.x.nativeElement.style.left = '150px';
+    this.y.nativeElement.style.left = '550px';
     this.z.nativeElement.style.left = '0';
   }
   resetlogin(): void {

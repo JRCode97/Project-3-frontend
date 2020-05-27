@@ -18,6 +18,6 @@
 div>table{
   width: 100%;
 }
-table>td{
-  padding: 20px;
+table td, table th {
+  padding: 0 10px;
 }
