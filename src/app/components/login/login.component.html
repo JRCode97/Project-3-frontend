@@ -20,13 +20,13 @@
 
         <form [formGroup]="registerform" id="register" #register class="input-group register-input ">
             <div class="form-group row">
-                <label for="txtFname" class="col  form-label">First Nanme:</label>
+                <label for="txtFname" class="col  form-label">First Name:</label>
                 <input type="text" id="txtFname" #txtFname name="txtFname" [(ngModel)]="Fname"
                     placeholder="Enter your first name: " class="col  form-control input-field"
                     (input)="resetregister()" formControlName="Fname">
             </div>
             <div class="form-group row">
-                <label for="txtLname" class="col form-label">Last Nanme:</label>
+                <label for="txtLname" class="col form-label">Last Name:</label>
                 <input type="text" id="txtLname" #txtLname name="txtLname" [(ngModel)]="Lname"
                     placeholder="Enter your last name: " class="col form-control input-field" (input)="resetregister()"
                     formControlName="Lname">

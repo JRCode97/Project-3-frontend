@@ -37,7 +37,9 @@ export class ApiServiceService {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
   }
 
- 
+  getRequestedBugs(): Promise<BugReport[]> {
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=requested`).toPromise();
+  }
  
   getUnResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();

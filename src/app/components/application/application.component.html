@@ -1,4 +1,3 @@
-
 <div id="formDiv">
   <p class="mat-display-2">Applications</p>
 
@@ -8,7 +7,6 @@
     <input type = "text" placeholder="https://github.com/application/githublink" [(ngModel)] = "appLink" > <p #linkErr id="lErr"></p><br><br>
 
     <button id="canc" mat-raised-button (click)="clear()">Cancel</button>
-    <button id="save" mat-raised-button (click)="addApplication()">Save</button>
+    <button id="save" color="warn" mat-raised-button (click)="addApplication()">Save</button>
 </div>
-
 <app-applications-table ></app-applications-table>

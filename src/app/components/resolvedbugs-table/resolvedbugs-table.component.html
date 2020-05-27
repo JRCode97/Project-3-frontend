@@ -4,19 +4,19 @@
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bug Title</th>
+      <th mat-header-cell color="accent" *matHeaderCellDef mat-sort-header>Bug Title</th>
       <td mat-cell *matCellDef="let report">{{report.title}}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="bugdetails">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bug Details</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header><span>&nbsp;&emsp;</span>Bug Details</th>
       <td mat-cell *matCellDef="let report"><a routerLink="/bugreport/{{report.bId}}">View Bug Details</a></td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reporter</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header><span>&nbsp;&emsp;</span>Reporter</th>
       <td mat-cell *matCellDef="let report">{{report.username}}</td>
     </ng-container>
 
