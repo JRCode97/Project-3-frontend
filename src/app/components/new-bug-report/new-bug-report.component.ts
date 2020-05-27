@@ -43,7 +43,7 @@ export class NewBugReportComponent implements OnInit {
     report.repSteps = this.bugForm.value.reproduceSteps;
     report.priority = this.bugForm.value.priority;
     report.severity = this.bugForm.value.severity;
-    report.username = this.bugForm.value.reporter;
+    report.username = this.client.username
     report.description = this.bugForm.value.description;
     report.status = BugStatus.requested;
     for (const app of this.applicationList){
