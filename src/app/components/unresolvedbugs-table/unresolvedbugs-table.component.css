@@ -10,6 +10,10 @@
   top: 0;             
 } */
 
+h1 {
+  text-align: center;
+}
+
 .container{
   height: 100%;
   width: 100%;
@@ -26,10 +30,10 @@ table{
   border: 1px solid black;
   border-collapse: collapse;
   padding:10px;
-  
-   width:1000px; 
-   height: 200px;  
-  }
+  margin: 0 auto;
+  width: 90%; 
+  height: 200px;  
+}
 
 th, td {
   background-position: center;
@@ -47,11 +51,10 @@ th, td {
 }
 
 th{
-  color: whitesmoke;
-  background-color: black;
   text-align: center;
   font-size: medium;
 }
+
 .SolCount{
   color: rgb(206, 21, 58);
   font-size: small;

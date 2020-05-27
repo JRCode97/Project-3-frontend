@@ -23,6 +23,7 @@ export class MainNavComponent {
   clientRole: ClientRole;
   client: Client;
   theme = 'Light Mode';
+  show = true;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -66,4 +67,9 @@ export class MainNavComponent {
     console.log(document.body.classList);
 
   }
+  showNav(){
+    this.show = true;
+    this.show = !this.show;
+  }
+
 }

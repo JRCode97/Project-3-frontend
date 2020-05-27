@@ -12,7 +12,6 @@
 .formLabel ,.form-label {
     width: 20%;
     font-weight: bold;
-    color: rgb(112, 112, 112);
 }
 
 .dropDown {
@@ -41,7 +40,6 @@
 }
 
 .textareaDisabled:read-only {
-    background-color: whitesmoke;
     overflow: scroll;
     overflow-y: scroll;
     overflow-x: scroll;
@@ -57,7 +55,7 @@
     -ms-flex:   0;
     flex:  0;
     width: 300px;
-    color: white;
+    color: var(--secondary);
     margin-left: -13px;
     margin-top: 2px;
     background: linear-gradient(to bottom left, #101111  -6%, rgb(65, 63, 63) 48%);

@@ -14,7 +14,6 @@ div.mainBugTopHead{
     border-radius: 6px 6px 0px 0px;
 }
 a.mainBugTitle{
-    width: 570px;
     display: inline-block;
     font-size: 20px;
     color: crimson;
@@ -55,20 +54,17 @@ div.mainBugBottomLabel{
     padding-left: 10px;
     font-size: large;
     height: 20px;
-    border-radius: 6px 6px 0px 6px;
+    border-radius: 6px 6px 0px 0px;
 }
 div.mainBugBottomDescription{
-    height: 37px;
-    margin-left: 6px;
+    max-height: 93px;
     padding: 10px;
     border-style: solid;
     border-width: 0px 1px 1px 1px;
     background-color: #FCFCFC;
     border-color: #E0E0E0;
     border-radius: 0px 0px 6px 6px;
-    text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
 }
 .line-clamp {
     display: -webkit-box;
