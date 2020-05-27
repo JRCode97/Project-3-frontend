@@ -20,9 +20,11 @@ export class ApiServiceService {
   constructor(private http: HttpClient) { }
 
 
+ 
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
-  path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111/'
+  path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
 
+ 
 
   //################ Start of Bug Report Section ###################
 
@@ -33,7 +35,7 @@ export class ApiServiceService {
   getbugReportByClientUsername(username:string){
     return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
   }
-  
+
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
   }
@@ -41,11 +43,11 @@ export class ApiServiceService {
   getRequestedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=requested`).toPromise();
   }
- 
+
   getUnResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();
   }
-  
+
   getBugReportById(id:number) {
     return this.http.get<BugReport>(`${this.path}/bugreports?id=${id}`).toPromise();
   }
@@ -76,18 +78,18 @@ export class ApiServiceService {
   getPoints(id:number){
     return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
   }
-  //to be set within the login function 
+  //to be set within the login function
   setLoggedClient(client: Client) {
     localStorage.setItem('client', JSON.stringify(client));
   }
-  //to be used anywhere the user object is needed, it is better to call it in the component constructor 
+  //to be used anywhere the user object is needed, it is better to call it in the component constructor
   getLoggedClient(): Client {
     let val = localStorage.getItem('client');
     let client = new Client();
     client = JSON.parse(val)
     return client;
   }
-  //used on logout 
+  //used on logout
   clearLoggedClient() {
     localStorage.clear();
   }
@@ -103,14 +105,14 @@ export class ApiServiceService {
 
   //################ Start of Solution Section ###################
 
-  //1. Add new Solution 
+  //1. Add new Solution
   // TODO: check if Promise<Solution> is okay
   async postSolution(solution: Solution): Promise<Solution> {
     let ticketPromise = await this.http.post<Solution>(`${this.path}/solutions`, solution).toPromise();
     return ticketPromise;
   }
 
-  //2. Get all Solutions by Bug Report ID 
+  //2. Get all Solutions by Bug Report ID
   getSolutionsByBugId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?bId=${id}`).toPromise();
 
@@ -120,16 +122,16 @@ export class ApiServiceService {
     return this.http.get<Solution>(`${this.path}/solutions?id=${id}`).toPromise();
   }
 
- 
+
   getSolutionsByClientId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?cId=${id}`).toPromise();
   }
 
   putSolution(solution:Solution) {
     return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
- 
+
   }
-  
+
   //################ Start of Application Section ###################
   getApplications(): Promise<Application[]>{
     return this.http.get<Application[]>(`${this.path}/applications`).toPromise();
@@ -144,7 +146,7 @@ export class ApiServiceService {
   getLeaderboardNames(): Promise<String[]>{
     return this.http.get<String[]>(`${this.path}/clients/leaderboard/username`).toPromise();
   }
-  
+
   getLeaderboardPoints(): Promise<number[]>{
     return this.http.get<number[]>(`${this.path}/clients/leaderboard/points`).toPromise();
   }

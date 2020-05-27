@@ -11,6 +11,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
+import {LoginMatComponent} from './components/login-mat/login-mat.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,7 +24,9 @@ const routes: Routes = [
   { path: 'newbugreport', component: NewBugReportComponent },
   { path: 'newpassword', component: UpdatePasswordComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'bugreportapprove/:id', component: BugReportDetailsComponent}
+  { path: 'bugreportapprove/:id', component: BugReportDetailsComponent},
+  { path: 'login-mat', component: LoginMatComponent}
+
 ];
 
 @NgModule({

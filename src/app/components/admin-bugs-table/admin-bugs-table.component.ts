@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import BugReport from '../../models/BugReport';
-import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-admin-bugs-table',
@@ -29,6 +29,7 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<BugReport>(this.bugReports);
+    console.log(this.bugReports);
 
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
@@ -37,6 +38,7 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 }

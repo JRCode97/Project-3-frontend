@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import Solution from 'src/app/models/Solution';
 import BugReport from 'src/app/models/BugReport';
@@ -21,9 +21,10 @@ export class BugReportViewComponent implements OnInit {
     public client: Client;
     public SolDescription: string = '';
     public SolTitle: string = '';
-
+    @ViewChild('txtSolTitle') txtSolTitle: ElementRef;
+    @ViewChild('txtSolDescribtion') txtSolDescribtion: ElementRef;
     //displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status'];
-    displayedColumns: string[] = [ 'description' ];
+    displayedColumns: string[] = ['description'];
     dataSource: MatTableDataSource<Solution>;
 
 
@@ -70,21 +71,34 @@ export class BugReportViewComponent implements OnInit {
     }
     //3. Add new  Solution 
     async postSolution(): Promise<any> {
+        let isvalid: boolean = true;
+        if (this.txtSolTitle.nativeElement.value.trim().length === 0) {
+            this.txtSolTitle.nativeElement.focus();
+            isvalid = false;
+            return;
+        }
+        if (this.txtSolDescribtion.nativeElement.value.trim().length === 0) {
+            this.txtSolDescribtion.nativeElement.focus();
+            isvalid = false;
+            return;
+        }
+        if (isvalid) {
+            let sol = new Solution();
+            console.log(this.br);
+            sol.br = this.br;
 
-        let sol = new Solution();
-        console.log(this.br);
-        sol.br = this.br;
+            sol.client = this.client;
+            sol.id = 0;
+            sol.status = SolutionStatus.pending;
+            sol.title = this.SolTitle;
+            sol.description = this.SolDescription;
+            sol.timeSubmitted = new Date().getTime();
 
-        sol.client = this.client;
-        sol.id = 0;
-        sol.status = SolutionStatus.pending;
-        sol.title = this.SolTitle;
-        sol.description = this.SolDescription;
-        sol.timeSubmitted = new Date().getTime();
+            let result = await this.apiserv.postSolution(sol);
+            console.log(sol);
+            this.getBugSolutionsById();
+            return result;
+        }
 
-        let result = await this.apiserv.postSolution(sol);
-        console.log(sol);
-        this.getBugSolutionsById();
-        return result;
     }
 }

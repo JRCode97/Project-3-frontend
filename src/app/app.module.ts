@@ -57,6 +57,9 @@ import { DeniedBugreportTableComponent } from './components/profile/profile-tabl
 import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
 import { AcceptedSolutionTableComponent } from './components/profile/profile-tables/accepted-solution-table/accepted-solution-table.component';
 import { RejectedSolutionTableComponent } from './components/profile/profile-tables/rejected-solution-table/rejected-solution-table.component';
+import { LoginMatComponent } from './components/login-mat/login-mat.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -96,33 +99,37 @@ import { RejectedSolutionTableComponent } from './components/profile/profile-tab
     PendingSolutionTableComponent,
     AcceptedSolutionTableComponent,
     RejectedSolutionTableComponent,
+    LoginMatComponent,
   ],
-    imports: [
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        EditorModule,
-        FormsModule,
-        HttpClientModule,
-        LayoutModule,
-        MatButtonModule,
-        MatCardModule,
-        MatExpansionModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        MatPaginatorModule,
-        MatSelectModule,
-        MatSidenavModule,
-        MatSliderModule,
-        MatSortModule,
-        MatTableModule,
-        MatToolbarModule,
-        NgbModule,
-        ReactiveFormsModule,
-        MatSlideToggleModule,
-    ],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    EditorModule,
+    FormsModule,
+    HttpClientModule,
+    LayoutModule,
+    MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    NgbModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatIconModule,
+    MatTabsModule,
+    MatCheckboxModule
+  ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })
