@@ -50,14 +50,14 @@
 
             </div>
             <div class="form-group row">
+              
+                <label for="lblapprovedTime" class="col-sm-2  form-label" *ngIf="br.approvedTime!=0">Approved Time: </label>
 
-                <label for="lblapprovedTime" class="col-sm-2  form-label">Approved Time: </label>
+                <label id="lblapprovedTime" class="col-sm-2    " *ngIf="br.approvedTime!=0" >{{br.approvedTime|date:'medium'}}</label>
 
-                <label id="lblapprovedTime" class="col-sm-2   ">{{br.approvedTime|date:'medium'}}</label>
+                <label for="lblresolvedTime" class="col-sm-2  form-label" *ngIf="br.resolvedTime!=0">Resolved Time: </label>
 
-                <label for="lblresolvedTime" class="col-sm-2  form-label">Resolved Time: </label>
-
-                <label id="lblresolvedTime" class="col-sm-2   ">{{br.resolvedTime|date:'medium'}}</label>
+                <label id="lblresolvedTime" class="col-sm-2   " *ngIf="br.resolvedTime!=0">{{br.resolvedTime|date:'medium'}}</label>
 
             </div>
 
