@@ -1,0 +1,55 @@
+/* .mainPageContainer{
+    position: sticky;
+} */
+.mainTop{
+    /* border-style: dashed; */
+    padding: 20px 0px 0px 20px;
+    height: min-content;
+    width: 60%;
+    float: left;
+}
+p.mainWelcome{
+    font-size: 20px;
+    margin-left: 10px;
+}
+p.mainLogo{
+    font-weight: bold;
+    color: crimson;
+    font-size: 42px;
+    z-index: 1;
+    /* right: 40px; */
+}
+.mainLeft{
+    /* border-style: dotted; */
+    width: 60%;
+    padding-left: 50px;
+    float: left;
+    z-index: 2;
+}
+.mainRight{
+    /* border-style: ridge; */
+  width: 45%;
+    margin-left: 60%;
+    position: fixed;
+    padding: 95px 0px 0px 20px;
+    z-index: 1;
+}
+.mainAvatar{
+    width: 85px;
+    height: 85px;
+}
+.mainBugL{
+    width: 65px;
+    height: 65px;
+    transform: translate(25px) rotate(145deg) ;
+    z-index: 2;
+}
+.mainBugR{
+    width: 65px;
+    height: 65px;
+    transform: rotate(225deg);
+}
+
+.mainRight mat-expansion-panel{
+  background-color: red;
+}
