@@ -14,7 +14,7 @@ import { BugReportDetailsComponent } from './components/bug-report-details/bug-r
 import {LoginMatComponent} from './components/login-mat/login-mat.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'loginbackup', component: LoginComponent },
   { path: 'adminbugs', component: AdminBugsComponent},
   { path: 'adminsolutions', component:AdminSolutionsComponent},
   { path: 'applications', component: ApplicationComponent },
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'newpassword', component: UpdatePasswordComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'bugreportapprove/:id', component: BugReportDetailsComponent},
-  { path: 'login-mat', component: LoginMatComponent}
+  { path: '', component: LoginMatComponent}
 
 ];
 

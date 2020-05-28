@@ -47,5 +47,4 @@ $dark-theme: mat-dark-theme($theme-dark-primary, $theme-dark-accent, $theme-dark
   @include angular-material-theme($dark-theme);
   @include global-theme($dark-theme);
   background-color: #212121;
-
 }

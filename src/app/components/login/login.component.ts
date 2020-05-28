@@ -11,14 +11,14 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  registerform=this.fb.group({
-    Fname:['',Validators.required],
-    Lname:['',Validators.required],
-    UserName:['',Validators.required],
-    Email: ['',Validators.required],
-    Password: ['',Validators.required],
-    ConfPass:['',Validators.required],
-  })
+  registerform = this.fb.group({
+    Fname: ['', Validators.required],
+    Lname: ['', Validators.required],
+    UserName: ['', Validators.required],
+    Email: ['', Validators.required],
+    Password: ['', Validators.required],
+    ConfPass: ['', Validators.required],
+  });
   @ViewChild('login') x: ElementRef;
   @ViewChild('register') y: ElementRef;
   @ViewChild('btn') z: ElementRef;
@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
   Pass: string;
   ConfPass: string;
   closeResult = '';
- 
-  valiationMsg:any;
-  public savingfailed: boolean = false;
-  public inValidUser: boolean = false;
-  constructor(private modalService: NgbModal, private serv: ApiServiceService, private router: Router , private fb:FormBuilder) {
-    this.client = serv.getLoggedClient()
+
+  valiationMsg: any;
+  public savingfailed = false;
+  public inValidUser = false;
+  constructor(private modalService: NgbModal, private serv: ApiServiceService, private router: Router , private fb: FormBuilder) {
+    this.client = serv.getLoggedClient();
     if (this.client != null && this.client.cId > 0) {
       this.showSpinner = true;
       this.enableDisableRule();
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   toggle = false;
   status = 'Enable';
- 
+
   enableDisableRule() {
     this.toggle = !this.toggle;
     this.status = this.toggle ? 'Enable' : 'Disable';
@@ -59,11 +59,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  // dummy login function , justto showoff how to store the client object  in local storage session 
+  // dummy login function , justto showoff how to store the client object  in local storage session
   async clientLogin()  {
-    let user= new Client();
-    let username = this.txtusername.nativeElement.value;
-    let pass = this.txtpassword.nativeElement.value;
+    const user = new Client();
+    const username = this.txtusername.nativeElement.value;
+    const pass = this.txtpassword.nativeElement.value;
     try {
       this.client = await this.serv.clientLogin(username, pass);
       console.log(this.client);
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         setTimeout(() => {
           window.location.href = '/main';
         }, 1000);
-       this.enableDisableRule();
+        this.enableDisableRule();
       }
 
       else {
@@ -82,31 +82,31 @@ export class LoginComponent implements OnInit {
         this.inValidUser = true;
       }
     }
-    catch{
+    catch {
       this.txtusername.nativeElement.focus();
       this.inValidUser = true;
     }
-    
+
 
   }
 
 
- async  getClientByUsername() : Promise<Client>{
-    let username = this.txtusername.nativeElement.value;
+ async  getClientByUsername(): Promise<Client>{
+    const username = this.txtusername.nativeElement.value;
     try {
       this.client = await this.serv.getClientByUserName(username);
       console.log(this.client);
       // alert(client.fName)
       if (this.client != null && this.client.cId > 0) {
         this.serv.setLoggedClient(this.client);
-        this.valiationMsg ="This Username is not available , please select another one"
+        this.valiationMsg = 'This Username is not available , please select another one';
       }
       else {
-        this.valiationMsg ="";
+        this.valiationMsg = '';
       }
     }
-    catch{
-      this.valiationMsg ="";
+    catch {
+      this.valiationMsg = '';
     }
     return this.client;
   }
@@ -127,13 +127,13 @@ export class LoginComponent implements OnInit {
       console.log(newclient);
       if (newclient != null && newclient.cId > 0) {
         window.location.href = '/';
-        //this.router.navigate(["/"]);
+        // this.router.navigate(["/"]);
       }
       else {
         this.savingfailed = true;
       }
     }
-    catch{
+    catch {
       this.savingfailed = true;
     }
     return newclient;
