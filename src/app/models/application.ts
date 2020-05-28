@@ -1,4 +1,4 @@
-import BugReport from './BugReport'
+import BugReport from './BugReport';
 
 export class Application {
     id: number;
