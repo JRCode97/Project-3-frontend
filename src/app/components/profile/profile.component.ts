@@ -17,8 +17,7 @@ export class ProfileComponent implements OnInit {
     this.client = this.api.getLoggedClient()
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
-    this.assignRole()
-    // this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
+    this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
     this.getClientPoint()
   }
   bugStatus
@@ -47,15 +46,6 @@ export class ProfileComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
-    }
-  }
-
-  assignRole(){
-    if(this.client === 0){
-      this.client.Role = "Developer"
-    }
-    else{
-      this.client.Role = "Admin"
     }
   }
 
