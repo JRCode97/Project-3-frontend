@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 import { AdminBugsCardsComponent } from './components/admin-bugs-cards/admin-bugs-cards.component';
 import { AdminBugsTableComponent } from './components/admin-bugs-table/admin-bugs-table.component';
+import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { AppComponent } from './app.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
@@ -40,12 +41,25 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { MainPageLeaderboardComponent } from './components/main-page-leaderboard/main-page-leaderboard.component';
 import { NewBugReportComponent } from './components/new-bug-report/new-bug-report.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component'
-import { PostedSolutionsTableComponent } from './components/posted-solutions-table/posted-solutions-table.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
-import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component'
+import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
+import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
+import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
+import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
+import { UnresolvedBugreportTableComponent } from './components/profile/profile-tables/unresolved-bugreport-table/unresolved-bugreport-table.component';
+import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
+import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
+import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
+import { AcceptedSolutionTableComponent } from './components/profile/profile-tables/accepted-solution-table/accepted-solution-table.component';
+import { RejectedSolutionTableComponent } from './components/profile/profile-tables/rejected-solution-table/rejected-solution-table.component';
+import { LoginMatComponent } from './components/login-mat/login-mat.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -56,6 +70,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     AdminBugsComponent,
     AdminBugsCardsComponent,
     AdminBugsTableComponent,
+    AdminSolutionsComponent,
     AppComponent,
     ApplicationComponent,
     ApplicationsTableComponent,
@@ -70,11 +85,21 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     MainPageLeaderboardComponent,
     NewBugReportComponent,
     PasswordResetComponent,
-    PostedSolutionsTableComponent,
     ProfileComponent,
+    ResolvedbugsTableComponent,
     SolutionApprovalComponent,
     SolutionsTableComponent,
     UpdatePasswordComponent,
+    UnresolvedbugsTableComponent,
+    LoadingSpinnerComponent,
+    RequestedBugreportTableComponent,
+    UnresolvedBugreportTableComponent,
+    ResolvedBugreportTableComponent,
+    DeniedBugreportTableComponent,
+    PendingSolutionTableComponent,
+    AcceptedSolutionTableComponent,
+    RejectedSolutionTableComponent,
+    LoginMatComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -100,6 +125,10 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     MatToolbarModule,
     NgbModule,
     ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatIconModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]

@@ -8,7 +8,12 @@ export class Solution {
    timeSubmitted: number;
    title: string;
    description: string;
-   br: BugReport;
+// schaud
+   // br: BugReport;
+   br = new BugReport();
+
    client: Client;
 }
+
 export default Solution;
+

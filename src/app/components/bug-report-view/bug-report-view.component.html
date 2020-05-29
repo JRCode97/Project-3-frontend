@@ -1,147 +1,204 @@
-<div class="container">
-    <h1 class="titleH1 col-sm-3"> Bug Report View#{{br.bId}}</h1>
+<ng-container *ngIf="br!=null">
+    <div class="container">
+        <ng-container *ngIf="br!=null">
+            <h1 class="titleH1  col  "> Bug Report View#{{br.bId}}</h1>
 
-    <div class="form-group row">
+            <div class="form-group row">
 
-        <label for="txttitle" class="col-sm-2 col-form-label">Title:</label>
+                <label for="txttitle" class="col-sm-2  form-label">Title:</label>
 
-        <label id="txttitle" class="col-sm-10 form-control-plaintext"> {{br.title}} </label>
+                <label id="txttitle" class="col-sm-2  "> {{br.title}} </label>
+
+                <label for="txttitle" class="col-sm-2  form-label">Status:</label>
+
+                <label id="txttitle" class="col-sm-2  "> {{br.status}} </label>
+            </div>
+
+            <div class="form-group row">
+
+                <label for="lblapplication" class="col-sm-2  form-label">Application:</label>
+                <ng-container *ngIf="br.app !=null">
+                    <label id="lblapplication" class="col-sm-2  "> {{br.app.title}}</label>
+
+
+                </ng-container> <label for="lbllocation" class="col-sm-2  form-label">Location:</label>
+                <label id="lbllocation" class="col-sm-2  "> {{br.location}}</label>
+
+            </div>
+            <div class="form-group row">
+
+                <label for="lblseverity" class="col-sm-2  form-label">Severity: </label>
+
+                <label id="lblseverity" class="col-sm-2   ">{{br.severity}}</label>
+
+                <label for="lblpriority" class="col-sm-2 form-label">Priority: </label>
+
+                <label id="lblpriority" class="col-sm-2   ">{{br.priority}}</label>
+                <label for="txtreporter" class="col-sm-1   form-label">Points:</label>
+
+                <label class="col-sm-1   " id="txtreporter">{{br.pointValue}}</label>
+            </div>
+            <div class="form-group row">
+                <label for="txtdate" class="col-sm-2  form-label">Creation Time:</label>
+
+                <label type="datetime" readonly class="col-sm-2   " id="txtreporter">
+                    {{br.createdTime|date:'medium'}} </label>
+
+                <label for="txtreporter" class="col-sm-2  form-label">Reporter:</label>
+
+                <label class="col-sm-2   " id="txtreporter">{{br.username}} </label>
+
+            </div>
+            <div class="form-group row">
+              
+                <label for="lblapprovedTime" class="col-sm-2  form-label" *ngIf="br.approvedTime!=0">Approved Time: </label>
+
+                <label id="lblapprovedTime" class="col-sm-2    " *ngIf="br.approvedTime!=0" >{{br.approvedTime|date:'medium'}}</label>
+
+                <label for="lblresolvedTime" class="col-sm-2  form-label" *ngIf="br.resolvedTime!=0">Resolved Time: </label>
+
+                <label id="lblresolvedTime" class="col-sm-2   " *ngIf="br.resolvedTime!=0">{{br.resolvedTime|date:'medium'}}</label>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label for="txtdescription" class="col-sm-2 form-label"> Description:</label>
+
+                <div id="txtdescription" readonly class="col-sm-8 form-control  textareaDisabled"
+                    [innerHtml]="br.description"> </div>
+
+            </div>
+
+
+
+            <div class="form-group row">
+
+                <label for="txtreproduceSteps" class="col-sm-2 form-label">Reproduce Steps:</label>
+
+                <div id="txtreproduceSteps" readonly class="col-sm-8 form-control  textareaDisabled"
+                    [innerHtml]="br.repSteps"> </div>
+
+            </div>
+
+            <hr>
+
+
+            <div class="row">
+                <div class="col-12">
+
+                    <table mat-table [dataSource]="dataSource" matSort style="width:100%;margin-bottom: 10px;">
+
+                        <ng-container matColumnDef="description">
+
+                            <th *matHeaderCellDef>
+
+
+                                <table style="width: 100%;">
+                                    <thead>
+                                        <th class="col header " colspan="4">
+                                            <h2> Posted Solution(s) </h2>
+                                        </th>
+                                    </thead>
+                                    <thead style="width: 100%;">
+                                        <th style="width:30%; padding-left: 20px;">
+                                            Title
+                                        </th>
+                                        <th style="width:30%;">
+                                            Status
+                                        </th>
+
+                                        <th style="width:30%;text-align:start;  ">
+                                            Time Submitted
+                                        </th>
+
+                                        <th style="width:30%; text-align:start; ">
+                                            Solver
+                                        </th>
+                                    </thead>
+                                </table>
+                            </th>
+
+
+                            <td class="solution" *matCellDef="let solution">
+
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+
+                                        <mat-panel-title>
+
+
+
+                                            <table style="width: 100%;">
+                                                <thead style="width: 100%; ">
+                                                    <td style="width:30%; font-size: .9em; ">
+                                                        {{solution.title}}
+                                                    </td>
+                                                    <td style="width:30%;font-size:  .9em;;">
+                                                        {{solution.status }}
+                                                    </td>
+
+                                                    <td
+                                                        style="width:30%;font-size: .9em;text-align:left;padding-left:20px;">
+                                                        {{solution.timeSubmitted | date:'short'}}
+                                                    </td>
+
+                                                    <td style="width:30%;font-size:  .9em; text-align:center;  ">
+                                                        {{solution.client.username}}
+                                                    </td>
+                                                </thead>
+                                            </table>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+
+
+
+                                    <div class="form-group row">
+
+                                        <label for="divDescription" class="col-sm-1 form-label"
+                                            style="font-weight: bold; margin-right: 5px;">Description:</label>
+
+                                        <div id="divDescription" readonly
+                                            class="col-sm-8 form-control textareaDisabled">{{solution.description}}
+                                        </div>
+
+                                    </div>
+                                </mat-expansion-panel>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </ng-container>
     </div>
+    <form class="container" *ngIf="br.status!=='Resolved' && br.status!=='Denied' ">
+        <h1 class="titleH1 col-sm-3">Post new Solution</h1>
 
-    <div class="form-group row">
+        <div class="form-group row">
 
-        <label for="lblapplication" class="col-sm-2 col-form-label">Application:</label>
+            <label class="col-sm-2 form-label">Title: <b style="color: firebrick;">*</b> </label>
 
-        <label id="lblapplication" class="col-sm-2 form-control-plaintext"> {{br.app.title}}</label>
+            <input type="text" id="txtSolTitle" ngModel name="txtSolTitle" #txtSolTitle [(ngModel)]="SolTitle"
+                required minlength="6" maxlength="2000" class="col-sm-6 form-control" placeholder="Solution title">
 
-        <label for="lbllocation" class="col-sm-2 col-form-label">Location:</label>
-
-        <label id="lbllocation" class="col-sm-2 form-control-plaintext"> {{br.location}}</label>
-
-    </div>
-    <div class="form-group row">
-
-        <label for="lblseverity" class="col-sm-2 col-form-label">Severity: </label>
-
-        <label id="lblseverity" class="col-sm-2  form-control-plaintext">{{br.severity}}</label>
-
-        <label for="lblpriority" class="col-sm-2 col-form-label">Priority: </label>
-
-        <label id="lblpriority" class="col-sm-2  form-control-plaintext">{{br.priority}}</label>
-        <label for="txtreporter" class="col-sm-1 col-form-label">Points:</label>
-
-        <label class="col-sm-1  form-control-plaintext" id="txtreporter">{{br.pointValue}}</label>
-    </div>
-    <div class="form-group row">
-        <label for="txtdate" class="col-sm-2 col-form-label">Creation Time:</label>
-
-        <label type="datetime" readonly class="col-sm-2  form-control-plaintext" id="txtreporter">
-            {{br.createdTime|date:'medium'}} </label>
-
-        <label for="txtreporter" class="col-sm-2 col-form-label">Reporter:</label>
-
-        <label class="col-sm-2  form-control-plaintext" id="txtreporter">{{br.username}} </label>
-
-    </div>
-    <div class="form-group row">
-
-        <label for="lblapprovedTime" class="col-sm-2 col-form-label">Approved Time: </label>
-
-        <label id="lblapprovedTime" class="col-sm-2  form-control-plaintext">{{br.approvedTime|date:'medium'}}</label>
-
-        <label for="lblresolvedTime" class="col-sm-2 col-form-label">Resolved Time: </label>
-
-        <label id="lblresolvedTime" class="col-sm-2  form-control-plaintext">{{br.resolvedTime|date:'medium'}}</label>
-
-    </div>
-
-    <div class="form-group row">
-
-        <label for="txtdescription" class="col-sm-2 form-label"> Description:</label>
-
-        <textarea id="txtdescription" readonly
-            class="col-sm-8 form-control textareaDisabled">{{br.description}}</textarea>
-
-    </div>
-
-
-
-    <div class="form-group row">
-
-        <label for="txtreproduceSteps" class="col-sm-2 form-label">Reproduce Steps:</label>
-
-        <textarea id="txtreproduceSteps" readonly
-            class="col-sm-8 form-control textareaDisabled">{{br.repSteps}}</textarea>
-
-    </div>
-
-    <hr>
-    <div class="form-group ">
-        <h1>Posted Solution(s)</h1>
-        <app-posted-solutions-table></app-posted-solutions-table>
-    </div>
-    <br>
-    <div class="row">
-
-        <div class="col-12">
-            <table class="table">
-                <thead>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Describtion
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>
-                        Solver
-                    </th>
-
-                </thead>
-                <tr *ngFor="let item of solutions">
-                    <td>
-                        {{item.title}}
-                    </td>
-                    <td>
-                        {{item.description}}
-                    </td>
-                    <td>
-                        {{item.status}}
-                    </td>
-                    <td>
-                        {{item.client.username}}
-                    </td>
-
-                </tr>
-            </table>
         </div>
-    </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-label">Description: <b style="color: firebrick;">*</b></label>
+            <textarea id="txtSolDescribtion" required minlength="6" ngModel name="txtSolDescribtion"
+                #txtSolDescribtion  [(ngModel)]="SolDescription" placeholder="Solution Description"
+                minlength="6" class="col-sm-8 form-control textarea"> </textarea>
+        </div>
 
-</div>
-<div class="container">
-    <h1 class="titleH1 col-sm-3">Post new Solution</h1>
+        <div class="buttonGroup">
+            <button type="reset" class="btn btn-secondary"  [disabled]=" !(br.status==='Unresolved') " >Cancel</button>
+            <span> &nbsp;&nbsp; </span>
+            <button type="button"   (click)="postSolution()" class="btn btn-success"  [disabled]=" !(br.status==='Unresolved') ">Submit</button>
+        </div>
 
-    <div class="form-group row">
-
-        <label class="col-sm-2 form-label">Title: </label>
-
-
-        <input type="text" [(ngModel)]="SolTitle" class="col-sm-6 form-control" placeholder="Solution title">
-
-    </div>
-    <div class="form-group row">
-
-
-        <label class="col-sm-2 form-label">Description: </label>
-        <textarea [(ngModel)]="SolDescription" placeholder="Solution Describtion"
-            class="col-sm-8 form-control textarea"> </textarea>
-    </div>
-
-    <div class="buttonGroup">
-        <button type="button" (click)="postSolution()" class="btn btn-secondary">Cancel</button> <span> &nbsp;&nbsp; </span>
-        <button type="button" class="btn btn-success">Submit</button>
-    </div>
-    <br>
-</div>
+        <br>
+    </form>
+</ng-container>

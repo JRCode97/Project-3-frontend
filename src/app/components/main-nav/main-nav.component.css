@@ -1,5 +1,7 @@
 .sidenav-container {
-  height: 10%;
+  z-index: 40;
+  width: 100%;
+  position: fixed;
 }
 
 a{
@@ -10,8 +12,9 @@ a{
   width: 200px;
 }
 
-.sidenav .mat-toolbar {
+.sidenav, .mat-toolbar {
   background: inherit;
+  overflow: hidden;
 }
 
 .mat-toolbar.mat-primary {
@@ -48,18 +51,38 @@ mat-toolbar a{
 }
 
 @media (max-width: 768px){
+  .links {
+    display: none;
+  }
+  .admin-links{
+    display: none;
+  }
+
   mat-toolbar a{
     display: none;
   }
 }
 
+.press, img, .press:focus, img:focus{
+  outline: 0 !important;
+  border:0 none !important;
+}
+
 .logo {
   padding: 10px;
-
   width: 75px;
   height: 75px;
   transform: rotate(45deg);
-
+  cursor: pointer;
 }
+
+
+
+#theme-toggle{
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+
 
 

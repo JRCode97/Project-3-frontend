@@ -1,10 +1,6 @@
-.continer{
-    border-style: solid;
-    border-color: black;
-    height: 100vh;
-
+.container {
+    padding-top: 10px;
 }
-
     #profileHalf{
         display: flex;
         height: 34%;
@@ -16,14 +12,10 @@
             width: 30%;
         }
 
-            #profilePicDiv{
-
-            }
-
                 #profilePic{
-                    padding-top: 15%;
-                    padding-bottom: 5%;
-                    padding-right: 5%;
+                    padding-top: 12%;
+                    padding-bottom: 3%;
+                    padding-right: 3%;
                     height: 100%;
                     width: 100%;
                 }
@@ -66,4 +58,14 @@
         margin-top: 2vh;
         border-style: solid;
         border-color: green;
+    }
+
+    .password-reset{
+        cursor: pointer;
+    }
+
+    .selectDivs{
+        margin-right: 10px;
+        float: right;
+        padding-top: 15px;
     }

@@ -8,13 +8,13 @@
 
                 
                 <!-- <img id="profilePic" src="https://www.thegivingtree.com/images/placeholder-images/placeholder_profile_photo.png" alt="Profile Pic"> -->
-                <img id="profilePic" src="https://image.shutterstock.com/z/stock-vector-exterminator-leaning-on-pest-sprayer-and-killing-bug-isolated-in-white-background-621003470.jpg" alt="Profile Pic">
+                <img id="profilePic" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/exterminator.png" alt="Profile Pic">
 
             </div>
 
             <div id="pointsDiv">
                 <h1>Points</h1>
-                <h1>5000</h1>
+                <h1>{{points}}</h1>
             </div>
 
         </div>
@@ -22,25 +22,119 @@
         <div id="AboutMeDiv">
             <div id="titleDiv"><h1>About me</h1></div>
             <div id="profileDetail">
-                <h2>Name: First Last</h2>
-                <h2>Username: username</h2>
-                <h2>Role: Developer</h2>
+                <h2>Name: {{client.fName}} {{client.lName}}</h2>
+                <h2>Username: {{client.username}}</h2>
+                <h2>Role: {{client.Role}}</h2> 
+                <a class="password-reset" (click)="open(content)">Update Password</a>
             </div>
-            
         </div>
 
     </div>
 
 
 
-    <div id="bugTableDiv">
+    <!-- <div id="bugTableDiv">
         <app-bug-reports-table></app-bug-reports-table>
-    </div>
+    </div> -->
     
-
+<!-- 
     <div id="solutionTableDiv">
         <app-solutions-table></app-solutions-table>
+    </div> -->
+
+
+    <!-- create new tables for each status and filter results by status  -->
+    <!-- redirect -->
+    <!-- autherize -->
+
+    <div class="selectDivs">
+        Bug Report Status: 
+        <mat-form-field>
+            <mat-select [(value)]="bugStatus">
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Requested">Requested</mat-option>
+                <mat-option value="Denied">Denied</mat-option>
+                <mat-option value="Unresolved">Unresolved</mat-option>
+                <mat-option value="Resolved">Resolved</mat-option>
+            </mat-select></mat-form-field>
     </div>
+
+    <ng-container [ngSwitch]="bugStatus">
+        <ng-container *ngSwitchCase="'Requested'">
+            <div id="bugTableDiv">
+                <app-requested-bugreport-table></app-requested-bugreport-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Denied'">
+            <div id="bugTableDiv">
+            <app-denied-bugreport-table></app-denied-bugreport-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Unresolved'">
+            <div id="bugTableDiv">
+                <app-unresolved-bugreport-table></app-unresolved-bugreport-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Resolved'">
+            <div id="bugTableDiv">
+                <app-resolved-bugreport-table></app-resolved-bugreport-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault="'All'">
+            <div id="bugTableDiv">
+                <app-bug-reports-table></app-bug-reports-table>
+            </div>
+        </ng-container>
+    </ng-container>
+
+
+    <div class="selectDivs">
+        Solution Status: 
+        <mat-form-field>
+            <mat-select [(value)]="solutionStatus">
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="Accepted">Accepted</mat-option>
+                <mat-option value="Rejected">Rejected</mat-option>
+            </mat-select></mat-form-field>
+    </div>
+
+    <ng-container [ngSwitch]="solutionStatus">
+        <ng-container *ngSwitchCase="'Pending'">
+            <div id="solutionTableDiv">
+            <app-pending-solution-table></app-pending-solution-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Accepted'">
+            <div id="solutionTableDiv">
+            <app-accepted-solution-table></app-accepted-solution-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'Rejected'">
+            <div id="solutionTableDiv">
+                <app-rejected-solution-table></app-rejected-solution-table>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault="'All'">
+            <div id="solutionTableDiv">
+                <app-solutions-table></app-solutions-table>
+            </div>
+        </ng-container>
+    </ng-container>
     
 
 </div>
+
+<ng-template class="modal-view" #content let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-update-password></app-update-password>
+    </div>
+  </ng-template>
+  <hr>
+  
+  <pre>{{ closeResult }}</pre>

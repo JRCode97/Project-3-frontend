@@ -5,6 +5,8 @@ import {Client} from 'src/app/models/Client';
 import {Application} from 'src/app/models/Application';
 import {ApiServiceService} from 'src/app/services/api-service.service';
 import { Validators } from '@angular/forms';
+import BugStatus from 'src/app/models/BugStatus';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-bug-report',
@@ -15,11 +17,11 @@ export class NewBugReportComponent implements OnInit {
 
   bugForm =  this.fb.group({
     title: ['', Validators.required],
-    application: [''],
+    application: ['', Validators.required],
     suspectedLocation: [''],
     severity: [''],
     priority: [''],
-    reporter: [''],
+    reporter: [{value: '', disabled: true}],
     description: ['', Validators.required],
     reproduceSteps: ['']
   });
@@ -27,11 +29,12 @@ export class NewBugReportComponent implements OnInit {
   client:Client;
   applicationList: Application[] = [];
   applicationNameList = [];
-  priorityLevel = ['low', 'medium', 'high'];
-  severityLevel = ['low', 'medium', 'high'];
+  priorityLevel = ['Low', 'Medium', 'High'];
+  severityLevel = ['Low', 'Medium', 'High'];
+  failToPost:boolean = false;
 
 
-  constructor(private fb: FormBuilder, private api: ApiServiceService) { }
+  constructor(private router:Router, private fb: FormBuilder, private api: ApiServiceService) { }
 
   async submitReport(){
     const report = new BugReport();
@@ -40,8 +43,9 @@ export class NewBugReportComponent implements OnInit {
     report.repSteps = this.bugForm.value.reproduceSteps;
     report.priority = this.bugForm.value.priority;
     report.severity = this.bugForm.value.severity;
-    report.username = this.bugForm.value.reporter;
+    report.username = this.client.username
     report.description = this.bugForm.value.description;
+    report.status = BugStatus.requested;
     for (const app of this.applicationList){
       if (app.title === this.bugForm.value.application){
         report.app = app;
@@ -49,9 +53,14 @@ export class NewBugReportComponent implements OnInit {
     }
     report.createdTime = new Date().getTime();
 
-    console.log(report);
     const result = await this.api.submitNewBugReport(report);
-    console.log(result);
+    
+    if(result["bId"]>0){
+      this.router.navigate([`/bugreport/${result["bId"]}`]);
+    }else{
+      console.log(result);
+      this.failToPost = true;
+    }
   }
 
   async getApplication(){
@@ -63,15 +72,12 @@ export class NewBugReportComponent implements OnInit {
 
   getClient(){
     this.client = this.api.getLoggedClient();
-    this.bugForm.value.reporter = this.client.username;
-    console.log(this.bugForm.value.reporter);
+    this.bugForm.controls['reporter'].setValue(this.client.username)
   }
 
   ngOnInit(): void {
     this.getApplication();
     this.getClient();
   }
-
-
 
 }

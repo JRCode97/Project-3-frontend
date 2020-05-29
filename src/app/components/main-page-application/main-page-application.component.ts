@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Application} from 'src/app/models/application';
+import { Application } from 'src/app/models/Application';
 import { BugReport } from 'src/app/models/BugReport';
 
 @Component({
@@ -11,15 +11,12 @@ export class MainPageApplicationComponent implements OnInit {
 
   panelOpenState = false;
 
-  // TEMP FIELD
   title: String = 'Cursed Pizza Online Ordering System App';
   gitLink: String = 'http://github.com/wackywill/cpoos';
   bugCount: Number = 1;
-  reports:BugReport[];
-  // title & link from @input application object/model
-  // count array of bugs for bugCount
+  reports: BugReport[];
 
-  @Input() application:Application;
+  @Input() application: Application;
 
   constructor() { }
 

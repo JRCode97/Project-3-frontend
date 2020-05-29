@@ -16,6 +16,7 @@ mat-card{
 
 mat-card-title{
   padding-bottom: 10px;
+  font-size: 1rem;
 }
 
 .card-content{

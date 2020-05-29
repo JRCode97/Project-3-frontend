@@ -1,6 +1,6 @@
 <div class="card-container">
 
-  <mat-card *ngFor="let bug of obs | async ">
+  <mat-card *ngFor="let bug of currentItemsToShow">
 
     <mat-card-title>
       {{bug.title}}
@@ -8,7 +8,7 @@
 
     <div class="card-content">
       <mat-card-content>
-        Application: {{bug.application}}
+        Application: {{bug.app.title}}
       </mat-card-content>
 
       <mat-card-content>
@@ -24,27 +24,37 @@
       </mat-card-content>
 
       <mat-card-content>
-        Date: {{bug.date}}
+        Date: {{bug.createdTime | date:'short'}}
       </mat-card-content>
 
       <mat-card-content>
-        Developer: {{bug.developer}}
+        Developer: {{bug.username}}
       </mat-card-content>
 
 
     </div>
 
     <mat-card-content class="inspect-btn">
-      Details: {{bug.details}}
+      <a routerLink="/bugreportapprove/{{bug.bId}}">Inspect</a>
     </mat-card-content>
 
 
   </mat-card>
+
+
+
 </div>
 
+
 <mat-paginator #paginator
+               (page) = "onPageChange($event)"
                [length]="dataSource?.data.length"
                [pageIndex]="0"
-               [pageSize]="6"
+               [pageSize]="pageSize"
                [pageSizeOptions]="[6, 12, 24, 36, 128]">
 </mat-paginator>
+
+
+
+
+

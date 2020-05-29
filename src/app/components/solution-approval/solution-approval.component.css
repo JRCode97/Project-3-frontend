@@ -4,20 +4,14 @@ h3 {
 
 /*TODO: Add keyframes */
 .mat-card {
-    background: whitesmoke;
     width: 45vw;
     margin-left: 3vw;
     margin-top: 3vw;
 }
 
 .mat-card-title {
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgb(20,20,20) 0%, rgb(59,59,59) 20%, rgb(179,179,179) 100%);
-    padding: .5rem;
-}
-
-.mat-select-value {
-    color: black !important;
+    padding: 7px 0;
+    border-bottom: 1px solid gray;
 }
 
 .bug-info {
@@ -26,12 +20,7 @@ h3 {
 }
 
 .bug-info h3, .mat-header-cell {
-    color: darkslategray;
-    font-weight: bold;
-}
-
-.bug-info p, .mat-cell {
-    color: black;
+    font-weight: 500;
 }
 
 .bug-description {
@@ -45,8 +34,31 @@ h3 {
 }
 
 table {
-    background-color: whitesmoke;
+    border-radius: 4px;
     width: 80vw;
     margin-top: 1vh;
     margin-left: 3vw;
+}
+
+tr td {
+    vertical-align: text-top;
+    padding-top: 9px; 
+}
+
+.solution {
+    width: 50%;
+}
+
+.timeSubmitted {
+    padding-left: 10px;
+}
+
+.resolved {
+    font-size: 1.2em;
+}
+
+.mat-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }

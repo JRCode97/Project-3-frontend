@@ -1,0 +1,188 @@
+<!--<div [ngClass]="{'dim' : toggle, '*': !toggle}" class="container">-->
+<!--  <div *ngIf="showSpinner" class="spinner">Logging in...<app-loading-spinner></app-loading-spinner>-->
+<!--  </div>-->
+
+<div  [ngClass]="{'dim' : toggle, '*': !toggle}" class="login-page">
+
+  <div *ngIf="showSpinner" class="spinner">Logging in...<app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <mat-card [ngClass]="{'hide' : toggle, '*': !toggle}" class="mat-elevation-z12">
+    <div class="login-title">
+      <img class="logo" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/Ladybug-128.png">
+          <mat-card-title id="title" style="text-align:center;">Bug Bounty System</mat-card-title>
+    <img class="logo2" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/Ladybug-128.png">
+</div>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+      <mat-tab label="Sign In">
+        <mat-card-content>
+          <form action="">
+            <mat-form-field (click) = "hideError()">
+              <input
+                #username
+                #usernameModel="ngModel"
+                matInput
+                placeholder="Username"
+                required
+                name="username"
+                ngModel>
+              <mat-error *ngIf="usernameModel.invalid && shown">Email is required</mat-error>
+              <mat-icon matSuffix>perm_identity</mat-icon>
+            </mat-form-field>
+            <mat-form-field (click) = "hideError()">
+              <input
+                #password
+                #passwordModel="ngModel"
+                matInput
+                placeholder="Password"
+                type="password"
+                required
+                minlength="6"
+                name="password"
+                ngModel>
+              <mat-error
+                *ngIf="passwordModel.errors && passwordModel.errors.required">
+                Password is required
+              </mat-error>
+              <mat-error
+                *ngIf="passwordModel.errors && passwordModel.errors.minlength && shown">
+                Password must be of length 6
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+
+            <mat-checkbox>Remember Me</mat-checkbox>
+
+            <mat-error class="invalid-login" *ngIf="invalid">
+              Invalid Username or Password!
+            </mat-error>
+
+            <button
+              (click) = clientLogin()
+              mat-raised-button
+              color="primary"
+              class="login-button">
+              Sign In
+            </button>
+
+
+          </form>
+        </mat-card-content>
+      </mat-tab>
+      <mat-tab label="Register">
+        <mat-card-content>
+          <form action="">
+
+            <mat-form-field (click) = "hideError()">
+              <input
+                #firstname
+                matInput
+                placeholder="First Name"
+                required
+                name="firstname"
+                ngModel
+                #firstnameModel="ngModel">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error
+                *ngIf="firstnameModel.invalid && shown">
+                First Name is required
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field (click) = "hideError()">
+              <input
+                #lastname
+                matInput
+                placeholder="Last Name"
+                required
+                name="lastname"
+                ngModel
+                #lastnameModel="ngModel">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error
+                *ngIf="lastnameModel.invalid && shown">
+                Last Name is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field (click) = "hideError()">
+              <input
+                #regUsername
+                matInput
+                placeholder="User Name"
+                required
+                name="username"
+                ngModel
+                #regUsernameModel="ngModel">
+              <mat-icon matSuffix>perm_identity</mat-icon>
+              <mat-error
+                *ngIf="regUsernameModel.invalid && shown">
+                Username is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field (click) = "hideError()">
+              <input
+                #email
+                matInput
+                placeholder="Email"
+                required
+                name="email"
+                ngModel
+                #emailModel="ngModel">
+              <mat-error *ngIf="emailModel.invalid && shown">Email is required</mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field (click) = "hideError()">
+              <input
+                #regPassword
+                matInput
+                placeholder="Password"
+                type="password"
+                required
+                minlength="6"
+                name="password"
+                ngModel
+                #regPasswordModel="ngModel">
+              <mat-error
+                *ngIf="regPasswordModel.errors && regPasswordModel.errors.required && shown">
+                Password is required
+              </mat-error>
+              <mat-error
+                *ngIf="regPasswordModel.errors && regPasswordModel.errors.minlength && shown">
+                Password must be of length 6
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+
+            </mat-form-field>
+            <mat-form-field (click) = "hideError()">
+              <input
+                #rePassword
+                matInput
+                placeholder="Password"
+                type="password"
+                required
+                minlength="6"
+                name="repassword"
+                ngModel
+                #rePassword="ngModel">
+              <mat-error
+                *ngIf="rePassword.errors && rePassword.errors.required && shown">
+                Re-Enter Password is required
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <button (click) = "clientRegister()"
+              mat-raised-button
+              color="primary"
+              class="login-button">
+              Register
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>
+<!--</div>-->

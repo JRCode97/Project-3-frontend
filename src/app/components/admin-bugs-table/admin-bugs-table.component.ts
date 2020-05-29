@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
-import { AdminBugsTableDataSource, AdminBugsTableItem } from './admin-bugs-table-datasource';
-import {Observable} from 'rxjs';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import BugReport from '../../models/BugReport';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-admin-bugs-table',
@@ -12,22 +13,33 @@ import {Observable} from 'rxjs';
 })
 export class AdminBugsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Input() bugReports: BugReport[];
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<AdminBugsTableItem>;
-  dataSource: AdminBugsTableDataSource;
+  @ViewChild(MatTable) table: MatTable<BugReport>;
+  obs: Observable<any>;
+  dataSource: MatTableDataSource<BugReport> = new MatTableDataSource<BugReport>();
+
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['title', 'application', 'location', 'severity', 'priority', 'date', 'developer', 'details' ];
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
 
+  }
 
 
   ngOnInit() {
-    this.dataSource = new AdminBugsTableDataSource();
+    this.dataSource = new MatTableDataSource<BugReport>(this.bugReports);
+    console.log(this.bugReports);
+
+    this.changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
+
+    this.obs = this.dataSource.connect();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
   }
 }
+

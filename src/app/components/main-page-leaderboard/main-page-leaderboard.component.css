@@ -4,10 +4,10 @@
     border-width: 1px;
     border-color: darkslategrey;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: 500;
 }
 .mainLeaderboardLogo{
-    background-color: crimson;
+    background-color: var(--accent);
     color: ghostwhite;
     padding: 15px 0px 15px 0px;
     text-align: center;
@@ -16,13 +16,14 @@
     text-shadow: 2px 1px #090909;
 }
 .mainLeaderboardRow{
-    background-color: snow;
-    color: darkslategray;
     /* text-shadow: 1px 1px rgb(158, 15, 44); */
     font-size: 18px;
     padding: 10px 0px 10px 30px;
-    border-radius: 0px 0px 10px 10px;
     border-style: inherit;
     border-color: inherit;
     border-width: 1px 0px 0px 0px;
+}
+
+.mainLeaderboardRow:last-child{
+    border-radius: 0px 0px 10px 10px;
 }

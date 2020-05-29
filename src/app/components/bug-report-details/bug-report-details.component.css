@@ -1,14 +1,17 @@
 .formLabel {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .container {
     border-style: groove;
     border-radius: 20px;
+    margin-bottom: 5px;
 }
+ 
 
-.formLabel {
+.formLabel ,.form-label {
     width: 20%;
+    font-weight: bold;
 }
 
 .dropDown {
@@ -37,7 +40,6 @@
 }
 
 .textareaDisabled:read-only {
-    background-color: whitesmoke;
     overflow: scroll;
     overflow-y: scroll;
     overflow-x: scroll;
@@ -50,11 +52,17 @@
 }
 
 .titleH1 {
+    -ms-flex:   0;
+    flex:  0;
+    width: 300px;
+    color: var(--secondary);
     margin-left: -13px;
     margin-top: 2px;
-    background: linear-gradient(to bottom left, #91c7fc -6%, #bde4fc 59%);
+    background: linear-gradient(to bottom left, #101111  -6%, rgb(65, 63, 63) 48%);
     border-style: groove;
     border-width: thin;
-    border-radius: 25px;
-    border-color: rgb(145, 199, 252);
+    border-top-left-radius: 18px;
+    border-bottom-right-radius: 25px;
+    border-color: rgb(217, 232, 247);
+
 }
