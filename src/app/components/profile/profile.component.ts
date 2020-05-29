@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
     this.client = this.api.getLoggedClient()
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
-    this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
+    this.client.role === 0 ? this.client.Role="Developer" : this.client.Role="Admin"
     this.getClientPoint()
   }
   bugStatus
