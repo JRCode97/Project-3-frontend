@@ -13,6 +13,7 @@ export class AdminBugsComponent implements OnInit {
   bugReports: Array<BugReport>;
 
   public show = false;
+  
   public buttonName: any = 'Card View';
   shown = false;
 
