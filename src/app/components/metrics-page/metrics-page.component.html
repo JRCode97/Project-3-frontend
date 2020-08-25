@@ -1,0 +1,24 @@
+<div class="container-fluid tab-bar">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+            <div class="tab-container">
+                <div class="tab-developers">
+                    <a (click)="changeToDev()">Developers</a>
+                </div>
+                <div class="tab-summary">
+                    <a (click)="changeToSum()">Summary</a>
+                </div>
+                <div class="tab-applications">
+                    <a (click)="changeToApp()">Applications</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <app-metrics-page-summary *ngIf ="ifSummary"></app-metrics-page-summary>
+    <app-metrics-page-applications *ngIf ="ifApplications"></app-metrics-page-applications>
+    <app-metrics-page-developer *ngIf ="ifDeveloper"></app-metrics-page-developer>
+</div>
