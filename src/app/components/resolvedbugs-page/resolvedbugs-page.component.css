@@ -1,0 +1,16 @@
+.page-header{
+    text-align: center;
+  }
+  
+  button {
+    margin-left: 15px;
+  }
+  
+  #toggle-view{
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 18px;
+    padding-bottom: 25px;
+  }
+  

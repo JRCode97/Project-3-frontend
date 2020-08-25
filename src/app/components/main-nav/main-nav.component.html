@@ -38,6 +38,7 @@
       <mat-slide-toggle id="theme-toggle" (click)="changeTheme()">{{theme}}</mat-slide-toggle>
       <span class="spacer"></span>
       <a routerLink="/main">Main</a>
+      <a routerLink="/resolved">Resolved Bugs</a>
       <div class="links" *ngIf="clientRole >= 1"><!-- Dev & Admin-->
         <a routerLink="/profile">Profile</a>
         <a routerLink="/newbugreport">Report New Bug</a>
