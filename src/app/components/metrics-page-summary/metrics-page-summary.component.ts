@@ -15,6 +15,7 @@ export class MetricsPageSummaryComponent implements OnInit {
   highCount:number;
   medCount:number;
   lowCount:number;
+  avgTime:number;
 
 
   
@@ -33,7 +34,9 @@ export class MetricsPageSummaryComponent implements OnInit {
     let hCount:number =0;
     let mCount:number = 0;
     let lCount:number = 0;
+    let timeSum:number = 0;
     for (let r of all){
+      timeSum += (r.resolvedTime - r.dateCreated);
       if(r.severity === "High"){
         ++hCount;
       }
@@ -44,7 +47,7 @@ export class MetricsPageSummaryComponent implements OnInit {
         ++lCount;
       } 
     }
-
+    this.avgTime = Math.round(timeSum / all.length);
     this.highCount = hCount;
     this.medCount = mCount;
     this.lowCount = lCount;
@@ -60,9 +63,18 @@ export class MetricsPageSummaryComponent implements OnInit {
     console.log(this.highCount);
     console.log(this.medCount);
     console.log(this.lowCount);
+    CanvasJS.addColorSet("colors",
+                [//colorSet Array
+
+                "rgb(255, 89, 89)",
+                "rgb(255, 217, 112)",
+                "rgb(186, 255, 177)",            
+                ]);
+
     let chart = new CanvasJS.Chart("chartContainer", {
       theme: "light2",
       backgroundColor: "transparent",
+      colorSet: "colors",
       animationEnabled: true,
       exportEnabled: true,
       title:{
