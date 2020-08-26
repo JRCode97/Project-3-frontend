@@ -45,6 +45,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import {MetricsPageComponent} from './components/metrics-page/metrics-page.component';
+import { MetricsPageSummaryComponent } from './components/metrics-page-summary/metrics-page-summary.component';
+import { MetricsPageApplicationsComponent } from './components/metrics-page-applications/metrics-page-applications.component';
+import { MetricsPageDeveloperComponent } from './components/metrics-page-developer/metrics-page-developer.component';
 
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
@@ -64,6 +68,8 @@ import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolv
 import { ResolvedbugsCardsComponent } from './components/resolvedbugs-cards/resolvedbugs-cards.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
 import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
+
+
 
 
 
@@ -108,6 +114,10 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     ResolvedbugsCardsComponent,
     ViewBugsPageComponent,
     UnresolvedbugsPageComponent,
+    MetricsPageComponent,
+    MetricsPageSummaryComponent,
+    MetricsPageApplicationsComponent,
+    MetricsPageDeveloperComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -2,9 +2,9 @@
   <p class="mat-display-2">Applications</p>
 
     <label>Application Title<span> *</span></label><br>
-    <input type = "text" placeholder="Project One" [(ngModel)] = "appTitle" > <p #titlErr id="tErr"></p> <br><br>
+    <input type = "text" placeholder="Project One" [(ngModel)] = "appTitle" id="appointTitle"> <p #titlErr id="tErr"></p> <br><br>
     <label>Github Link<span> *</span> </label><br>
-    <input type = "text" placeholder="https://github.com/application/githublink" [(ngModel)] = "appLink" > <p #linkErr id="lErr"></p><br><br>
+    <input type = "text" placeholder="https://github.com/application/githublink" [(ngModel)] = "appLink" id="appointUrl"> <p #linkErr id="lErr"></p><br><br>
 
     <button id="canc" mat-raised-button (click)="clear()">Cancel</button>
     <button id="save" color="warn" mat-raised-button (click)="addApplication()">Save</button>

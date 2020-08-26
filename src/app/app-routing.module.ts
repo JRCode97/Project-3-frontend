@@ -14,6 +14,7 @@ import { BugReportDetailsComponent } from './components/bug-report-details/bug-r
 import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component'
 import {LoginMatComponent} from './components/login-mat/login-mat.component';
+import {MetricsPageComponent} from './components/metrics-page/metrics-page.component';
 
 const routes: Routes = [
   { path: 'loginbackup', component: LoginComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent},
   { path: 'bugreportapprove/:id', component: BugReportDetailsComponent},
   { path: 'bugs', component : ViewBugsPageComponent },
+  { path: 'metrics', component: MetricsPageComponent},
   { path: '', component: LoginMatComponent}
 
 ];
