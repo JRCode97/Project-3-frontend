@@ -4,6 +4,24 @@
 <mat-slide-toggle color="accent" (click)="toggle()">{{buttonName}}</mat-slide-toggle>
 </div>
 
+<div class="selectDivs">
+    <div >
+    Bugs by Application: 
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let app of apps" [app]="app" value="app.title">{{app.title}}</mat-option>
+        </mat-select></mat-form-field>
+    </div>
+</div>
+
+<!-- <ng-container [ngSwitch]="apps">
+    <ng-container *ngSwitchCase="">
+        <div id="bugsByAppTable">
+            <app-bugs-by-app-table></app-bugs-by-app-table>
+        </div>
+    </ng-container>
+</ng-container> -->
+
 <app-admin-bugs-table *ngIf="bugReports" [hidden] = "shown" [bugReports] = "bugReports"> </app-admin-bugs-table>
 <app-admin-bugs-cards *ngIf="show" [bugReports] = "bugReports"></app-admin-bugs-cards>
 

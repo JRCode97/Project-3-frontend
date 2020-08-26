@@ -1,7 +1,9 @@
-import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit,ElementRef, ViewChild, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/Client';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import {Application} from '../../models/application'
+
 
 @Component({
   selector: 'app-application',
@@ -9,6 +11,7 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
+  @Input("app")application: Application;
   @ViewChild('titlErr') x: ElementRef;
   @ViewChild('linkErr') y: ElementRef;
   public client: Client;

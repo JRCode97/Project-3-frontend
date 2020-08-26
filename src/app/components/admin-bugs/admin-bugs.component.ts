@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import BugReport from '../../models/BugReport';
 import {ApiServiceService} from '../../services/api-service.service';
+import Application from 'src/app/models/Application';
 
 @Component({
   selector: 'app-admin-bugs',
@@ -12,6 +13,8 @@ export class AdminBugsComponent implements OnInit {
 
   bugReports: Array<BugReport>;
 
+  apps:Array<Application>;
+
   public show = false;
   
   public buttonName: any = 'Card View';
@@ -21,6 +24,7 @@ export class AdminBugsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBugReports();
+    this.getApplications();
   }
 
   toggle() {
@@ -39,6 +43,11 @@ export class AdminBugsComponent implements OnInit {
   async getBugReports(){
     this.bugReports = await this.apiservice.getRequestedBugs();
     return this.bugReports;
+  }
+
+  async getApplications(){
+    this.apps = await this.apiservice.getApplications();
+    return this.apps;
   }
 
 
