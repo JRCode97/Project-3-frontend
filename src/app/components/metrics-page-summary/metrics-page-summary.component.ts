@@ -76,11 +76,6 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   formatTimeData(timeSeries) {
-     // let y = 0;		
-	  // for ( let i = 0; i < 10000; i++ ) {		  
-		// y += Math.round(5 + Math.random() * (-5 - 5));	
-		//   dataPoints.push({ y: y});
-    // }
 
     // "It just works" - Todd Howard
     let data= [];
@@ -89,8 +84,8 @@ export class MetricsPageSummaryComponent implements OnInit {
       months.push(this.datePipe.transform(point, 'MM-yyyy'))
     }
 
-    console.log(months)
 
+    // seperate into x=months, y=number of occurences 
     let a = [], b = [], prev;
     for ( var i = 0; i < months.length; i++ ) {
         if ( months[i] !== prev ) {
