@@ -74,6 +74,11 @@ export class ApiServiceService {
     return this.http.get<Client>(`${this.path}/clients/${id}`).toPromise();
   }
 
+  async getAllClients():Promise<Array<Client>>{
+    let clients: Array<Client> = await this.http.get<Array<Client>>(`${this.path}/clients`).toPromise();
+    return clients;
+  }
+
   // points displayed in profile page
   getPoints(id:number){
     return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
@@ -102,6 +107,8 @@ export class ApiServiceService {
     return this.http.post(`${this.path}/resetpassword/${email}`, email).toPromise();
 
   }
+
+
 
   //################ Start of Solution Section ###################
 
