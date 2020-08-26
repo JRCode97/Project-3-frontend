@@ -45,6 +45,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { SolutionsTableComponent } from './components/profile/profile-tables/solutions-table/solutions-table.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import {MetricsPageComponent} from './components/metrics-page/metrics-page.component';
+import { MetricsPageSummaryComponent } from './components/metrics-page-summary/metrics-page-summary.component';
+import { MetricsPageApplicationsComponent } from './components/metrics-page-applications/metrics-page-applications.component';
+import { MetricsPageDeveloperComponent } from './components/metrics-page-developer/metrics-page-developer.component';
 
 import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
 import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
@@ -60,6 +64,8 @@ import { RejectedSolutionTableComponent } from './components/profile/profile-tab
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 
 
 
@@ -100,6 +106,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AcceptedSolutionTableComponent,
     RejectedSolutionTableComponent,
     LoginMatComponent,
+    MetricsPageComponent,
+    MetricsPageSummaryComponent,
+    MetricsPageApplicationsComponent,
+    MetricsPageDeveloperComponent,
   ],
   imports: [
     AppRoutingModule,
