@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import * as CanvasJS from 'src/assets/canvasjs.min';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-metrics-page-summary',
@@ -9,18 +10,20 @@ import * as CanvasJS from 'src/assets/canvasjs.min';
 })
 export class MetricsPageSummaryComponent implements OnInit {
 
+  timeSeries:Array<Object> = new Array();
   resolvedBugsCount:number;
   unresolvedBugsCount:number;
   requestedBugsCount:number;
   highCount:number;
   medCount:number;
   lowCount:number;
+  avgTime:number;
 
   // count by severity & status 
   // weekly bug reports line chart 
   
 
-  constructor(private apiservice: ApiServiceService) { }
+  constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getStats();
@@ -34,7 +37,20 @@ export class MetricsPageSummaryComponent implements OnInit {
     let hCount:number =0;
     let mCount:number = 0;
     let lCount:number = 0;
+    let sum:number = 0;
+    let nonZeros:number = 0;
     for (let r of all){
+      let date = this.datePipe.transform(r.createdTime, 'yyyy-MM-dd')
+      console.log(date)
+      this.timeSeries.push(date)
+      let diff:number;
+      let a:number = r.resolvedTime
+      let b:number = r.createdTime
+      diff = a - b
+      if (diff > 0){
+        ++nonZeros;
+        sum += (diff / 3600000);
+      }
       if(r.severity === "High"){
         ++hCount;
       }
@@ -45,7 +61,10 @@ export class MetricsPageSummaryComponent implements OnInit {
         ++lCount;
       } 
     }
-
+    
+    this.timeSeries = this.timeSeries.sort().reverse()
+    console.log(this.timeSeries)
+    this.avgTime = Math.round(sum/nonZeros)
     this.highCount = hCount;
     this.medCount = mCount;
     this.lowCount = lCount;
@@ -53,15 +72,45 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.resolvedBugsCount = res.length;
     this.unresolvedBugsCount = unres.length;
     this.requestedBugsCount = req.length;
-    this.makeChart();
+    this.makePieChart();
   }
 
+  async getTimeData() {
+    // get all the creation dates
+    // sort by descending 
+    // 
+  }
 
-  makeChart(){
-    console.log(this.highCount);
-    console.log(this.medCount);
-    console.log(this.lowCount);
-    let chart = new CanvasJS.Chart("chartContainer", {
+  makeLineChart(){
+    
+    let dataPoints = [];
+	  let y = 0;		
+	  for ( var i = 0; i < 10000; i++ ) {		  
+		y += Math.round(5 + Math.random() * (-5 - 5));	
+		  dataPoints.push({ y: y});
+	  }
+	  let chart = new CanvasJS.Chart("chartContainer", {
+		zoomEnabled: true,
+		animationEnabled: true,
+		exportEnabled: true,
+		title: {
+			text: "Performance Demo - 10000 DataPoints"
+		},
+		subtitles:[{
+			text: "Try Zooming and Panning"
+		}],
+		data: [
+		{
+			type: "line",                
+			dataPoints: dataPoints
+		}]
+	});
+	
+	chart.render();
+  }
+
+  makePieChart(){
+    let chart = new CanvasJS.Chart("pieChartContainer", {
       theme: "light2",
       backgroundColor: "transparent",
       animationEnabled: true,

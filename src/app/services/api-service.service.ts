@@ -129,7 +129,6 @@ export class ApiServiceService {
 
   putSolution(solution:Solution) {
     return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
-
   }
 
   //################ Start of Application Section ###################

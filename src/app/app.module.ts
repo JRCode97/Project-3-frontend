@@ -64,6 +64,7 @@ import { RejectedSolutionTableComponent } from './components/profile/profile-tab
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -140,7 +141,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTabsModule,
     MatCheckboxModule
   ],
-  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
+  providers: [DatePipe, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })
 

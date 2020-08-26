@@ -11,7 +11,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
   // some kind of "social enagement" - stretch
   // active users - users that have submitted something in the past week 
   // inactive users 
-  // avg time to complete 
+  // avg time user takes to complete 
   // amount of users 
   // users per application
 
