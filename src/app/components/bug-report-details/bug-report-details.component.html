@@ -57,10 +57,9 @@
 
             <label id="lblapprovedTime" class="col-sm-2    " *ngIf="br.approvedTime!=0" >{{br.approvedTime|date:'medium'}}</label>
 
-            <label for="lblresolvedTime" class="col-sm-2  form-label" *ngIf="br.resolvedTime!=0">Resolved Time: </label>
+            <label for="lblresolvedTime" class="col-sm-2  form-label" *ngIf="!(br.status==='Unresolved')">Resolved Time: </label>
 
-            <label id="lblresolvedTime" class="col-sm-2   " *ngIf="br.resolvedTime!=0">{{br.resolvedTime|date:'medium'}}</label>
-
+            <label id="lblresolvedTime" class="col-sm-2   " *ngIf="!(br.status==='Unresolved')">{{br.resolvedTime|date:'medium'}}</label>
 
         </div>
         <div class="form-group row">
@@ -68,6 +67,8 @@
             <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.pointValue}} </label>
             <input id="txtpoints"  #txtpoints name="txtpoints" [(ngModel)]="br.pointValue"  type="number"
                 class="col-sm-2" style="max-width: 120px;" *ngIf="isAdmin">
+            
+                <label class="col-sm-2  form-label">Solutions: </label>
         </div>
 
         <div class="form-group row">
@@ -89,7 +90,7 @@
         </div>
 
           <div class="buttonGroup" *ngIf = "isAdmin">
-            <button type="button"*ngIf="!(br.status==='Unresolved' ) "  [disabled]= " br.status==='Resolved'" class="
+            <button type="button" *ngIf="!(br.status==='Unresolved')"  [disabled]= "br.status==='Resolved'" class="
                 btn btn-success" (click)="AcceptBug()">Approve </button>
              <button type="button" *ngIf=" !(br.status  === 'Denied')  " [disabled]="br.status  === 'Resolved'"
                  class="btn btn-danger" (click)="RejectBug()">Reject</button>
