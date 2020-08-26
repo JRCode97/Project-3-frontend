@@ -11,6 +11,8 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
+import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
+import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component'
 import {LoginMatComponent} from './components/login-mat/login-mat.component';
 import {MetricsPageComponent} from './components/metrics-page/metrics-page.component';
 
@@ -22,10 +24,12 @@ const routes: Routes = [
   { path: 'bugreport/:id', component: BugReportViewComponent },
   { path: 'bugsolutionreview/:id', component: SolutionApprovalComponent},
   { path: 'main', component: MainPageComponent },
+  { path: 'resolved', component:  ResolvedbugsPageComponent},
   { path: 'newbugreport', component: NewBugReportComponent },
   { path: 'newpassword', component: UpdatePasswordComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'bugreportapprove/:id', component: BugReportDetailsComponent},
+  { path: 'bugs', component : ViewBugsPageComponent },
   { path: 'metrics', component: MetricsPageComponent},
   { path: '', component: LoginMatComponent}
 

@@ -3,13 +3,11 @@ import BugReport from '../../models/BugReport';
 import {ApiServiceService} from '../../services/api-service.service';
 
 @Component({
-  selector: 'app-admin-bugs',
-  templateUrl: './admin-bugs.component.html',
-  styleUrls: ['./admin-bugs.component.css']
+  selector: 'app-resolvedbugs-page',
+  templateUrl: './resolvedbugs-page.component.html',
+  styleUrls: ['./resolvedbugs-page.component.css']
 })
-
-export class AdminBugsComponent implements OnInit {
-
+export class ResolvedbugsPageComponent implements OnInit {
   bugReports: Array<BugReport>;
 
   public show = false;
@@ -37,7 +35,7 @@ export class AdminBugsComponent implements OnInit {
   }
 
   async getBugReports(){
-    this.bugReports = await this.apiservice.getRequestedBugs();
+    this.bugReports = await this.apiservice.getResolvedBugs();
     return this.bugReports;
   }
 
