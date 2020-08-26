@@ -53,13 +53,14 @@
 
             <mat-checkbox>Remember Me</mat-checkbox>
 
-            <mat-error class="invalid-login" *ngIf="invalid">
+            <mat-error id = "loginError" class="invalid-login" *ngIf="invalid">
               Invalid Username or Password!
             </mat-error>
 
             <button
               (click) = clientLogin()
               mat-raised-button
+              id = "loginButton"
               color="primary"
               class="login-button">
               Sign In
@@ -69,7 +70,7 @@
           </form>
         </mat-card-content>
       </mat-tab>
-      <mat-tab label="Register">
+      <mat-tab id = "registerTab" label="Register">
         <mat-card-content>
           <form action="">
 
@@ -110,6 +111,7 @@
               <input
                 #regUsername
                 matInput
+                id = "regUsername"
                 placeholder="User Name"
                 required
                 name="username"
@@ -138,6 +140,7 @@
               <input
                 #regPassword
                 matInput
+                id = "regPassword"
                 placeholder="Password"
                 type="password"
                 required
@@ -175,6 +178,7 @@
             </mat-form-field>
             <button (click) = "clientRegister()"
               mat-raised-button
+              id = "registerButton"
               color="primary"
               class="login-button">
               Register
