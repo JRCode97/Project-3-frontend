@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject,LOCALE_ID } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import * as CanvasJS from 'src/assets/canvasjs.min';
 import { DatePipe } from '@angular/common';
@@ -40,9 +40,8 @@ export class MetricsPageSummaryComponent implements OnInit {
     let sum:number = 0;
     let nonZeros:number = 0;
     for (let r of all){
-      let date = this.datePipe.transform(r.createdTime, 'yyyy-MM-dd')
-      console.log(date)
-      this.timeSeries.push(date)
+      // let date = this.datePipe.transform(r.createdTime, 'yyyy-MM-dd')
+      this.timeSeries.push(r.createdTime)
       let diff:number;
       let a:number = r.resolvedTime
       let b:number = r.createdTime
@@ -73,23 +72,51 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.unresolvedBugsCount = unres.length;
     this.requestedBugsCount = req.length;
     this.makePieChart();
+    this.makeLineChart();
   }
 
-  async getTimeData() {
-    // get all the creation dates
-    // sort by descending 
-    // 
+  formatTimeData(timeSeries) {
+     // let y = 0;		
+	  // for ( let i = 0; i < 10000; i++ ) {		  
+		// y += Math.round(5 + Math.random() * (-5 - 5));	
+		//   dataPoints.push({ y: y});
+    // }
+
+    // "It just works" - Todd Howard
+    let data= [];
+    let months = new Array();
+    for(let point of timeSeries){
+      months.push(this.datePipe.transform(point, 'MM-yyyy'))
+    }
+
+    console.log(months)
+
+    let a = [], b = [], prev;
+    for ( var i = 0; i < months.length; i++ ) {
+        if ( months[i] !== prev ) {
+            a.push(months[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = months[i];
+    }
+
+    for(var j = 0; j< a.length; j++){
+      data.push({ y : b[j]})
+    }
+    
+    
+    
+    return data;
   }
 
   makeLineChart(){
     
-    let dataPoints = [];
-	  let y = 0;		
-	  for ( var i = 0; i < 10000; i++ ) {		  
-		y += Math.round(5 + Math.random() * (-5 - 5));	
-		  dataPoints.push({ y: y});
-	  }
-	  let chart = new CanvasJS.Chart("chartContainer", {
+    let dataPoints = this.formatTimeData(this.timeSeries);
+	  
+    
+	  let chart = new CanvasJS.Chart("lineChartContainer", {
 		zoomEnabled: true,
 		animationEnabled: true,
 		exportEnabled: true,
