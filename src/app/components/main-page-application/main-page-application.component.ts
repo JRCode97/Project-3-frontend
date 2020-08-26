@@ -23,8 +23,19 @@ export class MainPageApplicationComponent implements OnInit {
   ngOnInit(): void {
     this.title = this.application.title;
     this.gitLink = this.application.gitLink;
-    this.bugCount = this.application.reports.length;
-    this.reports = this.application.reports;
+    this.reports =  this.getOpenReports();
+    this.bugCount = this.reports.length;
+  }
+
+  getOpenReports(): BugReport[] {
+    const holder: BugReport[] = this.application.reports;
+    const returner: BugReport[] = [];
+    for (const report of holder) {
+      if (report.status !== 'Resolved') {
+        returner.push(report);
+      }
+    }
+    return returner;
   }
 
 }
