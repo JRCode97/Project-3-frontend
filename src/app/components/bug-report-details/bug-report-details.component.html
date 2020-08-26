@@ -21,9 +21,9 @@
         </div>
         <div class="form-group row">
             <label for="ddlseverity" class="col-sm-2  form-label">Severity: </label>
-
+            <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.severity}} </label>
             <select #ddlseverity id="ddlseverity" name="ddlseverity" [(ngModel)]="br.severity"
-                (change)="setSeverity($event)" class="col-sm-2   mr-sm-2"  >
+                (change)="setSeverity($event)" class="col-sm-2   mr-sm-2" *ngIf="isAdmin">
                 <option value="" disabled>Choose Severity</option>   
                 <option value="Low">Low</option>    
                 <option value="Medium">Medium</option>                                          
@@ -31,13 +31,15 @@
             </select>
           
             <label for="ddlpriority" class="col-sm-2  form-label">	&nbsp;Priority: </label>
+            <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.priority}} </label>
             <select #ddlpriority id="ddlpriority" name="ddlpriority" [(ngModel)]="br.priority"
-                (change)="setPriority($event)" class="col-sm-2   mr-sm-2">
+                (change)="setPriority($event)" class="col-sm-2   mr-sm-2" *ngIf="isAdmin">
                 <option value="" disabled>Choose Priority</option>   
                 <option value="Low">Low</option>    
                 <option value="Medium">Medium</option>                                          
                 <option value="High">High</option>
             </select>
+
         </div>
         <div class="form-group row">
             <label for="txtdate" class="col-sm-2  form-label">Creation Time:</label>
@@ -63,8 +65,9 @@
         </div>
         <div class="form-group row">
             <label for="txtpoints" class="col-sm-2  form-label">Points: </label>
+            <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.pointValue}} </label>
             <input id="txtpoints"  #txtpoints name="txtpoints" [(ngModel)]="br.pointValue"  type="number"
-                class="col-sm-2" style="max-width: 120px;"  >
+                class="col-sm-2" style="max-width: 120px;" *ngIf="isAdmin">
         </div>
 
         <div class="form-group row">
@@ -76,8 +79,6 @@
 
         </div>
 
-
-
         <div class="form-group row">
 
             <label for="txtreproduceSteps" class="col-sm-2 form-label">Reproduce Steps:</label>
@@ -87,11 +88,12 @@
 
         </div>
 
-          <div class="buttonGroup">
-             <button type="button" *ngIf=" !(br.status  === 'Denied')  " [disabled]="br.status  === 'Resolved'"
-                 class="btn btn-danger" (click)="RejectBug()">  Reject</button>
-             <button type="button"*ngIf="!(br.status==='Unresolved' ) "  [disabled]= " br.status==='Resolved'" class="
+          <div class="buttonGroup" *ngIf = "isAdmin">
+            <button type="button"*ngIf="!(br.status==='Unresolved' ) "  [disabled]= " br.status==='Resolved'" class="
                 btn btn-success" (click)="AcceptBug()">Approve </button>
+             <button type="button" *ngIf=" !(br.status  === 'Denied')  " [disabled]="br.status  === 'Resolved'"
+                 class="btn btn-danger" (click)="RejectBug()">Reject</button>
+             
              </div>
                 <br>
 

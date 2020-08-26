@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SolutionApprovalComponent } from './components/solution-approval/solution-approval.component';
 import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
 import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
+import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component'
 import {LoginMatComponent} from './components/login-mat/login-mat.component';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'newpassword', component: UpdatePasswordComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'bugreportapprove/:id', component: BugReportDetailsComponent},
+  { path: 'bugs', component : ViewBugsPageComponent },
   { path: '', component: LoginMatComponent}
 
 ];

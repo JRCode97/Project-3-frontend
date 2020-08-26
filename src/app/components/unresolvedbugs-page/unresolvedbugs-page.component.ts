@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import BugReport from '../../models/BugReport';
 import {ApiServiceService} from '../../services/api-service.service';
 
-@Component({
-  selector: 'app-admin-bugs',
-  templateUrl: './admin-bugs.component.html',
-  styleUrls: ['./admin-bugs.component.css']
-})
 
-export class AdminBugsComponent implements OnInit {
+@Component({
+  selector: 'app-unresolvedbugs-page',
+  templateUrl: './unresolvedbugs-page.component.html',
+  styleUrls: ['./unresolvedbugs-page.component.css']
+})
+export class UnresolvedbugsPageComponent implements OnInit {
 
   bugReports: Array<BugReport>;
 
@@ -37,9 +37,8 @@ export class AdminBugsComponent implements OnInit {
   }
 
   async getBugReports(){
-    this.bugReports = await this.apiservice.getRequestedBugs();
+    this.bugReports = await this.apiservice.getUnResolvedBugs();
     return this.bugReports;
   }
-
 
 }

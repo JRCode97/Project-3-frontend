@@ -1,8 +1,9 @@
-<h1 class="page-header">Resolved Bugs Page</h1>
+<div class="bug-page-content-container">
 
-<div id="toggle-view">
-<mat-slide-toggle color="accent" (click)="toggle()">{{buttonName}}</mat-slide-toggle>
+    <div id="toggle-view">
+        <mat-slide-toggle color="accent" (click)="toggle()">{{buttonName}}</mat-slide-toggle>
+    </div>
+
+    <app-admin-bugs-table *ngIf="bugReports" [hidden]="shown" [bugReports]="bugReports"> </app-admin-bugs-table>
+    <app-admin-bugs-cards *ngIf="show" [bugReports]="bugReports"></app-admin-bugs-cards>
 </div>
-
-<app-resolvedbugs-table *ngIf="bugReports" [hidden] = "shown"> </app-resolvedbugs-table>
-<app-resolvedbugs-cards *ngIf="show" [bugReports] = "bugReports"></app-resolvedbugs-cards>

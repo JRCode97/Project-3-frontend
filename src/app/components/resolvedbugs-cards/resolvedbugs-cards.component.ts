@@ -24,7 +24,6 @@ export class ResolvedbugsCardsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.currentItemsToShow = this.bugReports.slice(0, this.pageSize);
-    this.currentItemsToShow = this.getResolvedReports(this.currentItemsToShow);
     this.dataSource = new MatTableDataSource<BugReport>(this.bugReports);
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
@@ -37,27 +36,12 @@ export class ResolvedbugsCardsComponent implements OnInit, AfterViewInit {
 
   onPageChange($event){
     this.currentItemsToShow = this.bugReports;
-    this.currentItemsToShow = this.getResolvedReports(this.currentItemsToShow);
     this.currentItemsToShow = this.bugReports.slice(
       $event.pageIndex * $event.pageSize,
       $event.pageIndex * $event.pageSize +
       $event.pageSize
     );
 }
-  getResolvedReports(reports){
-    let tempItems = [];
-    
-    
-    for(let bug of reports){
-      if(bug.status !== "resolved"){
-        tempItems.push(bug);
-      }
-    }
-    for(let temp of tempItems){
-      console.log(temp.status);
-    }
-    return tempItems;
-  }
 }
 
 
