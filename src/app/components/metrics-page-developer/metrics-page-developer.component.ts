@@ -135,8 +135,13 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
       
       
+<<<<<<< HEAD
 }
  
+=======
+
+}
+>>>>>>> 21adf39414f98fe5cffa12fd1d14ffbebe4bb34f
 
 
 
