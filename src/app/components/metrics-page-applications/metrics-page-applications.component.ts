@@ -11,6 +11,11 @@ import { Application } from 'src/app/models/Application';
 export class MetricsPageApplicationsComponent implements OnInit {
   appStats:Array<Application>;
   
+  // resolution time per bug per application 
+  // some kind of severity per bug per application - Stacked Column Chart
+  // solutions submissions per app 
+  // active users per app 
+
 
   constructor(private apiservice: ApiServiceService) { }
 

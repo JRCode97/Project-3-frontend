@@ -9,9 +9,10 @@ import * as CanvasJS from 'src/assets/canvasjs.min';
 @Component({
   selector: 'app-metrics-page-developer',
   templateUrl: './metrics-page-developer.component.html',
-  styleUrls: ['./metrics-page-developer.component.css']
+  styleUrls: ['./metrics-page-developer.component.scss']
 })
 export class MetricsPageDeveloperComponent implements OnInit {
+
 
 clients: Array<ClientDTO> = [];
 bugsDataPoints: Array<DataPoint> = [];
@@ -130,12 +131,12 @@ solsDataPoints :  Array<DataPoint> = [];
     }
 
 
-  }
+}
 
       
       
 
-  }
+ 
 
 
 

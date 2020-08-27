@@ -68,6 +68,8 @@ import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolv
 import { ResolvedbugsCardsComponent } from './components/resolvedbugs-cards/resolvedbugs-cards.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
 import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -148,7 +150,7 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     MatTabsModule,
     MatCheckboxModule
   ],
-  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
+  providers: [DatePipe, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })
 
