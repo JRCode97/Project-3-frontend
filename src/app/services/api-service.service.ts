@@ -20,11 +20,11 @@ export class ApiServiceService {
   constructor(private http: HttpClient) { }
 
 
- 
-  //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
-  path: string = 'http://localhost:9111'
 
- 
+  //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
+  //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
+  path: string = 'http://localhost:9111';
+
 
   //################ Start of Bug Report Section ###################
 
@@ -68,6 +68,7 @@ export class ApiServiceService {
     return this.http.get<Client>(this.path + `/query/clients?username=${username}`).toPromise();
   }
   async clientRegister(client: Client): Promise<Client> {
+    console.log(client);
     return await this.http.post<Client>(this.path + `/clients`, client).toPromise();
   }
   getClientById(id: number): Promise<Client> {
