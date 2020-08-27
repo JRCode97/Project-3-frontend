@@ -59,6 +59,8 @@ export class SolutionApprovalComponent implements OnInit {
   report: BugReport = dummy;
   toDetails: string = "";
   isResolved: boolean = false;
+  isAdmin:boolean;
+  client:Client;
 
   constructor(private api: ApiServiceService, private route: ActivatedRoute) { }
 
@@ -69,6 +71,8 @@ export class SolutionApprovalComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')
     this.toDetails = `/bugreport/${id}`
     this.getData(id)
+    this.client = this.api.getLoggedClient();
+    this.isAdmin = this.client.role ? true : false;
   }
 
   async getData(id:string) {

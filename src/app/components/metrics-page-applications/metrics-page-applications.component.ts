@@ -16,6 +16,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
   solutionsPerApp:Array<DataPoint> = [];
   // charts:Array<any> = [];
   
+
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit(): void {

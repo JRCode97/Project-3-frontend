@@ -16,3 +16,6 @@ body {
   --warn: #b71c1c;
   --secondary: #eeeeee;
 }
+.bug-page-content-container{
+  padding-bottom: 10%;
+}
