@@ -37,15 +37,36 @@ export class ApiServiceService {
   }
 
   getResolvedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Resolved`).toPromise();
+  }
+
+  getResolvedBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?status=Resolved&count=true`).toPromise();
   }
 
   getRequestedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=requested`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Requested`).toPromise();
+  }
+  getRequestedBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?status=Requested&count=true`).toPromise();
   }
 
   getUnResolvedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Unresolved`).toPromise();
+  }
+
+  getUnResolvedBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?status=Unresolved&count=true`).toPromise();
+  }
+
+  getHighPriorityBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?priority=High&count=true`).toPromise();
+  }
+  getMediumPriorityBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?priority=Medium&count=true`).toPromise();
+  }
+  getLowPriorityBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?priority=Low&count=true`).toPromise();
   }
 
   getBugReportById(id:number) {
@@ -147,7 +168,6 @@ export class ApiServiceService {
 
   putSolution(solution:Solution) {
     return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
-
   }
 
   //################ Start of Application Section ###################

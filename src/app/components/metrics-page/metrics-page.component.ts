@@ -13,7 +13,8 @@ export class MetricsPageComponent implements OnInit {
   ifDeveloper:boolean;
 
   constructor(private apiservice: ApiServiceService) { }
-
+ 
+ 
   ngOnInit(): void {
     this.ifSummary=true;
   }

@@ -13,6 +13,7 @@ import * as CanvasJS from 'src/assets/canvasjs.min';
 })
 export class MetricsPageDeveloperComponent implements OnInit {
 
+
 clients: Array<ClientDTO> = [];
 bugsDataPoints: Array<DataPoint> = [];
 solsDataPoints :  Array<DataPoint> = [];
@@ -130,10 +131,10 @@ solsDataPoints :  Array<DataPoint> = [];
     }
 
 
-  }
+}
 
 
-  }
+ 
 
 
 
