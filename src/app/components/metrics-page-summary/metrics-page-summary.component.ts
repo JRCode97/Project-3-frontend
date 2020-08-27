@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject,LOCALE_ID } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import * as CanvasJS from 'src/assets/canvasjs.min';
 import { DatePipe } from '@angular/common';
@@ -30,13 +30,17 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   async getStats() {
-    let req = await this.apiservice.getRequestedBugs();
-    let res = await this.apiservice.getResolvedBugs();
-    let unres = await this.apiservice.getUnResolvedBugs();
+    this.resolvedBugsCount = await this.apiservice.getResolvedBugsCount();
+    this.unresolvedBugsCount = await this.apiservice.getUnResolvedBugsCount();
+    this.requestedBugsCount = await this.apiservice.getRequestedBugsCount();
+    console.log(this.requestedBugsCount)
+    this.highCount = await this.apiservice.getHighPriorityBugsCount();
+    this.medCount = await this.apiservice.getMediumPriorityBugsCount();
+    this.lowCount = await this.apiservice.getLowPriorityBugsCount();
+    console.log(this.lowCount)
+
     let all = await this.apiservice.getBugReports();
-    let hCount:number =0;
-    let mCount:number = 0;
-    let lCount:number = 0;
+
     let sum:number = 0;
     let nonZeros:number = 0;
     for (let r of all){
@@ -50,27 +54,12 @@ export class MetricsPageSummaryComponent implements OnInit {
         ++nonZeros;
         sum += (diff / 3600000);
       }
-      if(r.severity === "High"){
-        ++hCount;
-      }
-      if(r.severity === "Medium"){
-        ++mCount;
-      } 
-      if(r.severity === "Low"){
-        ++lCount;
-      } 
     }
     
     this.timeSeries = this.timeSeries.sort().reverse()
     console.log(this.timeSeries)
     this.avgTime = Math.round(sum/nonZeros)
-    this.highCount = hCount;
-    this.medCount = mCount;
-    this.lowCount = lCount;
     
-    this.resolvedBugsCount = res.length;
-    this.unresolvedBugsCount = unres.length;
-    this.requestedBugsCount = req.length;
     this.makePieChart();
     this.makeLineChart();
   }
@@ -80,10 +69,11 @@ export class MetricsPageSummaryComponent implements OnInit {
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
+    
     for(let point of timeSeries){
       months.push(this.datePipe.transform(point, 'MM-yyyy'))
     }
-
+    
 
     // seperate into x=months, y=number of occurences 
     let a = [], b = [], prev;
@@ -98,7 +88,7 @@ export class MetricsPageSummaryComponent implements OnInit {
     }
 
     for(var j = 0; j< a.length; j++){
-      data.push({ y : b[j]})
+      data.push({ y : b[j], label:a[j]})
     }
     
     
@@ -108,27 +98,31 @@ export class MetricsPageSummaryComponent implements OnInit {
 
   makeLineChart(){
     
-    let dataPoints = this.formatTimeData(this.timeSeries);
+    let dataPoints = this.formatTimeData(this.timeSeries).reverse();
 	  
     
 	  let chart = new CanvasJS.Chart("lineChartContainer", {
 		zoomEnabled: true,
-		animationEnabled: true,
+    animationEnabled: true,
+    backgroundColor: "transparent",
 		exportEnabled: true,
 		title: {
-			text: "Performance Demo - 10000 DataPoints"
+			text: "Bug Reports Per Month"
 		},
 		subtitles:[{
 			text: "Try Zooming and Panning"
-		}],
+    }],
+    axisX: {
+      labelAngle: -30
+    },
 		data: [
 		{
 			type: "line",                
 			dataPoints: dataPoints
 		}]
-	});
+	  });
 	
-	chart.render();
+	  chart.render();
   }
 
   makePieChart(){
