@@ -9,7 +9,7 @@ import * as CanvasJS from 'src/assets/canvasjs.min';
 @Component({
   selector: 'app-metrics-page-developer',
   templateUrl: './metrics-page-developer.component.html',
-  styleUrls: ['./metrics-page-developer.component.css']
+  styleUrls: ['./metrics-page-developer.component.scss']
 })
 export class MetricsPageDeveloperComponent implements OnInit {
 
@@ -132,8 +132,6 @@ solsDataPoints :  Array<DataPoint> = [];
 
   }
 
-      
-      
 
   }
 
@@ -144,9 +142,14 @@ export class ClientDTO  {
   cId: number;
   firstName:string;
   lastname: string;
+
+
+
   bugsDataPoint: DataPoint;
   solutionsDataPoint: DataPoint;
 
+  bugsSubmittedWithinWeek;
+  solutionsSubmittedWIthinWeek;
 
   constructor(cId:number,  firstname:string, lastname:string, bugs:DataPoint, sols:DataPoint){
     this.cId=cId;
