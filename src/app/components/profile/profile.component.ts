@@ -51,11 +51,11 @@ export class ProfileComponent implements OnInit {
   }
 
   assignRole(){
-    if(this.client === 0){
-      this.client.Role = "Developer"
+    if(this.client.role === 0){
+      this.client.role = "Developer"
     }
     else{
-      this.client.Role = "Admin"
+      this.client.role = "Admin"
     }
   }
 

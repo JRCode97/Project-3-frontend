@@ -17,7 +17,7 @@ export class ResolvedbugsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<ResolvedbugsTableItem>;
   dataSource: ResolvedbugsTableDataSource;
-
+  isActive =true;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['title', 'bugdetails','username'];
 
