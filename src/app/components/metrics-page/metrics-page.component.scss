@@ -5,40 +5,27 @@ a{
 .fill{
     height:100px;
 }
-.tab-bar{
-    border-bottom: 1px solid red;
-}
+
 
 .tab-container{
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     *{
         padding-top:13px;
         font-size: large;
         padding-bottom:6px;
     }
-    .tab-developers{
+    .tab-btn{
         flex-grow: 1;
         flex-basis:0;
-        text-align: center;
-        border-right: 1px solid red;
+        text-align: left;
     }
-    .tab-summary{
-        flex-grow: 1;
-        flex-basis:0;
-        text-align: center;
-    }
-    .tab-applications{
-        flex-grow: 1;
-        flex-basis:0;
-        text-align: center;
-        border-left: 1px solid red;
+    .tab-btn-clicked{
+      flex-grow: 1;
+      flex-basis:0;
+      text-align: left;
     }
 }
-
-
-
-
 
 
 // bootstrap grid // 
