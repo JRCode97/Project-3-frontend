@@ -1,9 +1,9 @@
-<p>metrics-page-developer works!</p>
 
-<button (click) = 'initializeClientsData()'  > Initialize</button>
-<table >
 
-    <tr *ngFor='let c of clients'>{{c}} </tr>
-        
+<button (click)= initializeDataPointsFields()>initialize </button>
+<button (click)= "  draw()"> render</button>
 
-</table>
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+

@@ -79,6 +79,16 @@ export class ApiServiceService {
     return clients;
   }
 
+  async getClientBugReportCount() : Promise<number>{
+    const bugsCount: number = await this.http.get<number>(`${this.path}/bugreports/count`).toPromise();
+    return bugsCount;
+  }
+
+  async getClientSolutionsCount(): Promise<number> {
+    const solsCount: number = await this.http.get<number>(`${this.path}/solutions/count`).toPromise();
+    return solsCount;
+  }
+
   // points displayed in profile page
   getPoints(id:number){
     return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
