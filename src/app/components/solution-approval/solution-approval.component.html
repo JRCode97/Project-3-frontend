@@ -35,7 +35,7 @@
             <p class="resolved">Bug Report is resolved!</p>
         </ng-container>
         <ng-template #closeButton>
-            <button (click)="closeBug()" mat-raised-button color="warn">Close Bug</button>
+            <button (click)="closeBug()" mat-raised-button color="warn" *ngIf="isAdmin">Mark Bug as Resolved</button>
         </ng-template>
         <a mat-button [routerLink]="toDetails" color="accent" >Details</a>
     </mat-card-footer>
