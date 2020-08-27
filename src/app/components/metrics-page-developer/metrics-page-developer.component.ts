@@ -133,15 +133,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
 }
 
-      
-      
-<<<<<<< HEAD
 }
- 
-=======
-
-}
->>>>>>> 21adf39414f98fe5cffa12fd1d14ffbebe4bb34f
 
 
 
@@ -150,9 +142,14 @@ export class ClientDTO  {
   cId: number;
   firstName:string;
   lastname: string;
+
+
+
   bugsDataPoint: DataPoint;
   solutionsDataPoint: DataPoint;
 
+  bugsSubmittedWithinWeek;
+  solutionsSubmittedWIthinWeek;
 
   constructor(cId:number,  firstname:string, lastname:string, bugs:DataPoint, sols:DataPoint){
     this.cId=cId;
