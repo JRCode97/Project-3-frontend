@@ -73,7 +73,7 @@ export class LoginMatComponent implements OnInit {
     newclient.fName = this.firstname.nativeElement.value;
     newclient.lName = this.lastname.nativeElement.value;
     newclient.username = this.regusername.nativeElement.value;
-    newclient.password = this.password.nativeElement.value;
+    newclient.password = this.regpassword.nativeElement.value;
     newclient.solutions = solutions;
     newclient.role = 0;
 
