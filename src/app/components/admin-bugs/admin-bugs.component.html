@@ -4,7 +4,7 @@
 <mat-slide-toggle color="accent" (click)="toggle()">{{buttonName}}</mat-slide-toggle>
 </div>
 
-<div class="selectDivs">
+<!-- <div class="selectDivs" id="appsort">
     <div >
     Bugs by Application: 
     <mat-form-field>
@@ -12,7 +12,17 @@
             <mat-option *ngFor="let app of apps" [app]="app" value="app.title">{{app.title}}</mat-option>
         </mat-select></mat-form-field>
     </div>
-</div>
+</div> -->
+
+<!-- <div class="selectDivs" id="appsort">
+    <div >
+    Bugs by Application: 
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let app of apps" value="app.title">{{app.title}}</mat-option>
+        </mat-select></mat-form-field>
+    </div>
+</div> -->
 
 <!-- <ng-container [ngSwitch]="apps">
     <ng-container *ngSwitchCase="">
@@ -21,6 +31,44 @@
         </div>
     </ng-container>
 </ng-container> -->
+
+<!-- <div id="prioritysort">
+    <div >
+        Bugs by Priority: 
+        <mat-form-field>
+            <mat-select [(value)]="priority">
+                <mat-option value="All" (click)="getbugReportByPriority()">All</mat-option>
+                <mat-option value="Low" (click)="getbugReportByPriority()">Low</mat-option>
+                <mat-option value="Medium" (click)="getbugReportByPriority()">Medium</mat-option>
+                <mat-option value="High" (click)="getbugReportByPriority()">High</mat-option>
+            </mat-select></mat-form-field>
+        </div>
+</div>
+
+<div id="severitysort">
+    <div >
+        Bugs by Severity: 
+        <mat-form-field>
+            <mat-select [(value)]="severity">
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Low">Low</mat-option>
+                <mat-option value="Medium">Medium</mat-option>
+                <mat-option value="High">High</mat-option>
+            </mat-select></mat-form-field>
+        </div>
+</div>
+
+<div id="reporterbugsearch">
+    <form>
+        <mat-form-field>
+          <mat-label>Bugs Reported By:</mat-label>
+          <input matInput placeholder="Ex. TheRaidman" [(ngModel)]="reporterUsername" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </form>
+</div>
+<button mat-stroked-button id="searchbyreporterBtn" color="accent" (click)="getbugReportByClientUsername()">Search</button> -->
+
+
 
 <app-admin-bugs-table *ngIf="bugReports" [hidden] = "shown" [bugReports] = "bugReports"> </app-admin-bugs-table>
 <app-admin-bugs-cards *ngIf="show" [bugReports] = "bugReports"></app-admin-bugs-cards>

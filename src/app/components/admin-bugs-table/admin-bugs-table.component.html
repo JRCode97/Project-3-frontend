@@ -1,3 +1,60 @@
+<div class="selectDivs" id="appsort">
+  <div >
+  Bugs by Application: 
+  <mat-form-field>
+      <mat-select>
+          <mat-option *ngFor="let app of apps" value="app.title">{{app.title}}</mat-option>
+      </mat-select></mat-form-field>
+  </div>
+
+</div>
+<div id="prioritysort">
+  <div >
+      Bugs by Priority: 
+      <mat-form-field>
+        <mat-label>{{priorityDisplay}}</mat-label>
+          <mat-select [(value)]="priority">
+              <mat-option value="All" (click)="setbugReportByPriority()">All</mat-option>
+              <mat-option value="Low" (click)="setbugReportByPriority()">Low</mat-option>
+              <mat-option value="Medium" (click)="setbugReportByPriority()">Medium</mat-option>
+              <mat-option value="High" (click)="setbugReportByPriority()">High</mat-option>
+          </mat-select></mat-form-field>
+      </div>
+</div>
+
+<div id="severitysort">
+  <div >
+      Bugs by Severity: 
+      <mat-form-field>
+        <mat-label>{{severityDisplay}}</mat-label>
+          <mat-select [(value)]="severity">
+              <mat-option value="All" (click)="setbugReportBySeverity()">All</mat-option>
+              <mat-option value="Low" (click)="setbugReportBySeverity()">Low</mat-option>
+              <mat-option value="Medium" (click)="setbugReportBySeverity()">Medium</mat-option>
+              <mat-option value="High" (click)="setbugReportBySeverity()">High</mat-option>
+          </mat-select></mat-form-field>
+      </div>
+</div>
+
+<!-- <div id="reporterbugsearch">
+  <form>
+      <mat-form-field>
+        <mat-label>Bugs Reported By:</mat-label>
+        <input matInput placeholder="Ex. TheRaidman" [(ngModel)]="reporterUsername" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </form>
+</div>
+<button mat-stroked-button id="searchbyreporterBtn" color="accent" (click)="getbugReportByClientUsername()">Search</button> -->
+
+<div id="reporterbugsearch">
+  <form>
+      <mat-form-field>
+        <mat-label>Bugs Reported By:</mat-label>
+        <input matInput placeholder="Search Bugs" [(ngModel)]="searchInput" [ngModelOptions]="{standalone: true}" (keyup)="search()">
+      </mat-form-field>
+    </form>
+</div>
+<!-- <button mat-stroked-button id="searchbyreporterBtn" color="accent" (click)="getbugReportByClientUsername()">Search</button> -->
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="full-width-table"  matSort aria-label="Elements">

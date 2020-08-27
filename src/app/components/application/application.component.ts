@@ -11,7 +11,7 @@ import {Application} from '../../models/application'
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
-  @Input("app")application: Application;
+  /* @Input("app")application: Application; */
   @ViewChild('titlErr') x: ElementRef;
   @ViewChild('linkErr') y: ElementRef;
   public client: Client;

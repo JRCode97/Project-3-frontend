@@ -12,3 +12,29 @@ button {
   margin-left: auto;
   font-size: 18px;
 }
+
+#appsort{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+#reporterbugsearch{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+#searchbyreporterBtn{
+  display:inline-block;
+}
+
+#prioritysort{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+#severitysort{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+
