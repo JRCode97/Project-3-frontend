@@ -15,7 +15,7 @@
       <ng-container *ngIf="clientRole >= 1"><!-- Dev & Admin-->
         <a mat-list-item routerLink="/profile" id="profileTab">Profile</a>
         <a mat-list-item routerLink="/newbugreport">Report New Bug</a>
-        <a mat-list-item (click)="logout()">Logout</a>
+        <a mat-list-item id = "logoutButton" tabindex=0 (click)="logout()">Logout</a>
       </ng-container>
 
       <!--admin-->
@@ -43,10 +43,11 @@
         <a routerLink="/profile">Profile</a>
         <a routerLink="/newbugreport">Report New Bug</a>
       </div>
+      <a routerLink="/bugs">View Bugs</a>
       <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->
-        <a routerLink="/adminbugs">Admin Bugs</a>
-        <a mat-list-item routerLink="/adminsolutions">Admin Solutions</a>
         <a routerLink="/applications" id="applicationsTab">Applications</a>
+        <!-- <a routerLink="/adminbugs">Admin Bugs</a>
+        <a mat-list-item routerLink="/adminsolutions">Admin Solutions</a> -->
         <a mat-list-item routerLink="/metrics">Metrics</a>
       </div>
       <a class="login" *ngIf="clientRole != 0" (click)="logout()">Logout</a>
