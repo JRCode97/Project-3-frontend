@@ -76,6 +76,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
     let chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: false,
+      backgroundColor:"transparent",
       title:{
         text: "Developers Bugs And Solutions"
       },	
