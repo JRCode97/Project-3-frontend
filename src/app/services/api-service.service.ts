@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 //  schaud
@@ -20,6 +20,11 @@ export class ApiServiceService {
   constructor(private http: HttpClient) { }
 
 
+
+
+  
+  @Output() theme:EventEmitter<string> = new EventEmitter<string>() 
+ 
 
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
@@ -187,6 +192,10 @@ export class ApiServiceService {
 
   getLeaderboardPoints(): Promise<number[]>{
     return this.http.get<number[]>(`${this.path}/clients/leaderboard/points`).toPromise();
+  }
+
+  getApplicationSolutions(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}/solutions`).toPromise();
   }
 
 }

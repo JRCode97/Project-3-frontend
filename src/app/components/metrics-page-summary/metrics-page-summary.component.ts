@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class MetricsPageSummaryComponent implements OnInit {
 
+  theme:string;
   timeSeries:Array<Object> = new Array();
   resolvedBugsCount:number;
   unresolvedBugsCount:number;
@@ -20,13 +21,23 @@ export class MetricsPageSummaryComponent implements OnInit {
   avgTime:number;
 
   // count by severity & status 
-  // weekly bug reports line chart 
-  
+  // document.body.classList.contains('light-theme')
 
   constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.theme='light2';
     this.getStats();
+    this.apiservice.theme.subscribe((event)=>{
+      if(document.body.classList.contains('light-theme')){
+        this.theme = 'light2';
+        console.log(this.theme);
+      }
+      if(document.body.classList.contains('dark-theme')){
+        this.theme = 'dark2';
+        console.log(this.theme);
+      }
+    })
   }
 
   async getStats() {
@@ -102,24 +113,25 @@ export class MetricsPageSummaryComponent implements OnInit {
 	  
     
 	  let chart = new CanvasJS.Chart("lineChartContainer", {
-		zoomEnabled: true,
-    animationEnabled: true,
-    backgroundColor: "transparent",
-		exportEnabled: true,
-		title: {
-			text: "Bug Reports Per Month"
-		},
-		subtitles:[{
-			text: "Try Zooming and Panning"
-    }],
-    axisX: {
-      labelAngle: -30
-    },
-		data: [
-		{
-			type: "line",                
-			dataPoints: dataPoints
-		}]
+      theme: this.theme,
+      zoomEnabled: true,
+      animationEnabled: true,
+      backgroundColor: "transparent",
+      exportEnabled: true,
+      title: {
+        text: "Bug Reports Per Month"
+      },
+      subtitles:[{
+        text: "Try Zooming and Panning"
+      }],
+      axisX: {
+        labelAngle: -30
+      },
+      data: [
+      {
+        type: "line",                
+        dataPoints: dataPoints
+      }]
 	  });
 	
 	  chart.render();
@@ -127,7 +139,7 @@ export class MetricsPageSummaryComponent implements OnInit {
 
   makePieChart(){
     let chart = new CanvasJS.Chart("pieChartContainer", {
-      theme: "light2",
+      theme: this.theme,
       backgroundColor: "transparent",
       animationEnabled: true,
       exportEnabled: true,
