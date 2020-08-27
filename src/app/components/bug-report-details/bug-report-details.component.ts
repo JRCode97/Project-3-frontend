@@ -29,6 +29,7 @@ export class BugReportDetailsComponent implements OnInit {
   public RequestedStatus: BugStatus.requested;
   public priorityLevel = ['Low', 'Medium', 'High'];
   public severityLevel = ['Low', 'Medium', 'High'];
+  isAdmin:boolean;
   constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router) {
     // const queryString = window.location.search;
     // const urlParams = new URLSearchParams(queryString);
@@ -52,7 +53,7 @@ export class BugReportDetailsComponent implements OnInit {
   //0. Get Client By ID 
   getClient(): Client {
     this.client = this.apiserv.getLoggedClient();
-
+    this.isAdmin = this.client.role ? true : false;
     console.log(this.client);
     return this.client;
   }

@@ -64,7 +64,12 @@ import { RejectedSolutionTableComponent } from './components/profile/profile-tab
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
+import { ResolvedbugsCardsComponent } from './components/resolvedbugs-cards/resolvedbugs-cards.component';
+import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
+import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
 import { DatePipe } from '@angular/common';
+
 
 
 
@@ -107,6 +112,10 @@ import { DatePipe } from '@angular/common';
     AcceptedSolutionTableComponent,
     RejectedSolutionTableComponent,
     LoginMatComponent,
+    ResolvedbugsPageComponent,
+    ResolvedbugsCardsComponent,
+    ViewBugsPageComponent,
+    UnresolvedbugsPageComponent,
     MetricsPageComponent,
     MetricsPageSummaryComponent,
     MetricsPageApplicationsComponent,

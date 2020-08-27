@@ -95,6 +95,21 @@ export class ApiServiceService {
     return this.http.get<Client>(`${this.path}/clients/${id}`).toPromise();
   }
 
+  async getAllClients():Promise<Array<Client>>{
+    let clients: Array<Client> = await this.http.get<Array<Client>>(`${this.path}/clients`).toPromise();
+    return clients;
+  }
+
+  async getClientBugReportCount() : Promise<number>{
+    const bugsCount: number = await this.http.get<number>(`${this.path}/bugreports/count`).toPromise();
+    return bugsCount;
+  }
+
+  async getClientSolutionsCount(): Promise<number> {
+    const solsCount: number = await this.http.get<number>(`${this.path}/solutions/count`).toPromise();
+    return solsCount;
+  }
+
   // points displayed in profile page
   getPoints(id:number){
     return this.http.get<number>(this.path + `/clients/points?id=${id}`).toPromise();
@@ -123,6 +138,8 @@ export class ApiServiceService {
     return this.http.post(`${this.path}/resetpassword/${email}`, email).toPromise();
 
   }
+
+
 
   //################ Start of Solution Section ###################
 

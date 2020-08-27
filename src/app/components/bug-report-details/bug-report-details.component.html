@@ -6,7 +6,7 @@
         <div class="form-group row">
             <label for="txttitle" class="col-sm-2 form-label">Bug Title:</label>
             <label id="txttitle" class="col-sm-2  "> {{br.title}} </label>
-            <label for="txtstatus" class="col-sm-2  form-label">&emsp;Bug Status:</label>
+            <label for="txtstatus" class="col-sm-2  form-label">&nbsp;Bug Status:</label>
             <label id="txtstatus" class="col-sm-2 f "> {{br.status}} </label>
         </div>
 
@@ -15,29 +15,31 @@
             <ng-container *ngIf="br.app !=null">
                 <label id="lblapplication" class="col-sm-2 "> {{br.app.title}}</label>
             </ng-container>
-            <label for="lbllocation" class="col-sm-2  form-label">&emsp;Location:</label>
+            <label for="lbllocation" class="col-sm-2  form-label">&nbsp;Location:</label>
             <label id="lbllocation" class="col-sm-2 "> {{br.location}}</label>
 
         </div>
         <div class="form-group row">
             <label for="ddlseverity" class="col-sm-2  form-label">Severity: </label>
-
+            <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.severity}} </label>
             <select #ddlseverity id="ddlseverity" name="ddlseverity" [(ngModel)]="br.severity"
-                (change)="setSeverity($event)" class="col-sm-2   mr-sm-2"  >
+                (change)="setSeverity($event)" class="col-sm-2   mr-sm-2" *ngIf="isAdmin">
                 <option value="" disabled>Choose Severity</option>   
                 <option value="Low">Low</option>    
                 <option value="Medium">Medium</option>                                          
                 <option value="High">High</option>                                   
             </select>
           
-            <label for="ddlpriority" class="col-sm-2  form-label">	&nbsp;Priority: </label>
+            <label for="ddlpriority" class="col-sm-2  form-label">&nbsp;Priority: </label>
+            <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.priority}} </label>
             <select #ddlpriority id="ddlpriority" name="ddlpriority" [(ngModel)]="br.priority"
-                (change)="setPriority($event)" class="col-sm-2   mr-sm-2">
+                (change)="setPriority($event)" class="col-sm-2   mr-sm-2" *ngIf="isAdmin">
                 <option value="" disabled>Choose Priority</option>   
                 <option value="Low">Low</option>    
                 <option value="Medium">Medium</option>                                          
                 <option value="High">High</option>
             </select>
+
         </div>
         <div class="form-group row">
             <label for="txtdate" class="col-sm-2  form-label">Creation Time:</label>
@@ -45,7 +47,7 @@
             <label type="datetime" readonly class="col-sm-2  " id="txtreporter">
                 {{br.createdTime|date:'medium'}} </label>
 
-            <label for="txtreporter" class="col-sm-2  form-label">&emsp;Reporter:</label>
+            <label for="txtreporter" class="col-sm-2  form-label">&nbsp;Reporter:</label>
 
             <label class="col-sm-2 " id="txtreporter">{{br.username}} </label>
 
@@ -55,16 +57,20 @@
 
             <label id="lblapprovedTime" class="col-sm-2    " *ngIf="br.approvedTime!=0" >{{br.approvedTime|date:'medium'}}</label>
 
-            <label for="lblresolvedTime" class="col-sm-2  form-label" *ngIf="br.resolvedTime!=0">Resolved Time: </label>
+            <label for="lblresolvedTime" class="col-sm-2  form-label" *ngIf="(br.status==='Resolved')">&nbsp;Resolved Time: </label>
 
-            <label id="lblresolvedTime" class="col-sm-2   " *ngIf="br.resolvedTime!=0">{{br.resolvedTime|date:'medium'}}</label>
-
+            <label id="lblresolvedTime" class="col-sm-2   " *ngIf="(br.status==='Resolved')">{{br.resolvedTime|date:'medium'}}</label>
 
         </div>
         <div class="form-group row">
             <label for="txtpoints" class="col-sm-2  form-label">Points: </label>
+            <label *ngIf="!isAdmin" id="txtstatus" class="col-sm-2 f "> {{br.pointValue}} </label>
             <input id="txtpoints"  #txtpoints name="txtpoints" [(ngModel)]="br.pointValue"  type="number"
-                class="col-sm-2" style="max-width: 120px;"  >
+                class="col-sm-2" style="max-width: 120px;" *ngIf="isAdmin">
+                
+            
+            <label class="col-sm-2  form-label" id="solutions-label">&nbsp;Solutions:</label>
+            <label class="col-sm-2 f " id="solutions-link" *ngIf="!(br.status==='Requested')"><a routerLink="/bugsolutionreview/{{br.bId}}">View Solutions</a></label> 
         </div>
 
         <div class="form-group row">
@@ -76,8 +82,6 @@
 
         </div>
 
-
-
         <div class="form-group row">
 
             <label for="txtreproduceSteps" class="col-sm-2 form-label">Reproduce Steps:</label>
@@ -87,11 +91,12 @@
 
         </div>
 
-          <div class="buttonGroup">
-             <button type="button" *ngIf=" !(br.status  === 'Denied')  " [disabled]="br.status  === 'Resolved'"
-                 class="btn btn-danger" (click)="RejectBug()">  Reject</button>
-             <button type="button"*ngIf="!(br.status==='Unresolved' ) "  [disabled]= " br.status==='Resolved'" class="
+          <div class="buttonGroup" *ngIf = "isAdmin">
+            <button type="button" [disabled]= "br.status!=='Requested'" class="
                 btn btn-success" (click)="AcceptBug()">Approve </button>
+             <button type="button" *ngIf=" !(br.status  === 'Denied')  " [disabled]="br.status  !== 'Requested'"
+                 class="btn btn-danger" (click)="RejectBug()">Reject</button>
+             
              </div>
                 <br>
 
