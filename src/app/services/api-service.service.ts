@@ -151,4 +151,8 @@ export class ApiServiceService {
     return this.http.get<number[]>(`${this.path}/clients/leaderboard/points`).toPromise();
   }
 
+  getApplicationSolutions(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}/solutions`).toPromise();
+  }
+
 }
