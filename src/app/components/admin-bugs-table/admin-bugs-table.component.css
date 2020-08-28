@@ -45,3 +45,7 @@ table td, table th {
   display:inline-block;
   margin-left: 10px;
 }
+.filter-container{
+  display: flex;
+  justify-content: center;
+}

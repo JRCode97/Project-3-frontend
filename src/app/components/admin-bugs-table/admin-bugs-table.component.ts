@@ -33,9 +33,11 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   bugReportBySeverity:Array<BugReport>;
 
-  priority:string;
+  bugReportByApplication:Array<BugReport>;
 
-  severity:string
+  priority:string = "All";
+
+  severity:string = "All";
 
   priorityNumber:number = 0;
 
@@ -53,6 +55,7 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   searchInput:string;
 
+  selectedAppTitle:string = "All";
   //steps
   //set severity to low
   //set priority to high
@@ -61,6 +64,7 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     //currentBugsDisplayed[]bugreports <--this one is manipulated to show what we want
     //bugReports <-- never is touched
     this.populate(this.bugReports);
+    this.bugReportsDisplay = this.bugReports;
 
     /* this.getbugReportBySeverity(); */
   }
@@ -72,19 +76,14 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   populate(bugs:BugReport[]){
     this.dataSource = new MatTableDataSource<BugReport>(bugs);
-    console.log(this.bugReports);
+    // console.log(this.bugReports);
 
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
 
     this.obs = this.dataSource.connect();
 
-    //this.getbugReportByPriority();
-
     this.getApplications();
-
-    this.priorityDisplay = localStorage.getItem("priorityString");
-    this.severityDisplay = localStorage.getItem("severityString");
     
   }
   //Priority and Severity filters
@@ -106,153 +105,97 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
   }
 
   filterMediumSeverityBugs(bugReport){
-    return bugReport.priority == "Medium"
+    return bugReport.severity == "Medium"
   }
 
   filterHighSeverityBugs(bugReport){
-    return bugReport.priority == "High"
+    return bugReport.severity == "High"
   }
 
   // to get the bug reports by sevrity and priority
+  filterByApplication(){
+    
+    if(this.selectedAppTitle === "All"){
+      this.bugReportsDisplay = this.bugReports;
+    }else{
+      this.bugReportsDisplay = this.bugReports.filter(bugReport => bugReport.app.title === this.selectedAppTitle);
+    }
+    this.setbugReportByPriority();
+    // if(this.severity !=="All"){
+    //   console.log(this.severity);
+    //   this.setbugReportBySeverity();
+    //   return;
+    // }else if (this.priority !=="All"){
+    //   console.log(this.priority);
+    //   this.setbugReportByPriority();
+    //   return;
+    // }
+    // this.bugReportsDisplay = this.bugReportByApplication;
+    // this.populate(this.bugReportsDisplay);
+  }
 
   setbugReportByPriority(){
     if(this.priority == "Low"){
-      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterLowPriorityBugs)
-      this.populate(this.bugReportsDisplay);
-      // localStorage.setItem("priority", "1");
-      // localStorage.setItem("priorityString", "Low");
-      // location.reload();
+      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterLowPriorityBugs);
     }
     else if(this.priority == "Medium"){
-      localStorage.setItem("priority", "2");
-      localStorage.setItem("priorityString", "Medium");
-      location.reload();
+      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterMediumPriorityBugs);
     }
     else if (this.priority == "High"){
-      localStorage.setItem("priority", "3");
-      localStorage.setItem("priorityString", "High");
-      location.reload();
+      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterHighPriorityBugs);
     }
-    else if(this.priority == "All"){
-      localStorage.setItem("priority", "0");
-      localStorage.setItem("priorityString", "All");
-      location.reload();
-    }
-  }
-
-  getbugReportByPriority(){
-    this.priorityNumber = Number(localStorage.getItem("priority"));
-    console.log(this.priorityNumber + "priority");
-    
-    switch(this.priorityNumber){
-
-      case 0: this.bugReportByPriority = this.bugReports;
-      break;
-
-      case 1: this.bugReportByPriority = this.bugReports.filter(this.filterLowPriorityBugs);
-      break;
-
-      case 2: this.bugReportByPriority = this.bugReports.filter(this.filterMediumPriorityBugs);
-      break;
-
-      case 3: this.bugReportByPriority = this.bugReports.filter(this.filterHighPriorityBugs);
-      break;
-
-      default: this.bugReportByPriority = this.bugReports;
-      break;
-    }
-    this.bugReportsDisplay = this.bugReportByPriority;
-    this.getbugReportBySeverity();
+    this.setbugReportBySeverity();
   }
 
   setbugReportBySeverity(){
     if (this.severity == "Low"){
-      localStorage.setItem("severity", "1");
-      localStorage.setItem("severityString", "Low");
-      location.reload();
+      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterLowSeverityBugs);
     }
     else if (this.severity == "Medium"){
-      localStorage.setItem("severity", "2");
-      localStorage.setItem("severityString", "Medium");
-      location.reload();
+      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterMediumSeverityBugs);
     }
     else if (this.severity == "High"){
-      localStorage.setItem("severity", "3");
-      localStorage.setItem("severityString", "High");
-      location.reload();
+      this.bugReportsDisplay = this.bugReportsDisplay.filter(this.filterHighSeverityBugs);
     }
-    else if(this.severity == "All"){
-      localStorage.setItem("severity", "0");
-      localStorage.setItem("severityString", "All");
-      location.reload();
-    }
+    this.populate(this.bugReportsDisplay);
   }
-
-  getbugReportBySeverity(){
-    this.severityNumber = Number(localStorage.getItem("severity"));
-    console.log(this.severityNumber + "severity");
-    	
-    switch(this.severityNumber){
-
-      case 0: this.bugReportBySeverity = this.bugReportsDisplay;
-      break;
-
-      case 1: this.bugReportBySeverity = this.bugReportsDisplay.filter(this.filterLowSeverityBugs);
-      break;
-
-      case 2: this.bugReportBySeverity = this.bugReportsDisplay.filter(this.filterMediumSeverityBugs);
-      break;
-
-      case 3: this.bugReportBySeverity = this.bugReportsDisplay.filter(this.filterHighSeverityBugs);
-      break;
-
-      default: this.bugReportBySeverity = this.bugReportsDisplay;
-      break;
-    }
-    this.dataSource.data = this.bugReportBySeverity;
-  }
-
   async search(){
     let filteredReports: BugReport[] = [];
-    /* this.bugReportsByReporter = await this.apiservice.getbugReportByClientUsername(this.reporterUsername);
-    console.log(this.bugReportsByReporter);
-    return this.bugReportsByReporter; */
+
     if(this.searchInput !== ""){
       
-      
-      for(let report of this.bugReports){
+      this.searchInput.toLowerCase();
+      for(let report of this.bugReportsDisplay){
           let dateString = new Date(report.createdTime);
-          if(report.title.includes(this.searchInput)){
+          if(report.title.toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
-          }else if(report.app.title.includes(this.searchInput)){
+          }else if(report.app.title.toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
-          }else if(report.location.includes(this.searchInput)){
+          }else if(report.location.toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
-          }else if(report.severity.includes(this.searchInput)){
+          }else if(report.severity.toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
-          }else if(report.priority.includes(this.searchInput)){
+          }else if(report.priority.toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
-          }else if(dateString.toDateString().toString().includes(this.searchInput)){
+          }else if(dateString.toDateString().toString().toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
-          }else if(report.username.includes(this.searchInput)){
+          }else if(report.username.toLowerCase().includes(this.searchInput)){
             filteredReports.push(report);
           }
         }
         this.populate(filteredReports);
     }else{
-      this.populate(this.bugReports);
+      this.populate(this.bugReportsDisplay);
     }
       
   }
-    
-
-
   
-
   async getApplications(){
     this.apps = await this.apiservice.getApplications();
     return this.apps;
   }
+  
 
+  
 }
 
