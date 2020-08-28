@@ -19,6 +19,8 @@ export class MetricsPageSummaryComponent implements OnInit {
   medCount:number;
   lowCount:number;
   avgTime:number;
+  lineChart;
+  pieChart;
 
   // count by severity & status 
   // document.body.classList.contains('light-theme')
@@ -31,11 +33,17 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.apiservice.theme.subscribe((event)=>{
       if(document.body.classList.contains('light-theme')){
         this.theme = 'light2';
-        console.log(this.theme);
+        this.lineChart.options.theme='light2';
+        this.pieChart.options.theme='light2';
+        this.lineChart.render();
+        this.pieChart.render();
       }
       if(document.body.classList.contains('dark-theme')){
         this.theme = 'dark2';
-        console.log(this.theme);
+        this.lineChart.options.theme='dark2';
+        this.pieChart.options.theme='dark2';
+        this.lineChart.render();
+        this.pieChart.render();
       }
     })
   }
@@ -73,6 +81,8 @@ export class MetricsPageSummaryComponent implements OnInit {
     
     this.makePieChart();
     this.makeLineChart();
+    this.lineChart.render();
+    this.pieChart.render();
   }
 
   formatTimeData(timeSeries) {
@@ -133,8 +143,8 @@ export class MetricsPageSummaryComponent implements OnInit {
         dataPoints: dataPoints
       }]
 	  });
-	
-	  chart.render();
+    this.lineChart = chart;
+	  
   }
 
   makePieChart(){
@@ -158,7 +168,7 @@ export class MetricsPageSummaryComponent implements OnInit {
         ]
       }]
     });
-      
-    chart.render();
+    
+    this.pieChart = chart;
   }
 }
