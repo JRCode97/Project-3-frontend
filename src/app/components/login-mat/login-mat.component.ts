@@ -39,8 +39,6 @@ export class LoginMatComponent implements OnInit {
     const username = this.username.nativeElement.value;
     const pass = this.password.nativeElement.value;
     this.client = await this.serv.clientLogin(username, pass);
-    console.log(this.client);
-      // alert(client.fName)
     if (this.client != null && this.client.cId > 0) {
         this.invalid = false;
         this.serv.setLoggedClient(this.client);
@@ -55,8 +53,6 @@ export class LoginMatComponent implements OnInit {
       this.invalid = true;
     }
 
-    console.log(this.username.nativeElement.value);
-    console.log(this.password.nativeElement.value);
   }
 
   enableDisableRule() {
@@ -78,10 +74,8 @@ export class LoginMatComponent implements OnInit {
     newclient.role = 0;
 
     newclient = await this.serv.clientRegister(newclient);
-    console.log(newclient);
     if (newclient != null && newclient.cId > 0) {
         window.location.href = '/';
-        // this.router.navigate(["/"]);
       }
 
     return newclient;

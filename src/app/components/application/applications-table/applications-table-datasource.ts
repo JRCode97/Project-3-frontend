@@ -3,17 +3,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-// import {ApplicationsService} from 'src/app/services/applications.service';
 
-
-// TODO: Replace this with your own data model type
 export interface ApplicationsTableItem {
   title: string;
   gitLink: string;
   id: number;
 }
 
-// TODO: CALL GET APPS METHOD = await this.applications.getApps();
 const TABLE_DATA: ApplicationsTableItem[] = [{id: 1, title: 'Project 1', gitLink: 'github.com'}, {id: 2, title: 'Project 2', gitLink: 'github2.com'}];
 
 /**

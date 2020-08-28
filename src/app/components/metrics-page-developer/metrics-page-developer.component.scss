@@ -1,15 +1,18 @@
 .data-row{
     margin-top:10px;
-    height:400px;
-    
+    //height:600px;
+    flex-wrap: wrap;
+    align-content: space-between;
+    //justify-content:
 }
-
-.col-2{
-    h1{
-        height:100%;
-        line-height:400px;
+/*
+    .col-2{
+        h1{
+            height:100%;
+            line-height:400px;
+        }
     }
-}
+*/
 .dot-wrap{
     height:100%;
     display:flex;
@@ -151,6 +154,7 @@
     -ms-flex: 0 0 25%;
     flex: 0 0 25%;
     max-width: 25%;
+    margin-bottom:40px;
 }
 
 .col-4 {

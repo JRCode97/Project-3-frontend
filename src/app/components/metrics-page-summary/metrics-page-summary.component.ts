@@ -22,7 +22,7 @@ export class MetricsPageSummaryComponent implements OnInit {
   lineChart;
   pieChart;
 
-  // count by severity & status 
+  // count by severity & status
   // document.body.classList.contains('light-theme')
 
   constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
@@ -62,7 +62,7 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.lowCount = await this.apiservice.getLowPriorityBugsCount();
 
     let all = await this.apiservice.getBugReports();
-
+    let toPrint = new Array();
     let sum:number = 0;
     let nonZeros:number = 0;
     for (let r of all){
@@ -72,12 +72,19 @@ export class MetricsPageSummaryComponent implements OnInit {
       let a:number = r.resolvedTime
       let b:number = r.createdTime
       diff = a - b
+      let bid = r.bId;
+      let created = this.datePipe.transform(b, 'yyyy-MM-dd')
+      let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
+      toPrint.push({bid, diff, created, resolved})
       if (diff > 0){
         ++nonZeros;
         sum += (diff / 3600000);
       }
     }
-    
+
+    console.log(all)
+    console.log(toPrint)
+
     this.timeSeries = this.timeSeries.sort().reverse()
 
     this.avgTime = Math.round(sum/nonZeros)
@@ -89,17 +96,17 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   formatTimeData(timeSeries) {
-
+    console.log(timeSeries)
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
-    
+
     for(let point of timeSeries){
       months.push(this.datePipe.transform(point, 'MM-yyyy'))
     }
-    
 
-    // seperate into x=months, y=number of occurences 
+
+    // seperate into x=months, y=number of occurences
     let a = [], b = [], prev;
     for ( var i = 0; i < months.length; i++ ) {
         if ( months[i] !== prev ) {
@@ -114,17 +121,17 @@ export class MetricsPageSummaryComponent implements OnInit {
     for(var j = 0; j< a.length; j++){
       data.push({ y : b[j], label:a[j]})
     }
-    
-    
-    
+
+
+
     return data;
   }
 
   makeLineChart(){
-    
+
     let dataPoints = this.formatTimeData(this.timeSeries).reverse();
-	  
-    
+
+
 	  let chart = new CanvasJS.Chart("lineChartContainer", {
       theme: this.theme,
       zoomEnabled: true,
@@ -142,12 +149,12 @@ export class MetricsPageSummaryComponent implements OnInit {
       },
       data: [
       {
-        type: "line",                
+        type: "line",
         dataPoints: dataPoints
       }]
 	  });
     this.lineChart = chart;
-	  
+
   }
 
   makePieChart(){
@@ -171,7 +178,7 @@ export class MetricsPageSummaryComponent implements OnInit {
         ]
       }]
     });
-    
+
     this.pieChart = chart;
   }
 }
