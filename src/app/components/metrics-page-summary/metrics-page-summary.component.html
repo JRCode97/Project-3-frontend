@@ -1,50 +1,63 @@
 <div class="row data-row">
-        <div class="col-2">
-            <div class="dot-wrap">
-                <h1>Requested Bugs</h1>
-                <div class="dot-data" id="bugs-requested">
-                    {{requestedBugsCount}}
-                </div>
-            </div> 
-        </div>
-        <div class="col-2">
-            <div class="dot-wrap">
-                <h1>Resolved Bugs</h1>
-                <div class="dot-data" id="bugs-resolved">
-                    {{resolvedBugsCount}}
-                </div>
+    <div class="col-1"></div>
+    <div class="col-auto">
+        <div class=row>
+            <div class="col-4">
+                <div class="dot-wrap">
+                    <h1>Requested Bugs</h1>
+                    <div class="dot-data" id="bugs-requested">
+                        {{requestedBugsCount}}
+                    </div>
+                </div> 
             </div>
-            
-        </div>
-        <div class="col-2">
-            <div class="dot-wrap">
-                <h1>Unresolved Bugs</h1>
-                <div class="dot-data" id="bugs-unresolved">
-                {{unresolvedBugsCount}}
-                </div>
+            <div class="col-4">
+                <div class="dot-wrap">
+                    <h1>Resolved Bugs</h1>
+                    <div class="dot-data" id="bugs-resolved">
+                        {{resolvedBugsCount}}
+                    </div>
+                </div> 
+            </div>
+            <div class="col-4">
+                <div class="dot-wrap">
+                    <h1>Unresolved Bugs</h1>
+                    <div class="dot-data" id="bugs-unresolved">
+                        {{unresolvedBugsCount}}
+                    </div>
+                </div> 
             </div>
         </div>
-        <div class="col">
-            <div class="chart">
-                <!-- <img src="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2012/06/Excel-charts-11.png"> -->
-                <div id="pieChartContainer" style="height: 100%; width: 100%;"></div>
-            </div>
-        </div>    
-    </div>
-    <div class="row data-row">
-        <div class="col">
+        <div class="row time-row">
             <div class="time-wrap">
                 <h1>Average Resolution Time</h1>
                 <div class="time-data" id="average-time">
                     {{avgTime}} Hours
                 </div>
             </div> 
+        </div>             
+    </div>
+        <div class="col">
+            <div class="chart">
+                <!-- <img src="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2012/06/Excel-charts-11.png"> -->
+                <div id="pieChartContainer" style="height: 100%; width: 100%;"></div>
+            </div>
+        </div>    
+        <div class="col-1">
+
         </div>
-        <div class="col-10">
+</div>
+<div class="row data-row">
+        <div class="col-1">
+            
+        </div>
+        <div class="col-8">
             <div class="chart">
                 <!-- <img src="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2012/06/Excel-charts-11.png"> -->
                 <div id="lineChartContainer" style="height: 100%; width: 100%;"></div>
             </div>
+        </div>
+        <div class="col-1">
+            
         </div>
     </div>
     
