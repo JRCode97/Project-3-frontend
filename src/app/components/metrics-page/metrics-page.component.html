@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-2">
             <div class="tab-container">
-                <div [ngClass]="[btnStyleSum]">
+                <div [ngClass]="[btnStyleSum]" id="summary-tab">
                     <a (click)="changeToSum()">Summary</a>
                 </div>
-                <div [ngClass]="[btnStyleDev]">
+                <div [ngClass]="[btnStyleDev]" id="developer-tab">
                     <a (click)="changeToDev()">Developers</a>
                 </div>
-                <div [ngClass]="[btnStyleApp]">
+                <div [ngClass]="[btnStyleApp]" id="applications-tab">
                     <a (click)="changeToApp()" >Applications</a>
                 </div>
             </div>

@@ -28,8 +28,13 @@ export class MetricsPageSummaryComponent implements OnInit {
   constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.theme='light2';
+    if(document.body.classList.contains('light-theme')){
+      this.theme='light2';
+    } else {
+      this.theme='dark2';
+    }
     this.getStats();
+    
     this.apiservice.theme.subscribe((event)=>{
       if(document.body.classList.contains('light-theme')){
         this.theme = 'light2';
@@ -52,14 +57,12 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.resolvedBugsCount = await this.apiservice.getResolvedBugsCount();
     this.unresolvedBugsCount = await this.apiservice.getUnResolvedBugsCount();
     this.requestedBugsCount = await this.apiservice.getRequestedBugsCount();
-    console.log(this.requestedBugsCount)
     this.highCount = await this.apiservice.getHighPriorityBugsCount();
     this.medCount = await this.apiservice.getMediumPriorityBugsCount();
     this.lowCount = await this.apiservice.getLowPriorityBugsCount();
-    console.log(this.lowCount)
 
     let all = await this.apiservice.getBugReports();
-
+    let toPrint = new Array();
     let sum:number = 0;
     let nonZeros:number = 0;
     for (let r of all){
@@ -69,16 +72,23 @@ export class MetricsPageSummaryComponent implements OnInit {
       let a:number = r.resolvedTime
       let b:number = r.createdTime
       diff = a - b
+      let bid = r.bId;
+      let created = this.datePipe.transform(b, 'yyyy-MM-dd')
+      let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
+      toPrint.push({bid, diff, created, resolved})
       if (diff > 0){
         ++nonZeros;
         sum += (diff / 3600000);
       }
     }
 
-    this.timeSeries = this.timeSeries.sort().reverse()
-    console.log(this.timeSeries)
-    this.avgTime = Math.round(sum/nonZeros)
+    console.log(all)
+    console.log(toPrint)
 
+    this.timeSeries = this.timeSeries.sort().reverse()
+
+    this.avgTime = Math.round(sum/nonZeros)
+    
     this.makePieChart();
     this.makeLineChart();
     this.lineChart.render();
@@ -86,7 +96,7 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   formatTimeData(timeSeries) {
-
+    console.log(timeSeries)
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
