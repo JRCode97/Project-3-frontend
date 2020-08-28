@@ -22,9 +22,9 @@ export class ApiServiceService {
 
 
 
-  
-  @Output() theme:EventEmitter<string> = new EventEmitter<string>() 
- 
+
+  @Output() theme:EventEmitter<string> = new EventEmitter<string>()
+
 
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
@@ -40,6 +40,10 @@ export class ApiServiceService {
   getbugReportByClientUsername(username:string){
     return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
   }
+
+  /* getbugReportByApp(id:number){
+    return this.http.get<BugReport>(`${this.path}/applications/${id}/bugreports`).toPromise();
+  } */
 
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Resolved`).toPromise();
@@ -87,6 +91,7 @@ export class ApiServiceService {
   }
 
   //################ Start of Client Section ###################
+
   clientLogin(username: any, pass: any): Promise<Client> {
     return this.http.get<Client>(this.path + `/clients/login?username=${username}&password=${pass}`).toPromise();
   }
@@ -94,7 +99,6 @@ export class ApiServiceService {
     return this.http.get<Client>(this.path + `/query/clients?username=${username}`).toPromise();
   }
   async clientRegister(client: Client): Promise<Client> {
-    console.log(client);
     return await this.http.post<Client>(this.path + `/clients`, client).toPromise();
   }
   getClientById(id: number): Promise<Client> {

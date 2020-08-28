@@ -35,11 +35,9 @@ export class AcceptedSolutionTableComponent implements AfterViewInit, OnInit {
   solutionArray=[]
 
   async initSolutions(){
-    let client = this.api.getLoggedClient()
-    let solutions = await this.api.getSolutionsByClientId(client.cId)
-    console.log(solutions)
-    solutions = solutions.filter(sol => sol.status === "Accepted")
+    let client = this.api.getLoggedClient();
+    let solutions = await this.api.getSolutionsByClientId(client.cId);
+    solutions = solutions.filter(sol => sol.status === "Accepted");
     this.dataSource = new AcceptedSolutionTableDataSource(solutions);
-    console.log(this.dataSource)
   }
 }

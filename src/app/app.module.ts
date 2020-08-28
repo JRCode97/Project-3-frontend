@@ -20,18 +20,17 @@ import { MatSliderModule} from '@angular/material/slider';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminBugsComponent } from './components/admin-bugs/admin-bugs.component';
 import { AdminBugsCardsComponent } from './components/admin-bugs-cards/admin-bugs-cards.component';
 import { AdminBugsTableComponent } from './components/admin-bugs-table/admin-bugs-table.component';
-import { AdminSolutionsComponent } from './components/admin-solutions/admin-solutions.component';
 import { AppComponent } from './app.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
 import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
-import { BugReportDetailsComponent } from './components/bug-report-details/bug-report-details.component';
 import { BugReportsTableComponent } from './components/profile/profile-tables/bug-reports-table/bug-reports-table.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
@@ -50,8 +49,6 @@ import { MetricsPageSummaryComponent } from './components/metrics-page-summary/m
 import { MetricsPageApplicationsComponent } from './components/metrics-page-applications/metrics-page-applications.component';
 import { MetricsPageDeveloperComponent } from './components/metrics-page-developer/metrics-page-developer.component';
 
-import { UnresolvedbugsTableComponent } from './components/unresolvedbugs-table/unresolvedbugs-table.component';
-import { ResolvedbugsTableComponent } from './components/resolvedbugs-table/resolvedbugs-table.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
@@ -65,7 +62,6 @@ import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
-import { ResolvedbugsCardsComponent } from './components/resolvedbugs-cards/resolvedbugs-cards.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
 import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
 import { DatePipe } from '@angular/common';
@@ -82,12 +78,10 @@ import { DatePipe } from '@angular/common';
     AdminBugsComponent,
     AdminBugsCardsComponent,
     AdminBugsTableComponent,
-    AdminSolutionsComponent,
     AppComponent,
     ApplicationComponent,
     ApplicationsTableComponent,
     BugReportViewComponent,
-    BugReportDetailsComponent,
     BugReportsTableComponent,
     LoginComponent,
     MainNavComponent,
@@ -98,22 +92,19 @@ import { DatePipe } from '@angular/common';
     NewBugReportComponent,
     PasswordResetComponent,
     ProfileComponent,
-    ResolvedbugsTableComponent,
     SolutionApprovalComponent,
     SolutionsTableComponent,
-    UpdatePasswordComponent,
-    UnresolvedbugsTableComponent,
-    LoadingSpinnerComponent,
-    RequestedBugreportTableComponent,
     UnresolvedBugreportTableComponent,
     ResolvedBugreportTableComponent,
+    UpdatePasswordComponent,
+    LoadingSpinnerComponent,
+    RequestedBugreportTableComponent,
     DeniedBugreportTableComponent,
     PendingSolutionTableComponent,
     AcceptedSolutionTableComponent,
     RejectedSolutionTableComponent,
     LoginMatComponent,
     ResolvedbugsPageComponent,
-    ResolvedbugsCardsComponent,
     ViewBugsPageComponent,
     UnresolvedbugsPageComponent,
     MetricsPageComponent,
@@ -148,7 +139,8 @@ import { DatePipe } from '@angular/common';
     MatSlideToggleModule,
     MatIconModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [DatePipe, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]

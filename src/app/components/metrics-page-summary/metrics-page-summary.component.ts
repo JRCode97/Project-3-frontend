@@ -22,14 +22,19 @@ export class MetricsPageSummaryComponent implements OnInit {
   lineChart;
   pieChart;
 
-  // count by severity & status 
+  // count by severity & status
   // document.body.classList.contains('light-theme')
 
   constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.theme='light2';
+    if(document.body.classList.contains('light-theme')){
+      this.theme='light2';
+    } else {
+      this.theme='dark2';
+    }
     this.getStats();
+    
     this.apiservice.theme.subscribe((event)=>{
       if(document.body.classList.contains('light-theme')){
         this.theme = 'light2';
@@ -52,14 +57,12 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.resolvedBugsCount = await this.apiservice.getResolvedBugsCount();
     this.unresolvedBugsCount = await this.apiservice.getUnResolvedBugsCount();
     this.requestedBugsCount = await this.apiservice.getRequestedBugsCount();
-    console.log(this.requestedBugsCount)
     this.highCount = await this.apiservice.getHighPriorityBugsCount();
     this.medCount = await this.apiservice.getMediumPriorityBugsCount();
     this.lowCount = await this.apiservice.getLowPriorityBugsCount();
-    console.log(this.lowCount)
 
     let all = await this.apiservice.getBugReports();
-
+    let toPrint = new Array();
     let sum:number = 0;
     let nonZeros:number = 0;
     for (let r of all){
@@ -69,14 +72,21 @@ export class MetricsPageSummaryComponent implements OnInit {
       let a:number = r.resolvedTime
       let b:number = r.createdTime
       diff = a - b
+      let bid = r.bId;
+      let created = this.datePipe.transform(b, 'yyyy-MM-dd')
+      let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
+      toPrint.push({bid, diff, created, resolved})
       if (diff > 0){
         ++nonZeros;
         sum += (diff / 3600000);
       }
     }
-    
+
+    console.log(all)
+    console.log(toPrint)
+
     this.timeSeries = this.timeSeries.sort().reverse()
-    console.log(this.timeSeries)
+
     this.avgTime = Math.round(sum/nonZeros)
     
     this.makePieChart();
@@ -86,17 +96,17 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   formatTimeData(timeSeries) {
-
+    console.log(timeSeries)
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
-    
+
     for(let point of timeSeries){
       months.push(this.datePipe.transform(point, 'MM-yyyy'))
     }
-    
 
-    // seperate into x=months, y=number of occurences 
+
+    // seperate into x=months, y=number of occurences
     let a = [], b = [], prev;
     for ( var i = 0; i < months.length; i++ ) {
         if ( months[i] !== prev ) {
@@ -111,17 +121,17 @@ export class MetricsPageSummaryComponent implements OnInit {
     for(var j = 0; j< a.length; j++){
       data.push({ y : b[j], label:a[j]})
     }
-    
-    
-    
+
+
+
     return data;
   }
 
   makeLineChart(){
-    
+
     let dataPoints = this.formatTimeData(this.timeSeries).reverse();
-	  
-    
+
+
 	  let chart = new CanvasJS.Chart("lineChartContainer", {
       theme: this.theme,
       zoomEnabled: true,
@@ -139,12 +149,12 @@ export class MetricsPageSummaryComponent implements OnInit {
       },
       data: [
       {
-        type: "line",                
+        type: "line",
         dataPoints: dataPoints
       }]
 	  });
     this.lineChart = chart;
-	  
+
   }
 
   makePieChart(){
@@ -168,7 +178,7 @@ export class MetricsPageSummaryComponent implements OnInit {
         ]
       }]
     });
-    
+
     this.pieChart = chart;
   }
 }

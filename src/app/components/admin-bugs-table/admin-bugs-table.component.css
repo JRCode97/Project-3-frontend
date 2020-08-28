@@ -21,3 +21,31 @@ div>table{
 table td, table th {
   padding: 0 10px;
 }
+
+#appsort{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+#reporterbugsearch{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+#searchbyreporterBtn{
+  display:inline-block;
+}
+
+#prioritysort{
+  display:inline-block;
+  margin-left: 10px;
+}
+
+#severitysort{
+  display:inline-block;
+  margin-left: 10px;
+}
+.filter-container{
+  display: flex;
+  justify-content: center;
+}

@@ -91,3 +91,36 @@ th {
 td {
     font-size: 1.2em;
 }
+
+#point-label{
+    padding-left: 9.5%;
+}
+
+#txtpoints{
+    max-width: 120px;
+    height: 30px;
+}
+#point-input-container{
+    padding-left: 9%;
+}
+#solutions-dropdown-container{
+    display: flex;
+    
+    padding-left: 7%;
+    padding-top: 15%;
+}
+#reject-solution-btn-container{
+    padding-left: 10%;
+}
+#return-to-view-bugs{
+    margin-left: 68%;
+}
+#resolve-bug-button{
+    margin-left: 1.8%;
+}
+#reject-bug-button{
+    margin-left: 85%;
+}
+.buttonGroup{
+    padding-bottom: 1.5%;
+}
