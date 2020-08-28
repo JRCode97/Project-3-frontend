@@ -28,7 +28,7 @@ export class AdminBugsComponent implements OnInit {
   severity:string
 
   public show = false;
-  
+
   public buttonName: any = 'Table View';
   shown = false;
 

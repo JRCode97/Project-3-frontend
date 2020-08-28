@@ -37,10 +37,8 @@ export class RequestedBugreportTableComponent implements AfterViewInit, OnInit {
 
   async initBugreports(){
     let client:Client = this.api.getLoggedClient()
-    let bugreports = await this.api.getbugReportByClientUsername(client.username)
-    console.log(bugreports)
-    bugreports = bugreports.filter(br => br.status === "Requested")
+    let bugreports = await this.api.getbugReportByClientUsername(client.username);
+    bugreports = bugreports.filter(br => br.status === "Requested");
     this.dataSource = new RequestedBugreportTableDataSource(bugreports);
-    console.log(this.dataSource)
   }
 }

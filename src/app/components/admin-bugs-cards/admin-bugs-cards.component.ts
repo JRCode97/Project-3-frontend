@@ -45,13 +45,6 @@ export class AdminBugsCardsComponent implements OnInit, AfterViewInit {
     );
 
   }
-
-
-  // ngOnDestroy() {
-  //   if (this.dataSource) {
-  //     this.dataSource.disconnect();
-  //   }
-  // }
 }
 
 

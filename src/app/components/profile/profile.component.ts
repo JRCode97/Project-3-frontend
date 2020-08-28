@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
     this.assignRole()
-    // this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
     this.getClientPoint()
   }
   bugReports: Array<BugReport>;
@@ -39,10 +38,9 @@ export class ProfileComponent implements OnInit {
   }
 
   async getClientPoint(){
-   this.points = await this.api.getPoints(this.client.cId)
-   console.log(this.points)
+   this.points = await this.api.getPoints(this.client.cId);
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

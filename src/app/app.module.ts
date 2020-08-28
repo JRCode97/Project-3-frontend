@@ -64,6 +64,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
 import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -140,7 +142,7 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     MatCheckboxModule,
     MatSnackBarModule
   ],
-  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
+  providers: [DatePipe, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   bootstrap: [AppComponent]
 })
 
