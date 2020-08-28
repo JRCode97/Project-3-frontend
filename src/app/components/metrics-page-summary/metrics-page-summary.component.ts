@@ -22,6 +22,9 @@ export class MetricsPageSummaryComponent implements OnInit {
   lineChart;
   pieChart;
 
+  whileLoading:string = "row row-data buffering";
+  ifLoading:boolean = true;
+
   // count by severity & status
   // document.body.classList.contains('light-theme')
 
@@ -92,6 +95,8 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.makeLineChart();
     this.lineChart.render();
     this.pieChart.render();
+    this.whileLoading="row row-data";
+    this.ifLoading = false;
   }
 
   formatTimeDataByMonth(timeSeries) {

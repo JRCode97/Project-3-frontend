@@ -1,4 +1,6 @@
-<div class="row data-row">
+<div [ngClass]="[whileLoading]">
+
+    <!-- "row data-row" -->
     <div class="col-1"></div>
     <div class="col-auto">
         <div class=row>
@@ -46,11 +48,12 @@
 
         </div>
 </div>
+<div class="container-fluid fill"></div>
 <div class="row data-row">
         <div class="col-1">
             
         </div>
-        <div class="col-8">
+        <div class="col-10">
             <div class="chart">
                 <!-- <img src="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2012/06/Excel-charts-11.png"> -->
                 <div id="lineChartContainer" style="height: 100%; width: 100%;"></div>
@@ -59,5 +62,11 @@
         <div class="col-1">
             
         </div>
+</div>
+
+<div class="buffering-overlay" *ngIf = "ifLoading">
+    <div>
+        
     </div>
+</div>
     
