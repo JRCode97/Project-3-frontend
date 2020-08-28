@@ -31,15 +31,10 @@ export class BugReportDetailsComponent implements OnInit {
   public severityLevel = ['Low', 'Medium', 'High'];
   isAdmin:boolean;
   constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router) {
-    // const queryString = window.location.search;
-    // const urlParams = new URLSearchParams(queryString);
-    // this.brId = urlParams.get("brid");
     this.getClient();
-    if (this.client == null || this.client === undefined)
+    if (this.client == null || this.client === undefined) {
       this.router.navigate(["/"]);
-    else {
-
-      console.log(this.client);
+    } else {
       this.brId = this.route.snapshot.paramMap.get("id");
 
     }
@@ -50,26 +45,20 @@ export class BugReportDetailsComponent implements OnInit {
     this.getBugReportById();
   }
 
-  //0. Get Client By ID 
+  //0. Get Client By ID
   getClient(): Client {
     this.client = this.apiserv.getLoggedClient();
     this.isAdmin = this.client.role ? true : false;
-    console.log(this.client);
     return this.client;
   }
-  //1. Get Bug Report By ID 
+  //1. Get Bug Report By ID
   async  getBugReportById(): Promise<BugReport> {
     this.br = await this.apiserv.getBugReportById(this.brId);
-
-    console.log(this.br);
     return this.br;
   }
-  //3. Approve Bug report 
+  //3. Approve Bug report
   async AcceptBug() {
     this.br.status = BugStatus.unresolved;
-    // this.br.severity=  this.severity;
-    // this.br.priority=this.priority;
-    //this.br.pointValue=this.points;
     const bugReport: BugReport = await this.apiserv.putBugReport(this.br);
     this.br = bugReport;
   }
@@ -77,20 +66,18 @@ export class BugReportDetailsComponent implements OnInit {
   //4. Reject Bug report
   async RejectBug() {
     this.br.status = BugStatus.denied;
-    // this.br.severity=  this.severity;
-    // this.br.priority=this.priority;
     this.br.pointValue=0;
     const bugReport: BugReport = await this.apiserv.putBugReport(this.br);
     this.br = bugReport;
   }
-  
+
   setSeverity(event)
   {
     this.severity= event.target.value;
-  
+
   }
   setPriority(event)
   {
     this.priority= event.target.value;
- 
+
   }}

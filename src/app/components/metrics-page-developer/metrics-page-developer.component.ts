@@ -18,18 +18,18 @@ export class MetricsPageDeveloperComponent implements OnInit {
   bugsDataPoints: Array<DataPoint> = [];
   solsDataPoints :  Array<DataPoint> = [];
 
-  constructor(private apiServ: ApiServiceService) { 
+  constructor(private apiServ: ApiServiceService) {
 
-  // bugs requested & solutions per user 
+  // bugs requested & solutions per user
   // some kind of "social enagement" - stretch
-  // active users - users that have submitted something in the past week 
+  // active users - users that have submitted something in the past week
      /*
         user bug creation time or solution time submitted.
      */
-    
-  // inactive users 
-  // avg time user bug takes to complete 
-  // amount of users 
+
+  // inactive users
+  // avg time user bug takes to complete
+  // amount of users
   // users per application
 
   }
@@ -45,7 +45,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
     let sols: Array<Solution> = [];
     const clientsReturned: Array<Client>  = await this.apiServ.getAllClients();
     for (let c of clientsReturned){
-      
+
       bugs= await this.apiServ.getbugReportByClientUsername(c.username);
       sols= await this.apiServ.getSolutionsByClientId(c.cId);
 
@@ -79,7 +79,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
       backgroundColor:"transparent",
       title:{
         text: "Developers Bugs And Solutions"
-      },	
+      },
       axisY: {
         title: "Bugs Per Developer",
         titleFontColor: "#4F81BC",
@@ -93,7 +93,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
         lineColor: "#C0504E",
         labelFontColor: "#C0504E",
         tickColor: "#C0504E"
-      },	
+      },
       toolTip: {
         shared: true
       },
@@ -103,15 +103,15 @@ export class MetricsPageDeveloperComponent implements OnInit {
       },
       data: [{
         type: "column",
-        color: "IndianRed", 
+        color: "IndianRed",
         name: "Bugs",
         legendText: "bugs",
-        showInLegend: true, 
+        showInLegend: true,
         dataPoints: this.bugsDataPoints
       },
       {
         type: "column",
-        color: "DarkSeaGreen",	
+        color: "DarkSeaGreen",
         name: "Solutions",
         legendText: "sols",
         axisYType: "secondary",
@@ -120,7 +120,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
       }]
     });
     chart.render();
-    
+
     function toggleDataSeries(e) {
       if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
         e.dataSeries.visible = false;
@@ -139,7 +139,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
 
 export class ClientDTO  {
-    
+
   cId: number;
   firstName:string;
   lastname: string;
