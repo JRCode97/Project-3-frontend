@@ -4,6 +4,7 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 import { Application } from 'src/app/models/Application';
 import { ConstantPool } from '@angular/compiler';
 import Solution from 'src/app/models/Solution';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-metrics-page-applications',
@@ -11,16 +12,52 @@ import Solution from 'src/app/models/Solution';
   styleUrls: ['./metrics-page-applications.component.scss']
 })
 export class MetricsPageApplicationsComponent implements OnInit {
-  appStats:Array<Application>;
-  bugsPerApp:Array<DataPoint> = [];
-  solutionsPerApp:Array<DataPoint> = [];
-  // charts:Array<any> = [];
+  // appStats:Array<Application>;
+  bugsPerApp:Array<ylDataPoint> = [];
+  solutionsPerApp:Array<ylDataPoint> = [];
 
+  usersPerApp:Array<ylDataPoint> = [];
+
+  avgSolTimePerApp:Array<ylDataPoint> = [];
+
+  hiLoResolveTime:Array<xyDataPoint> = [];
+ 
+
+  theme:string;
+  solBugChart;
+  hiLoChart;
+  avgChart;
+  uChart;
 
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit(): void {
+    this.theme = 'light2';
     this.getApplicationStats();
+    this.apiservice.theme.subscribe((event)=>{
+      if (document.body.classList.contains('light-theme')){
+        this.theme = 'light2';
+        this.solBugChart.options.theme ='light2';
+        this.hiLoChart.options.theme = 'light2';
+        this.avgChart.options.theme = 'light2';
+        this.uChart.options.theme = 'light2';
+        this.solBugChart.render();
+        this.hiLoChart.render();
+        this.avgChart.render();
+        this.uChart.render();
+      }
+      if (document.body.classList.contains('dark-theme')){
+        this.theme = 'dark2';
+        this.solBugChart.options.theme ='dark2';
+        this.hiLoChart.options.theme = 'dark2';
+        this.avgChart.options.theme = 'dark2';
+        this.uChart.options.theme = 'dark2';
+        this.solBugChart.render();
+        this.hiLoChart.render();
+        this.avgChart.render();
+        this.uChart.render();
+      }
+    })
   }
 
 
@@ -30,29 +67,52 @@ export class MetricsPageApplicationsComponent implements OnInit {
     console.log(apps);
 
     for (let i = 0; i < apps.length; i++) {
-      let bugDto = new DataPoint(apps[i].reports.length, apps[i].title)
+      let bugDto = new ylDataPoint(apps[i].reports.length, apps[i].title)
       this.bugsPerApp.push(bugDto);
       try {
-        let solution = await this.apiservice.getApplicationSolutions(apps[i].id);
-        console.log(solution);
-        let solutionDto = new DataPoint(solution, apps[i].title);
+        let solutions = await this.apiservice.getApplicationSolutions(apps[i].id);
+        console.log(solutions);
+        let solutionDto = new ylDataPoint(solutions, apps[i].title);
         this.solutionsPerApp.push(solutionDto);
+
+        let users = await this.apiservice.getApplicationUsers(apps[i].id);
+        let userDto = new ylDataPoint(users, apps[i].title);
+        this.usersPerApp.push(userDto);
+
+        let avgSolTime = await this.apiservice.getApplicationAverageResolvedTime(apps[i].id);
+        avgSolTime = avgSolTime/3600000
+        let avgTimeDto = new ylDataPoint(avgSolTime,apps[i].title);
+        this.avgSolTimePerApp.push(avgTimeDto);
+
+        let longResolveTime = await this.apiservice.getApplicationLongestResolvedTime(apps[i].id);
+        longResolveTime = longResolveTime/3600000;
+        let shortResolveTime = await this.apiservice.getApplicationShortestResolvedTime(apps[i].id);
+        shortResolveTime = shortResolveTime/3600000;
+        let hiLoTime = [longResolveTime, shortResolveTime];
+        let hiLoDto = new xyDataPoint((i+1)*10, hiLoTime, apps[i].title);
+        this.hiLoResolveTime.push(hiLoDto);
+
       } catch (error) {
         console.log("wdw");
       }
     }
-    this.appStats = apps;
 
-    this.renderChart();
-    this.renderChart2();
-    this.renderChart3();
-    this.renderchart4();
+    this.makeSolBugChart();
+    this.solBugChart.render();
+
+    this.makeUserChart();
+    this.uChart.render();
+
+    this.makeAverageChart();
+    this.avgChart.render();
+
+    this.makeHiLoChart();
+    this.hiLoChart.render();
   }
 
-  renderChart(){
+  makeSolBugChart(){
     let chart = new CanvasJS.Chart("chartContainer",
     {
-      // theme: "dark2",
       title:{
       text: "Bugs/Solutions per App",
       fontFamily: "Verdana",
@@ -62,26 +122,26 @@ export class MetricsPageApplicationsComponent implements OnInit {
       data: [
       {
         type: "column",
-        color: "rgb(255, 89, 89)",        // change color here
+        color: "IndianRed",        // change color here
         dataPoints: this.bugsPerApp
       },
         {
         type: "column",
-        color: "rgb(186, 255, 177)",
+        color: "DarkSeaGreen",
         dataPoints: this.solutionsPerApp
       }
       ]
     });
 
     chart.options.theme = "dark";
-    chart.render();
-  }
+    this.solBugChart = chart;
+  } 
 
 
-  renderChart2(){
+  makeUserChart(){
     var chart2 = new CanvasJS.Chart("chartContainer2", {
       animationEnabled: true,
-      theme: "light2", // "light1", "light2", "dark1", "dark2"
+      colorSet:  "colorSet3",
       title:{
         text: "Active Users per Application",
         fontFamily: "Verdana",
@@ -89,33 +149,20 @@ export class MetricsPageApplicationsComponent implements OnInit {
       },
       backgroundColor: "transparent",
       axisY: {
-        title: ""
+        title: "Users"
       },
-      data: [{
-        type: "column",
-        showInLegend: true,
-        legendMarkerColor: "grey",
-        legendText: "MMbbl = one million barrels",
-        dataPoints: [
-          { y: this.appStats[0].reports.length, label: this.appStats[0].title},
-          { y: this.appStats[1].reports.length, label: this.appStats[1].title },
-          { y: this.appStats[2].reports.length, label: this.appStats[2].title },
-          { y: this.appStats[3].reports.length, label: this.appStats[3].title },
-          { y:this.appStats[4].reports.length, label: this.appStats[4].title }
-        ]
+      data: [{        
+        type: "pie",  
+        dataPoints: this.usersPerApp
       }]
     });
-
-    // this.charts.push(chart2);
-    // for( var i = 0; i < this.charts.length; i++){
-    //   this.charts[i].render();
-    // }
-    chart2.render();
+    this.uChart = chart2;
   }
 
-  renderChart3(){
+  makeAverageChart(){
     var chart3 = new CanvasJS.Chart("chartContainer3", {
       animationEnabled: true,
+      colorSet:  "colorSet3",
       title: {
         text: "Average Bug Solution Time per Application",
         fontFamily: "Verdana",
@@ -123,25 +170,21 @@ export class MetricsPageApplicationsComponent implements OnInit {
       },
       backgroundColor: "transparent",
       data: [{
-        type: "pie",
+        type: "column",
         startAngle: 240,
-        yValueFormatString: "##0.00\"%\"",
+        yValueFormatString: "##0\" hours\"",
         indexLabel: "{label} {y}",
-        dataPoints: [
-          {y: 79.45, label: "Google"},
-          {y: 7.31, label: "Bing"},
-          {y: 7.06, label: "Baidu"},
-          {y: 4.91, label: "Yahoo"},
-          {y: 1.26, label: "Others"}
-        ]
+        dataPoints: this.avgSolTimePerApp
       }]
     });
-    chart3.render();
+    this.avgChart = chart3;
+    // chart3.render();
   }
 
-  renderchart4(){
+  makeHiLoChart(){
+    console.log(this.hiLoResolveTime)
     var chart4 = new CanvasJS.Chart("chartContainer4", {
-      theme: "light2", // "light1", "light2", "dark1", "dark2"
+      colorSet:  "colorSet3",
       animationEnabled: true,
       title: {
         text: "Bug Solution Time by Application",
@@ -150,40 +193,41 @@ export class MetricsPageApplicationsComponent implements OnInit {
       },
       backgroundColor: "transparent",
       axisY: {
-        title: "Solution Time",
-        prefix: ""
+        title: "Solution Time (Hours)",
+      },
+
+      axisX: {
+        interval: 10
       },
       data: [{
-        type: "rangeColumn",
+        type: "rangeBar",
         yValueFormatString: "#,##0.00",
-        xValueFormatString: "",
-        toolTipContent: "{x}<br>High: {y[0]}<br>Low: {y[1]}",
-        dataPoints: [
-          { x: 5, y: [27.10, 38.99] },
-          { x: 6, y: [29.92, 37.00] },
-          { x: 12, y: [35.95, 42.54] },
-          { x: 1, y: [37.27, 48.50] },
-          { x: 6, y: [43.33, 50.51] },
-          { x: 8, y: [46.69, 52.86] },
-          { x: 11, y: [41.80, 50.75] },
-          { x: 10, y: [41.51, 51.22] },
-          { x: 4, y: [45.09, 50.14] },
-          { x: 2, y: [47.98, 53.73] },
-          { x: 7, y: [43.57, 50.49] },
-          { x: 9, y: [51.51, 57.89] }
-        ]
+        indexLabel: "{y[#index]}" ,
+        toolTipContent: "{label}<br>High: {y[0]}<br>Low: {y[1]}",
+        dataPoints: this.hiLoResolveTime
       }]
     });
-    chart4.render();
+    this.hiLoChart = chart4;
   }
-
+  
 }
 
-export class DataPoint {
+export class ylDataPoint {
   y: number;
   label: string;
   constructor(y: number, label:string){
     this.y= y;
     this.label= label;
+  }
+}
+
+export class xyDataPoint {
+  x: number;
+  y: Array<number>;
+  label:string;
+  constructor(x: number, y:Array<number>, label:string){
+    this.x= x;
+    this.y= y;
+    this.label = label;
   }
 }
