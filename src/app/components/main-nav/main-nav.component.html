@@ -13,7 +13,7 @@
 
       <!--dev-->
       <ng-container *ngIf="clientRole >= 1"><!-- Dev & Admin-->
-        <a mat-list-item routerLink="/profile" id="profileTab">Profile</a>
+        <a mat-list-item routerLink="/profile" >Profile</a>
         <a mat-list-item routerLink="/newbugreport">Report New Bug</a>
         <a mat-list-item id = "logoutButton" tabindex=0 (click)="logout()">Logout</a>
       </ng-container>
@@ -40,7 +40,7 @@
       <span class="spacer"></span>
       <a routerLink="/main">Main</a>
       <div class="links" *ngIf="clientRole >= 1"><!-- Dev & Admin-->
-        <a routerLink="/profile">Profile</a>
+        <a routerLink="/profile" id="profileTab">Profile</a>
         <a routerLink="/newbugreport">Report New Bug</a>
       </div>
       <a routerLink="/bugs">View Bugs</a>

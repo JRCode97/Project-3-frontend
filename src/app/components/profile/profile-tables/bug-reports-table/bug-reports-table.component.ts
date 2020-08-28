@@ -37,11 +37,8 @@ export class BugReportsTableComponent implements AfterViewInit, OnInit {
   bugreportsArray = []
 
   async initBugreports(){
-    let client:Client = this.api.getLoggedClient()
-    let bugreports = await this.api.getbugReportByClientUsername(client.username)
-    console.log(bugreports)
-    
+    let client:Client = this.api.getLoggedClient();
+    let bugreports = await this.api.getbugReportByClientUsername(client.username);
     this.dataSource = new BugReportsTableDataSource(bugreports);
-    console.log(this.dataSource)
   }
 }

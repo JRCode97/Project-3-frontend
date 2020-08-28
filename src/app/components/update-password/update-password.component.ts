@@ -24,14 +24,13 @@ export class UpdatePasswordComponent implements OnInit {
   constructor(private fb:FormBuilder, private api:ApiServiceService) { }
 
   ngOnInit(): void {
-    console.log(this.client);
+
   }
 
   async submit(){
     if(this.passwordForm.value.currentPassword==this.client.password){
       this.client.password = this.passwordForm.value.newPassword;
       let result = await this.api.updatePassword(this.client);
-      console.log(result);
       this.api.setLoggedClient(result);
       this.passwordCorrect = true;
       alert("password successfully updated");

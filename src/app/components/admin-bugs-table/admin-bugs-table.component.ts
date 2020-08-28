@@ -29,7 +29,6 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<BugReport>(this.bugReports);
-    console.log(this.bugReports);
 
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
