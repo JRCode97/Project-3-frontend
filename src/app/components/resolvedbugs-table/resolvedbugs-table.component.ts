@@ -39,19 +39,8 @@ export class ResolvedbugsTableComponent implements AfterViewInit, OnInit {
   solutions: Array<Solution>;
 
   async initResolvedBugs(){
-    console.log("Hit");
     const bugreports= await this.api.getResolvedBugs();
     const solutions = await this.api.getSolutionsByBugId(Number(1));
-    console.log(bugreports);
-    console.log(solutions);
     this.dataSource= new ResolvedbugsTableDataSource(bugreports);
   }
-
-  // async getData(id:string) {
-  //   const bugReport:BugReport = await this.api.getBugReportById(Number(id));
-  //   const solutions:Solution[] = await this.api.getSolutionsByBugId(Number(id));
-  //   this.report = bugReport;
-  //   this.updateIsResolved(bugReport);
-  //   this.dataSource = new MatTableDataSource(solutions);
-  // }
 }

@@ -22,7 +22,7 @@ export class MetricsPageSummaryComponent implements OnInit {
   lineChart;
   pieChart;
 
-  // count by severity & status 
+  // count by severity & status
   // document.body.classList.contains('light-theme')
 
   constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
@@ -74,11 +74,11 @@ export class MetricsPageSummaryComponent implements OnInit {
         sum += (diff / 3600000);
       }
     }
-    
+
     this.timeSeries = this.timeSeries.sort().reverse()
     console.log(this.timeSeries)
     this.avgTime = Math.round(sum/nonZeros)
-    
+
     this.makePieChart();
     this.makeLineChart();
     this.lineChart.render();
@@ -90,13 +90,13 @@ export class MetricsPageSummaryComponent implements OnInit {
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
-    
+
     for(let point of timeSeries){
       months.push(this.datePipe.transform(point, 'MM-yyyy'))
     }
-    
 
-    // seperate into x=months, y=number of occurences 
+
+    // seperate into x=months, y=number of occurences
     let a = [], b = [], prev;
     for ( var i = 0; i < months.length; i++ ) {
         if ( months[i] !== prev ) {
@@ -111,17 +111,17 @@ export class MetricsPageSummaryComponent implements OnInit {
     for(var j = 0; j< a.length; j++){
       data.push({ y : b[j], label:a[j]})
     }
-    
-    
-    
+
+
+
     return data;
   }
 
   makeLineChart(){
-    
+
     let dataPoints = this.formatTimeData(this.timeSeries).reverse();
-	  
-    
+
+
 	  let chart = new CanvasJS.Chart("lineChartContainer", {
       theme: this.theme,
       zoomEnabled: true,
@@ -139,12 +139,12 @@ export class MetricsPageSummaryComponent implements OnInit {
       },
       data: [
       {
-        type: "line",                
+        type: "line",
         dataPoints: dataPoints
       }]
 	  });
     this.lineChart = chart;
-	  
+
   }
 
   makePieChart(){
@@ -168,7 +168,7 @@ export class MetricsPageSummaryComponent implements OnInit {
         ]
       }]
     });
-    
+
     this.pieChart = chart;
   }
 }

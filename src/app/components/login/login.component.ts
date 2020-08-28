@@ -66,8 +66,6 @@ export class LoginComponent implements OnInit {
     const pass = this.txtpassword.nativeElement.value;
     try {
       this.client = await this.serv.clientLogin(username, pass);
-      console.log(this.client);
-      // alert(client.fName)
       if (this.client != null && this.client.cId > 0) {
         this.serv.setLoggedClient(this.client);
         this.showSpinner = true;
@@ -95,8 +93,6 @@ export class LoginComponent implements OnInit {
     const username = this.txtusername.nativeElement.value;
     try {
       this.client = await this.serv.getClientByUserName(username);
-      console.log(this.client);
-      // alert(client.fName)
       if (this.client != null && this.client.cId > 0) {
         this.serv.setLoggedClient(this.client);
         this.valiationMsg = 'This Username is not available , please select another one';
@@ -124,10 +120,8 @@ export class LoginComponent implements OnInit {
     newclient.role = 0;
     try {
       newclient = await this.serv.clientRegister(newclient);
-      console.log(newclient);
       if (newclient != null && newclient.cId > 0) {
         window.location.href = '/';
-        // this.router.navigate(["/"]);
       }
       else {
         this.savingfailed = true;

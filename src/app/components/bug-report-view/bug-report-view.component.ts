@@ -23,21 +23,16 @@ export class BugReportViewComponent implements OnInit {
     public SolTitle: string = '';
     @ViewChild('txtSolTitle') txtSolTitle: ElementRef;
     @ViewChild('txtSolDescribtion') txtSolDescribtion: ElementRef;
-    //displayedColumns: string[] = ['title', 'description', 'timeSubmitted', 'solver', 'status'];
     displayedColumns: string[] = ['description'];
     dataSource: MatTableDataSource<Solution>;
 
 
 
     constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router) {
-        // const queryString = window.location.search;
-        // const urlParams = new URLSearchParams(queryString);
-        // this.brId = urlParams.get("brid");
         this.getClient();
-        if (this.client == null || this.client === undefined)
+        if (this.client == null || this.client === undefined) {
             this.router.navigate(["/"]);
-        else {
-            //console.log(this.client);
+        } else {
             this.brId = this.route.snapshot.paramMap.get("id");
             this.getBugReportById();
             this.getBugSolutionsById();
@@ -48,28 +43,23 @@ export class BugReportViewComponent implements OnInit {
     ngOnInit(): void {
 
     }
-    //0. Get Client By ID 
+    //0. Get Client By ID
     getClient(): Client {
         this.client = this.apiserv.getLoggedClient();
-        /// console.log(this.client);
         return this.client;
     }
-    //1. Get Bug Report By ID 
+    //1. Get Bug Report By ID
     async  getBugReportById(): Promise<BugReport> {
         this.br = await this.apiserv.getBugReportById(this.brId);
-
-        //console.log(this.br.solutions);
-        //  console.log(this.br);
         return this.br;
     }
-    //2. Get all Solutions  by Bug Report ID 
+    //2. Get all Solutions  by Bug Report ID
     async  getBugSolutionsById(): Promise<Array<Solution>> {
         this.solutions = await this.apiserv.getSolutionsByBugId(this.brId);
         this.dataSource = new MatTableDataSource(this.solutions);
-        console.log(this.solutions);
         return this.solutions;
     }
-    //3. Add new  Solution 
+    //3. Add new  Solution
     async postSolution(): Promise<any> {
         let isvalid: boolean = true;
         if (this.txtSolTitle.nativeElement.value.trim().length === 0) {
@@ -84,7 +74,6 @@ export class BugReportViewComponent implements OnInit {
         }
         if (isvalid) {
             let sol = new Solution();
-            console.log(this.br);
             sol.br = this.br;
 
             sol.client = this.client;
@@ -95,7 +84,6 @@ export class BugReportViewComponent implements OnInit {
             sol.timeSubmitted = new Date().getTime();
 
             let result = await this.apiserv.postSolution(sol);
-            console.log(sol);
             this.getBugSolutionsById();
             return result;
         }
