@@ -24,7 +24,7 @@ export class MainPageBugComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.id = this.bugReport.bId
+    this.id = this.bugReport.bId;
     this.title = this.bugReport.title;
     this.status = this.bugReport.status;
     this.pointValue = this.bugReport.pointValue;
