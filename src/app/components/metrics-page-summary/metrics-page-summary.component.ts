@@ -28,8 +28,13 @@ export class MetricsPageSummaryComponent implements OnInit {
   constructor(private apiservice: ApiServiceService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.theme='light2';
+    if(document.body.classList.contains('light-theme')){
+      this.theme='light2';
+    } else {
+      this.theme='dark2';
+    }
     this.getStats();
+    
     this.apiservice.theme.subscribe((event)=>{
       if(document.body.classList.contains('light-theme')){
         this.theme = 'light2';
@@ -52,11 +57,9 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.resolvedBugsCount = await this.apiservice.getResolvedBugsCount();
     this.unresolvedBugsCount = await this.apiservice.getUnResolvedBugsCount();
     this.requestedBugsCount = await this.apiservice.getRequestedBugsCount();
-    console.log(this.requestedBugsCount)
     this.highCount = await this.apiservice.getHighPriorityBugsCount();
     this.medCount = await this.apiservice.getMediumPriorityBugsCount();
     this.lowCount = await this.apiservice.getLowPriorityBugsCount();
-    console.log(this.lowCount)
 
     let all = await this.apiservice.getBugReports();
 
@@ -76,7 +79,7 @@ export class MetricsPageSummaryComponent implements OnInit {
     }
     
     this.timeSeries = this.timeSeries.sort().reverse()
-    console.log(this.timeSeries)
+
     this.avgTime = Math.round(sum/nonZeros)
     
     this.makePieChart();
