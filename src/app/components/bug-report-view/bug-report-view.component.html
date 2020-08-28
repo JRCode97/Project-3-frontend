@@ -1,7 +1,7 @@
 <ng-container *ngIf="br!=null">
     <div class="container">
         <ng-container *ngIf="br!=null">
-            <h1 class="titleH1  col  "> Bug Report #{{br.bId}}</h1>
+            <h1 id = "bugReport{{br.bId}" class="titleH1  col  "> Bug Report #{{br.bId}}</h1>
 
             <div class="form-group row">
                 <label for="txttitle" class="col-sm-2 form-label">Bug Title:</label>
@@ -116,7 +116,7 @@
                                 <table style="width: 100%;">
                                     <thead>
                                         <th class="col header " colspan="4">
-                                            <h2> Posted Solution(s) </h2>
+                                            <h2 id = "postedSolutionsTitle"> Posted Solution(s) </h2>
                                         </th>
                                     </thead>
                                     <thead style="width: 100%;">
@@ -202,8 +202,7 @@
         </ng-container>
     </div>
     <form class="container" *ngIf="br.status==='Unresolved'">
-        <h1 class="titleH1 col-sm-3">Post new Solution</h1>
-
+        <h1 id = "postSolutionsTitle" class="titleH1 col-sm-3">Post new Solution</h1>
         <div class="form-group row">
 
             <label class="col-sm-2 form-label">Title: <b style="color: firebrick;">*</b> </label>
@@ -220,9 +219,9 @@
         </div>
 
         <div class="buttonGroup">
-            <button type="reset" class="btn btn-secondary"  [disabled]=" !(br.status==='Unresolved') " >Cancel</button>
+            <button id = "cancelButton" type="reset" class="btn btn-secondary"  [disabled]=" !(br.status==='Unresolved') " >Cancel</button>
             <span> &nbsp;&nbsp; </span>
-            <button type="button"   (click)="postSolution()" class="btn btn-success"  [disabled]=" !(br.status==='Unresolved') ">Submit</button>
+            <button id = "submitButton" type="button"   (click)="postSolution()" class="btn btn-success"  [disabled]=" !(br.status==='Unresolved') ">Submit</button>
         </div>
 
         <br>

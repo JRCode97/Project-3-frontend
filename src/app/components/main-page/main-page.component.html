@@ -7,7 +7,7 @@
 
     <div class="mainLeft">
         <mat-accordion>
-            <app-main-page-application *ngFor="let app of applications" [application]="app"></app-main-page-application>
+            <app-main-page-application *ngFor="let app of applications" [application]="app" id = "app{{app.id}}"></app-main-page-application>
         </mat-accordion>
     </div>
 
