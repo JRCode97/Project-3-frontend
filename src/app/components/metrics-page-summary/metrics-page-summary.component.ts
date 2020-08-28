@@ -62,7 +62,7 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.lowCount = await this.apiservice.getLowPriorityBugsCount();
 
     let all = await this.apiservice.getBugReports();
-
+    let toPrint = new Array();
     let sum:number = 0;
     let nonZeros:number = 0;
     for (let r of all){
@@ -72,15 +72,21 @@ export class MetricsPageSummaryComponent implements OnInit {
       let a:number = r.resolvedTime
       let b:number = r.createdTime
       diff = a - b
+      let bid = r.bId;
+      let created = this.datePipe.transform(b, 'yyyy-MM-dd')
+      let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
+      toPrint.push({bid, diff, created, resolved})
       if (diff > 0){
         ++nonZeros;
         sum += (diff / 3600000);
       }
     }
-    
+    console.log(all)
+    console.log(toPrint)
     this.timeSeries = this.timeSeries.sort().reverse()
 
     this.avgTime = Math.round(sum/nonZeros)
+    
     
     this.makePieChart();
     this.makeLineChart();
@@ -89,7 +95,7 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   formatTimeData(timeSeries) {
-
+    console.log(timeSeries)
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
