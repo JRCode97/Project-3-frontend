@@ -32,7 +32,11 @@ export class MetricsPageApplicationsComponent implements OnInit {
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit(): void {
-    this.theme = 'light2';
+    if(document.body.classList.contains('light-theme')){
+      this.theme='light2';
+    } else {
+      this.theme='dark2';
+    }
     this.getApplicationStats();
     this.apiservice.theme.subscribe((event)=>{
       if (document.body.classList.contains('light-theme')){
@@ -97,17 +101,41 @@ export class MetricsPageApplicationsComponent implements OnInit {
       }
     }
 
-    this.makeSolBugChart();
-    this.solBugChart.render();
 
-    this.makeUserChart();
-    this.uChart.render();
-
-    this.makeAverageChart();
-    this.avgChart.render();
-
-    this.makeHiLoChart();
-    this.hiLoChart.render();
+    if (this.theme = 'light2'){
+      this.makeSolBugChart();
+      this.solBugChart.options.theme ='light2';
+      this.solBugChart.render();
+  
+      this.makeUserChart();
+      this.uChart.options.theme = 'light2';
+      this.uChart.render();
+  
+      this.makeAverageChart();
+      this.avgChart.options.theme = 'light2';
+      this.avgChart.render();
+  
+      this.makeHiLoChart();
+      this.hiLoChart.options.theme = 'light2';
+      this.hiLoChart.render();
+    }
+    if (this.theme = "dark2"){
+      this.makeSolBugChart();
+      this.solBugChart.options.theme ='dark2';
+      this.solBugChart.render();
+  
+      this.makeUserChart();
+      this.uChart.options.theme = 'dark2';
+      this.uChart.render();
+  
+      this.makeAverageChart();
+       this.avgChart.options.theme = 'dark2';
+      this.avgChart.render();
+  
+      this.makeHiLoChart();
+      this.hiLoChart.options.theme = 'dark2';
+      this.hiLoChart.render();
+    }
   }
 
   makeSolBugChart(){
@@ -133,7 +161,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
       ]
     });
 
-    chart.options.theme = "dark";
+    // chart.options.theme = "dark";
     this.solBugChart = chart;
   } 
 
