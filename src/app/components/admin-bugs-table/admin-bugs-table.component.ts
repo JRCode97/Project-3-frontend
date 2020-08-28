@@ -56,18 +56,14 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   searchInput:string;
 
+  sortingMap = new Map();
+
   selectedAppTitle:string = "All";
-  //steps
-  //set severity to low
-  //set priority to high
-  //set priority to all??? how do you unfilter
+
   ngOnInit() {
-    //currentBugsDisplayed[]bugreports <--this one is manipulated to show what we want
-    //bugReports <-- never is touched
     this.populate(this.bugReports);
     this.bugReportsDisplay = this.bugReports;
-
-    /* this.getbugReportBySeverity(); */
+    this.initializeSortMap();
   }
 
   ngAfterViewInit(): void {
@@ -77,7 +73,6 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
   populate(bugs:BugReport[]){
     this.dataSource = new MatTableDataSource<BugReport>(bugs);
-    // console.log(this.bugReports);
 
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
@@ -87,7 +82,37 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     this.getApplications();
     
   }
+  
+  initializeSortMap(){
+  //False will sort alphabetically and true will be unalphabetically
+  this.sortingMap.set("title",false);
+  this.sortingMap.set("application",false);
+  this.sortingMap.set("location",false);
+  this.sortingMap.set("developer",false);
+
+  //False will sort from high to low and true will be the opposite
+  this.sortingMap.set("severity",false);
+  this.sortingMap.set("priority",false);
+
+  this.sortingMap.set("date",false);
+  }
+
   //Priority and Severity filters
+
+  /**************************************************************************************************************
+  When any of the filters are changed the following function calls occur.
+  
+                                                  filterByApplication()
+                                                           |
+                                                           |
+                                                          \_/
+                                                  setbugReportByPriority
+                                                           |
+                                                           |
+                                                          \_/
+                                                  setbugReportBySeverity
+  
+  **************************************************************************************************************/
 
   filterLowPriorityBugs(bugReport){
     return bugReport.priority == "Low"
@@ -113,7 +138,6 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     return bugReport.severity == "High"
   }
 
-  // to get the bug reports by sevrity and priority
   filterByApplication(){
     
     if(this.selectedAppTitle === "All"){
@@ -122,17 +146,6 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
       this.bugReportsDisplay = this.bugReports.filter(bugReport => bugReport.app.title === this.selectedAppTitle);
     }
     this.setbugReportByPriority();
-    // if(this.severity !=="All"){
-    //   console.log(this.severity);
-    //   this.setbugReportBySeverity();
-    //   return;
-    // }else if (this.priority !=="All"){
-    //   console.log(this.priority);
-    //   this.setbugReportByPriority();
-    //   return;
-    // }
-    // this.bugReportsDisplay = this.bugReportByApplication;
-    // this.populate(this.bugReportsDisplay);
   }
 
   setbugReportByPriority(){
@@ -160,6 +173,7 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     }
     this.populate(this.bugReportsDisplay);
   }
+
   async search(){
     let filteredReports: BugReport[] = [];
 
@@ -188,7 +202,6 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     }else{
       this.populate(this.bugReportsDisplay);
     }
-      
   }
   
   async getApplications(){
@@ -196,7 +209,61 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     return this.apps;
   }
   
+  sortColumn(column:string){
+    this.bugReportsDisplay.sort(function(a,b){
+      let statusA,statusB;
+      switch (column) {
+        case "title":
+          statusA = a.title.toLowerCase();
+          statusB = b.title.toLowerCase();
+          break;
+        case "application":
+          statusA = a.app.title.toLowerCase();
+          statusB = b.app.title.toLowerCase();
+          break;
+        case "location":
+          statusA = a.location.toLowerCase();
+          statusB = b.location.toLowerCase();
+          break;
+        case "developer":
+          statusA = a.username.toLowerCase();
+          statusB = b.username.toLowerCase();
+          break;
+        case "date":
+          statusA = b.createdTime;
+          statusB = a.createdTime;
+          break;
+        default:
+          break;
+      }
+      return (statusA < statusB) ? -1 : (statusA > statusB) ? 1 : 0;
+    })
+    if(this.sortingMap.get(column)){
+      this.bugReportsDisplay.reverse();
+    }
+    this.sortingMap.set(column,!this.sortingMap.get(column));
+    this.populate(this.bugReportsDisplay);
+  }
 
-  
+  sortPrioSev(column:string){
+    this.bugReportsDisplay.sort(function(a,b){
+      let statusA,statusB;
+        if(column === "priority"){
+          statusA = a.priority;
+          statusB = b.priority;
+          
+        }else if (column ==="severity"){
+          statusA = a.severity;
+          statusB = b.severity;
+        }
+        statusA = (statusA==="High") ? 1 : (statusA==="Medium") ? 0 : -1;
+        statusB = (statusB==="High") ? 1 : (statusB==="Medium") ? 0 : -1;
+        return (statusA < statusB) ? 1 : (statusA > statusB) ? -1 : 0; 
+      });
+      if(this.sortingMap.get(column)){
+        this.bugReportsDisplay.reverse();
+      }
+      this.sortingMap.set(column,!this.sortingMap.get(column));
+      this.populate(this.bugReportsDisplay);
+  }
 }
-
