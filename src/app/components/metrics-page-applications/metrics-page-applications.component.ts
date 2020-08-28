@@ -29,6 +29,10 @@ export class MetricsPageApplicationsComponent implements OnInit {
   avgChart;
   uChart;
 
+
+  whileLoading:string = "buffering";
+  ifLoading:boolean = true;
+
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit(): void {
@@ -38,6 +42,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
       this.theme='dark2';
     }
     this.getApplicationStats();
+    
     this.apiservice.theme.subscribe((event)=>{
       if (document.body.classList.contains('light-theme')){
         this.theme = 'light2';
@@ -136,6 +141,9 @@ export class MetricsPageApplicationsComponent implements OnInit {
       this.hiLoChart.options.theme = 'dark2';
       this.hiLoChart.render();
     }
+
+    this.whileLoading = "";
+    this.ifLoading= false;
   }
 
   makeSolBugChart(){

@@ -21,7 +21,10 @@ export class MetricsPageDeveloperComponent implements OnInit {
   bugsDataPoints: Array<DataPoint> = [];
   solsDataPoints: Array<DataPoint> = [];
   clientsUsage: Array<DataObject> = [];
-  
+
+  whileLoading:string = "buffering";
+  ifLoading:boolean = true;
+
   constructor(private apiServ: ApiServiceService, private datePipe: DatePipe) {
     
     // bugs requested & solutions per user 
@@ -43,6 +46,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
     this.initializeTheDataObject();
     this.drawBugsAndSolutionsBarChart();
     this.drawClientsUsage();
+    
   }
   
   async initializeClientsField(): Promise<void> {
@@ -185,6 +189,8 @@ export class MetricsPageDeveloperComponent implements OnInit {
           chart.render();
         }
         
+        this.whileLoading = "";
+        this.ifLoading= false;
       }
       
       calcAverageTimeAUserBugTakesToResolve(bugs: Array<BugReport>): number{
