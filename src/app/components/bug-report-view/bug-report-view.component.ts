@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import SolutionStatus from 'src/app/models/SolutionStatus';
 import { MatTableDataSource } from '@angular/material/table';
 import BugStatus from 'src/app/models/BugStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-bug-report-view',
@@ -37,7 +38,7 @@ export class BugReportViewComponent implements OnInit {
 
 
 
-    constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router) {
+    constructor(private apiserv: ApiServiceService, private route: ActivatedRoute, private router: Router,private _snackBar:MatSnackBar) {
         // const queryString = window.location.search;
         // const urlParams = new URLSearchParams(queryString);
         // this.brId = urlParams.get("brid");
@@ -146,5 +147,13 @@ export class BugReportViewComponent implements OnInit {
     }
     async updateSolution(solution:Solution) {
         await this.apiserv.putSolution(solution)
+        this.openSnackBar(`Solution is ${solution.status}!`,"Dance");
     }
+    openSnackBar(message: string, action: string) {
+        this._snackBar.open(message, action, {
+          duration: 4000,
+        });
+
+    }
+
 }

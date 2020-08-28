@@ -22,6 +22,8 @@ export class ApiServiceService {
 
  
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
+  //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
+
   path: string = 'http://localhost:9111'
 
  
@@ -35,6 +37,10 @@ export class ApiServiceService {
   getbugReportByClientUsername(username:string){
     return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
   }
+
+  /* getbugReportByApp(id:number){
+    return this.http.get<BugReport>(`${this.path}/applications/${id}/bugreports`).toPromise();
+  } */
 
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
@@ -61,6 +67,11 @@ export class ApiServiceService {
   }
 
   //################ Start of Client Section ###################
+
+  getAllClients(): Promise<Array<Client>>{
+    return this.http.get<Array<Client>>(this.path + `/clients`).toPromise();
+  }
+
   clientLogin(username: any, pass: any): Promise<Client> {
     return this.http.get<Client>(this.path + `/clients/login?username=${username}&password=${pass}`).toPromise();
   }

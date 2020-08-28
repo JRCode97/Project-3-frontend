@@ -178,7 +178,7 @@
                                         <div id="divDescription" readonly
                                             class="col-sm-8 form-control textareaDisabled">{{solution.description}}
                                         </div>
-                                        <div id="solutions-dropdown-container" *ngIf="solution.status==='Pending'">
+                                        <div id="solutions-dropdown-container" *ngIf="solution.status!=='Pending'">
                                             <mat-form-field>
                                                 <mat-select (selectionChange)="updateSolution(solution)" [(value)]="solution.status">
                                                     <mat-option value="Pending">Pending</mat-option>
