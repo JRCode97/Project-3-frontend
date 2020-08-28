@@ -7,13 +7,16 @@
   justify-content:center;
   align-items: center;
 }
-
+.fill{
+  height:50px;
+}
 
 .dot-wrap{
     height:100%;
     display:flex;
     flex-direction: column;
     align-items: center;
+    
     h1{
         margin-top:60px;
         font-size:small;
@@ -25,18 +28,21 @@
         margin-right:10px;
         border-radius: 50%;
         text-align: center;
-        line-height: 70px;
+        line-height: 80px;
         font-size:x-large;
+        background-image: url("../../../assets/lady_bug_circle.png");
+        background-size: 80px 80px;
+        
     }
-    #bugs-requested{
-        border: solid 5px rgb(255, 199, 136);
-    }
-    #bugs-resolved{
-        border:solid 5px rgb(78, 241, 233);
-    }
-    #bugs-unresolved{
-        border: solid 5px rgb(255, 117, 107);
-    }
+    // #bugs-requested{
+    //     border: solid 5px rgb(255, 199, 136);
+    // }
+    // #bugs-resolved{
+    //     border:solid 5px rgb(78, 241, 233);
+    // }
+    // #bugs-unresolved{
+    //     border: solid 5px rgb(255, 117, 107);
+    // }
 }
 
 .chart{
@@ -63,6 +69,29 @@
     }
 }
 
+
+.buffering-overlay{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:500;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  div{
+    width:440px;
+    height:290px;
+    background-image: url("../../../assets/loading-small.gif");
+    background-size: 100% 100%;
+  }
+  
+}
+
+.buffering{
+  opacity:0;
+}
 //================================== bootstrap-grid ========================================
 
 *,
