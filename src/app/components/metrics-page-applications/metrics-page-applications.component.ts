@@ -15,7 +15,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
   bugsPerApp:Array<DataPoint> = [];
   solutionsPerApp:Array<DataPoint> = [];
   // charts:Array<any> = [];
-  
+
 
   constructor(private apiservice: ApiServiceService) { }
 
@@ -52,7 +52,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
   renderChart(){
     let chart = new CanvasJS.Chart("chartContainer",
     {
-      // theme: "dark2", 
+      // theme: "dark2",
       title:{
       text: "Bugs/Solutions per App",
       fontFamily: "Verdana",
@@ -75,7 +75,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
 
     chart.options.theme = "dark";
     chart.render();
-  } 
+  }
 
 
   renderChart2(){
@@ -91,12 +91,12 @@ export class MetricsPageApplicationsComponent implements OnInit {
       axisY: {
         title: ""
       },
-      data: [{        
-        type: "column",  
-        showInLegend: true, 
+      data: [{
+        type: "column",
+        showInLegend: true,
         legendMarkerColor: "grey",
         legendText: "MMbbl = one million barrels",
-        dataPoints: [      
+        dataPoints: [
           { y: this.appStats[0].reports.length, label: this.appStats[0].title},
           { y: this.appStats[1].reports.length, label: this.appStats[1].title },
           { y: this.appStats[2].reports.length, label: this.appStats[2].title },
@@ -158,7 +158,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
         yValueFormatString: "#,##0.00",
         xValueFormatString: "",
         toolTipContent: "{x}<br>High: {y[0]}<br>Low: {y[1]}",
-        dataPoints: [		
+        dataPoints: [
           { x: 5, y: [27.10, 38.99] },
           { x: 6, y: [29.92, 37.00] },
           { x: 12, y: [35.95, 42.54] },
@@ -176,7 +176,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
     });
     chart4.render();
   }
-  
+
 }
 
 export class DataPoint {
