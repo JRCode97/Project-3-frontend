@@ -41,6 +41,10 @@ export class ApiServiceService {
     return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
   }
 
+  /* getbugReportByApp(id:number){
+    return this.http.get<BugReport>(`${this.path}/applications/${id}/bugreports`).toPromise();
+  } */
+
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Resolved`).toPromise();
   }
@@ -87,6 +91,7 @@ export class ApiServiceService {
   }
 
   //################ Start of Client Section ###################
+
   clientLogin(username: any, pass: any): Promise<Client> {
     return this.http.get<Client>(this.path + `/clients/login?username=${username}&password=${pass}`).toPromise();
   }
@@ -184,6 +189,26 @@ export class ApiServiceService {
     return this.http.post<Application>(`${this.path}/applications/`, appJson).toPromise();
   }
 
+  getApplicationSolutions(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}/solutions`).toPromise();
+  }
+
+  getApplicationUsers(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}/clients`).toPromise();
+  }
+
+  getApplicationAverageResolvedTime(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}?resolvedtime=average`).toPromise();
+  }
+
+  getApplicationLongestResolvedTime(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}?resolvedtime=longest`).toPromise();
+  }
+
+  getApplicationShortestResolvedTime(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}?resolvedtime=shortest`).toPromise();
+  }
+
   //################ Start of Leaderboard Section ###################
   getLeaderboardNames(): Promise<String[]>{
     return this.http.get<String[]>(`${this.path}/clients/leaderboard/username`).toPromise();
@@ -191,10 +216,6 @@ export class ApiServiceService {
 
   getLeaderboardPoints(): Promise<number[]>{
     return this.http.get<number[]>(`${this.path}/clients/leaderboard/points`).toPromise();
-  }
-
-  getApplicationSolutions(appId:number): Promise<number>{
-    return this.http.get<number>(`${this.path}/applications/${appId}/solutions`).toPromise();
   }
 
 }

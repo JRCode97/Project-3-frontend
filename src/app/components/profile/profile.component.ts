@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import Client from 'src/app/models/Client';
 import { Router } from '@angular/router';
+import { BugReport } from 'src/app/models/BugReport';
 
 @Component({
   selector: 'app-profile',
@@ -14,12 +15,14 @@ export class ProfileComponent implements OnInit {
   constructor(private modalService: NgbModal, private api: ApiServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    // this.getBugReports();
     this.client = this.api.getLoggedClient()
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
     this.assignRole()
     this.getClientPoint()
   }
+  bugReports: Array<BugReport>;
   bugStatus
   solutionStatus
   points
@@ -57,4 +60,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  // async getBugReports(){
+  //   this.bugReports = await this.api.getBugReports();
+  //   return this.bugReports;
+  // }
 }
