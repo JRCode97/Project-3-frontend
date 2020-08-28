@@ -71,7 +71,9 @@ export class MetricsPageSummaryComponent implements OnInit {
       let diff:number;
       let a:number = r.resolvedTime
       let b:number = r.createdTime
+      
       diff = a - b
+      console.log(diff)
       let bid = r.bId;
       let created = this.datePipe.transform(b, 'yyyy-MM-dd')
       let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
@@ -81,8 +83,7 @@ export class MetricsPageSummaryComponent implements OnInit {
         sum += (diff / 3600000);
       }
     }
-    console.log(all)
-    console.log(toPrint)
+    
     this.timeSeries = this.timeSeries.sort().reverse()
 
     this.avgTime = Math.round(sum/nonZeros)
@@ -94,8 +95,7 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.pieChart.render();
   }
 
-  formatTimeData(timeSeries) {
-    console.log(timeSeries)
+  formatTimeDataByMonth(timeSeries) {
     // "It just works" - Todd Howard
     let data= [];
     let months = new Array();
@@ -125,10 +125,40 @@ export class MetricsPageSummaryComponent implements OnInit {
     
     return data;
   }
+  formatTimeDataByDay(timeSeries) {
+    // "It just works" - Todd Howard
+    let data= [];
+    let months = new Array();
+    
+    for(let point of timeSeries){
+      months.push(this.datePipe.transform(point, 'dd-MM-yyyy'))
+    }
+    
+
+    // seperate into x=months, y=number of occurences 
+    let a = [], b = [], prev;
+    for ( var i = 0; i < months.length; i++ ) {
+        if ( months[i] !== prev ) {
+            a.push(months[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = months[i];
+    }
+
+    for(var j = 0; j< a.length; j++){
+      data.push({ y : b[j]})
+    }
+    
+    
+    
+    return data;
+  }
 
   makeLineChart(){
     
-    let dataPoints = this.formatTimeData(this.timeSeries).reverse();
+    let dataPoints = this.formatTimeDataByMonth(this.timeSeries).reverse();
 	  
     
 	  let chart = new CanvasJS.Chart("lineChartContainer", {
@@ -136,13 +166,9 @@ export class MetricsPageSummaryComponent implements OnInit {
       zoomEnabled: true,
       animationEnabled: true,
       backgroundColor: "transparent",
-      exportEnabled: true,
       title: {
         text: "Bug Reports Per Month"
       },
-      subtitles:[{
-        text: "Try Zooming and Panning"
-      }],
       axisX: {
         labelAngle: -30
       },
@@ -161,7 +187,6 @@ export class MetricsPageSummaryComponent implements OnInit {
       theme: this.theme,
       backgroundColor: "transparent",
       animationEnabled: true,
-      exportEnabled: true,
       title:{
         text: "Severity Distribution"
       },
