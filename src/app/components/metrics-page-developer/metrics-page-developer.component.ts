@@ -98,12 +98,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
       sols = await this.apiServ.getSolutionsByClientId(c.cId);
       
       if (bugs.length!==0 || sols.length!==0){
-          /*
-          the ternary operator below is important because the 'if' statement may exectue
-          when sols are not zero but bugs are zero, so to address this case,
-          I check if bugs are zero, if it is, then I do not call a function, which makes 
-          the code slightly faster.
-          */
+        
         if (bugs.length===0){
           this.clientsWithBugsOrSolutions.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols
             , 0));
@@ -120,6 +115,12 @@ export class MetricsPageDeveloperComponent implements OnInit {
         
       }
 
+      /*
+        the ternary operator below is important because the 'if' statement may exectue
+        when sols are not zero but bugs are zero, so to address this case,
+        I check if bugs are zero, if it is, then I do not call a function, which makes 
+        the code slightly faster.
+        */
       this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols, 
         bugs.length===0? 0 : this.calcAverageTimeAUserBugTakesToResolve (bugs)));
 
