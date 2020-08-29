@@ -18,6 +18,8 @@ export class MetricsPageDeveloperComponent implements OnInit {
   
   
   clients: Array<ClientDTO> = [];
+  clientsWithBugsOrSolutions: Array<ClientDTO>=[];
+
   bugsDataPoints: Array<DataPoint> = [];
   solsDataPoints: Array<DataPoint> = [];
   clientsUsage: Array<DataObject> = [];
@@ -25,29 +27,66 @@ export class MetricsPageDeveloperComponent implements OnInit {
   whileLoading:string = "buffering";
   ifLoading:boolean = true;
 
+  theme:string;
+  clientBugsAndSolutionsBarChart:CanvasJS.Chart;
+  clientUsageLineChart : CanvasJS.Chart;
+
+
   constructor(private apiServ: ApiServiceService, private datePipe: DatePipe) {
     
-    // bugs requested & solutions per user 
-    // some kind of "social enagement" - stretch
-    // active users - users that have submitted something in the past week 
-    /*
-    user bug creation time or solution time submitted.
-    */
-    
-    // inactive users 
-    // avg time user bug takes to complete 
-    // amount of users 
-    
+    // bugs requested & solutions per user  //done
+    // some kind of "social enagement" - stretch // have no idea what this is.
+    // active users and incative users        //done 
+    // avg time user bug takes to complete //done
+    // amount of users  //done 
+   
   }
   
   async ngOnInit(): Promise<void> {
+
+    await this.initializeData();
+    this.initializeCharts();
+
+    this.apiServ.theme.subscribe((event)=>{
+      if(document.body.classList.contains('light-theme')){
+        this.theme = 'light2';
+        this.render();
+      }
+      if(document.body.classList.contains('dark-theme')){
+        this.theme = 'dark2';
+        this.render();
+      }
+    })
+
+    if(document.body.classList.contains('dark-theme')){
+      this.theme='dark2';
+      this.render();
+    } else {
+      this.theme='light2';
+      this.render();
+    }
+
+    
+  }
+
+  async initializeData(){
     await this.initializeClientsField();
     this.initializeDataPointsFields();
     this.initializeTheDataObject();
-    this.drawBugsAndSolutionsBarChart();
-    this.drawClientsUsage();
-    
   }
+
+  initializeCharts(){
+    this.makeBugsAndSolutionsBarChart();
+    this.makeClientsUsageLineChart();
+  }
+
+  render(){
+    this.clientBugsAndSolutionsBarChart.options.theme=this.theme;
+    this.clientUsageLineChart.options.theme=this.theme;
+    this.clientBugsAndSolutionsBarChart.render();
+    this.clientUsageLineChart.render();
+  }
+
   
   async initializeClientsField(): Promise<void> {
     let bugs: Array<BugReport> = [];
@@ -58,18 +97,40 @@ export class MetricsPageDeveloperComponent implements OnInit {
       bugs = await this.apiServ.getbugReportByClientUsername(c.username);
       sols = await this.apiServ.getSolutionsByClientId(c.cId);
       
-      //const bugsDataPoint = new DataPoint(bugs.length, `${c.fName} ${c.lName}`);
-      //{y: bugs.length, label: `${c.fName} ${c.lName}`};
-      //const solsDataPoint = new DataPoint(sols.length, `${c.fName} ${c.lName}`);
-      //{y: sols.length, label: `${c.fName} ${c.lName}`}
-      this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols, this.calcAverageTimeAUserBugTakesToResolve (bugs)));
+      if (bugs.length!==0 || sols.length!==0){
+          /*
+          the ternary operator below is important because the 'if' statement may exectue
+          when sols are not zero but bugs are zero, so to address this case,
+          I check if bugs are zero, if it is, then I do not call a function, which makes 
+          the code slightly faster.
+          */
+        if (bugs.length===0){
+          this.clientsWithBugsOrSolutions.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols
+            , 0));
+          this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols 
+            , 0));
+        }
+        else {
+          this.clientsWithBugsOrSolutions.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols
+            ,  this.calcAverageTimeAUserBugTakesToResolve (bugs)));
+
+          this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols 
+            ,  this.calcAverageTimeAUserBugTakesToResolve (bugs)));
+        }
+        
+      }
+
+      this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols, 
+        bugs.length===0? 0 : this.calcAverageTimeAUserBugTakesToResolve (bugs)));
+
+      
     }
     
   }
   
   initializeDataPointsFields(): void {
     
-    for (let c of this.clients) {
+    for (let c of this.clientsWithBugsOrSolutions) {
       this.bugsDataPoints.push(new DataPoint(
         { y: c.bugs.length, label: `${c.firstName} ${c.lastName}` })
         );
@@ -85,7 +146,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
       
       initializeTheDataObject(): void {
         
-        for (let c of this.clients) {
+        for (let c of this.clientsWithBugsOrSolutions) {
           
           let datapointArray: Array<DataPoint> = [];
           for (let bug of c.bugs) {
@@ -124,18 +185,18 @@ export class MetricsPageDeveloperComponent implements OnInit {
       
       
       
-      drawBugsAndSolutionsBarChart(): void {
+      makeBugsAndSolutionsBarChart(): void {
         
         let chart = new CanvasJS.Chart("chartContainer", {
           animationEnabled: true, backgroundColor: "transparent", title: {
             text: "Developers Bugs And Solutions"
           },
           axisY: {
-            title: "Bugs Per Developer", titleFontColor: "#4F81BC",
+            title: "Bugs Per Developer", titleFontColor: "IndianRed",
             lineColor: "#4F81BC", labelFontColor: "#4F81BC", tickColor: "#4F81BC"
           },
           axisY2: {
-            title: "Solutions Per Developer", titleFontColor: "#C0504E",
+            title: "Solutions Per Developer", titleFontColor: "DarkSeaGreen",
             lineColor: "#C0504E", labelFontColor: "#C0504E", tickColor: "#C0504E"
           },
           toolTip: { shared: true },
@@ -151,7 +212,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
             dataPoints: this.solsDataPoints
           }]
         });
-        chart.render();
+        this.clientBugsAndSolutionsBarChart= chart;
         
         function toggleDataSeries(e) {
           if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -159,18 +220,19 @@ export class MetricsPageDeveloperComponent implements OnInit {
           } else {
             e.dataSeries.visible = true;
           }
-          chart.render();
+
+          this.clientBugsAndSolutionsBarChart= chart;
         }
       }
       
       
       
-      drawClientsUsage() {
+      makeClientsUsageLineChart() {
         let chart = new CanvasJS.Chart("chartContainer_2", {
           animationEnabled: true,
           title: { text: "Bugs Submitted By Date" },
           axisX: { interval: 1, intervalType: "month", valueFormatString: "MM YYYY"},
-          axisY2: { title: "Median List Price" } ,
+          axisY2: { title: "Number of Bugs" } ,
           toolTip: { shared: true },
           legend: {
             cursor: "pointer", verticalAlign: "top", horizontalAlign: "center",
@@ -178,7 +240,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
           },
           data: this.clientsUsage
         });
-        chart.render();
+        this.clientUsageLineChart= chart;
         
         function toogleDataSeries(e) {
           if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -186,7 +248,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
           } else {
             e.dataSeries.visible = true;
           }
-          chart.render();
+          this.clientUsageLineChart= chart;
         }
         
         this.whileLoading = "";
