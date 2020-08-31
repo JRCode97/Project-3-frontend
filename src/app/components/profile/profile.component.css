@@ -4,6 +4,7 @@
     #profileHalf{
         display: flex;
         height: 34%;
+        padding-bottom: 25px;
     }
 
         #profileLeftColumn{
@@ -68,4 +69,7 @@
         margin-right: 10px;
         float: right;
         padding-top: 15px;
+    }
+    #spacer{
+        height: 50px;
     }

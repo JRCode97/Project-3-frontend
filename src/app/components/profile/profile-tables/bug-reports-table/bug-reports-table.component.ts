@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit,Input, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { BugReportsTableDataSource, BugReportsTableItem } from './bug-reports-table-datasource';
@@ -14,9 +13,8 @@ import BugReport from '../../../../models/BugReport';
   styleUrls: ['./bug-reports-table.component.css']
 })
 export class BugReportsTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  // @ViewChild(MatTable) table: MatTable<BugReportsTableItem>;
+  @ViewChild(MatTable) table: MatTable<BugReport>;
   obs: Observable<any>;
   @Input() bugStatus: string;
   @Input() client:Client;
@@ -31,23 +29,21 @@ export class BugReportsTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.initBugreports()
-    // this.changeDetectorRef.detectChanges();
-    
-
-    // this.obs = this.dataSource.connect();
+    this.changeDetectorRef.detectChanges();
+    this.obs = this.dataSource.connect();
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     
   }
 
-  bugreportsArray = []
-
   async initBugreports(){
 
-    this.storedReports = await this.api.getBugReports();
+    this.storedReports = await this.api.getbugReportByClientUsername(this.client.username);
+    this.changeDetectorRef.detectChanges();
+
+    this.obs = this.dataSource.connect();
     this.dataSource = new MatTableDataSource(await this.filterBugs());
 
   }

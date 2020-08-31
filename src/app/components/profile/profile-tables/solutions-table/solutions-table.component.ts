@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SolutionsTableDataSource, SolutionsTableItem } from './solutions-table-datasource';
@@ -14,7 +13,6 @@ import Client from 'src/app/models/Client';
   styleUrls: ['./solutions-table.component.css']
 })
 export class SolutionsTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<SolutionsTableItem>;
   obs: Observable<any>;
@@ -33,14 +31,12 @@ export class SolutionsTableComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.initSolutions()
     this.changeDetectorRef.detectChanges();
-    this.dataSource.paginator = this.paginator;
 
     this.obs = this.dataSource.connect();
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   solutionArray=[]

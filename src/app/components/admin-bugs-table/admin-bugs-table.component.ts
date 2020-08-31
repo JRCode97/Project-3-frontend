@@ -16,9 +16,9 @@ import {ApiServiceService} from '../../services/api-service.service';
 })
 export class AdminBugsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @Input() bugReports: BugReport[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<BugReport>;
+  @Input() bugReports: BugReport[];
   obs: Observable<any>;
   dataSource: MatTableDataSource<BugReport> = new MatTableDataSource<BugReport>();
 
@@ -64,6 +64,7 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
     this.populate(this.bugReports);
     this.bugReportsDisplay = this.bugReports;
     this.initializeSortMap();
+    this.getApplications();
   }
 
   ngAfterViewInit(): void {
@@ -79,8 +80,6 @@ export class AdminBugsTableComponent implements AfterViewInit, OnInit {
 
     this.obs = this.dataSource.connect();
 
-    this.getApplications();
-    
   }
   
   initializeSortMap(){

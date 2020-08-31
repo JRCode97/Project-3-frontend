@@ -4,6 +4,7 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 import Client from 'src/app/models/Client';
 import { Router } from '@angular/router';
 import { BugReport } from 'src/app/models/BugReport';
+import BugStatus from 'src/app/models/BugStatus';
 
 @Component({
   selector: 'app-profile',
@@ -59,6 +60,5 @@ export class ProfileComponent implements OnInit {
       this.client.role = "Admin"
     }
   }
- 
   
 }
