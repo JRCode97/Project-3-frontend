@@ -21,12 +21,10 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(["/"]);
     this.assignRole()
     this.getClientPoint()
-    this.getBugReports();
   }
-  storedReports: BugReport[];
-  bugReports: BugReport[];
-  bugStatus:string;
-  solutionStatus
+  
+  bugStatus:string = "All";
+  solutionStatus:string = "All";
   points
   client
   closeResult = '';
@@ -61,41 +59,6 @@ export class ProfileComponent implements OnInit {
       this.client.role = "Admin"
     }
   }
-  async repopulateBugs(){
-    switch (this.bugStatus) {
-      case "Requested":
-        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
-        this.bugReports = this.storedReports.filter(br => br.status === "Requested");
-        console.log("Requested");
-        break;
-      case "Denied":
-        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
-        this.bugReports = this.storedReports.filter(br => br.status === "Denied");
-        console.log("Denied");
-        break;
-      case "Unresolved":
-        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
-        this.bugReports = this.storedReports.filter(br => br.status === "Unresolved");
-        console.log("Unresolved");
-        break;
-      case "Resolved":
-        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
-        this.bugReports = this.storedReports.filter(br => br.status === "Resolved");
-        console.log("Resolved");
-        break;
-      default:
-        this.bugReports = this.storedReports;
-        console.log("Default");
-        break;
-    }
-    window.location.reload();
-    
-    
-  }
-  async getBugReports(){
-    this.storedReports = await this.api.getBugReports();
-    this.bugStatus = "All";
-    this.repopulateBugs();
-    return this.bugReports;
-  }
+ 
+  
 }

@@ -16,37 +16,61 @@ import BugReport from '../../../../models/BugReport';
 export class BugReportsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<BugReportsTableItem>;
+  // @ViewChild(MatTable) table: MatTable<BugReportsTableItem>;
   obs: Observable<any>;
-  @Input() bugReports: BugReport[];
+  @Input() bugStatus: string;
+  @Input() client:Client;
+  storedReports: BugReport[];
+  bugReports: BugReport[];
   dataSource: MatTableDataSource<BugReport> = new MatTableDataSource<BugReport>();
   
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['date', 'title', 'status'];
 
-  constructor(private changeDetectorRef: ChangeDetectorRef){}
+  constructor(private changeDetectorRef: ChangeDetectorRef, private api: ApiServiceService){}
 
   ngOnInit() {
     this.initBugreports()
-    this.changeDetectorRef.detectChanges();
-    this.dataSource.paginator = this.paginator;
+    // this.changeDetectorRef.detectChanges();
+    
 
-    this.obs = this.dataSource.connect();
+    // this.obs = this.dataSource.connect();
   }
 
   ngAfterViewInit() {
-
-    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     
   }
 
   bugreportsArray = []
 
   async initBugreports(){
-    this.dataSource = await new MatTableDataSource(this.bugReports);
-    // let client:Client = this.api.getLoggedClient();
-    // let bugreports = await this.api.getbugReportByClientUsername(client.username);
-    // this.dataSource = new BugReportsTableDataSource(bugreports);
+
+    this.storedReports = await this.api.getBugReports();
+    this.dataSource = new MatTableDataSource(await this.filterBugs());
+
+  }
+
+  async filterBugs(){
+    switch (this.bugStatus) {
+      case "Requested":
+        this.bugReports = this.storedReports.filter(br => br.status === "Requested");
+        break;
+      case "Denied":
+        this.bugReports = this.storedReports.filter(br => br.status === "Denied");
+        break;
+      case "Unresolved":
+        this.bugReports = this.storedReports.filter(br => br.status === "Unresolved");
+        break;
+      case "Resolved":
+        this.bugReports = this.storedReports.filter(br => br.status === "Resolved");
+        break;
+      default:
+        this.bugReports = this.storedReports;
+        break;
+    }
+    
+    return this.bugReports;
   }
 }

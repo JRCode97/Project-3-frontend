@@ -47,46 +47,54 @@
     <!-- redirect -->
     <!-- autherize -->
 
-    <div class="selectDivs" *ngIf="bugReports">
+    <div class="selectDivs" *ngIf="bugStatus">
         Bug Report Status: 
         <mat-form-field>
             <mat-select [(value)]="bugStatus">
-                <mat-option value="All"> <span (click)="repopulateBugs()">All</span> </mat-option>
-                <mat-option value="Requested" (click)="repopulateBugs()">Requested</mat-option>
-                <mat-option value="Denied" (click)="repopulateBugs()">Denied</mat-option>
-                <mat-option value="Unresolved" (click)="repopulateBugs()">Unresolved</mat-option>
-                <mat-option value="Resolved" (click)="repopulateBugs()">Resolved</mat-option>
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Requested">Requested</mat-option>
+                <mat-option value="Denied">Denied</mat-option>
+                <mat-option value="Unresolved">Unresolved</mat-option>
+                <mat-option value="Resolved">Resolved</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
-    
-    <!-- <ng-container [ngSwitch]="bugStatus">
-        <ng-container *ngSwitchCase="'Requested'"> -->
+
+    <!--
+        Instead of using ngSwitch would be really great if we could just refresh the div with 
+            <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
+        Tried unsuccessfully with setting the innerHtml of element with id bugTableDiv to 
+            <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
+        I'm sure there is a way to do it!
+    -->
+
+    <ng-container [ngSwitch]="bugStatus">
+        <ng-container *ngSwitchCase="'Requested'">
             <div id="bugTableDiv">
-                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
+                <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
             </div>
-        <!-- </ng-container>
+        </ng-container>
         <ng-container *ngSwitchCase="'Denied'">
             <div id="bugTableDiv">
-                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
+                <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Unresolved'">
             <div id="bugTableDiv">
-                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
+                <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Resolved'">
             <div id="bugTableDiv">
-                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
+                <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchDefault="'All'">
             <div id="bugTableDiv">
-                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
+                <app-bug-reports-table *ngIf="bugStatus" [bugStatus]="bugStatus" [client] = "client"></app-bug-reports-table>
             </div>
         </ng-container>
-    </ng-container> -->
+    </ng-container>
 
 
     <div class="selectDivs">
@@ -101,30 +109,36 @@
         </mat-form-field>
     </div>
 
+    <!--
+        Instead of using ngSwitch would be really great if we could just refresh the div with 
+            <app-solutions-table *ngIf="solutionStatus" [solutionStatus]="solutionStatus" [client] = "client"></app-solutions-table>
+        Tried unsuccessfully with setting the innerHtml of element with id bugTableDiv to 
+            <app-solutions-table *ngIf="solutionStatus" [solutionStatus]="solutionStatus" [client] = "client"></app-solutions-table>
+        I'm sure there is a way to do it!
+    -->
+
     <ng-container [ngSwitch]="solutionStatus">
         <ng-container *ngSwitchCase="'Pending'">
             <div id="solutionTableDiv">
-            <app-pending-solution-table></app-pending-solution-table>
+                <app-solutions-table *ngIf="solutionStatus" [solutionStatus]="solutionStatus" [client] = "client"></app-solutions-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Accepted'">
             <div id="solutionTableDiv">
-            <app-accepted-solution-table></app-accepted-solution-table>
+                <app-solutions-table *ngIf="solutionStatus" [solutionStatus]="solutionStatus" [client] = "client"></app-solutions-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Rejected'">
             <div id="solutionTableDiv">
-                <app-rejected-solution-table></app-rejected-solution-table>
+                <app-solutions-table *ngIf="solutionStatus" [solutionStatus]="solutionStatus" [client] = "client"></app-solutions-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchDefault="'All'">
             <div id="solutionTableDiv">
-                <app-solutions-table></app-solutions-table>
+                <app-solutions-table *ngIf="solutionStatus" [solutionStatus]="solutionStatus" [client] = "client"></app-solutions-table>
             </div>
         </ng-container>
     </ng-container>
-    
-
 </div>
 
 <ng-template class="modal-view" #content let-modal>

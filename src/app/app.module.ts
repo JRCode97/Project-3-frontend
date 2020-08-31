@@ -51,13 +51,6 @@ import { MetricsPageDeveloperComponent } from './components/metrics-page-develop
 
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
-import { UnresolvedBugreportTableComponent } from './components/profile/profile-tables/unresolved-bugreport-table/unresolved-bugreport-table.component';
-import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
-import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
-import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
-import { AcceptedSolutionTableComponent } from './components/profile/profile-tables/accepted-solution-table/accepted-solution-table.component';
-import { RejectedSolutionTableComponent } from './components/profile/profile-tables/rejected-solution-table/rejected-solution-table.component';
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -65,12 +58,6 @@ import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolv
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
 import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
 import { DatePipe } from '@angular/common';
-
-
-
-
-
-
 
 
 @NgModule({
@@ -94,15 +81,8 @@ import { DatePipe } from '@angular/common';
     ProfileComponent,
     SolutionApprovalComponent,
     SolutionsTableComponent,
-    UnresolvedBugreportTableComponent,
-    ResolvedBugreportTableComponent,
     UpdatePasswordComponent,
     LoadingSpinnerComponent,
-    RequestedBugreportTableComponent,
-    DeniedBugreportTableComponent,
-    PendingSolutionTableComponent,
-    AcceptedSolutionTableComponent,
-    RejectedSolutionTableComponent,
     LoginMatComponent,
     ResolvedbugsPageComponent,
     ViewBugsPageComponent,
