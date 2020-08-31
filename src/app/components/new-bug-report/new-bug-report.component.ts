@@ -75,6 +75,10 @@ export class NewBugReportComponent implements OnInit {
     this.bugForm.controls['reporter'].setValue(this.client.username)
   }
 
+  cancelReport(){
+    this.router.navigate(["/main"]);
+  }
+
   ngOnInit(): void {
     this.getApplication();
     this.getClient();

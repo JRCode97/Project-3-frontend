@@ -23,8 +23,8 @@
             <div id="titleDiv"><h1>About me</h1></div>
             <div id="profileDetail">
                 <h2>Name: {{client.fName}} {{client.lName}}</h2>
-                <h2>Username: {{client.username}}</h2>
-                <h2>Role: {{client.role}}</h2> 
+                <h2 id="userNameProfile">Username: {{client.username}}</h2>
+                <h2>Role: {{client.Role}}</h2> 
                 <a class="password-reset" (click)="open(content)">Update Password</a>
             </div>
         </div>
