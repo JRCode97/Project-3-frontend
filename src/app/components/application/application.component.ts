@@ -2,7 +2,7 @@ import { Component, OnInit,ElementRef, ViewChild, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/Client';
 import { ApiServiceService } from 'src/app/services/api-service.service';
-import {Application} from '../../models/application'
+import {Application} from '../../models/Application'
 
 
 @Component({
