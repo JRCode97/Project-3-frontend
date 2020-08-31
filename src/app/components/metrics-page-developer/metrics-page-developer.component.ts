@@ -94,10 +94,11 @@ export class MetricsPageDeveloperComponent implements OnInit {
     let sols: Array<Solution> = [];
     const clientsReturned: Array<Client> = await this.apiServ.getAllClients();
     for (let c of clientsReturned) {
-      
+
       bugs = await this.apiServ.getbugReportByClientUsername(c.username);
       sols = await this.apiServ.getSolutionsByClientId(c.cId);
       
+
       if (bugs.length!==0 || sols.length!==0){
         
         if (bugs.length===0){
@@ -124,11 +125,10 @@ export class MetricsPageDeveloperComponent implements OnInit {
         */
       this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, bugs, sols, 
         bugs.length===0? 0 : this.calcAverageTimeAUserBugTakesToResolve (bugs)));
-
-      
     }
     
   }
+
   
   initializeDataPointsFields(): void {
     
