@@ -58,13 +58,16 @@ export class MainNavComponent {
       document.body.classList.remove('light-theme');
       document.body.classList.add('dark-theme');
       this.theme = 'Dark Mode';
+      this.serv.theme.emit("dark-theme");
     }
     else {
+      
       document.body.classList.remove('dark-theme');
       document.body.classList.add('light-theme');
       this.theme = 'Light Mode';
+      this.serv.theme.emit("light-theme");
     }
-    console.log(document.body.classList);
+    
 
   }
   showNav(){

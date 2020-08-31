@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 //  schaud
@@ -21,6 +21,11 @@ export class ApiServiceService {
 
 
 
+
+
+  @Output() theme:EventEmitter<string> = new EventEmitter<string>()
+
+
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
   path: string = 'http://localhost:9111';
@@ -36,16 +41,41 @@ export class ApiServiceService {
     return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
   }
 
+  /* getbugReportByApp(id:number){
+    return this.http.get<BugReport>(`${this.path}/applications/${id}/bugreports`).toPromise();
+  } */
+
   getResolvedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=resolved`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Resolved`).toPromise();
+  }
+
+  getResolvedBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?status=Resolved&count=true`).toPromise();
   }
 
   getRequestedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=requested`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Requested`).toPromise();
+  }
+  getRequestedBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?status=Requested&count=true`).toPromise();
   }
 
   getUnResolvedBugs(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=unresolved`).toPromise();
+    return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Unresolved`).toPromise();
+  }
+
+  getUnResolvedBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?status=Unresolved&count=true`).toPromise();
+  }
+
+  getHighPriorityBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?priority=High&count=true`).toPromise();
+  }
+  getMediumPriorityBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?priority=Medium&count=true`).toPromise();
+  }
+  getLowPriorityBugsCount(): Promise<number> {
+    return this.http.get<number>(`${this.path}/bugreports?priority=Low&count=true`).toPromise();
   }
 
   getBugReportById(id:number) {
@@ -61,6 +91,7 @@ export class ApiServiceService {
   }
 
   //################ Start of Client Section ###################
+
   clientLogin(username: any, pass: any): Promise<Client> {
     return this.http.get<Client>(this.path + `/clients/login?username=${username}&password=${pass}`).toPromise();
   }
@@ -68,11 +99,25 @@ export class ApiServiceService {
     return this.http.get<Client>(this.path + `/query/clients?username=${username}`).toPromise();
   }
   async clientRegister(client: Client): Promise<Client> {
-    console.log(client);
     return await this.http.post<Client>(this.path + `/clients`, client).toPromise();
   }
   getClientById(id: number): Promise<Client> {
     return this.http.get<Client>(`${this.path}/clients/${id}`).toPromise();
+  }
+
+  async getAllClients():Promise<Array<Client>>{
+    let clients: Array<Client> = await this.http.get<Array<Client>>(`${this.path}/clients`).toPromise();
+    return clients;
+  }
+
+  async getClientBugReportCount() : Promise<number>{
+    const bugsCount: number = await this.http.get<number>(`${this.path}/bugreports/count`).toPromise();
+    return bugsCount;
+  }
+
+  async getClientSolutionsCount(): Promise<number> {
+    const solsCount: number = await this.http.get<number>(`${this.path}/solutions/count`).toPromise();
+    return solsCount;
   }
 
   // points displayed in profile page
@@ -104,6 +149,8 @@ export class ApiServiceService {
 
   }
 
+
+
   //################ Start of Solution Section ###################
 
   //1. Add new Solution
@@ -130,7 +177,6 @@ export class ApiServiceService {
 
   putSolution(solution:Solution) {
     return this.http.put<Solution>(`${this.path}/solutions`,solution).toPromise();
-
   }
 
   //################ Start of Application Section ###################
@@ -141,6 +187,26 @@ export class ApiServiceService {
   postApplication(appTitle:string,appLink:string):Promise<Application>{
     let appJson = {"id":0, "title":`${appTitle}`, "gitLink":`${appLink}`}
     return this.http.post<Application>(`${this.path}/applications/`, appJson).toPromise();
+  }
+
+  getApplicationSolutions(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}/solutions`).toPromise();
+  }
+
+  getApplicationUsers(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}/clients`).toPromise();
+  }
+
+  getApplicationAverageResolvedTime(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}?resolvedtime=average`).toPromise();
+  }
+
+  getApplicationLongestResolvedTime(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}?resolvedtime=longest`).toPromise();
+  }
+
+  getApplicationShortestResolvedTime(appId:number): Promise<number>{
+    return this.http.get<number>(`${this.path}/applications/${appId}?resolvedtime=shortest`).toPromise();
   }
 
   //################ Start of Leaderboard Section ###################

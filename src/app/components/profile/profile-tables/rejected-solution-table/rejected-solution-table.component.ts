@@ -35,12 +35,10 @@ export class RejectedSolutionTableComponent implements AfterViewInit, OnInit {
   solutionArray=[]
 
   async initSolutions(){
-    let client = this.api.getLoggedClient()
-    let solutions = await this.api.getSolutionsByClientId(client.cId)
-    console.log(solutions)
-    solutions = solutions.filter(sol => sol.status === "Rejected")
+    let client = this.api.getLoggedClient();
+    let solutions = await this.api.getSolutionsByClientId(client.cId);
+    solutions = solutions.filter(sol => sol.status === "Rejected");
     this.dataSource = new RejectedSolutionTableDataSource(solutions);
-    console.log(this.dataSource)
   }
 
 }

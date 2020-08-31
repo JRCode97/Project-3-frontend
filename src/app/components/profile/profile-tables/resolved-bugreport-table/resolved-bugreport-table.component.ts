@@ -37,10 +37,8 @@ export class ResolvedBugreportTableComponent implements AfterViewInit, OnInit {
 
   async initBugreports(){
     let client:Client = this.api.getLoggedClient()
-    let bugreports = await this.api.getbugReportByClientUsername(client.username)
-    console.log(bugreports)
+    let bugreports = await this.api.getbugReportByClientUsername(client.username);
     bugreports = bugreports.filter(br => br.status === "Resolved")
     this.dataSource = new ResolvedBugreportTableDataSource(bugreports);
-    console.log(this.dataSource)
   }
 }

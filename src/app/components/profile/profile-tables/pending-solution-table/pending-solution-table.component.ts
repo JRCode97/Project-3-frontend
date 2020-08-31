@@ -35,11 +35,9 @@ export class PendingSolutionTableComponent implements AfterViewInit, OnInit {
   solutionArray=[]
 
   async initSolutions(){
-    let client = this.api.getLoggedClient()
-    let solutions = await this.api.getSolutionsByClientId(client.cId)
-    console.log(solutions)
-    solutions = solutions.filter(sol => sol.status === "Pending")
+    let client = this.api.getLoggedClient();
+    let solutions = await this.api.getSolutionsByClientId(client.cId);
+    solutions = solutions.filter(sol => sol.status === "Pending");
     this.dataSource = new PendingSolutionTableDataSource(solutions);
-    console.log(this.dataSource)
   }
 }
