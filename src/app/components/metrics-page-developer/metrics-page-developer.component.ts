@@ -54,9 +54,10 @@ export class MetricsPageDeveloperComponent implements OnInit {
     let sols: Array<Solution> = [];
     const clientsReturned: Array<Client> = await this.apiServ.getAllClients();
     for (let c of clientsReturned) {
-      
+
       bugs = await this.apiServ.getbugReportByClientUsername(c.username);
       sols = await this.apiServ.getSolutionsByClientId(c.cId);
+      
       
       //const bugsDataPoint = new DataPoint(bugs.length, `${c.fName} ${c.lName}`);
       //{y: bugs.length, label: `${c.fName} ${c.lName}`};
@@ -66,6 +67,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
     }
     
   }
+  "{client:me , bugs:count, sols:count}"
   
   initializeDataPointsFields(): void {
     
