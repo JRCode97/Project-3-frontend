@@ -47,46 +47,46 @@
     <!-- redirect -->
     <!-- autherize -->
 
-    <div class="selectDivs">
+    <div class="selectDivs" *ngIf="bugReports">
         Bug Report Status: 
         <mat-form-field>
             <mat-select [(value)]="bugStatus">
-                <mat-option value="All">All</mat-option>
-                <mat-option value="Requested">Requested</mat-option>
-                <mat-option value="Denied">Denied</mat-option>
-                <mat-option value="Unresolved">Unresolved</mat-option>
-                <mat-option value="Resolved">Resolved</mat-option>
+                <mat-option value="All"> <span (click)="repopulateBugs()">All</span> </mat-option>
+                <mat-option value="Requested" (click)="repopulateBugs()">Requested</mat-option>
+                <mat-option value="Denied" (click)="repopulateBugs()">Denied</mat-option>
+                <mat-option value="Unresolved" (click)="repopulateBugs()">Unresolved</mat-option>
+                <mat-option value="Resolved" (click)="repopulateBugs()">Resolved</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
-
-    <ng-container [ngSwitch]="bugStatus">
-        <ng-container *ngSwitchCase="'Requested'">
+    
+    <!-- <ng-container [ngSwitch]="bugStatus">
+        <ng-container *ngSwitchCase="'Requested'"> -->
             <div id="bugTableDiv">
-                <app-requested-bugreport-table></app-requested-bugreport-table>
+                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
             </div>
-        </ng-container>
+        <!-- </ng-container>
         <ng-container *ngSwitchCase="'Denied'">
             <div id="bugTableDiv">
-            <app-denied-bugreport-table></app-denied-bugreport-table>
+                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Unresolved'">
             <div id="bugTableDiv">
-                <app-unresolved-bugreport-table></app-unresolved-bugreport-table>
+                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'Resolved'">
             <div id="bugTableDiv">
-                <app-resolved-bugreport-table></app-resolved-bugreport-table>
+                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
             </div>
         </ng-container>
         <ng-container *ngSwitchDefault="'All'">
             <div id="bugTableDiv">
-                <app-bug-reports-table></app-bug-reports-table>
+                <app-bug-reports-table *ngIf="bugReports" [bugReports]="bugReports"></app-bug-reports-table>
             </div>
         </ng-container>
-    </ng-container>
+    </ng-container> -->
 
 
     <div class="selectDivs">
@@ -97,7 +97,8 @@
                 <mat-option value="Pending">Pending</mat-option>
                 <mat-option value="Accepted">Accepted</mat-option>
                 <mat-option value="Rejected">Rejected</mat-option>
-            </mat-select></mat-form-field>
+            </mat-select>
+        </mat-form-field>
     </div>
 
     <ng-container [ngSwitch]="solutionStatus">

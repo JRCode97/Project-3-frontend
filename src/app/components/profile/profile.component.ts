@@ -15,15 +15,17 @@ export class ProfileComponent implements OnInit {
   constructor(private modalService: NgbModal, private api: ApiServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.getBugReports();
+    
     this.client = this.api.getLoggedClient()
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
     this.assignRole()
     this.getClientPoint()
+    this.getBugReports();
   }
-  bugReports: Array<BugReport>;
-  bugStatus
+  storedReports: BugReport[];
+  bugReports: BugReport[];
+  bugStatus:string;
   solutionStatus
   points
   client
@@ -59,9 +61,41 @@ export class ProfileComponent implements OnInit {
       this.client.role = "Admin"
     }
   }
-
-  // async getBugReports(){
-  //   this.bugReports = await this.api.getBugReports();
-  //   return this.bugReports;
-  // }
+  async repopulateBugs(){
+    switch (this.bugStatus) {
+      case "Requested":
+        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
+        this.bugReports = this.storedReports.filter(br => br.status === "Requested");
+        console.log("Requested");
+        break;
+      case "Denied":
+        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
+        this.bugReports = this.storedReports.filter(br => br.status === "Denied");
+        console.log("Denied");
+        break;
+      case "Unresolved":
+        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
+        this.bugReports = this.storedReports.filter(br => br.status === "Unresolved");
+        console.log("Unresolved");
+        break;
+      case "Resolved":
+        this.bugReports = await this.api.getbugReportByClientUsername(this.client.username);
+        this.bugReports = this.storedReports.filter(br => br.status === "Resolved");
+        console.log("Resolved");
+        break;
+      default:
+        this.bugReports = this.storedReports;
+        console.log("Default");
+        break;
+    }
+    window.location.reload();
+    
+    
+  }
+  async getBugReports(){
+    this.storedReports = await this.api.getBugReports();
+    this.bugStatus = "All";
+    this.repopulateBugs();
+    return this.bugReports;
+  }
 }

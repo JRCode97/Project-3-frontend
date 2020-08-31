@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit,Input, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { BugReportsTableDataSource, BugReportsTableItem } from './bug-reports-table-datasource';
+import {Observable} from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import Client from 'src/app/models/Client';
+import BugReport from '../../../../models/BugReport';
 
 @Component({
   selector: 'app-bug-reports-table',
@@ -15,30 +17,36 @@ export class BugReportsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<BugReportsTableItem>;
-  dataSource: BugReportsTableDataSource;
-
+  obs: Observable<any>;
+  @Input() bugReports: BugReport[];
+  dataSource: MatTableDataSource<BugReport> = new MatTableDataSource<BugReport>();
+  
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['date', 'title', 'status'];
 
-  constructor(private api:ApiServiceService){}
+  constructor(private changeDetectorRef: ChangeDetectorRef){}
 
   ngOnInit() {
     this.initBugreports()
-    this.dataSource = new BugReportsTableDataSource(null);
+    this.changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
+
+    this.obs = this.dataSource.connect();
   }
 
   ngAfterViewInit() {
 
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    
   }
 
   bugreportsArray = []
 
   async initBugreports(){
-    let client:Client = this.api.getLoggedClient();
-    let bugreports = await this.api.getbugReportByClientUsername(client.username);
-    this.dataSource = new BugReportsTableDataSource(bugreports);
+    this.dataSource = await new MatTableDataSource(this.bugReports);
+    // let client:Client = this.api.getLoggedClient();
+    // let bugreports = await this.api.getbugReportByClientUsername(client.username);
+    // this.dataSource = new BugReportsTableDataSource(bugreports);
   }
 }
