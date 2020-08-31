@@ -1,9 +1,16 @@
 .data-row{
-    margin-top:10px;
+    margin-top:40px;
+    margin-bottom:40px;
     height:400px;
     
 }
 
+.row-divider{
+  margin-top:38px;
+  height:1px;
+  margin-bottom:40px;
+  border: 1px solid red;
+}
 
 .chart{
     height:100%;

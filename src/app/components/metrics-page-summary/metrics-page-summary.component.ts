@@ -76,7 +76,6 @@ export class MetricsPageSummaryComponent implements OnInit {
       let b:number = r.createdTime
       
       diff = a - b
-      console.log(diff)
       let bid = r.bId;
       let created = this.datePipe.transform(b, 'yyyy-MM-dd')
       let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
