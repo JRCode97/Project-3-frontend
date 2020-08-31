@@ -106,7 +106,7 @@
     <!-- Details Column -->
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
-      <td mat-cell *matCellDef="let row"><a routerLink="/bugreportapprove/{{row.bId}}">Inspect</a></td>
+      <td mat-cell *matCellDef="let row"><a id="inspectButton{{row.bId}}" routerLink="/bugreportapprove/{{row.bId}}">Inspect</a></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
