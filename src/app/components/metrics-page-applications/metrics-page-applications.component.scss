@@ -5,11 +5,39 @@
     
 }
 
-.row-divider{
-  margin-top:38px;
-  height:1px;
-  margin-bottom:40px;
-  border: 1px solid red;
+.row-divider-container{
+  width:100%;
+  margin-top:78px;
+  display:flex;
+  justify-content: center;
+  margin-bottom:80px;
+  .row-divider{
+    width:50%;
+    height:1px;
+    border-bottom: 1px solid rgba(156, 156, 156, 0.685);
+  }
+ 
+  
+}
+
+.row-divider-spacer{
+  width:100%;
+  height:50px;
+
+}
+
+.col-divider-container{
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  .col-divider{
+    height:50%;
+    width:1px;
+    border-left: 1px solid rgba(156, 156, 156, 0.685);
+  }
+ 
+  
 }
 
 .chart{
