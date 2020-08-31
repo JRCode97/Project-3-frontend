@@ -76,7 +76,8 @@ export class MetricsPageDeveloperComponent implements OnInit {
   }
 
   initializeCharts(){
-    this.makeBugsAndSolutionsBarChart();
+    //this.makeBugsAndSolutionsBarChart();
+    this.makeBugsAndSolutionsStackedBarChart();
     this.makeClientsUsageLineChart();
   }
 
@@ -146,45 +147,57 @@ export class MetricsPageDeveloperComponent implements OnInit {
       
       
       initializeTheDataObject(): void {
-        
+
         for (let c of this.clientsWithBugsOrSolutions) {
-          
-          let datapointArray: Array<DataPoint> = [];
-          for (let bug of c.bugs) {
-            let numOfBugsPerMonth: number = 0;
+  
+        let datapointArray: Array<DataPoint> = [];
+      
+        let numOfBugsPerDate : Map <string, [Date, number]> = new Map();
+
+          for (let bug of c.bugs){
+
             let date: Date = new Date(bug.createdTime);
+            let dateString: string = this.datePipe.transform(date, 'MM/yyyy');
+            if (numOfBugsPerDate.has(dateString)){
+              numOfBugsPerDate.set( dateString, [date, numOfBugsPerDate.get (dateString)[1] + 1]);
+            } else {
+              numOfBugsPerDate.set( dateString, [date,1]);
+            }
+          }
+
+
+           
+          // for (let bug of c.bugs) {
+          //   let numOfBugsPerMonth: number = 0;
+          //   let date: Date = new Date(bug.createdTime);
             
-            for (let yy of c.bugs) {
-              let yyDate: Date = new Date(yy.createdTime);
-              if (date.getMonth() === yyDate.getMonth()
-              && date.getFullYear() === yyDate.getFullYear()) {
+          //   for (let yy of c.bugs) {
+          //     let yyDate: Date = new Date(yy.createdTime);
+          //     if (date.getMonth() === yyDate.getMonth()
+          //     && date.getFullYear() === yyDate.getFullYear()) {
                 
-                ++numOfBugsPerMonth;
-              }
+          //       ++numOfBugsPerMonth;
+          //     }
+          //   }
+            
+            for (let entry of numOfBugsPerDate.entries()){
+              datapointArray.push(new DataPoint({x: entry[1][0], y: entry[1][1]}));
             }
             
-            /*
-            num of bugs =0
-            num of bugs is at least one 
-            */
+            //datapointArray.push(new DataPoint({ x: new Date(bug.createdTime), y: numOfBugsPerMonth }));
             
-            
-            datapointArray.push(new DataPoint({ x: new Date(bug.createdTime), y: numOfBugsPerMonth }));
-            
-          }
+          
           this.clientsUsage.push(new DataObject({
             type: "line",
             axisYType: "secondary",
             name: `${c.firstName}`,
             showInLegend: true,
-            markerSize: 0,
+            markerSize: 20,
             dataPoints: datapointArray
-          }))
-        }
-        
+        }));
       }
-      
-      
+    }
+
       
       makeBugsAndSolutionsBarChart(): void {
         
@@ -224,13 +237,68 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
           this.clientBugsAndSolutionsBarChart= chart;
         }
+
       }
+
+
+      makeBugsAndSolutionsStackedBarChart() : void {
+
+        let chart =new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          backgroundColor: "transparent",
+          title:{
+            text: "Bugs and Solutions per Developer"
+          },
+          axisX: {
+            
+          },
+          axisY: {
+            
+          },
+          toolTip: {
+            shared: true
+          },
+          legend:{
+            cursor: "pointer",
+            itemclick: toggleDataSeries
+          },
+          data: [{
+            type: "stackedColumn",
+            name: "Bugs",
+            showInLegend: "true",
+            color: 'IndianRed',
+           
+            dataPoints: this.bugsDataPoints
+          },
+          {
+            type: "stackedColumn",
+            name: "solutions",
+            showInLegend: "true",
+            color: 'DarkSeaGreen',
+            dataPoints: this.solsDataPoints
+          }
+        ]
+        });
+        this.clientBugsAndSolutionsBarChart=chart;
+        
+        function toggleDataSeries(e) {
+          if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+          }
+          else {
+            e.dataSeries.visible = true;
+          }
+          this.clientBugsAndSolutionsBarChart=chart;
+        }
+
+      } 
       
       
       
       makeClientsUsageLineChart() {
         let chart = new CanvasJS.Chart("chartContainer_2", {
           animationEnabled: true,
+          backgroundColor: "transparent",
           title: { text: "Bugs Submitted By Date" },
           axisX: { interval: 1, intervalType: "month", valueFormatString: "MM YYYY"},
           axisY2: { title: "Number of Bugs" } ,
