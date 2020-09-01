@@ -7,16 +7,23 @@
     </div>
     <div class="row main-row">
         <div class="col-3">
-            <div class="options-column">
-                <div>
-    
-                </div>
+            <div class="leaderboard-column">
+                    <app-main-page-leaderboard></app-main-page-leaderboard>
             </div>
         </div>
         <div class="col-9">
-            <div class="bug-list-column">
-                <div>
-                    
+            <div class="row">
+                <div class="application-select">
+                    <select [(ngModel)] = "selectedApp" (change)="selectChangeHandler($event)">
+                        <option *ngFor="let app of applications" id = "app{{app.id}}" [ngValue] ="app">{{app.title}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="bug-list-column">
+                    <div class="report-container" *ngFor="let report of bugReports">
+                        <app-main-page-bug [bugReport]="report"></app-main-page-bug>
+                    </div>
                 </div>
             </div>
         </div>

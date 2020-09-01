@@ -3,19 +3,23 @@
 }
 
 .bug-list-column{
-    height:300%;
+    margin-top:24px;
+    height:1000px;
     width:100%;
-    border:1px solid red;
 }
 
-.options-column{
-    height:80vh;
-    width:100%;
-    border: 1px solid red;
+.leaderboard-column{
+    display:flex;
+    justify-content: center;
 }
 
-.main-row{
-    height:2000px;
+.application-select{
+    height:50px;
+    width:100%;
+}
+
+.report-container{
+    margin-bottom:24px;
 }
 // =================================== OLD CSS =============================================
 /* .mainPageContainer{
