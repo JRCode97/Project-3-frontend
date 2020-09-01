@@ -21,34 +21,53 @@
                     width: 100%;
                 }
 
-            #pointsDiv{
-                border-style: solid;
-                border-color: orange;
-                text-align: center;
-            }
+            
 
         #AboutMeDiv{
             border-style: solid;
             border-color: black;
-            width: 70%;
+            width: 100%;
             flex-direction: column; 
-            float: right;
-            margin-left: 5%;
+            justify-items: space-between;
         }
-
+        #pointsDiv{
+            display: flex;
+            flex-direction: column;
+            margin: 50px 50px 50px 15%;
+        }
+        
+        #about-me-content-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
             #titleDiv{
-                border-style: solid;
-                border-color: yellow;
                 width: 100%;
-                padding-left: 5vh;
                 padding-top: 2vh;
+                text-align: center;
+                border-bottom-style: solid;
+                border-bottom-width: 3px;
+                border-bottom-color: black;
             }
 
             #profileDetail{
-                text-align: center;
-                padding-top: 18%;
-            }
 
+                text-align: center;
+                padding-top: 4%;
+                padding-bottom: 4%;
+            }
+                #profile-detail-content-container{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                    #associated-with-icon{
+                        margin-right: 9px;
+                    }
+                    #edit-container{
+                        display: flex;
+                        flex-direction: column;
+                    }
     #bugTableDiv{
         margin-top: 2vh;
         border-style: solid;
@@ -62,6 +81,7 @@
     }
 
     .password-reset{
+        margin-top: 10px;
         cursor: pointer;
     }
 

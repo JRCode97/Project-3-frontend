@@ -20,15 +20,23 @@ export class ProfileComponent implements OnInit {
     this.client = this.api.getLoggedClient()
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
-    this.assignRole()
-    this.getClientPoint()
+    this.assignRole();
+    this.getClientPoint();
+    this.getSolutionsAndBugs();
   }
   
   bugStatus:string = "All";
   solutionStatus:string = "All";
+  hidePassword:boolean = true;;
+  shownPass:string = "********";
+  editFirstName:boolean = false;
+  editLastName:boolean = false;
+  editUsername:boolean = false;
   points
   client
   closeResult = '';
+  numberOfBugs:number;
+  numberOfSolutions:number;
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -61,4 +69,16 @@ export class ProfileComponent implements OnInit {
     }
   }
   
+  togglePasswordShow(){
+    if(!this.hidePassword){
+      this.shownPass = "********";
+    }else{
+      this.shownPass = this.client.password;
+    }
+    this.hidePassword = !this.hidePassword;
+  }
+  async getSolutionsAndBugs(){
+    this.numberOfBugs = await this.api.getClientBugReportCount();
+    this.numberOfSolutions = await this.api.getClientSolutionsCount();
+  }
 }
