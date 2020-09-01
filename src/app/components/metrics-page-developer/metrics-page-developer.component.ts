@@ -14,18 +14,24 @@ import { DataPoint, ClientDTO, DataObject } from './metrics-page-developer-model
 })
 export class MetricsPageDeveloperComponent implements OnInit {
 
-
+  //all clients (no conditions attached)
   clients: Array<ClientDTO> = [];
+  //clients with bugs or solution either one should be not empty at least.
   clientsWithBugsOrSolutions: Array<ClientDTO> = [];
 
+  //used in the stacked bar chart
   bugsDataPoints: Array<DataPoint> = [];
   solsDataPoints: Array<DataPoint> = [];
+
+  //used in the multiline chart
   clientsUsage: Array<DataObject> = [];
 
+  //these variables are used to show the loading gif before the charts are rendered. 
   whileLoading: string = "buffering";
   ifLoading: boolean = true;
 
   theme: string;
+
   clientBugsAndSolutionsBarChart: CanvasJS.Chart;
   clientUsageLineChart: CanvasJS.Chart;
 
@@ -36,35 +42,47 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    // initialze variables
     await this.initializeData();
+    // create the charts without drawing them to the page.
     this.initializeCharts();
 
+    // at the time of switching to this page, what is the theme?, 
+    // set theme to the correct one.
+    if (document.body.classList.contains('dark-theme')) {
+      this.theme = 'dark2';
+    } else {
+      this.theme = 'light2';
+    }
+
+    //draw the graphs.
+    this.render();
+
+    // if you changed the theme while you are on the page, code below listens to this change
+    // and sets the theme accordingly
     this.apiServ.theme.subscribe((event) => {
       if (document.body.classList.contains('light-theme')) {
         this.theme = 'light2';
-        this.render();
       }
-      if (document.body.classList.contains('dark-theme')) {
+      else if (document.body.classList.contains('dark-theme')) {
         this.theme = 'dark2';
-        this.render();
       }
+
+      this.render();
     })
-
-    if (document.body.classList.contains('dark-theme')) {
-      this.theme = 'dark2';
-      this.render();
-    } else {
-      this.theme = 'light2';
-      this.render();
-    }
-
 
   }
 
+
   async initializeData() {
+    //data used by the whole component.
     await this.initializeClientsField();
-    this.initializeDataPointsFields();
-    this.initializeTheDataObject();
+
+    //data used by the stacked bar chart 
+    this.initializeDataPointsFieldsForStackedBarChart();
+
+    //data used by the multi-series line chart.
+    this.initializeClientUsageFieldForMultiLineChart();
   }
 
   initializeCharts() {
@@ -73,8 +91,12 @@ export class MetricsPageDeveloperComponent implements OnInit {
   }
 
   render() {
+
+    // set the theme of the graph to the page theme.
     this.clientBugsAndSolutionsBarChart.options.theme = this.theme;
     this.clientUsageLineChart.options.theme = this.theme;
+
+    // the render functions here is builtin within canvasJS, this will draw the graphs
     this.clientBugsAndSolutionsBarChart.render();
     this.clientUsageLineChart.render();
   }
@@ -82,13 +104,19 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
   async initializeClientsField(): Promise<void> {
 
+
     const clientsReturned: Array<Client> = await this.apiServ.getAllClients();
     const allBugsReturned: Array<BugReport> = await this.apiServ.getBugReports();
     const allSolutionsReturned: Array<Solution> = await this.apiServ.getSolutions();
 
+    //the key of the maps are the username of the client.
     let bugsMap: Map<string, BugReport[]> = new Map();
     let solsMap: Map<string, Solution[]> = new Map();
 
+
+    // code below maps bugs and solutions to the username of the client 
+
+    // initialize bugsMap
     let tempBugsHolder: BugReport[] = [];
     for (let bug of allBugsReturned) {
       if (bugsMap.has(bug.username)) {
@@ -101,6 +129,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
     }
 
+    //initialize solsMap
     let tempSolsHolder: Solution[] = [];
     for (let sol of allSolutionsReturned) {
       if (solsMap.has(sol.client.username)) {
@@ -131,27 +160,20 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
       if (cBugs.length !== 0 || cSols.length !== 0) {
 
-        //clients with bugs or solution either one should be not empty at least.
         this.clientsWithBugsOrSolutions.push(new ClientDTO(c.cId, c.fName, c.lName, cBugs, cSols
-          , this.calcAverageTimeAUserBugTakesToResolve(cBugs)));
-
-
-        // all clients regardless of their bugs or solutions existence.
-        this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, cBugs, cSols
-          , this.calcAverageTimeAUserBugTakesToResolve(cBugs)));
-
-      } else {
-
-        this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, cBugs, cSols
-          , this.calcAverageTimeAUserBugTakesToResolve(cBugs)));
+          , this.calcAverageTimeAClientBugTakesToResolve(cBugs)));
       }
+
+      //add the bugs and solutions to the object whether they are empty or not.
+      this.clients.push(new ClientDTO(c.cId, c.fName, c.lName, cBugs, cSols
+        , this.calcAverageTimeAClientBugTakesToResolve(cBugs)));
 
     }
 
   }
 
 
-  initializeDataPointsFields(): void {
+  initializeDataPointsFieldsForStackedBarChart(): void {
 
     for (let c of this.clientsWithBugsOrSolutions) {
       this.bugsDataPoints.push(new DataPoint(
@@ -164,12 +186,13 @@ export class MetricsPageDeveloperComponent implements OnInit {
     }
   }
 
-  initializeTheDataObject(): void {
+  initializeClientUsageFieldForMultiLineChart(): void {
 
     for (let c of this.clientsWithBugsOrSolutions) {
 
       let datapointArray: Array<DataPoint> = [];
 
+      // key is a string, value is an array, where the first element is Date and the second is number
       let numOfBugsPerDate: Map<string, [Date, number]> = new Map();
 
       for (let bug of c.bugs) {
@@ -250,7 +273,7 @@ export class MetricsPageDeveloperComponent implements OnInit {
   }
 
 
-  calcAverageTimeAUserBugTakesToResolve(bugs: Array<BugReport>): number {
+  calcAverageTimeAClientBugTakesToResolve(bugs: Array<BugReport>): number {
 
 
     if (bugs === [])
@@ -260,6 +283,8 @@ export class MetricsPageDeveloperComponent implements OnInit {
 
       const date1 = new Date(b.createdTime);
       const date2 = new Date(b.resolvedTime);
+      //line below gets the difference in hours.
+      // 36e5 is the scientific notation for 60*60*1000 (I got it from stackoverflow.)
       const diff = Math.abs((date2.getTime() - date1.getTime()) / 36e5);
       const diffAsInteger = Math.ceil(diff);
       return diffAsInteger;
