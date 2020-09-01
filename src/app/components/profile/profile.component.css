@@ -1,88 +1,63 @@
 .container {
     padding-top: 10px;
 }
-    #profileHalf{
-        display: flex;
-        height: 34%;
-        padding-bottom: 25px;
+    .profile-card{
+        width: 100%;
+        max-height: 500px;
     }
-
-        #profileLeftColumn{
-            flex-direction: column; 
-            float: left;
-            width: 30%;
-        }
-
-                #profilePic{
-                    padding-top: 12%;
-                    padding-bottom: 3%;
-                    padding-right: 3%;
-                    height: 100%;
-                    width: 100%;
-                }
-
-            
-
         #AboutMeDiv{
             border-style: solid;
-            border-color: black;
             width: 100%;
-            flex-direction: column; 
-            justify-items: space-between;
-        }
-        #pointsDiv{
             display: flex;
             flex-direction: column;
-            margin: 50px 50px 50px 15%;
-        }
-        
-        #about-me-content-container{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            height: 90%;
         }
             #titleDiv{
-                width: 100%;
-                padding-top: 2vh;
+                margin-top: 2%;
                 text-align: center;
                 border-bottom-style: solid;
                 border-bottom-width: 3px;
-                border-bottom-color: black;
+                height: 10%;
             }
-
             #profileDetail{
-
+                display: flex;
+                justify-content: space-between;
+                margin: 5% 15%;
+                flex-direction: row;
                 text-align: center;
-                padding-top: 4%;
-                padding-bottom: 4%;
+                height: 90%;
             }
-                #profile-detail-content-container{
+                .column-flexbox{
+                    margin-top: 10px;
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    justify-items: left;
+                    flex-direction: column;
                 }
-                    #associated-with-icon{
-                        margin-right: 9px;
-                    }
-                    #edit-container{
+                    .password-container{
                         display: flex;
-                        flex-direction: column;
                     }
+                        .password-reset{
+                            margin-top: 10px;
+                            cursor: pointer;
+                        }
+            /* #button-container{
+                display: flex;
+                position: relative;
+                left: 50%; 
+                margin-bottom: 3%;
+            }
+            #profilePic{
+                height: 90%;
+                width: 90%;
+                left: 0px;
+            } */
+            
     #bugTableDiv{
         margin-top: 2vh;
-        border-style: solid;
-        border-color: red;
     }
 
     #solutionTableDiv{
         margin-top: 2vh;
-        border-style: solid;
-        border-color: green;
-    }
-
-    .password-reset{
-        margin-top: 10px;
-        cursor: pointer;
     }
 
     .selectDivs{
@@ -91,5 +66,5 @@
         padding-top: 15px;
     }
     #spacer{
-        height: 50px;
+        height: 30px;
     }

@@ -5,6 +5,7 @@ import Client from 'src/app/models/Client';
 import { Router } from '@angular/router';
 import { BugReport } from 'src/app/models/BugReport';
 import BugStatus from 'src/app/models/BugStatus';
+import Solution from 'src/app/models/Solution';
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +38,8 @@ export class ProfileComponent implements OnInit {
   closeResult = '';
   numberOfBugs:number;
   numberOfSolutions:number;
+  numberOfAcceptedSolutions:number;
+  solutions:Solution[];
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -78,7 +81,10 @@ export class ProfileComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
   async getSolutionsAndBugs(){
-    this.numberOfBugs = await this.api.getClientBugReportCount();
-    this.numberOfSolutions = await this.api.getClientSolutionsCount();
+    this.numberOfBugs = await (await this.api.getbugReportByClientUsername(this.client.username)).length;
+    this.solutions = await (await this.api.getSolutionsByClientId(this.client.cId));
+    this.numberOfSolutions = this.solutions.length;
+    this.solutions = this.solutions.filter(sol => sol.status === "Accepted");
+    this.numberOfAcceptedSolutions = this.solutions.length;
   }
 }
