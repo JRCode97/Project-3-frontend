@@ -30,7 +30,6 @@ import { MetricsPageSummaryComponent } from './components/metrics-page-summary/m
 import { MetricsPageApplicationsComponent } from './components/metrics-page-applications/metrics-page-applications.component';
 import { MetricsPageDeveloperComponent } from './components/metrics-page-developer/metrics-page-developer.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
@@ -65,6 +64,34 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     MetricsPageSummaryComponent,
     MetricsPageApplicationsComponent,
     MetricsPageDeveloperComponent,
+    AdminBugsComponent,
+    AdminBugsCardsComponent,
+    AdminBugsTableComponent,
+    ApplicationComponent,
+    ApplicationsTableComponent,
+    BugReportViewComponent,
+    BugReportsTableComponent,
+    LoginComponent,
+    MainNavComponent,
+    MainPageApplicationComponent,
+    MainPageBugComponent,
+    MainPageComponent,
+    MainPageLeaderboardComponent,
+    NewBugReportComponent,
+    PasswordResetComponent,
+    ProfileComponent,
+    SolutionApprovalComponent,
+    SolutionsTableComponent,
+    UpdatePasswordComponent,
+    MetricsPageComponent,
+    MetricsPageSummaryComponent,
+    MetricsPageApplicationsComponent,
+    MetricsPageDeveloperComponent,
+    LoadingSpinnerComponent,
+    LoginMatComponent,
+    ResolvedbugsPageComponent,
+    ViewBugsPageComponent,
+    UnresolvedbugsPageComponent
   ],
   imports: [
     Modules

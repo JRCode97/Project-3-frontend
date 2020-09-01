@@ -163,6 +163,7 @@ export class ApiServiceService {
   async getSolutions(): Promise<Solution[]> {
     return await this.http.get<Solution[]>(`${this.path}/solutions`).toPromise();
   }
+  
   //2. Get all Solutions by Bug Report ID
   getSolutionsByBugId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?bId=${id}`).toPromise();
