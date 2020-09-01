@@ -1,7 +1,7 @@
 <ng-container *ngIf="br!=null">
     <div class="container">
         <ng-container *ngIf="br!=null">
-            <h1 id = "bugReportTitle" class="titleH1  col  "> Bug Report #{{br.bId}}</h1>
+            <h1 id = "bugTitleReport" class="titleH1  col  "> Bug Report #{{br.bId}}</h1>
 
             <div class="form-group row">
                 <label for="txttitle" class="col-sm-2 form-label">Bug Title:</label>
@@ -94,7 +94,7 @@
 
             </div>
             <div class="buttonGroup" *ngIf="isAdmin && br.status==='Requested'">
-                <button type="button"  class="btn btn-success" (click)="AcceptBug()">Approve </button>
+                <button type="button"  class="btn btn-success" id = "approve-bug-button" (click)="AcceptBug()">Approve </button>
                 <button type="button" class="btn btn-danger" id="reject-bug-button" (click)="RejectBug()">Reject</button>
             </div>
             <div class="form-group row">
