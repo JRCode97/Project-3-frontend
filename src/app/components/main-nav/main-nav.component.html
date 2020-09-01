@@ -38,17 +38,19 @@
       <span>Bug Bounty System </span>
       <mat-slide-toggle id="theme-toggle" (click)="changeTheme()">{{theme}}</mat-slide-toggle>
       <span class="spacer"></span>
-      <a routerLink="/main">Main</a>
+      <a [routerLink]="['/main']" [routerLinkActive]="['active']">Main</a>
       <div class="links" *ngIf="clientRole >= 1"><!-- Dev & Admin-->
-        <a routerLink="/profile" id="profileTab">Profile</a>
-        <a routerLink="/newbugreport" id="reportNewBug">Report New Bug</a>
+        <a [routerLink]="['/profile']" [routerLinkActive]="['active']" id="profileTab">Profile</a>
+        <a [routerLink]="['/newbugreport']" [routerLinkActive]="['active']" id="reportNewBug">Report New Bug</a>
       </div>
-      <a routerLink="/bugs" id="viewBugs">View Bugs</a>
+
+      <a [routerLink]="['/bugs']" [routerLinkActive]="['active']" id="viewBugs">View Bugs</a>
+
       <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->
-        <a routerLink="/applications" id="applicationsTab">Applications</a>
+        <a [routerLink]="['/applications']" [routerLinkActive]="['active']" id="applicationsTab">Applications</a>
         <!-- <a routerLink="/adminbugs">Admin Bugs</a>
         <a mat-list-item routerLink="/adminsolutions">Admin Solutions</a> -->
-        <a mat-list-item routerLink="/metrics">Metrics</a>
+        <a mat-list-item [routerLink]="['/metrics']" [routerLinkActive]="['active']">Metrics</a>
       </div>
       <a class="login" *ngIf="clientRole != 0" (click)="logout()">Logout</a>
       <a class="login" *ngIf="clientRole == 0" routerLink="/">Login</a>

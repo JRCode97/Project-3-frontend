@@ -33,8 +33,8 @@ export class ApiServiceService {
 
   //################ Start of Bug Report Section ###################
 
-  getBugReports(): Promise<BugReport[]> {
-    return this.http.get<BugReport[]>(`${this.path}/bugreports`).toPromise();
+  async getBugReports(): Promise<BugReport[]> {
+    return await this.http.get<BugReport[]>(`${this.path}/bugreports`).toPromise();
   }
 
   getbugReportByClientUsername(username:string){
@@ -160,6 +160,10 @@ export class ApiServiceService {
     return ticketPromise;
   }
 
+  async getSolutions(): Promise<Solution[]> {
+    return await this.http.get<Solution[]>(`${this.path}/solutions`).toPromise();
+  }
+  
   //2. Get all Solutions by Bug Report ID
   getSolutionsByBugId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?bId=${id}`).toPromise();
