@@ -23,7 +23,7 @@
             <div id="titleDiv"><h1>About me</h1></div>
             <div id="profileDetail">
                 <h2>Name: {{client.fName}} {{client.lName}}</h2>
-                <h2>Username: {{client.username}}</h2>
+                <h2 id="userNameProfile">Username: {{client.username}}</h2>
                 <h2>Role: {{client.Role}}</h2> 
                 <a class="password-reset" (click)="open(content)">Update Password</a>
             </div>
@@ -56,7 +56,8 @@
                 <mat-option value="Denied">Denied</mat-option>
                 <mat-option value="Unresolved">Unresolved</mat-option>
                 <mat-option value="Resolved">Resolved</mat-option>
-            </mat-select></mat-form-field>
+            </mat-select>
+        </mat-form-field>
     </div>
 
     <ng-container [ngSwitch]="bugStatus">

@@ -1,0 +1,22 @@
+<div class="container-fluid tab-bar">
+    <div class="row">
+        <div class="col-2">
+            <div class="tab-container">
+                <div [ngClass]="[btnStyleSum]" id="summary-tab">
+                    <a (click)="changeToSum()">Summary</a>
+                </div>
+                <div [ngClass]="[btnStyleDev]" id="developer-tab">
+                    <a (click)="changeToDev()">Developers</a>
+                </div>
+                <div [ngClass]="[btnStyleApp]" id="applications-tab">
+                    <a (click)="changeToApp()" >Applications</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <app-metrics-page-summary *ngIf ="ifSummary"></app-metrics-page-summary>
+            <app-metrics-page-applications *ngIf ="ifApplications"></app-metrics-page-applications>
+            <app-metrics-page-developer *ngIf ="ifDeveloper"></app-metrics-page-developer>
+        </div>
+    </div>
+</div>

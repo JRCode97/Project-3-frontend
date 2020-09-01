@@ -36,11 +36,9 @@ export class DeniedBugreportTableComponent implements AfterViewInit, OnInit {
   bugreportsArray = []
 
   async initBugreports(){
-    let client:Client = this.api.getLoggedClient()
-    let bugreports = await this.api.getbugReportByClientUsername(client.username)
-    console.log(bugreports)
-    bugreports = bugreports.filter(br => br.status === "Denied")
+    let client:Client = this.api.getLoggedClient();
+    let bugreports = await this.api.getbugReportByClientUsername(client.username);
+    bugreports = bugreports.filter(br => br.status === "Denied");
     this.dataSource = new DeniedBugreportTableDataSource(bugreports);
-    console.log(this.dataSource)
   }
 }
