@@ -2,6 +2,14 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import Client from '../../models/Client';
 import {ApiServiceService} from '../../services/api-service.service';
 import Solution from '../../models/Solution';
+import { Router } from '@angular/router';
+
+
+enum ClientRole {
+  unregistered,
+  developer,
+  admin
+}
 
 @Component({
   selector: 'app-login-mat',
@@ -10,7 +18,7 @@ import Solution from '../../models/Solution';
 })
 export class LoginMatComponent implements OnInit {
 
-  constructor(private serv: ApiServiceService) { }
+  constructor(private serv: ApiServiceService, private router: Router) { }
 
   client = new Client();
 
@@ -30,7 +38,10 @@ export class LoginMatComponent implements OnInit {
   shown = true;
 
   ngOnInit(): void {
-
+    this.client = this.serv.getLoggedClient();
+    if (this.client != null && this.client.cId > 0) {
+      this.router.navigate(['/main']);
+    }
   }
 
 
