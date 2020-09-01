@@ -150,7 +150,7 @@
 
                                             <table style="width: 100%;">
                                                 <thead style="width: 100%; ">
-                                                    <td style="width:30%; font-size: .9em; ">
+                                                    <td style="width:30%; font-size: .9em; " id="solution{{solution.id}}">
                                                         {{solution.title}}
                                                     </td>
                                                     <td style="width:30%;font-size:  .9em;;">
@@ -180,12 +180,12 @@
                                         <div id="divDescription" readonly
                                             class="col-sm-8 form-control textareaDisabled">{{solution.description}}
                                         </div>
-                                        <div id="solutions-dropdown-container" *ngIf="solution.status!=='Pending'">
+                                        <div id="solutions-dropdown-container">
                                             <mat-form-field>
-                                                <mat-select (selectionChange)="updateSolution(solution)" [(value)]="solution.status">
-                                                    <mat-option value="Pending">Pending</mat-option>
-                                                    <mat-option value="Accepted">Accepted</mat-option>
-                                                    <mat-option value="Rejected">Rejected</mat-option>
+                                                <mat-select (selectionChange)="updateSolution(solution)" id="solutStat" [(value)]="solution.status">
+                                                    <mat-option value="Pending" >Pending</mat-option>
+                                                    <mat-option value="Accepted" >Accepted</mat-option>
+                                                    <mat-option value="Rejected" >Rejected</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
