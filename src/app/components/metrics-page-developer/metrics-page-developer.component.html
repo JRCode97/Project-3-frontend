@@ -1,41 +1,59 @@
 <div [ngClass]="[whileLoading]">
-    <br><br><br><br>
-
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-
-    <br><br>
-
-    <div id="chartContainer_2" style="height: 370px; width: 100%;"></div>
-
-    <br><br>
-
-    <div class="row data-row">
-        <div class="col">
-            <div class="time-wrap">
-                <h1>Total Number of Users</h1>
-                <div class="time-data" id="average-time">
-                    {{clients.length}}
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="row-divider-spacer"></div>
+            <div class="row">
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            </div>
+            <div class="row-divider-container"><div class="row-divider"></div></div>
+            <div class="row">
+                <div id="chartContainer_2" style="height: 370px; width: 100%;"></div>
+            </div>
+            
+            <div class="row data-row">
+                <div class="col">
+                    <div class="time-wrap">
+                        <h1>Total Number of Users</h1>
+                        <div class="time-data" id="average-time">
+                            {{clients.length}}
+                        </div>
+                    </div> 
                 </div>
-            </div> 
-        </div>
-    </div>
-
-    <br><br><br><br>
-
-    <h1> <b> How Long a Bug Takes to get Resolved per Developer </b></h1>
-
-    <br><br>
-
-        <div class="row data-row" >
-            <div class="col-3" *ngFor= 'let c of clients'>
-                <div class="time-wrap">
-                    <h3>{{c.firstName}} {{c.lastName}}</h3>
-                    <div class="time-data" id="average-time">
-                        {{c.avgNumToResolveBug}}
-                    </div>
-                </div> 
+            </div>
+            <div class="row-divider-container"><div class="row-divider"></div></div>
+            <div class="row"><h1> <b> How Long a Bug Takes to get Resolved per Developer </b></h1></div>
+            <div class="row data-row" >
+                <div class="col-3" *ngFor= 'let c of clients'>
+                    <div class="time-wrap">
+                        <h3>{{c.firstName}} {{c.lastName}}</h3>
+                        <div class="time-data" id="average-time">
+                            {{c.avgNumToResolveBug}}
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>
+        <div class="col-1"></div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+        
         
 </div>
 

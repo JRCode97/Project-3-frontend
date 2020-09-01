@@ -41,7 +41,7 @@
       <a routerLink="/main">Main</a>
       <div class="links" *ngIf="clientRole >= 1"><!-- Dev & Admin-->
         <a routerLink="/profile" id="profileTab">Profile</a>
-        <a routerLink="/newbugreport">Report New Bug</a>
+        <a routerLink="/newbugreport" id="reportNewBug">Report New Bug</a>
       </div>
       <a routerLink="/bugs">View Bugs</a>
       <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->

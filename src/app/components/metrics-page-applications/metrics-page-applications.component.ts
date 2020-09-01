@@ -107,7 +107,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
     }
 
 
-    if (this.theme = 'light2'){
+    if (this.theme == 'light2'){
       this.makeSolBugChart();
       this.solBugChart.options.theme ='light2';
       this.solBugChart.render();
@@ -124,7 +124,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
       this.hiLoChart.options.theme = 'light2';
       this.hiLoChart.render();
     }
-    if (this.theme = "dark2"){
+    if (this.theme == "dark2"){
       this.makeSolBugChart();
       this.solBugChart.options.theme ='dark2';
       this.solBugChart.render();

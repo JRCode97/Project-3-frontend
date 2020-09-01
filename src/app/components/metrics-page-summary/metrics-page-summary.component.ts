@@ -22,7 +22,7 @@ export class MetricsPageSummaryComponent implements OnInit {
   lineChart;
   pieChart;
 
-  whileLoading:string = "row row-data buffering";
+  whileLoading:string = "buffering";
   ifLoading:boolean = true;
 
   // count by severity & status
@@ -76,7 +76,6 @@ export class MetricsPageSummaryComponent implements OnInit {
       let b:number = r.createdTime
       
       diff = a - b
-      console.log(diff)
       let bid = r.bId;
       let created = this.datePipe.transform(b, 'yyyy-MM-dd')
       let resolved = this.datePipe.transform(a, 'yyyy-MM-dd')
@@ -95,7 +94,7 @@ export class MetricsPageSummaryComponent implements OnInit {
     this.makeLineChart();
     this.lineChart.render();
     this.pieChart.render();
-    this.whileLoading="row row-data";
+    this.whileLoading="";
     this.ifLoading = false;
   }
 
@@ -177,6 +176,9 @@ export class MetricsPageSummaryComponent implements OnInit {
       axisX: {
         labelAngle: -30
       },
+      axisY: {
+        gridColor: "transparent"
+      },
       data: [
       {
         type: "line",
@@ -188,10 +190,18 @@ export class MetricsPageSummaryComponent implements OnInit {
   }
 
   makePieChart(){
+    CanvasJS.addColorSet("pieShades",
+                [//colorSet Array
+
+                "rgb(199, 74, 65)",
+                "rgb(241, 218, 115)",
+                "rgb(161, 241, 115)"             
+                ]);
     let chart = new CanvasJS.Chart("pieChartContainer", {
       theme: this.theme,
       backgroundColor: "transparent",
       animationEnabled: true,
+      colorSet:"pieShades",
       title:{
         text: "Severity Distribution"
       },
