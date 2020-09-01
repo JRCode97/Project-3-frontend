@@ -43,7 +43,9 @@
         <a [routerLink]="['/profile']" [routerLinkActive]="['active']" id="profileTab">Profile</a>
         <a [routerLink]="['/newbugreport']" [routerLinkActive]="['active']" id="reportNewBug">Report New Bug</a>
       </div>
-      <a [routerLink]="['/bugs']" [routerLinkActive]="['active']">View Bugs</a>
+
+      <a [routerLink]="['/bugs']" [routerLinkActive]="['active']" id="viewBugs">View Bugs</a>
+
       <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->
         <a [routerLink]="['/applications']" [routerLinkActive]="['active']" id="applicationsTab">Applications</a>
         <!-- <a routerLink="/adminbugs">Admin Bugs</a>
