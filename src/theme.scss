@@ -21,7 +21,14 @@
   a {
     color: mat-color($primary)
   }
-
+  // .col-2{
+  //   background-color: mat-color($background, background);
+  //   color: mat-color($foreground, text)
+  // }
+  .tab-btn-clicked{
+    background-color: mat-color($background, background);
+    color: mat-color($foreground, text)
+  }
 }
 
 $theme-primary: mat-palette($mat-gray, 900);

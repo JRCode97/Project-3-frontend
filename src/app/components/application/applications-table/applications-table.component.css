@@ -1,9 +1,7 @@
 
 .mat-elevation-z8{
   width:50%;
-  margin-top: 5%;
-  margin-left: 5%;
-  margin-bottom: 5%;
+  margin: auto;
   border: solid 1px black;
   height: auto;
   box-shadow: none;

@@ -10,9 +10,13 @@ body {
   margin-bottom: 64px;
 }
 
+
 :root {
   --accent: #e53935;
   --primary: #263238;
   --warn: #b71c1c;
   --secondary: #eeeeee;
+}
+.bug-page-content-container{
+  padding-bottom: 10%;
 }

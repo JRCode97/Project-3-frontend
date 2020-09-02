@@ -1,15 +1,15 @@
 <div class="container">
-    <h1>Bug Report #</h1>
+    <h1 id="newBugReport">Bug Report #</h1>
     <div class="col">
         <form [formGroup]="bugForm">
         <div class="form-group">
             <label class="formLabel">Title:</label>
-            <input class = "inputType" type="text" formControlName="title" required> 
+            <input class = "inputType" id="bugTitle" type="text" formControlName="title" required> 
         </div>
         
         <div class="form-group">
             <label class="formLabel">Application:</label>
-            <select class="dropDown" formControlName="application">
+            <select class="dropDown" formControlName="application" id="AppsDropDown">
                 <option value="" disabled>Choose application</option>
                 <option *ngFor="let application of applicationNameList" [ngValue]="application">{{application}}</option>
             </select>
@@ -17,17 +17,17 @@
         
         <div class="form-group">
             <label class="formLabel">Suspected Location:</label>
-            <input class = "inputType" type="text" formControlName="suspectedLocation">
+            <input class = "inputType" type="text" id="suspectedLocation" formControlName="suspectedLocation">
         </div>
         <div class="form-group">
             <label class="formLabel">Severity:</label>
-            <select class="dropDown" formControlName="severity">
+            <select class="dropDown" formControlName="severity" id="SeverityDropDown">
                 <option value="" disabled>Choose severity</option>
                 <option *ngFor="let severity of severityLevel" [ngValue]="severity">{{severity}}</option>
             </select>
 
             <label class="formLabel">Priority:</label>
-            <select class="dropDown" formControlName="priority">
+            <select class="dropDown" formControlName="priority" id="PriorityDropDown">
                 <option value="" disabled>Choose priority</option>
                 <option *ngFor="let priority of priorityLevel" [ngValue]="priority">{{priority}}</option>
             </select>
@@ -39,15 +39,16 @@
         
         <div class="form-group">
             <label class="formLabel">Description:</label>
-            <editor formControlName="description" required [init]="{
+            <editor formControlName="description" id="bugDescription" required [init]="{
                 base_url: '/tinymce', 
                 suffix: '.min' 
-              }"></editor>          
+              }"></editor>  
+                      
         </div>
 
         <div class="form-group">
             <label class="formLabel">Reproduce Steps:</label>
-            <editor formControlName="reproduceSteps" [init]="{
+            <editor formControlName="reproduceSteps" id="bugReproduction" [init]="{
                 base_url: '/tinymce', 
                 suffix: '.min' 
               }"></editor> 
@@ -55,8 +56,8 @@
 
         <br>
         <div class="buttonGroup">
-            <button type="button" class="btn btn-secondary">Cancel</button>
-            <button type="submit" class="btn btn-success" (click)="submitReport()" [disabled]="bugForm.invalid">Submit for Review</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelReport()" id="BugCancel">Cancel</button>
+            <button type="submit" class="btn btn-success" (click)="submitReport()" [disabled]="bugForm.invalid" id="BugSubmit">Submit for Review</button>
         </div>
         </form> 
         <p *ngIf="failToPost" class="warningPost">The bug failed to post. Please review the request</p>

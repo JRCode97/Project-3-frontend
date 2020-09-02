@@ -3,16 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { ApiServiceService } from '../../services/api-service.service';
 import { Application } from 'src/app/models/Application';
 import { OverlayContainer} from '@angular/cdk/overlay';
+import BugReport from 'src/app/models/BugReport';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
 
   applications: Array<Application> = [];
+  bugReports: BugReport[];
   overlayContainer;
+  selectedApp:Application;
   componentCssClass;
 
   constructor(private apiservice: ApiServiceService) { }
@@ -25,5 +28,14 @@ export class MainPageComponent implements OnInit {
   async getApplications(): Promise<any> {
     let aList: Array<Application> = await this.apiservice.getApplications();
     this.applications = aList;
+    this.selectedApp = aList[0];
+    this.bugReports = this.selectedApp.reports;
+  }
+
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.bugReports = this.selectedApp.reports;
+    console.log(this.selectedApp)
+    console.log(this.bugReports)
   }
 }
