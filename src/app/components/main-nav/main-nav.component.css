@@ -1,7 +1,6 @@
 .active {
   background-color: gray; 
   border: 1px solid gray;
-  padding: 15px;
 }
 
 
@@ -13,6 +12,12 @@
 
 a{
   cursor:pointer;
+  /* background-color: aqua; */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  /* padding: 15px; */
 }
 
 .sidenav {
