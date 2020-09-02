@@ -1,49 +1,36 @@
-<div class="container"> 
-    <div class="mat-elevation-z8">
-        <div class="profile-card">
-    
-            <div id="AboutMeDiv">
-                <div id="titleDiv">
-                    <h1>{{client.username}}</h1>
-                </div>
-                <div id="profileDetail">
+<div class="container">
 
-                    <!-- 
-                        Can add image here
-                        Would need to figure out the positioning
+    <div id="profileHalf">
 
-                        <div id="profilePicDiv">
-                        <img id="profilePic" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/exterminator.png" alt="Profile Pic">
-                    </div>  -->
+        <div id="profileLeftColumn">
 
-                    <div class="column-flexbox">
-                        <h3>First name - {{client.fName}}</h3>
-                        <h3>Last name - {{client.lName}}</h3>
-                        <h3>Points - {{points}}</h3>
-                        <h3>Posted Solutions - {{numberOfSolutions}}</h3>
-                        
-                    </div>
-                    <div class="column-flexbox">
-                        <h3>Role - {{client.role}}</h3>
-                        <div class="password-container">
-                            <h3 style="margin-right: 9px;">Password: {{shownPass}}</h3>
-                            <button mat-icon-button matSuffix (click)="togglePasswordShow()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                        </div>
-                        <h3>Posted Bugs - {{numberOfBugs}}</h3>
-                        <h3>Solutions Approved - {{numberOfAcceptedSolutions}}</h3>
-                    </div>
-                </div>
-                <!-- 
-                    This is edit button. The idea was to have an edit button that flips the card and allows the user the edit their fields.
-                <div id="button-container">
-                    <button mat-icon-button>Edit Profile<mat-icon>edit</mat-icon></button>
-                </div> -->
+            <div id="profilePicDiv">
+
+                
+                <!-- <img id="profilePic" src="https://www.thegivingtree.com/images/placeholder-images/placeholder_profile_photo.png" alt="Profile Pic"> -->
+                <img id="profilePic" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/exterminator.png" alt="Profile Pic">
+
+            </div>
+
+            <div id="pointsDiv">
+                <h1>Points</h1>
+                <h1>{{points}}</h1>
+            </div>
+
         </div>
-        
+
+        <div id="AboutMeDiv">
+            <div id="titleDiv"><h1>{{client.username}}</h1></div>
+            <div id="profileDetail">
+                <h2>Name: {{client.fName}} {{client.lName}}</h2>
+                <h2 id="userNameProfile">Username: {{client.username}}</h2>
+                <h2>Role: {{client.Role}}</h2> 
+                <a class="password-reset" (click)="open(content)">Update Password</a>
+            </div>
+        </div>
+
     </div>
-</div>
+
 
     <div id="spacer"></div>
     <mat-expansion-panel hideToggle>
@@ -153,4 +140,18 @@
                     </ng-container>
                 </ng-container>
         </mat-expansion-panel>
+
 </div>
+        <ng-template class="modal-view" #content let-modal>
+            <div class="modal-header">
+              <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-update-password></app-update-password>
+            </div>
+        </ng-template>
+          <hr>
+          
+          <pre>{{ closeResult }}</pre>
