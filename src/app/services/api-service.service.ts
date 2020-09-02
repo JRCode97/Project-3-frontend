@@ -41,9 +41,9 @@ export class ApiServiceService {
     return this.http.get<BugReport[]>(this.path + `/bugreports/client/${username}`).toPromise();
   }
 
-  /* getbugReportByApp(id:number){
+  getbugReportByApp(id:number){
     return this.http.get<BugReport>(`${this.path}/applications/${id}/bugreports`).toPromise();
-  } */
+  } 
 
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Resolved`).toPromise();

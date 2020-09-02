@@ -1,33 +1,37 @@
 <div class="mainPageContainer">
-    <div class="row">
+    <div class="row banner-row">
         <div id="mainBanner" class="mainTop">
             <p class="mainLogo"><img class="mainBugL" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/Ladybug-128.png">Bug's @ Large<img
                     class="mainBugR" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/Ladybug-128.png"></p>
         </div>
     </div>
-    <div class="row main-row">
-        <div class="col-3">
-            <div class="leaderboard-column">
+    <section class="main-section">
+            <div class="col">
+                <div class="leaderboard-column">
                     <app-main-page-leaderboard></app-main-page-leaderboard>
-            </div>
-        </div>
-        <div class="col-9">
-            <div class="row">
-                <div class="application-select">
-                    <select [(ngModel)] = "selectedApp" (change)="selectChangeHandler($event)">
-                        <option *ngFor="let app of applications" id = "app{{app.id}}" [ngValue] ="app">{{app.title}}</option>
-                    </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="bug-list-column">
-                    <div class="report-container" *ngFor="let report of bugReports">
-                        <app-main-page-bug [bugReport]="report"></app-main-page-bug>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="application-select">
+                            <select [(ngModel)] = "selectedApp" (change)="selectChangeHandler($event)">
+                                <option *ngFor="let app of applications" id = "app{{app.id}}" [ngValue] ="app">{{app.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-7"></div> 
+                </div>
+                <div class="row">
+                    <div class="bug-list-column">
+                        <div class="report-container" *ngFor="let report of bugReports">
+                            <app-main-page-bug [bugReport]="report"></app-main-page-bug>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+    </section>
 </div> 
 
 

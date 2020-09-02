@@ -1,37 +1,68 @@
+@media only screen and (max-width: 640px) {
+    .main-section {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        flex-direction: column!important;
+    }
+    .col-9{
+        -ms-flex: 1 0 0!important;
+        flex: 1 0 0!important;
+        -ms-flex-preferred-size: 0!important;
+        flex-basis: 0!important;
+        -ms-flex-positive: 1!important;
+        flex-grow: 1!important;
+        max-width: 100%!important;
+    }
+  }
+
+
+.main-section{
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    flex-direction: row;
+}
 .mainPageContainer{
-    padding:50px;
+    padding: 0 50px 0 50px;
 }
 
 .bug-list-column{
     margin-top:24px;
-    height:1000px;
     width:100%;
 }
 
 .leaderboard-column{
     display:flex;
     justify-content: center;
+    app-main-page-leaderboard{
+        width:100%;
+        overflow:auto;
+    }
 }
 
 .application-select{
-    height:50px;
     width:100%;
 }
 
 .report-container{
     margin-bottom:24px;
 }
+
+.banner-row{
+    height:15vh;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 // =================================== OLD CSS =============================================
 /* .mainPageContainer{
     position: sticky;
 } */
-.mainTop{
-    /* border-style: dashed; */
-    padding: 20px 0px 0px 20px;
-    height: min-content;
-    width: 60%;
-    float: left;
-}
+
 p.mainWelcome{
     font-size: 20px;
     margin-left: 10px;
@@ -43,20 +74,7 @@ p.mainLogo{
     z-index: 1;
     /* right: 40px; */
 }
-.mainLeft{
-    /* border-style: dotted; */
-    width: 60%;
-    padding-left: 50px;
-    float: left;
-    z-index: 2;
-}
-.mainRight{
-    /* border-style: ridge; */
-    margin-left: 60%;
-    position: fixed;
-    padding: 95px 0px 0px 20px;
-    z-index: 1;
-}
+
 .mainAvatar{
     width: 85px;
     height: 85px;
@@ -72,6 +90,7 @@ p.mainLogo{
     height: 65px;
     transform: rotate(225deg);
 }
+
 
 
 //================================== bootstrap-grid ========================================
