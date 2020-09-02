@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -28,7 +29,7 @@ export class ApiServiceService {
 
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9000'
   //path: string = 'http://ec2-52-14-153-164.us-east-2.compute.amazonaws.com:9111'
-  path: string = 'http://localhost:9111';
+  path: string = environment.apiUrl;
 
 
   //################ Start of Bug Report Section ###################
@@ -43,7 +44,7 @@ export class ApiServiceService {
 
   getbugReportByApp(id:number){
     return this.http.get<BugReport>(`${this.path}/applications/${id}/bugreports`).toPromise();
-  } 
+  }
 
   getResolvedBugs(): Promise<BugReport[]> {
     return this.http.get<BugReport[]>(`${this.path}/bugreports?status=Resolved`).toPromise();
@@ -163,7 +164,7 @@ export class ApiServiceService {
   async getSolutions(): Promise<Solution[]> {
     return await this.http.get<Solution[]>(`${this.path}/solutions`).toPromise();
   }
-  
+
   //2. Get all Solutions by Bug Report ID
   getSolutionsByBugId(id:number) {
     return this.http.get<Solution[]>(`${this.path}/solutions?bId=${id}`).toPromise();
