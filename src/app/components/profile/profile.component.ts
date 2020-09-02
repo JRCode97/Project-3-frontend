@@ -3,9 +3,6 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import Client from 'src/app/models/Client';
 import { Router } from '@angular/router';
-import { BugReport } from 'src/app/models/BugReport';
-import BugStatus from 'src/app/models/BugStatus';
-import Solution from 'src/app/models/Solution';
 
 @Component({
   selector: 'app-profile',
@@ -23,23 +20,13 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(["/"]);
     this.assignRole();
     this.getClientPoint();
-    this.getSolutionsAndBugs();
   }
   
   bugStatus:string = "All";
   solutionStatus:string = "All";
-  hidePassword:boolean = true;;
-  shownPass:string = "********";
-  editFirstName:boolean = false;
-  editLastName:boolean = false;
-  editUsername:boolean = false;
   points
   client
   closeResult = '';
-  numberOfBugs:number;
-  numberOfSolutions:number;
-  numberOfAcceptedSolutions:number;
-  solutions:Solution[];
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -70,21 +57,8 @@ export class ProfileComponent implements OnInit {
     else{
       this.client.role = "Admin"
     }
+    console.log(this.client.role);
+    
   }
   
-  togglePasswordShow(){
-    if(!this.hidePassword){
-      this.shownPass = "********";
-    }else{
-      this.shownPass = this.client.password;
-    }
-    this.hidePassword = !this.hidePassword;
-  }
-  async getSolutionsAndBugs(){
-    this.numberOfBugs = await (await this.api.getbugReportByClientUsername(this.client.username)).length;
-    this.solutions = await (await this.api.getSolutionsByClientId(this.client.cId));
-    this.numberOfSolutions = this.solutions.length;
-    this.solutions = this.solutions.filter(sol => sol.status === "Accepted");
-    this.numberOfAcceptedSolutions = this.solutions.length;
-  }
 }
