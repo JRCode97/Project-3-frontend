@@ -157,11 +157,15 @@ export class MetricsPageApplicationsComponent implements OnInit {
       backgroundColor: "transparent",
       data: [
       {
+        legendText: "Bugs",
+        showInLegend: true,
         type: "column",
         color: "IndianRed",        // change color here
         dataPoints: this.bugsPerApp
       },
         {
+          legendText: "Solutions",
+          showInLegend: true,
         type: "column",
         color: "DarkSeaGreen",
         dataPoints: this.solutionsPerApp
@@ -204,12 +208,15 @@ export class MetricsPageApplicationsComponent implements OnInit {
         fontFamily: "Verdana",
         fontWeight: "bold"
       },
+      axisY: {
+        title: "Solution Time (hours)",
+      },
       backgroundColor: "transparent",
       data: [{
         type: "column",
         startAngle: 240,
         yValueFormatString: "##0\" hours\"",
-        indexLabel: "{label} {y}",
+        // indexLabel: "{label} {y}",
         dataPoints: this.avgSolTimePerApp
       }]
     });
@@ -229,7 +236,7 @@ export class MetricsPageApplicationsComponent implements OnInit {
       },
       backgroundColor: "transparent",
       axisY: {
-        title: "Solution Time (Hours)",
+        title: "Solution Time (hours)",
       },
 
       axisX: {
