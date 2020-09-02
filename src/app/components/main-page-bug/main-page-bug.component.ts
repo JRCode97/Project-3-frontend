@@ -4,7 +4,7 @@ import { BugReport } from 'src/app/models/BugReport';
 @Component({
   selector: 'app-main-page-bug',
   templateUrl: './main-page-bug.component.html',
-  styleUrls: ['./main-page-bug.component.css']
+  styleUrls: ['./main-page-bug.component.scss']
 })
 export class MainPageBugComponent implements OnInit {
 
