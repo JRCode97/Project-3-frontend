@@ -23,6 +23,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.applications = [];
     this.getApplications();
+    
   }
 
   async getApplications(): Promise<any> {
@@ -30,12 +31,24 @@ export class MainPageComponent implements OnInit {
     this.applications = aList;
     this.selectedApp = aList[0];
     this.bugReports = this.selectedApp.reports;
+    this.getOpenReports(this.bugReports)
   }
 
   selectChangeHandler (event: any) {
     //update the ui
     this.bugReports = this.selectedApp.reports;
-    console.log(this.selectedApp)
-    console.log(this.bugReports)
+    this.getOpenReports(this.bugReports)
   }
+
+  getOpenReports(reports){
+    const holder: BugReport[] = reports;
+    const returner: BugReport[] = [];
+    for (const report of holder) {
+      if (report.status !== 'Resolved') {
+        returner.push(report);
+      }
+    }
+    this.bugReports = returner;
+  }
+  
 }
