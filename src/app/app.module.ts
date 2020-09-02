@@ -30,65 +30,68 @@ import { MetricsPageSummaryComponent } from './components/metrics-page-summary/m
 import { MetricsPageApplicationsComponent } from './components/metrics-page-applications/metrics-page-applications.component';
 import { MetricsPageDeveloperComponent } from './components/metrics-page-developer/metrics-page-developer.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
-import { RequestedBugreportTableComponent } from './components/profile/profile-tables/requested-bugreport-table/requested-bugreport-table.component';
-import { UnresolvedBugreportTableComponent } from './components/profile/profile-tables/unresolved-bugreport-table/unresolved-bugreport-table.component';
-import { ResolvedBugreportTableComponent } from './components/profile/profile-tables/resolved-bugreport-table/resolved-bugreport-table.component';
-import { DeniedBugreportTableComponent } from './components/profile/profile-tables/denied-bugreport-table/denied-bugreport-table.component';
-import { PendingSolutionTableComponent } from './components/profile/profile-tables/pending-solution-table/pending-solution-table.component';
-import { AcceptedSolutionTableComponent } from './components/profile/profile-tables/accepted-solution-table/accepted-solution-table.component';
-import { RejectedSolutionTableComponent } from './components/profile/profile-tables/rejected-solution-table/rejected-solution-table.component';
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
 import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
 import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
 
 
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
-
-
+    ApplicationComponent,
+    ApplicationsTableComponent,
+    BugReportViewComponent,
+    BugReportsTableComponent,
+    LoginComponent,
+    MainNavComponent,
+    MainPageApplicationComponent,
+    MainPageComponent,
+    MainPageBugComponent,
+    MainPageLeaderboardComponent,
+    NewBugReportComponent,
+    PasswordResetComponent,
+    ProfileComponent,
+    SolutionApprovalComponent,
+    SolutionsTableComponent,
+    UpdatePasswordComponent,
+    LoadingSpinnerComponent,
+    LoginMatComponent,
+    ResolvedbugsPageComponent,
+    ViewBugsPageComponent,
+    UnresolvedbugsPageComponent,
+    MetricsPageComponent,
+    MetricsPageSummaryComponent,
+    MetricsPageApplicationsComponent,
+    MetricsPageDeveloperComponent,
     AdminBugsComponent,
-        AdminBugsCardsComponent,
-        AdminBugsTableComponent,
-        ApplicationComponent,
-        ApplicationsTableComponent,
-        BugReportViewComponent,
-        BugReportsTableComponent,
-        LoginComponent,
-        MainNavComponent,
-        MainPageApplicationComponent,
-        MainPageBugComponent,
-        MainPageComponent,
-        MainPageLeaderboardComponent,
-        NewBugReportComponent,
-        PasswordResetComponent,
-        ProfileComponent,
-        SolutionApprovalComponent,
-        SolutionsTableComponent,
-        UpdatePasswordComponent,
-        MetricsPageComponent,
-        MetricsPageSummaryComponent,
-        MetricsPageApplicationsComponent,
-        MetricsPageDeveloperComponent,
-        LoadingSpinnerComponent,
-        RequestedBugreportTableComponent,
-        UnresolvedBugreportTableComponent,
-        ResolvedBugreportTableComponent,
-        DeniedBugreportTableComponent,
-        PendingSolutionTableComponent,
-        AcceptedSolutionTableComponent,
-        RejectedSolutionTableComponent,
-        LoginMatComponent,
-        ResolvedbugsPageComponent,
-        ViewBugsPageComponent,
-        UnresolvedbugsPageComponent
+    AdminBugsCardsComponent,
+    AdminBugsTableComponent,
+    ApplicationComponent,
+    ApplicationsTableComponent,
+    BugReportViewComponent,
+    BugReportsTableComponent,
+    LoginComponent,
+    MainNavComponent,
+    MainPageApplicationComponent,
+    MainPageBugComponent,
+    MainPageComponent,
+    MainPageLeaderboardComponent,
+    NewBugReportComponent,
+    PasswordResetComponent,
+    ProfileComponent,
+    SolutionApprovalComponent,
+    SolutionsTableComponent,
+    UpdatePasswordComponent,
+    MetricsPageComponent,
+    MetricsPageSummaryComponent,
+    MetricsPageApplicationsComponent,
+    MetricsPageDeveloperComponent,
+    LoadingSpinnerComponent,
+    LoginMatComponent,
+    ResolvedbugsPageComponent,
+    ViewBugsPageComponent,
+    UnresolvedbugsPageComponent
   ],
   imports: [
     Modules
