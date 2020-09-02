@@ -5,12 +5,6 @@ import Solution from '../../models/Solution';
 import { Router } from '@angular/router';
 
 
-enum ClientRole {
-  unregistered,
-  developer,
-  admin
-}
-
 @Component({
   selector: 'app-login-mat',
   templateUrl: './login-mat.component.html',
