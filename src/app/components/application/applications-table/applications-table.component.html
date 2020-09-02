@@ -23,9 +23,14 @@
   </table>
 
   <mat-paginator #paginator
-      [length]="dataSource?.data.length"
+      [length]="dataSource?.data.length" id="{{dataSource?.data.length}}"
       [pageIndex]="0"
       [pageSize]="50"
       [pageSizeOptions]="[5, 10, 20, 50]">
   </mat-paginator>
+
 </div>
+
+
+
+<p id="datalength">{{dataSource?.data.length}}</p>

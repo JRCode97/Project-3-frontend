@@ -1,0 +1,109 @@
+<div [ngClass]="[whileLoading]">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="row-divider-spacer"></div>
+            <div class="row">
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            </div>
+            <div class="row-divider-container"><div class="row-divider"></div></div>
+            <div class="row">
+                <div id="chartContainer_2" style="height: 370px; width: 100%;"></div>
+            </div>
+            
+            <div class="row data-row">
+                <div class="col">
+                    <div class="time-wrap">
+                        <h1>Total Number of Users</h1>
+                        <div class="time-data" id="average-time">
+                            {{clients.length}}
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="row-divider-container"><div class="row-divider"></div></div>
+            <div class="row"><h1> <b> How Long a Bug Takes to get Resolved per Developer </b></h1></div>
+            <div class="row data-row" >
+                <div class="col-3" *ngFor= 'let c of clients'>
+                    <div class="time-wrap">
+                        <h3>{{c.firstName}} {{c.lastName}}</h3>
+                        <div class="time-data" id="average-time">
+                            {{c.avgNumToResolveBug}}
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+        
+        
+</div>
+
+<div class="buffering-overlay" *ngIf = "ifLoading">
+    <div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <div class="row data-row" *ngFor= 'let client of clients'>
+        <div class = "col-2">
+            <h1>{{client.firstname}} {{client.lastname}}</h1>
+        </div>
+        
+        <div class = "col-2">
+            <div class="dot-wrap">
+                <div class="dot-data" id="bugs-unresolved">
+                    {{client.bugsDataPoint.y}}
+                </div>
+            </div>
+        </div>
+        
+        <div class= "col-2">
+            <div class="dot-wrap ">
+                <div class="dot-data" id="bugs-resolved">
+                    {{client.solutionsDataPoint.y}}
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    
+-->

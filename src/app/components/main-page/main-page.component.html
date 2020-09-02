@@ -1,13 +1,13 @@
 
 <div class="mainPageContainer">
-    <div class="mainTop">
+    <div id="mainBanner" class="mainTop">
         <p class="mainLogo"><img class="mainBugL" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/Ladybug-128.png">Bug's @ Large<img
                 class="mainBugR" src="http://bug-bounty-system.s3-website.us-east-2.amazonaws.com/Ladybug-128.png"></p>
     </div>
 
     <div class="mainLeft">
         <mat-accordion>
-            <app-main-page-application *ngFor="let app of applications" [application]="app"></app-main-page-application>
+            <app-main-page-application *ngFor="let app of applications" [application]="app" id = "app{{app.id}}"></app-main-page-application>
         </mat-accordion>
     </div>
 

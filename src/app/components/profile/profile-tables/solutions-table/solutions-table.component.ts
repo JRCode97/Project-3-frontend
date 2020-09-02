@@ -38,9 +38,7 @@ export class SolutionsTableComponent implements AfterViewInit, OnInit {
   async initSolutions(){
     let client = this.api.getLoggedClient()
     let solutions = await this.api.getSolutionsByClientId(client.cId)
-    console.log(solutions)
 
     this.dataSource = new SolutionsTableDataSource(solutions);
-    console.log(this.dataSource)
   }
 }

@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@tinymce/tinymce-angular": "^3.5.2",
     "bootstrap": "^4.4.0",
+    "mdbootstrap": "^4.19.1",
     "rxjs": "~6.5.4",
     "tinymce": "^5.2.2",
     "tslib": "^1.10.0",
