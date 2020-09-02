@@ -279,8 +279,8 @@ export class MetricsPageDeveloperComponent implements OnInit {
     if (bugs === [])
       return 0;
 
-    let sumOfHoursToResolveBug: number=0;
-    let count: number =0; 
+    let sumOfHoursToResolveBug: number = 0;
+    let count: number = 0;
 
     for (let b of bugs) {
       count++;
@@ -290,15 +290,15 @@ export class MetricsPageDeveloperComponent implements OnInit {
       //line below gets the difference in hours.
       // 36e5 is the scientific notation for 60*60*1000 (I got it from stackoverflow.)
       const diff = Math.abs((date2.getTime() - date1.getTime()) / 36e5);
-      sumOfHoursToResolveBug+= diff;
+      sumOfHoursToResolveBug += diff;
 
     }
-    const sumAsInteger=Math.ceil(sumOfHoursToResolveBug/count);
-    if (Number.isNaN(sumAsInteger))
+    const avgAsInteger = Math.ceil(sumOfHoursToResolveBug / count);
+    if (Number.isNaN(avgAsInteger))
       return undefined; //so we can show nothing.
-    return  sumAsInteger;
+    return avgAsInteger;
 
-   
+
 
   }
 
