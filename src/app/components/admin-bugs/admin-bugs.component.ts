@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import BugReport from '../../models/BugReport';
 import {ApiServiceService} from '../../services/api-service.service';
 import Application from 'src/app/models/Application';
@@ -10,6 +10,7 @@ import Application from 'src/app/models/Application';
 })
 
 export class AdminBugsComponent implements OnInit {
+  @Input() typeOfReport: string;
 
   bugReports: Array<BugReport>;
 
@@ -37,6 +38,8 @@ export class AdminBugsComponent implements OnInit {
   ngOnInit(): void {
     this.getBugReports();
     this.getApplications();
+    
+    
   }
 
   toggle() {
@@ -53,7 +56,19 @@ export class AdminBugsComponent implements OnInit {
   }
 
   async getBugReports(){
-    this.bugReports = await this.apiservice.getRequestedBugs();
+    switch (this.typeOfReport) {
+      case "Resolved":
+        this.bugReports = await this.apiservice.getResolvedBugs();
+        break;
+      case "Unresolved":
+        this.bugReports = await this.apiservice.getUnResolvedBugs();
+        break;
+      case "Requested":
+        this.bugReports = await this.apiservice.getRequestedBugs();
+        break;
+      default:
+        break;
+    }
     return this.bugReports;
   }
 

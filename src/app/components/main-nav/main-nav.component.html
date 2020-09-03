@@ -48,8 +48,6 @@
 
       <div class="admin-links links" *ngIf="clientRole == 2"><!-- Admin -->
         <a [routerLink]="['/applications']" [routerLinkActive]="['active']" id="applicationsTab">Applications</a>
-        <!-- <a routerLink="/adminbugs">Admin Bugs</a>
-        <a mat-list-item routerLink="/adminsolutions">Admin Solutions</a> -->
         <a mat-list-item [routerLink]="['/metrics']" [routerLinkActive]="['active']">Metrics</a>
       </div>
       <a class="login" *ngIf="clientRole != 0" (click)="logout()">Logout</a>
