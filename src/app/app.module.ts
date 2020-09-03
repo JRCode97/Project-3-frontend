@@ -13,7 +13,6 @@ import { ApplicationComponent } from './components/application/application.compo
 import { ApplicationsTableComponent } from './components/application/applications-table/applications-table.component';
 import { BugReportViewComponent } from './components/bug-report-view/bug-report-view.component';
 import { BugReportsTableComponent } from './components/profile/profile-tables/bug-reports-table/bug-reports-table.component';
-import { LoginComponent } from './components/login/login.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { MainPageApplicationComponent } from './components/main-page-application/main-page-application.component';
 import { MainPageBugComponent } from './components/main-page-bug/main-page-bug.component';
@@ -31,9 +30,7 @@ import { MetricsPageApplicationsComponent } from './components/metrics-page-appl
 import { MetricsPageDeveloperComponent } from './components/metrics-page-developer/metrics-page-developer.component';
 import { LoadingSpinnerComponent } from './components/ui/loading-spinner/loading-spinner.component';
 import { LoginMatComponent } from './components/login-mat/login-mat.component';
-import { ResolvedbugsPageComponent } from './components/resolvedbugs-page/resolvedbugs-page.component';
 import { ViewBugsPageComponent } from './components/view-bugs-page/view-bugs-page.component';
-import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/unresolvedbugs-page.component';
 
 
 @NgModule({
@@ -43,7 +40,6 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     ApplicationsTableComponent,
     BugReportViewComponent,
     BugReportsTableComponent,
-    LoginComponent,
     MainNavComponent,
     MainPageApplicationComponent,
     MainPageComponent,
@@ -57,9 +53,7 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     UpdatePasswordComponent,
     LoadingSpinnerComponent,
     LoginMatComponent,
-    ResolvedbugsPageComponent,
     ViewBugsPageComponent,
-    UnresolvedbugsPageComponent,
     MetricsPageComponent,
     MetricsPageSummaryComponent,
     MetricsPageApplicationsComponent,
@@ -71,7 +65,6 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     ApplicationsTableComponent,
     BugReportViewComponent,
     BugReportsTableComponent,
-    LoginComponent,
     MainNavComponent,
     MainPageApplicationComponent,
     MainPageBugComponent,
@@ -89,9 +82,7 @@ import { UnresolvedbugsPageComponent } from './components/unresolvedbugs-page/un
     MetricsPageDeveloperComponent,
     LoadingSpinnerComponent,
     LoginMatComponent,
-    ResolvedbugsPageComponent,
-    ViewBugsPageComponent,
-    UnresolvedbugsPageComponent
+    ViewBugsPageComponent
   ],
   imports: [
     Modules
