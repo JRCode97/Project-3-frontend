@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import {Client} from 'src/app/models/Client';
 import BugReport from 'src/app/models/BugReport';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-view-bugs-page',
@@ -23,7 +22,8 @@ export class ViewBugsPageComponent implements OnInit {
     this.client = this.serv.getLoggedClient();
     
     if(this.client === null){
-      this.isAdmin, this.isDeveloper = false;
+      this.isAdmin = false;
+      this.isDeveloper = false;
     }else{
       this.isAdmin = this.client.role ? true : false;
       this.isDeveloper = this.client.cId ? true : false;
