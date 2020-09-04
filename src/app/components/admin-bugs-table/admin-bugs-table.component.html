@@ -1,53 +1,113 @@
+<div class="filter-container">
+  <div class="selectDivs" id="appsort">
+    <div >
+    Bugs by Application: 
+    <mat-form-field>
+        <mat-select [(value)]="selectedAppTitle">
+            <mat-option value = "All" (click) = "filterByApplication()">All</mat-option>
+            <mat-option *ngFor="let app of apps" [value]="app.title" (click) ="filterByApplication()">{{app.title}}</mat-option>
+        </mat-select></mat-form-field>
+    </div>
+
+  </div>
+
+  <div id="severitysort">
+    <div >
+        Bugs by Severity: 
+        <mat-form-field>
+          <mat-label>{{severityDisplay}}</mat-label>
+            <mat-select [(value)]="severity">
+                <mat-option value="All" (click)="filterByApplication()">All</mat-option>
+                <mat-option value="Low" (click)="filterByApplication()">Low</mat-option>
+                <mat-option value="Medium" (click)="filterByApplication()">Medium</mat-option>
+                <mat-option value="High" (click)="filterByApplication()">High</mat-option>
+            </mat-select></mat-form-field>
+        </div>
+  </div>
+  <div id="prioritysort">
+    <div >
+        Bugs by Priority: 
+        <mat-form-field>
+          <mat-label>{{priorityDisplay}}</mat-label>
+            <mat-select [(value)]="priority">
+                <mat-option value="All" (click)="filterByApplication()">All</mat-option>
+                <mat-option value="Low" (click)="filterByApplication()">Low</mat-option>
+                <mat-option value="Medium" (click)="filterByApplication()">Medium</mat-option>
+                <mat-option value="High" (click)="filterByApplication()">High</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  </div>
+  <!-- <div id="reporterbugsearch">
+    <form>
+        <mat-form-field>
+          <mat-label>Bugs Reported By:</mat-label>
+          <input matInput placeholder="Ex. TheRaidman" [(ngModel)]="reporterUsername" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </form>
+  </div>
+  <button mat-stroked-button id="searchbyreporterBtn" color="accent" (click)="getbugReportByClientUsername()">Search</button> -->
+
+  <div id="reporterbugsearch">
+    <form>
+        <mat-form-field>
+          <mat-label>Search:</mat-label>
+          <input matInput placeholder="Search Bugs" [(ngModel)]="searchInput" [ngModelOptions]="{standalone: true}" (keyup)="search()">
+        </mat-form-field>
+      </form>
+  </div>
+</div>
+<!-- <button mat-stroked-button id="searchbyreporterBtn" color="accent" (click)="getbugReportByClientUsername()">Search</button> -->
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="full-width-table"  matSort aria-label="Elements">
 
     <!-- Bug Title Column -->
     <ng-container  matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortColumn('title')">Title</th>
       <td mat-cell  *matCellDef="let row" >{{row.title}}</td>
     </ng-container>
 
     <!-- Application Column -->
     <ng-container matColumnDef="application">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Application</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortColumn('application')">Application</th>
       <td mat-cell *matCellDef="let row">{{row.app.title}}</td>
     </ng-container>
 
     <!-- Location Column -->
     <ng-container matColumnDef="location">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortColumn('location')">Location</th>
       <td mat-cell *matCellDef="let row">{{row.location}}</td>
     </ng-container>
 
     <!-- Severity Column -->
     <ng-container matColumnDef="severity">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Severity</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortPrioSev('severity')">Severity</th>
       <td mat-cell *matCellDef="let row">{{row.severity}}</td>
     </ng-container>
 
     <!-- Priority Column -->
     <ng-container matColumnDef="priority">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortPrioSev('priority')">Priority</th>
       <td mat-cell *matCellDef="let row">{{row.priority}}</td>
     </ng-container>
 
     <!-- Date Column -->
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortColumn('date')">Date</th>
       <td mat-cell *matCellDef="let row">{{row.createdTime | date:'short'}}</td>
     </ng-container>
 
     <!-- Developer Column -->
     <ng-container matColumnDef="developer">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Developer</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortColumn('developer')">Developer</th>
       <td mat-cell *matCellDef="let row">{{row.username}}</td>
     </ng-container>
 
     <!-- Details Column -->
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
-      <td mat-cell *matCellDef="let row"><a routerLink="/bugreportapprove/{{row.bId}}">Inspect</a></td>
+      <td mat-cell *matCellDef="let row"><a id="inspectButton{{row.bId}}" routerLink="/bugreportapprove/{{row.bId}}">Inspect</a></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

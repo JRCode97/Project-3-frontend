@@ -28,9 +28,9 @@ export class ApplicationsTableComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
+    this.table.dataSource = this.dataSource;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
   }
 
   apps = []

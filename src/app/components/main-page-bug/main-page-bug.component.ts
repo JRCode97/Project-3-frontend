@@ -4,7 +4,7 @@ import { BugReport } from 'src/app/models/BugReport';
 @Component({
   selector: 'app-main-page-bug',
   templateUrl: './main-page-bug.component.html',
-  styleUrls: ['./main-page-bug.component.css']
+  styleUrls: ['./main-page-bug.component.scss']
 })
 export class MainPageBugComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class MainPageBugComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.id = this.bugReport.bId
+    this.id = this.bugReport.bId;
     this.title = this.bugReport.title;
     this.status = this.bugReport.status;
     this.pointValue = this.bugReport.pointValue;
