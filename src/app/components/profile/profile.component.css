@@ -48,6 +48,10 @@
                 padding-top: 18%;
             }
 
+    #spacer{
+        padding-top: 30px;
+    }
+
     #bugTableDiv{
         margin-top: 2vh;
         border-style: solid;

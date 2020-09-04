@@ -14,15 +14,16 @@ export class ProfileComponent implements OnInit {
   constructor(private modalService: NgbModal, private api: ApiServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    
     this.client = this.api.getLoggedClient()
     if (this.client == null || this.client === undefined)
     this.router.navigate(["/"]);
-    this.assignRole()
-    // this.client.role ? this.client.Role="Developer" : this.client.Role="Admin"
-    this.getClientPoint()
+    this.assignRole();
+    this.getClientPoint();
   }
-  bugStatus
-  solutionStatus
+  
+  bugStatus:string = "All";
+  solutionStatus:string = "All";
   points
   client
   closeResult = '';
@@ -36,10 +37,9 @@ export class ProfileComponent implements OnInit {
   }
 
   async getClientPoint(){
-   this.points = await this.api.getPoints(this.client.cId)
-   console.log(this.points)
+   this.points = await this.api.getPoints(this.client.cId);
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -51,12 +51,14 @@ export class ProfileComponent implements OnInit {
   }
 
   assignRole(){
-    if(this.client === 0){
-      this.client.Role = "Developer"
+    if(this.client.role === 0){
+      this.client.role = "Developer"
     }
     else{
-      this.client.Role = "Admin"
+      this.client.role = "Admin"
     }
+    console.log(this.client.role);
+    
   }
-
+  
 }

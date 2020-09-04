@@ -54,11 +54,10 @@ export class NewBugReportComponent implements OnInit {
     report.createdTime = new Date().getTime();
 
     const result = await this.api.submitNewBugReport(report);
-    
+
     if(result["bId"]>0){
       this.router.navigate([`/bugreport/${result["bId"]}`]);
-    }else{
-      console.log(result);
+    } else{
       this.failToPost = true;
     }
   }
@@ -73,6 +72,10 @@ export class NewBugReportComponent implements OnInit {
   getClient(){
     this.client = this.api.getLoggedClient();
     this.bugForm.controls['reporter'].setValue(this.client.username)
+  }
+
+  cancelReport(){
+    this.router.navigate(["/main"]);
   }
 
   ngOnInit(): void {
